@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
@@ -12,11 +13,6 @@ public class QuitGame : MonoBehaviour
     }
     void TaskOnClick()
     {
-#if UNITY_STANDALONE
-        Application.Quit();
-#endif
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        SceneManager.LoadScene(sceneName:"Scenes/Credits");
     }
 }
