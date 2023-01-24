@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EllisonJosh.Input;
+using ABOGGUS.Input;
 
-public class InputManager : MonoBehaviour
+namespace ABOGGUS
 {
-    [SerializeField] private PlayerController playerController;
-    private InputActions inputScheme;
-    private string str;
-
-    private void Awake()
+    public class InputManager : MonoBehaviour
     {
-        inputScheme = new InputActions();
-        playerController.Initialize(inputScheme);
+        [SerializeField] private PlayerController playerController;
+        [SerializeField] private PauseManager pauseManager;
+        private InputActions inputScheme;
+        private string str;
+
+        private void Awake()
+        {
+            inputScheme = new InputActions();
+            playerController.Initialize(inputScheme);
+            pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
+        }
     }
 }
