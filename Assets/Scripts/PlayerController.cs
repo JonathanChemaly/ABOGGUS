@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using EllisonJosh.Input;
+using ABOGGUS.Input;
 using System;
 
 public class PlayerController : MonoBehaviour
