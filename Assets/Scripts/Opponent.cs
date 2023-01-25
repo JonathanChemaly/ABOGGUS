@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Opponent : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Opponent : MonoBehaviour
     public float speed = 3.0f;
     public TextMeshProUGUI countText, winText;
     public GameObject winTextObject;
+    public GameObject creditsObject;
     public GameObject pickUpParent;
 
     private bool start;
@@ -24,6 +26,8 @@ public class Opponent : MonoBehaviour
         count = 0;
         pickupCount = 0;
         winTextObject.SetActive(false);
+        creditsObject.SetActive(false);
+
         SetCountText();
     }
 
@@ -136,8 +140,18 @@ public class Opponent : MonoBehaviour
         }
 
         winTextObject.SetActive(true);
+
+        StartCoroutine(CreditsButton());
     }
 
+    IEnumerator CreditsButton()
+    {
+        yield return new WaitForSeconds(2.0f);
+        creditsObject.SetActive(true);
+    }
 
-
+    public void Credits()
+    {
+        SceneManager.LoadScene(sceneName: "Scenes/Credits");
+    }
 }
