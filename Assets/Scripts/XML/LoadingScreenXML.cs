@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-[XmlRoot(ElementName = "pauseMenu")]
-public class PauseMenuXML
+[XmlRoot(ElementName = "LoadingScreen")]
+public class LoadingScreenXML
 {
     [XmlArray("images")]
     [XmlArrayItem("image", Type = typeof(ImageXML))]

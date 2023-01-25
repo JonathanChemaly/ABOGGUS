@@ -7,14 +7,19 @@ using TMPro;
 
 public class LoadingController : MonoBehaviour
 {
-    [SerializeField] Image loadingIcon;//field that holds the image that tracks progress
-    [SerializeField] TextMeshProUGUI tipText;
+    [SerializeField] private Image loadingIcon;//field that holds the image that tracks progress
+    [SerializeField] private TextMeshProUGUI tipText;
+
+    //Float to hold time to have loading screen on without skipping to the next sceen.
+    [SerializeField] private float timeToHaveLoadingScreenOn; 
 
     //When loading scene is loaded call a corroutine to load scene in the background
     void Start()
     {
         tipText.text = GetTipMessage(); //sets tip up.
-        StartCoroutine(LoadNextScene());
+        loadingIcon.fillAmount = 0.0f; //sets fill of loading icon to zero to reset it.
+       StartCoroutine(LoadNextScene());
+
     }
     /*
      * Method that loads scene (in the background) using LoadScyncAsync
@@ -26,6 +31,7 @@ public class LoadingController : MonoBehaviour
 
         sceneLoadingOperation.allowSceneActivation = false; //Stops scene activating
 
+        
         //keep on going until we have finished loading
         while (!sceneLoadingOperation.isDone)
         {
@@ -35,7 +41,9 @@ public class LoadingController : MonoBehaviour
             //Because of inaccuracy of progress need to do this to enable scene activivastion again
             if(sceneLoadingOperation.progress >= 0.8)
             {
-                //sceneLoadingOperation.allowSceneActivation = true; //now that scene is down we can all the scen to load
+                //waiting time so we have loading screen on a min amount of time.
+                yield return new WaitForSeconds(timeToHaveLoadingScreenOn); 
+                sceneLoadingOperation.allowSceneActivation = true; //now that scene is down we can all the scen to load
             }
 
             yield return null;

@@ -9,5 +9,5 @@ public class LoadingLocation
         get { return sceneName; }
         set { sceneName = value; }
     }
-    private static string sceneName = "Assets/Scenes/TestLoader.unity";
+    private static string sceneName = "Assets/Scenes/MiniGame.unity";
 }
