@@ -46,10 +46,16 @@ public class PauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName: "Scenes/Menu");
     }
 
     public void QuitGame()
     {
+#if UNITY_STANDALONE
         Application.Quit();
+#endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
