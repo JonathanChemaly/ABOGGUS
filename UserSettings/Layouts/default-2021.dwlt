@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Git for Unity
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 83
+  controlID: 26
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: Window
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -68,14 +68,14 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 14}
   - {fileID: 12}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -121,14 +121,14 @@ MonoBehaviour:
     y: 560
     width: 1466
     height: 387
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 13}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 51
+  controlID: 16
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 52
+  controlID: 17
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -297,24 +297,24 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1462
-    y: 81
-    width: 449
-    height: 910
+    x: 1466
+    y: 73
+    width: 453
+    height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  progressMessageClearTime: -1
+  progressMessageClearTime: 9240.2892849
   notificationClearTime: -1
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
   currentTrackingStatusHasUpdate: 0
-  currentStatusEntriesHasUpdate: 1
+  currentStatusEntriesHasUpdate: 0
   repositoryProgressHasUpdate: 1
-  appManagerProgressHasUpdate: 1
-  changeTab: 5
-  activeTab: 5
+  appManagerProgressHasUpdate: 0
+  changeTab: 3
+  activeTab: 3
   initProjectView:
     hasCompletedInitialCheck: 0
     isUserDataPresent: 0
@@ -524,8 +524,8 @@ MonoBehaviour:
         isActive: 0
         treeIsCheckable: 0
         checkState: 0
-      - path: origin/yuhi2
-        label: yuhi2
+      - path: origin/test
+        label: test
         level: 2
         isFolder: 0
         isContainer: 0
@@ -534,8 +534,38 @@ MonoBehaviour:
         isActive: 0
         treeIsCheckable: 0
         checkState: 0
-      - path: origin/yuhihakozaki
-        label: yuhihakozaki
+      - path: origin/test2
+        label: test2
+        level: 2
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 0
+        checkState: 0
+      - path: origin/UnityPackages
+        label: UnityPackages
+        level: 2
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 0
+        checkState: 0
+      - path: origin/Yuhi
+        label: Yuhi
+        level: 2
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 0
+        checkState: 0
+      - path: origin/yuhi2
+        label: yuhi2
         level: 2
         isFolder: 0
         isContainer: 0
@@ -561,10 +591,10 @@ MonoBehaviour:
     disableDelete: 1
     disableCreate: 1
     lastLocalAndRemoteBranchListChangedEvent:
-      updatedTimeString: 2023-01-24T10:52:13.747-05:00
+      updatedTimeString: 2023-01-25T15:06:12.441-05:00
       cacheType: 2
     lastCurrentBranchAndRemoteChange:
-      updatedTimeString: 2023-01-24T10:52:13.745-05:00
+      updatedTimeString: 2023-01-25T15:05:35.478-05:00
       cacheType: 1
     currentBranch:
       name: PauseMenu
@@ -599,9 +629,15 @@ MonoBehaviour:
       tracking: '[None]'
     - name: origin/QuitFunction
       tracking: '[None]'
-    - name: origin/yuhi2
+    - name: origin/test
       tracking: '[None]'
-    - name: origin/yuhihakozaki
+    - name: origin/test2
+      tracking: '[None]'
+    - name: origin/UnityPackages
+      tracking: '[None]'
+    - name: origin/Yuhi
+      tracking: '[None]'
+    - name: origin/yuhi2
       tracking: '[None]'
   changesView:
     currentBranchHasUpdate: 0
@@ -610,7 +646,7 @@ MonoBehaviour:
     commitBody: 
     commitMessage: 
     currentBranch: PauseMenu
-    treeScroll: {x: 0, y: 1857}
+    treeScroll: {x: 0, y: 1757}
     treeChanges:
       assets:
         keys: []
@@ -668,18 +704,374 @@ MonoBehaviour:
     gitStatusEntries: []
     changedFilesText: No changed files
     lastCurrentBranchChangedEvent:
-      updatedTimeString: 2023-01-24T10:52:13.745-05:00
+      updatedTimeString: 2023-01-25T15:05:35.478-05:00
       cacheType: 1
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-01-24T10:51:52.464-05:00
+      updatedTimeString: 2023-01-25T15:06:24.863-05:00
       cacheType: 6
     lastLocksChangedEvent:
-      updatedTimeString: 2023-01-24T10:51:52.160-05:00
+      updatedTimeString: 0001-01-01T00:00:00.000+00:00
       cacheType: 7
   historyView:
     currentLogHasUpdate: 0
     currentTrackingStatusHasUpdate: 0
     logEntries:
+    - commitID: 8b82ff621517f7ab61df3b8abcc7413a46562296
+      mergeA: 
+      mergeB: 
+      authorName: phangen
+      authorEmail: ph.hangen@gmail.com
+      commitEmail: ph.hangen@gmail.com
+      commitName: phangen
+      summary: Editing file names and Implementing fade
+      description: 
+      timeString: 2023-01-25T15:06:11.000-05:00
+      commitTimeString: 2023-01-25T15:06:11.000-05:00
+      changes:
+      - path: Assets\Resources\Images\LoadingScreen.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen.meta
+        projectPath: Assets\Resources\Images\LoadingScreen.meta
+        originalPath: Assets\Resources\Images\PauseMenu.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Aubert.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Aubert.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\CSE-logo.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\CSE-logo.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Cameron.jpg
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Cameron.jpg.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Curtis.jpg
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Curtis.jpg.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Jonathan.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Jonathan.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Josh.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Josh.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\OSU-Logo.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\OSU-Logo.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Phil.jpg
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Phil.jpg.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Unity-logo.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Unity-logo.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Yuhi.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Yuhi.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Zach.jpg
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+        originalPath: Assets\Resources\Images\PauseMenu\Cycle\Zach.jpg.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\SCircle2.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\SCircle2.png
+        projectPath: Assets\Resources\Images\LoadingScreen\SCircle2.png
+        originalPath: Assets\Resources\Images\PauseMenu\SCircle2.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\SCircle2.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+        projectPath: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+        originalPath: Assets\Resources\Images\PauseMenu\ShadowAndSky2.png
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+        originalPath: Assets\Resources\Images\PauseMenu\ShadowAndSky2.png.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\elevator.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator.png
+        projectPath: Assets\Resources\Images\LoadingScreen\elevator.png
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\elevator.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\elevator.png.meta
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\elevator2.png
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator2.png
+        projectPath: Assets\Resources\Images\LoadingScreen\elevator2.png
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+        projectPath: Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Music.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music.meta
+        projectPath: Assets\Resources\Music.meta
+        originalPath: Assets\Scenes\TestLoader.unity.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Resources\Music\LoadingScreen.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen.meta
+        projectPath: Assets\Resources\Music\LoadingScreen.meta
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\Floor
+          To Ceiling.mp3
+        projectPath: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\Floor
+          To Ceiling.mp3.meta
+        projectPath: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3.meta
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Music\LoadingScreen\license.txt
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\license.txt
+        projectPath: Assets\Resources\Music\LoadingScreen\license.txt
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Resources\Music\LoadingScreen\license.txt.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\license.txt.meta
+        projectPath: Assets\Resources\Music\LoadingScreen\license.txt.meta
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Scenes\LoadingScreen.unity
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\LoadingScreen.unity
+        projectPath: Assets\Scenes\LoadingScreen.unity
+        originalPath: Assets\Scenes\PauseMenu.unity
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scenes\LoadingScreen.unity.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\LoadingScreen.unity.meta
+        projectPath: Assets\Scenes\LoadingScreen.unity.meta
+        originalPath: Assets\Scenes\PauseMenu.unity.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scenes\TestLoader.unity
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\TestLoader.unity
+        projectPath: Assets\Scenes\TestLoader.unity
+        originalPath: 
+        indexStatus: 5
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen.meta
+        projectPath: Assets\Scripts\LoadingScreen.meta
+        originalPath: Assets\Scripts\PauseMenu.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingController.cs
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingController.cs
+        projectPath: Assets\Scripts\LoadingScreen\LoadingController.cs
+        originalPath: Assets\Scripts\PauseMenu\LoadingController.cs
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+        projectPath: Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+        originalPath: Assets\Scripts\PauseMenu\LoadingController.cs.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingLocation.cs
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingLocation.cs
+        projectPath: Assets\Scripts\LoadingScreen\LoadingLocation.cs
+        originalPath: Assets\Scripts\PauseMenu\LoadingLocation.cs
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+        projectPath: Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+        originalPath: Assets\Scripts\PauseMenu\LoadingLocation.cs.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+        projectPath: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+        projectPath: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+        originalPath: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+        projectPath: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+        originalPath: 
+        indexStatus: 5
+        workTreeStatus: 0
+      - path: Assets\Scripts\XML\LoadingScreenXML.cs
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\XML\LoadingScreenXML.cs
+        projectPath: Assets\Scripts\XML\LoadingScreenXML.cs
+        originalPath: Assets\Scripts\XML\PauseMenuXML.cs
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\Scripts\XML\LoadingScreenXML.cs.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\XML\LoadingScreenXML.cs.meta
+        projectPath: Assets\Scripts\XML\LoadingScreenXML.cs.meta
+        originalPath: Assets\Scripts\XML\PauseMenuXML.cs.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\XML\LoadingScreen.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen.meta
+        projectPath: Assets\XML\LoadingScreen.meta
+        originalPath: Assets\XML\PauseMenu.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\XML\LoadingScreen\ImageLazySusan.xml
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen\ImageLazySusan.xml
+        projectPath: Assets\XML\LoadingScreen\ImageLazySusan.xml
+        originalPath: 
+        indexStatus: 4
+        workTreeStatus: 0
+      - path: Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+        projectPath: Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+        originalPath: Assets\XML\PauseMenu\ImageLazySusan.xml.meta
+        indexStatus: 6
+        workTreeStatus: 0
+      - path: Assets\XML\PauseMenu\ImageLazySusan.xml
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\PauseMenu\ImageLazySusan.xml
+        projectPath: Assets\XML\PauseMenu\ImageLazySusan.xml
+        originalPath: 
+        indexStatus: 5
+        workTreeStatus: 0
+      - path: ProjectSettings\EditorBuildSettings.asset
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\ProjectSettings\EditorBuildSettings.asset
+        projectPath: ProjectSettings\EditorBuildSettings.asset
+        originalPath: 
+        indexStatus: 3
+        workTreeStatus: 0
+      - path: UserSettings\Layouts\default-2021.dwlt
+        fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\Layouts\default-2021.dwlt
+        projectPath: UserSettings\Layouts\default-2021.dwlt
+        originalPath: 
+        indexStatus: 3
+        workTreeStatus: 0
     - commitID: e82b1f4fa7d5cf4fa6863d6e9ec893571f12bba7
       mergeA: 
       mergeB: 
@@ -4539,16 +4931,372 @@ MonoBehaviour:
         originalPath: 
         indexStatus: 4
         workTreeStatus: 0
-    statusAhead: 0
+    statusAhead: 1
     lastLogChangedEvent:
-      updatedTimeString: 2023-01-24T10:52:13.750-05:00
+      updatedTimeString: 2023-01-25T15:06:13.391-05:00
       cacheType: 3
     lastTrackingStatusChangedEvent:
-      updatedTimeString: 2023-01-24T10:52:13.749-05:00
+      updatedTimeString: 2023-01-25T15:06:24.893-05:00
       cacheType: 5
     historyControl:
       scroll: {x: 0, y: 0}
       entries:
+      - commitID: 8b82ff621517f7ab61df3b8abcc7413a46562296
+        mergeA: 
+        mergeB: 
+        authorName: phangen
+        authorEmail: ph.hangen@gmail.com
+        commitEmail: ph.hangen@gmail.com
+        commitName: phangen
+        summary: Editing file names and Implementing fade
+        description: 
+        timeString: 2023-01-25T15:06:11.000-05:00
+        commitTimeString: 2023-01-25T15:06:11.000-05:00
+        changes:
+        - path: Assets\Resources\Images\LoadingScreen.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen.meta
+          projectPath: Assets\Resources\Images\LoadingScreen.meta
+          originalPath: Assets\Resources\Images\PauseMenu.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Aubert.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Aubert.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Aubert.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\CSE-logo.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\CSE-logo.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\CSE-logo.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Cameron.jpg
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Cameron.jpg.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Cameron.jpg.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Curtis.jpg
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Curtis.jpg.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Curtis.jpg.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Jonathan.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Jonathan.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Jonathan.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Josh.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Josh.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Josh.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\OSU-Logo.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\OSU-Logo.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\OSU-Logo.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Phil.jpg
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Phil.jpg.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Phil.jpg.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Unity-logo.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Unity-logo.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Unity-logo.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Yuhi.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Yuhi.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Yuhi.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Zach.jpg
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\Cycle\Zach.jpg.meta
+          originalPath: Assets\Resources\Images\PauseMenu\Cycle\Zach.jpg.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\SCircle2.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\SCircle2.png
+          projectPath: Assets\Resources\Images\LoadingScreen\SCircle2.png
+          originalPath: Assets\Resources\Images\PauseMenu\SCircle2.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\SCircle2.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\SCircle2.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+          projectPath: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png
+          originalPath: Assets\Resources\Images\PauseMenu\ShadowAndSky2.png
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\ShadowAndSky2.png.meta
+          originalPath: Assets\Resources\Images\PauseMenu\ShadowAndSky2.png.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\elevator.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator.png
+          projectPath: Assets\Resources\Images\LoadingScreen\elevator.png
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\elevator.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\elevator.png.meta
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\elevator2.png
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator2.png
+          projectPath: Assets\Resources\Images\LoadingScreen\elevator2.png
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+          projectPath: Assets\Resources\Images\LoadingScreen\elevator2.png.meta
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Music.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music.meta
+          projectPath: Assets\Resources\Music.meta
+          originalPath: Assets\Scenes\TestLoader.unity.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Resources\Music\LoadingScreen.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen.meta
+          projectPath: Assets\Resources\Music\LoadingScreen.meta
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\Floor
+            To Ceiling.mp3
+          projectPath: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\Floor
+            To Ceiling.mp3.meta
+          projectPath: Assets\Resources\Music\LoadingScreen\Floor To Ceiling.mp3.meta
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Music\LoadingScreen\license.txt
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\license.txt
+          projectPath: Assets\Resources\Music\LoadingScreen\license.txt
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Resources\Music\LoadingScreen\license.txt.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Resources\Music\LoadingScreen\license.txt.meta
+          projectPath: Assets\Resources\Music\LoadingScreen\license.txt.meta
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Scenes\LoadingScreen.unity
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\LoadingScreen.unity
+          projectPath: Assets\Scenes\LoadingScreen.unity
+          originalPath: Assets\Scenes\PauseMenu.unity
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scenes\LoadingScreen.unity.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\LoadingScreen.unity.meta
+          projectPath: Assets\Scenes\LoadingScreen.unity.meta
+          originalPath: Assets\Scenes\PauseMenu.unity.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scenes\TestLoader.unity
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\TestLoader.unity
+          projectPath: Assets\Scenes\TestLoader.unity
+          originalPath: 
+          indexStatus: 5
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen.meta
+          projectPath: Assets\Scripts\LoadingScreen.meta
+          originalPath: Assets\Scripts\PauseMenu.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingController.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingController.cs
+          projectPath: Assets\Scripts\LoadingScreen\LoadingController.cs
+          originalPath: Assets\Scripts\PauseMenu\LoadingController.cs
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+          projectPath: Assets\Scripts\LoadingScreen\LoadingController.cs.meta
+          originalPath: Assets\Scripts\PauseMenu\LoadingController.cs.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingLocation.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingLocation.cs
+          projectPath: Assets\Scripts\LoadingScreen\LoadingLocation.cs
+          originalPath: Assets\Scripts\PauseMenu\LoadingLocation.cs
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+          projectPath: Assets\Scripts\LoadingScreen\LoadingLocation.cs.meta
+          originalPath: Assets\Scripts\PauseMenu\LoadingLocation.cs.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+          projectPath: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+          projectPath: Assets\Scripts\LoadingScreen\LoadingScreenXMLManager.cs.meta
+          originalPath: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+          projectPath: Assets\Scripts\PauseMenu\PauseMenuXMLManager.cs
+          originalPath: 
+          indexStatus: 5
+          workTreeStatus: 0
+        - path: Assets\Scripts\XML\LoadingScreenXML.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\XML\LoadingScreenXML.cs
+          projectPath: Assets\Scripts\XML\LoadingScreenXML.cs
+          originalPath: Assets\Scripts\XML\PauseMenuXML.cs
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\Scripts\XML\LoadingScreenXML.cs.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\XML\LoadingScreenXML.cs.meta
+          projectPath: Assets\Scripts\XML\LoadingScreenXML.cs.meta
+          originalPath: Assets\Scripts\XML\PauseMenuXML.cs.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\XML\LoadingScreen.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen.meta
+          projectPath: Assets\XML\LoadingScreen.meta
+          originalPath: Assets\XML\PauseMenu.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\XML\LoadingScreen\ImageLazySusan.xml
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen\ImageLazySusan.xml
+          projectPath: Assets\XML\LoadingScreen\ImageLazySusan.xml
+          originalPath: 
+          indexStatus: 4
+          workTreeStatus: 0
+        - path: Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+          projectPath: Assets\XML\LoadingScreen\ImageLazySusan.xml.meta
+          originalPath: Assets\XML\PauseMenu\ImageLazySusan.xml.meta
+          indexStatus: 6
+          workTreeStatus: 0
+        - path: Assets\XML\PauseMenu\ImageLazySusan.xml
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\XML\PauseMenu\ImageLazySusan.xml
+          projectPath: Assets\XML\PauseMenu\ImageLazySusan.xml
+          originalPath: 
+          indexStatus: 5
+          workTreeStatus: 0
+        - path: ProjectSettings\EditorBuildSettings.asset
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\ProjectSettings\EditorBuildSettings.asset
+          projectPath: ProjectSettings\EditorBuildSettings.asset
+          originalPath: 
+          indexStatus: 3
+          workTreeStatus: 0
+        - path: UserSettings\Layouts\default-2021.dwlt
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\Layouts\default-2021.dwlt
+          projectPath: UserSettings\Layouts\default-2021.dwlt
+          originalPath: 
+          indexStatus: 3
+          workTreeStatus: 0
       - commitID: e82b1f4fa7d5cf4fa6863d6e9ec893571f12bba7
         mergeA: 
         mergeB: 
@@ -8412,7 +9160,7 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 4
           workTreeStatus: 0
-      statusAhead: 0
+      statusAhead: 1
       selectedIndex: -1
     selectedEntry:
       commitID: 
@@ -8474,7 +9222,7 @@ MonoBehaviour:
       changingManually: 0
     hasRemote: 1
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-01-25T00:48:49.870-05:00
+      updatedTimeString: 2023-01-25T15:05:35.478-05:00
       cacheType: 1
     newRepositoryRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
     repositoryRemoteName: origin
@@ -8487,7 +9235,7 @@ MonoBehaviour:
       newGitEmail: ph.hangen@gmail.com
       needsSaving: 0
       lastCheckUserChangedEvent:
-        updatedTimeString: 2023-01-25T01:07:10.534-05:00
+        updatedTimeString: 0001-01-01T00:00:00.000+00:00
         cacheType: 8
     webTimeout: 100000
     gitTimeout: 5000
@@ -8516,13 +9264,13 @@ MonoBehaviour:
         gitFileStatus: 0
         lockedAt: 1 Jan 0001, 00:00
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-01-24T10:52:13.745-05:00
+      updatedTimeString: 2023-01-25T15:05:35.478-05:00
       cacheType: 1
     lastLocksChangedEvent:
-      updatedTimeString: 2023-01-24T10:51:52.160-05:00
+      updatedTimeString: 0001-01-01T00:00:00.000+00:00
       cacheType: 7
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-01-24T10:51:52.464-05:00
+      updatedTimeString: 2023-01-25T15:06:24.863-05:00
       cacheType: 6
     lockedFiles: []
     gitStatusEntries: []
@@ -8539,9 +9287,9 @@ MonoBehaviour:
   currentRemoteName: origin
   currentBranch: PauseMenu
   currentRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
-  statusAhead: 0
+  statusAhead: 1
   statusBehind: 0
-  hasItemsToCommit: 1
+  hasItemsToCommit: 0
   isTrackingRemoteBranch: 1
   currentBranchContent:
     m_Text: PauseMenu
@@ -8552,13 +9300,13 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: Url of the origin remote
   lastCurrentBranchAndRemoteChangedEvent:
-    updatedTimeString: 2023-01-24T23:48:40.706-05:00
+    updatedTimeString: 2023-01-25T15:05:35.478-05:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-01-24T23:51:54.639-05:00
+    updatedTimeString: 2023-01-25T15:06:24.893-05:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-01-25T00:49:56.363-05:00
+    updatedTimeString: 2023-01-25T15:06:24.863-05:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -8576,8 +9324,8 @@ MonoBehaviour:
     m_Text: Fetch
     m_Image: {fileID: 0}
     m_Tooltip: 
-  repositoryProgressValue: 0
-  repositoryProgressMessage: 
+  repositoryProgressValue: 0.99992186
+  repositoryProgressMessage: Fetched
   appManagerProgressValue: 1
   appManagerProgressMessage: 
   primaryConnectionUsername: 
@@ -8622,36 +9370,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Music/LoadingScreen
+    - Assets/Scripts/LoadingScreen
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Music/LoadingScreen
-  m_LastFoldersGridSize: -1
+  - Assets/Scripts/LoadingScreen
+  m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\tropi\CPSTNE_VER_1.0
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 26}
-    m_SelectedIDs: 347c0000
-    m_LastClickedID: 31796
-    m_ExpandedIDs: 00000000527000006c73000070730000287c000000ca9a3b
+    m_SelectedIDs: ce700000
+    m_LastClickedID: 28878
+    m_ExpandedIDs: 000000005c700000787000007c7000008a7000008c70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Resources
+      m_OriginalName: Resources
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 28792
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -8665,7 +9413,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000052700000
+    m_ExpandedIDs: 000000005c700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -8718,7 +9466,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
 --- !u!114 &14
@@ -8795,21 +9543,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ea7dfffffc80ffff2efbfffff4ffffffec6d0000086e0000146e0000326e00000e7a0000
+      m_ExpandedIDs: 2efbffffec6d0000f66d0000086e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: BGM
-        m_OriginalName: BGM
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -36362
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -9077,9 +9825,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 412.88965, y: 396.89072, z: -2.5932071}
+    m_Target: {x: 302.00577, y: 474.61826, z: -2.3596106}
     speed: 2
-    m_Value: {x: 421.06216, y: 388.1087, z: -2.451089}
+    m_Value: {x: 320.71234, y: 458.29166, z: -2.115425}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -9130,9 +9878,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 330.03143
+    m_Target: 567.05164
     speed: 2
-    m_Value: 315.81955
+    m_Value: 542.6331
   m_Ortho:
     m_Target: 1
     speed: 2
