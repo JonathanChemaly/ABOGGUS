@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackToMainMenu : MonoBehaviour
 {
@@ -14,23 +15,13 @@ public class BackToMainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape))
         {
-            #if UNITY_STANDALONE
-                Application.Quit();
-            #endif
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #endif
+            SceneManager.LoadScene(sceneName: "Scenes/Menu");
         }
     }
 
     IEnumerator ReturnToMenu()
     {
         yield return new WaitForSeconds(25.0f);
-        #if UNITY_STANDALONE
-            Application.Quit();
-        #endif
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        SceneManager.LoadScene(sceneName: "Scenes/Menu");
     }
 }
