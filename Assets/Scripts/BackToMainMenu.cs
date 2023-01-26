@@ -15,8 +15,17 @@ public class BackToMainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape))
         {
+            #if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                     Application.Quit();
+            #endif
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
             SceneManager.LoadScene(sceneName: "Scenes/Menu");
         }
+
     }
 
     IEnumerator ReturnToMenu()
