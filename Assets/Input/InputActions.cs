@@ -27,13 +27,13 @@ namespace ABOGGUS.Input
     ""maps"": [
         {
             ""name"": ""Player"",
-            ""id"": ""35122b21-5a6a-455b-988f-5845d676321e"",
+            ""id"": ""824f1489-dd93-4e65-8e3c-a2e6bfc298b5"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Button"",
-                    ""id"": ""97754530-1bf0-4f41-8e68-34f8cd6bf70f"",
-                    ""expectedControlType"": ""Button"",
+                    ""type"": ""Value"",
+                    ""id"": ""554e93d5-992f-4230-a86c-f833b0080f4d"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -41,7 +41,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
-                    ""id"": ""34577425-35d9-463c-a61c-3c911ac7e84f"",
+                    ""id"": ""572366ed-ec81-49dd-b7d2-c9138ede4a00"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -50,25 +50,16 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
-                    ""id"": ""d920317d-e4da-4b2c-95c0-ce3c4d86ae7e"",
+                    ""id"": ""f8c15f83-1a44-4eab-b953-4da0b7b2bcdc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""CameraSwitch"",
                     ""type"": ""Button"",
-                    ""id"": ""29107f72-b6c6-4c78-9848-44dd871f8592"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""c033bc07-014a-46e7-999b-5bb4481e571f"",
+                    ""id"": ""b4c6555a-5f64-4ceb-9647-453964ae1676"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -77,7 +68,25 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
-                    ""id"": ""454876d2-91c4-4dea-9f3f-7633edb88b48"",
+                    ""id"": ""3fa52b54-fb23-4c44-b075-898de8093f24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""7be19532-d04f-49ea-a798-55be33a6db76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c42a51e0-a90a-46bf-84bd-62c91dd05760"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -86,7 +95,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""81aefa5d-bfff-4073-be33-a36197a593c0"",
+                    ""id"": ""4aefecdd-62e9-4693-a3e6-2aa2a9759c3c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -95,7 +104,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Inventory"",
                     ""type"": ""Button"",
-                    ""id"": ""df1d056a-6842-4b36-b057-b23d3f2b33e1"",
+                    ""id"": ""63c97966-a088-4eb9-a259-02235737c8a7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -325,30 +334,19 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""37bd9f3a-d45c-408f-a064-0a12e39c9e5c"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a0cc3dbe-1f1a-4884-82a6-b415eea5a5fa"",
+                    ""id"": ""b47f510c-23e3-4439-b052-b75051f687d0"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Crouch"",
+                    ""action"": ""CameraSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b0157aad-bfb0-46c3-adac-038df8d9cafc"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""id"": ""f7a6ebc4-f5e0-4523-84c2-0611a0d0bfe4"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -358,7 +356,29 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""076f9fd7-84c6-48b8-8571-24f0aae5d74a"",
+                    ""id"": ""e351d7a3-3203-4698-aacc-d9d452b3ad1e"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2059938-c63f-45b9-a32e-00a2fcb6bee2"",
+                    ""path"": ""<Keyboard>/#(')"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3a8ce0c-e2f9-49ff-98bd-b464352a9896"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -369,7 +389,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ac84542d-b35b-4e74-9ec3-f866d338548d"",
+                    ""id"": ""5a3469f6-af41-4e51-9beb-65be3668a84f"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -382,12 +402,12 @@ namespace ABOGGUS.Input
         },
         {
             ""name"": ""UI"",
-            ""id"": ""12e3c671-0894-4fed-9421-5c3ae8439136"",
+            ""id"": ""22247ae4-65c1-40a5-b01c-b78f499c9ad1"",
             ""actions"": [
                 {
                     ""name"": ""Navigate"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""bc760721-64d2-49ca-bab0-5380b9a2d413"",
+                    ""id"": ""72695628-a942-4193-8868-d5e0c370a8c1"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -396,7 +416,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
-                    ""id"": ""cdb1a52a-8129-42c8-8be1-d1d874faadf0"",
+                    ""id"": ""dc67d7e3-72cf-4dc9-898c-d79a97e7a534"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -405,7 +425,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
-                    ""id"": ""24750544-7634-4696-9971-702b1b04fd32"",
+                    ""id"": ""52012e73-d6b2-49b7-bfd3-8272c850e9f0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -414,7 +434,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Point"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""caa859fe-fb27-48b5-a9a0-7e9b62b558ed"",
+                    ""id"": ""4dc92b52-0046-44d2-9826-832035f12978"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -423,7 +443,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Click"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""e1fddcbb-cbfe-4505-b78d-1db86ec4932d"",
+                    ""id"": ""f46e9c36-8613-4818-a5ba-76f5d9608807"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -432,7 +452,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""ScrollWheel"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""2d448c79-ba1e-4037-9761-8a3544899e7c"",
+                    ""id"": ""4093bd8a-5641-46e7-b5f4-29189ee0108a"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -441,7 +461,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""MiddleClick"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""55e786b3-c81f-4015-88eb-78f951687d13"",
+                    ""id"": ""54fa90e3-bad1-4e87-9922-e4d0bf6c0a2e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -450,7 +470,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""RightClick"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""51cb1376-69b8-4ee9-8985-2581c273b946"",
+                    ""id"": ""c84b9851-a830-4d6f-86e4-4bb0d1bea27c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -459,7 +479,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""TrackedDevicePosition"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""5aadc1ce-df78-4f57-8a22-c2d55322ae8c"",
+                    ""id"": ""69315517-bb3b-4b9b-845e-4f124b9f01a4"",
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -468,7 +488,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""TrackedDeviceOrientation"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""16245369-88dd-4b94-9e4b-eb595ae58d5f"",
+                    ""id"": ""a25ec49d-ff6c-4262-a515-e463cc04a4db"",
                     ""expectedControlType"": ""Quaternion"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -965,9 +985,10 @@ namespace ABOGGUS.Input
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+            m_Player_CameraSwitch = m_Player.FindAction("CameraSwitch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             // UI
@@ -1044,9 +1065,10 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Fire;
-        private readonly InputAction m_Player_Jump;
-        private readonly InputAction m_Player_Crouch;
+        private readonly InputAction m_Player_CameraSwitch;
         private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_Crouch;
+        private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Pause;
         private readonly InputAction m_Player_Inventory;
         public struct PlayerActions
@@ -1056,9 +1078,10 @@ namespace ABOGGUS.Input
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
-            public InputAction @Jump => m_Wrapper.m_Player_Jump;
-            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+            public InputAction @CameraSwitch => m_Wrapper.m_Player_CameraSwitch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+            public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1079,15 +1102,18 @@ namespace ABOGGUS.Input
                     @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                    @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                    @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                    @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                    @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                    @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @CameraSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
+                    @CameraSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
+                    @CameraSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
                     @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                     @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -1107,15 +1133,18 @@ namespace ABOGGUS.Input
                     @Fire.started += instance.OnFire;
                     @Fire.performed += instance.OnFire;
                     @Fire.canceled += instance.OnFire;
-                    @Jump.started += instance.OnJump;
-                    @Jump.performed += instance.OnJump;
-                    @Jump.canceled += instance.OnJump;
-                    @Crouch.started += instance.OnCrouch;
-                    @Crouch.performed += instance.OnCrouch;
-                    @Crouch.canceled += instance.OnCrouch;
+                    @CameraSwitch.started += instance.OnCameraSwitch;
+                    @CameraSwitch.performed += instance.OnCameraSwitch;
+                    @CameraSwitch.canceled += instance.OnCameraSwitch;
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
+                    @Crouch.started += instance.OnCrouch;
+                    @Crouch.performed += instance.OnCrouch;
+                    @Crouch.canceled += instance.OnCrouch;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
                     @Pause.started += instance.OnPause;
                     @Pause.performed += instance.OnPause;
                     @Pause.canceled += instance.OnPause;
@@ -1281,9 +1310,10 @@ namespace ABOGGUS.Input
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
-            void OnJump(InputAction.CallbackContext context);
-            void OnCrouch(InputAction.CallbackContext context);
+            void OnCameraSwitch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
+            void OnCrouch(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
         }

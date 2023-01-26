@@ -9,6 +9,7 @@ namespace ABOGGUS
     {
         [SerializeField] private PlayerController playerController;
         [SerializeField] private PauseManager pauseManager;
+        [SerializeField] private CameraController cameraController;
         private InputActions inputScheme;
         private string str;
 
@@ -17,6 +18,7 @@ namespace ABOGGUS
             inputScheme = new InputActions();
             playerController.Initialize(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
+            cameraController.Initialize(inputScheme.Player.CameraSwitch);
         }
     }
 }
