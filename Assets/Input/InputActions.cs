@@ -368,7 +368,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": """",
                     ""id"": ""b2059938-c63f-45b9-a32e-00a2fcb6bee2"",
-                    ""path"": ""<Keyboard>/#(')"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
