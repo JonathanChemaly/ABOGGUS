@@ -19,6 +19,9 @@ namespace ABOGGUS {
         void Start()
         {
             inventoryMenu.SetActive(false);
+            keyContainer.color = Color.white;
+            keyContainer.sprite = keyImage;
+            keyContainer.enabled = false;
             isPaused = false;
         }
 
@@ -42,12 +45,10 @@ namespace ABOGGUS {
             inventoryMenu.SetActive(true);
             if (player.key)
             {
-                keyContainer.sprite = keyImage;
-                keyContainer.color = Color.white;
+                keyContainer.enabled = true;
             } else
             {
-                keyContainer.sprite = null;
-                keyContainer.color = new Color(167, 169, 173);
+                keyContainer.enabled = false;
             }
             Time.timeScale = 0f;
         }
