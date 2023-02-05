@@ -1031,29 +1031,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307515034}
   m_CullTransparentMesh: 1
---- !u!1 &409869995 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9040376220218347688, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+--- !u!114 &388378518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9040376220139184533, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
   m_PrefabInstance: {fileID: 9040376219822902787}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &409869996 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9040376220218347695, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
   m_PrefabInstance: {fileID: 9040376219822902787}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &409869997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409869995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14187c6429c1f9b478c934c2f0f95f4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FPScam: {fileID: 646952504}
 --- !u!1 &423485608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,8 +1866,10 @@ GameObject:
   - component: {fileID: 746622434}
   - component: {fileID: 746622433}
   - component: {fileID: 746622432}
+  - component: {fileID: 746622436}
+  - component: {fileID: 746622437}
   m_Layer: 6
-  m_Name: Cylinder
+  m_Name: TestInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1959,6 +1954,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &746622436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746622431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d89b96b0d317842944ce8327ea3bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Test Cylinder
+  actionName: Use
+--- !u!114 &746622437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746622431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1fa6272a30abd48a24da3ff5ccc37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 746622436}
+  inputM: {fileID: 1252102059}
 --- !u!1 &833321597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,7 +3097,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1411707094
 RectTransform:
@@ -4173,6 +4196,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1411707094}
     m_Modifications:
+    - target: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+      propertyPath: FPScam
+      value: 
+      objectReference: {fileID: 646952504}
+    - target: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+      propertyPath: itemName
+      value: 
+      objectReference: {fileID: 388378518}
+    - target: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+      propertyPath: InteractionUI
+      value: 
+      objectReference: {fileID: 9040376219822902788}
+    - target: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+      propertyPath: layerToSearch.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 9040376219820600476, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
       propertyPath: m_text
       value: Interact
@@ -4195,7 +4234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9040376220218347688, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
       propertyPath: m_Name
-      value: InteractParent
+      value: InteractUI
       objectReference: {fileID: 0}
     - target: {fileID: 9040376220218347695, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
       propertyPath: m_Pivot.x
@@ -4291,3 +4330,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+--- !u!1 &9040376219822902788 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5258285006295581901, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+  m_PrefabInstance: {fileID: 9040376219822902787}
+  m_PrefabAsset: {fileID: 0}

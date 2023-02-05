@@ -11,6 +11,9 @@ namespace ABOGGUS
         [SerializeField] private PauseManager pauseManager;
         [SerializeField] private CameraController cameraController;
         private InputActions inputScheme;
+
+        public InputActions InputScheme { get => inputScheme; }
+
         private string str;
 
         private void Awake()

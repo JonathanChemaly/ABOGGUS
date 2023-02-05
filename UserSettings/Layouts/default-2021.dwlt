@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 240
+  controlID: 52
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,16 +64,16 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1437
+    x: 1424
     y: 0
-    width: 483
+    width: 496
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 14}
-  - {fileID: 12}
+  - {fileID: 15}
+  - {fileID: 13}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &4
@@ -93,13 +93,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 236
-    height: 677
+    width: 246
+    height: 660
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 15}
+  - {fileID: 16}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &5
@@ -118,15 +118,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 677
-    width: 1437
-    height: 270
+    y: 660
+    width: 1424
+    height: 287
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 13}
-  - {fileID: 18}
+  - {fileID: 14}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &6
@@ -219,12 +219,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1437
+    width: 1424
     height: 947
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 55
+  controlID: 17
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,12 +244,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1437
-    height: 677
+    width: 1424
+    height: 660
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 56
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,19 +265,48 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 236
+    x: 246
     y: 0
-    width: 1201
-    height: 677
+    width: 1178
+    height: 660
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 16}
   - {fileID: 17}
+  - {fileID: 18}
+  - {fileID: 12}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &12
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12111, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 455, y: 354}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Asset Store
+    m_Image: {fileID: -8693916549880196297, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 250
+    y: 73
+    width: 1185
+    height: 656
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,11 +339,11 @@ MonoBehaviour:
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
   currentTrackingStatusHasUpdate: 0
-  currentStatusEntriesHasUpdate: 0
+  currentStatusEntriesHasUpdate: 1
   repositoryProgressHasUpdate: 1
   appManagerProgressHasUpdate: 1
-  changeTab: 5
-  activeTab: 5
+  changeTab: 3
+  activeTab: 3
   initProjectView:
     hasCompletedInitialCheck: 0
     isUserDataPresent: 0
@@ -388,14 +417,14 @@ MonoBehaviour:
         treeIsCheckable: 0
         checkState: 0
       selectedNode:
-        path: ProceduralPuzzle
-        label: ProceduralPuzzle
+        path: master
+        label: master
         level: 1
         isFolder: 0
         isContainer: 0
         isCollapsed: 0
         isHidden: 0
-        isActive: 1
+        isActive: 0
         treeIsCheckable: 0
         checkState: 0
     treeRemotes:
@@ -588,13 +617,13 @@ MonoBehaviour:
     mode: 0
     newBranchName: 
     scroll: {x: 0, y: 0}
-    disableDelete: 1
+    disableDelete: 0
     disableCreate: 0
     lastLocalAndRemoteBranchListChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:52.549-05:00
+      updatedTimeString: 2023-02-03T18:40:25.417-05:00
       cacheType: 2
     lastCurrentBranchAndRemoteChange:
-      updatedTimeString: 2023-01-29T14:16:56.169-05:00
+      updatedTimeString: 2023-02-03T18:40:24.432-05:00
       cacheType: 1
     currentBranch:
       name: ProceduralPuzzle
@@ -640,20 +669,305 @@ MonoBehaviour:
     - name: origin/UnityPackages
       tracking: '[None]'
   changesView:
-    currentBranchHasUpdate: 0
-    currentStatusEntriesHasUpdate: 0
-    currentLocksHasUpdate: 0
+    currentBranchHasUpdate: 1
+    currentStatusEntriesHasUpdate: 1
+    currentLocksHasUpdate: 1
     commitBody: 
     commitMessage: 
-    currentBranch: master
+    currentBranch: ProceduralPuzzle
     treeScroll: {x: 0, y: 0}
     treeChanges:
       assets:
-        keys: []
-        values: []
+        keys:
+        - 00000000000000001000000000000000
+        - f4a952563aa46bf47807546df5800ca4
+        - 459fb8384e6130a419074bd384baf8a6
+        - 6ea315d0fd7389c41b19996891e99ae3
+        - fbc05f93c257df140b49aa7a8a3fdcd8
+        - 13161a2922b8be3418b562577abb8834
+        - 61ab98e562191914a9a44957ae33df9d
+        - 22d89b96b0d317842944ce8327ea3bb6
+        - 14187c6429c1f9b478c934c2f0f95f4e
+        - dbfff9f832895c94e872c46dea1cf632
+        values:
+        - path: Assets
+          label: Assets
+          level: 0
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Prefabs
+          label: Prefabs
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Prefabs\InteractUI.prefab
+          label: InteractUI.prefab
+          level: 2
+          isFolder: 0
+          isContainer: 1
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: Assets\Prefabs\InteractUI.prefab
+            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
+            projectPath: Assets\Prefabs\InteractUI.prefab
+            originalPath: 
+            indexStatus: 1
+            workTreeStatus: 1
+        - path: Assets\Scenes
+          label: Scenes
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scenes\MiniGame.unity
+          label: MiniGame.unity
+          level: 2
+          isFolder: 0
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: Assets\Scenes\MiniGame.unity
+            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
+            projectPath: Assets\Scenes\MiniGame.unity
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 3
+        - path: Assets\Scripts
+          label: Scripts
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scripts\InteractScript
+          label: InteractScript
+          level: 2
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scripts\InteractScript\Interactable.cs
+          label: Interactable.cs
+          level: 3
+          isFolder: 0
+          isContainer: 1
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: Assets\Scripts\InteractScript\Interactable.cs
+            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
+            projectPath: Assets\Scripts\InteractScript\Interactable.cs
+            originalPath: 
+            indexStatus: 1
+            workTreeStatus: 1
+        - path: Assets\Scripts\InteractScript\InteractionManager.cs
+          label: InteractionManager.cs
+          level: 3
+          isFolder: 0
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: Assets\Scripts\InteractScript\InteractionManager.cs
+            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
+            projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 3
+        - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+          label: TextSnapToLeftOf.cs
+          level: 3
+          isFolder: 0
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+            projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 3
       folders:
-        keys: []
-        values: []
+        keys:
+        - Assets
+        - Assets\Prefabs
+        - Assets\Scenes
+        - Assets\Scripts
+        - Assets\Scripts\InteractScript
+        values:
+        - path: Assets
+          label: Assets
+          level: 0
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Prefabs
+          label: Prefabs
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scenes
+          label: Scenes
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scripts
+          label: Scripts
+          level: 1
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
+        - path: Assets\Scripts\InteractScript
+          label: InteractScript
+          level: 2
+          isFolder: 1
+          isContainer: 0
+          isCollapsed: 0
+          isHidden: 0
+          isActive: 0
+          treeIsCheckable: 1
+          checkState: 0
+          isLocked: 0
+          gitStatusEntry:
+            path: 
+            fullPath: 
+            projectPath: 
+            originalPath: 
+            indexStatus: 0
+            workTreeStatus: 0
       checkedFileNodes:
         keys: []
         values: []
@@ -682,6 +996,258 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
+      - path: Assets
+        label: Assets
+        level: 0
+        isFolder: 1
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: 
+          fullPath: 
+          projectPath: 
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 0
+      - path: Assets\Prefabs
+        label: Prefabs
+        level: 1
+        isFolder: 1
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: 
+          fullPath: 
+          projectPath: 
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 0
+      - path: Assets\Prefabs\InteractParent.prefab
+        label: InteractParent.prefab
+        level: 2
+        isFolder: 0
+        isContainer: 1
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Prefabs\InteractParent.prefab
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab
+          projectPath: Assets\Prefabs\InteractParent.prefab
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 5
+      - path: Assets\Prefabs\InteractParent.prefab.meta
+        label: InteractParent.prefab.meta
+        level: 3
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Prefabs\InteractParent.prefab.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab.meta
+          projectPath: Assets\Prefabs\InteractParent.prefab.meta
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 5
+      - path: Assets\Prefabs\InteractUI.prefab
+        label: InteractUI.prefab
+        level: 2
+        isFolder: 0
+        isContainer: 1
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Prefabs\InteractUI.prefab
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
+          projectPath: Assets\Prefabs\InteractUI.prefab
+          originalPath: 
+          indexStatus: 1
+          workTreeStatus: 1
+      - path: Assets\Prefabs\InteractUI.prefab.meta
+        label: InteractUI.prefab.meta
+        level: 3
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Prefabs\InteractUI.prefab.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab.meta
+          projectPath: Assets\Prefabs\InteractUI.prefab.meta
+          originalPath: 
+          indexStatus: 1
+          workTreeStatus: 1
+      - path: Assets\Scenes
+        label: Scenes
+        level: 1
+        isFolder: 1
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: 
+          fullPath: 
+          projectPath: 
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 0
+      - path: Assets\Scenes\MiniGame.unity
+        label: MiniGame.unity
+        level: 2
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Scenes\MiniGame.unity
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
+          projectPath: Assets\Scenes\MiniGame.unity
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 3
+      - path: Assets\Scripts
+        label: Scripts
+        level: 1
+        isFolder: 1
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: 
+          fullPath: 
+          projectPath: 
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 0
+      - path: Assets\Scripts\InteractScript
+        label: InteractScript
+        level: 2
+        isFolder: 1
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: 
+          fullPath: 
+          projectPath: 
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 0
+      - path: Assets\Scripts\InteractScript\Interactable.cs
+        label: Interactable.cs
+        level: 3
+        isFolder: 0
+        isContainer: 1
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Scripts\InteractScript\Interactable.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
+          projectPath: Assets\Scripts\InteractScript\Interactable.cs
+          originalPath: 
+          indexStatus: 1
+          workTreeStatus: 1
+      - path: Assets\Scripts\InteractScript\Interactable.cs.meta
+        label: Interactable.cs.meta
+        level: 4
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Scripts\InteractScript\Interactable.cs.meta
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs.meta
+          projectPath: Assets\Scripts\InteractScript\Interactable.cs.meta
+          originalPath: 
+          indexStatus: 1
+          workTreeStatus: 1
+      - path: Assets\Scripts\InteractScript\InteractionManager.cs
+        label: InteractionManager.cs
+        level: 3
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Scripts\InteractScript\InteractionManager.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
+          projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 3
+      - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+        label: TextSnapToLeftOf.cs
+        level: 3
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 1
+        checkState: 0
+        isLocked: 0
+        gitStatusEntry:
+          path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+          projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+          originalPath: 
+          indexStatus: 0
+          workTreeStatus: 3
       selectedNode:
         path: 
         label: 
@@ -701,16 +1267,70 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-    gitStatusEntries: []
-    changedFilesText: No changed files
+    gitStatusEntries:
+    - path: Assets\Prefabs\InteractParent.prefab
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab
+      projectPath: Assets\Prefabs\InteractParent.prefab
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 5
+    - path: Assets\Prefabs\InteractParent.prefab.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab.meta
+      projectPath: Assets\Prefabs\InteractParent.prefab.meta
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 5
+    - path: Assets\Prefabs\InteractUI.prefab
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
+      projectPath: Assets\Prefabs\InteractUI.prefab
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Prefabs\InteractUI.prefab.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab.meta
+      projectPath: Assets\Prefabs\InteractUI.prefab.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scenes\MiniGame.unity
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
+      projectPath: Assets\Scenes\MiniGame.unity
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: Assets\Scripts\InteractScript\Interactable.cs
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
+      projectPath: Assets\Scripts\InteractScript\Interactable.cs
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scripts\InteractScript\Interactable.cs.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs.meta
+      projectPath: Assets\Scripts\InteractScript\Interactable.cs.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scripts\InteractScript\InteractionManager.cs
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
+      projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    changedFilesText: 9 changed files
     lastCurrentBranchChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:24.632-05:00
+      updatedTimeString: 2023-02-04T01:46:00.848-05:00
       cacheType: 1
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:16.921-05:00
+      updatedTimeString: 2023-02-04T01:46:44.486-05:00
       cacheType: 6
     lastLocksChangedEvent:
-      updatedTimeString: 2023-01-29T14:15:03.789-05:00
+      updatedTimeString: 0001-01-01T00:00:00.000+00:00
       cacheType: 7
   historyView:
     currentLogHasUpdate: 0
@@ -8342,10 +8962,10 @@ MonoBehaviour:
         workTreeStatus: 0
     statusAhead: 0
     lastLogChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:25.189-05:00
+      updatedTimeString: 0001-01-01T00:00:00.000+00:00
       cacheType: 3
     lastTrackingStatusChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:25.188-05:00
+      updatedTimeString: 2023-02-03T18:58:35.187-05:00
       cacheType: 5
     historyControl:
       scroll: {x: 0, y: 1309}
@@ -16047,7 +16667,7 @@ MonoBehaviour:
       changingManually: 0
     hasRemote: 1
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-01-31T19:52:37.278-05:00
+      updatedTimeString: 2023-02-03T18:40:24.432-05:00
       cacheType: 1
     newRepositoryRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
     repositoryRemoteName: origin
@@ -16060,7 +16680,7 @@ MonoBehaviour:
       newGitEmail: ph.hangen@gmail.com
       needsSaving: 0
       lastCheckUserChangedEvent:
-        updatedTimeString: 2023-01-31T17:33:44.249-05:00
+        updatedTimeString: 0001-01-01T00:00:00.000+00:00
         cacheType: 8
     webTimeout: 100000
     gitTimeout: 5000
@@ -16089,16 +16709,115 @@ MonoBehaviour:
         gitFileStatus: 0
         lockedAt: 1 Jan 0001, 00:00
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:24.632-05:00
+      updatedTimeString: 2023-02-03T18:40:24.432-05:00
       cacheType: 1
     lastLocksChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:16.624-05:00
+      updatedTimeString: 2023-02-03T18:58:18.405-05:00
       cacheType: 7
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-01-29T14:16:16.921-05:00
+      updatedTimeString: 2023-02-03T18:58:18.305-05:00
       cacheType: 6
     lockedFiles: []
-    gitStatusEntries: []
+    gitStatusEntries:
+    - path: Assets\Prefabs\InteractParent.prefab
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab
+      projectPath: Assets\Prefabs\InteractParent.prefab
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Prefabs\InteractParent.prefab.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab.meta
+      projectPath: Assets\Prefabs\InteractParent.prefab.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scenes\LoadingScreen.unity
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\LoadingScreen.unity
+      projectPath: Assets\Scenes\LoadingScreen.unity
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: Assets\Scenes\MiniGame.unity
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
+      projectPath: Assets\Scenes\MiniGame.unity
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: Assets\Scripts\InteractScript.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript.meta
+      projectPath: Assets\Scripts\InteractScript.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs.meta
+      projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\TextMesh Pro\Resources\Fonts & Materials\LiberationSans SDF -
+        Fallback.asset
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\TextMesh Pro\Resources\Fonts
+        & Materials\LiberationSans SDF - Fallback.asset
+      projectPath: Assets\TextMesh Pro\Resources\Fonts & Materials\LiberationSans
+        SDF - Fallback.asset
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: Assets\UI Toolkit.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit.meta
+      projectPath: Assets\UI Toolkit.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\UI Toolkit\PanelSettings.asset
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit\PanelSettings.asset
+      projectPath: Assets\UI Toolkit\PanelSettings.asset
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\UI Toolkit\PanelSettings.asset.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit\PanelSettings.asset.meta
+      projectPath: Assets\UI Toolkit\PanelSettings.asset.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\UI Toolkit\UnityThemes.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit\UnityThemes.meta
+      projectPath: Assets\UI Toolkit\UnityThemes.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss
+      projectPath: Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss.meta
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss.meta
+      projectPath: Assets\UI Toolkit\UnityThemes\UnityDefaultRuntimeTheme.tss.meta
+      originalPath: 
+      indexStatus: 1
+      workTreeStatus: 1
+    - path: UserSettings\EditorUserSettings.asset
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\EditorUserSettings.asset
+      projectPath: UserSettings\EditorUserSettings.asset
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
+    - path: UserSettings\Layouts\default-2021.dwlt
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\Layouts\default-2021.dwlt
+      projectPath: UserSettings\Layouts\default-2021.dwlt
+      originalPath: 
+      indexStatus: 0
+      workTreeStatus: 3
     currentUsername: 
     unlockFileMenuContent:
       m_Text: Release Lock
@@ -16125,13 +16844,13 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: Url of the origin remote
   lastCurrentBranchAndRemoteChangedEvent:
-    updatedTimeString: 2023-01-31T17:30:54.359-05:00
+    updatedTimeString: 2023-02-03T21:32:47.358-05:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-01-31T17:33:11.774-05:00
+    updatedTimeString: 2023-02-03T21:32:48.149-05:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-01-31T17:33:11.760-05:00
+    updatedTimeString: 2023-02-03T22:31:24.923-05:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -16154,7 +16873,7 @@ MonoBehaviour:
   appManagerProgressValue: 1
   appManagerProgressMessage: 
   primaryConnectionUsername: 
---- !u!114 &13
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16175,9 +16894,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 750
-    width: 1436
-    height: 249
+    y: 733
+    width: 1423
+    height: 266
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -16207,24 +16926,24 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 143}
-    m_SelectedIDs: 90710000
-    m_LastClickedID: 29072
-    m_ExpandedIDs: 00000000627100006471000066710000687100006a7100009271000000ca9a3b
+    scrollPos: {x: 0, y: 95}
+    m_SelectedIDs: 0e710000
+    m_LastClickedID: 28942
+    m_ExpandedIDs: 00000000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Template
-      m_OriginalName: Template
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 29076
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -16238,7 +16957,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000627100006471000066710000687100006a710000
+    m_ExpandedIDs: 00000000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -16294,7 +17013,7 @@ MonoBehaviour:
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &14
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16314,9 +17033,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1437
+    x: 1424
     y: 73
-    width: 482
+    width: 495
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -16335,7 +17054,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &15
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16357,8 +17076,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
-    width: 235
-    height: 656
+    width: 245
+    height: 639
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -16366,9 +17085,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: a2710000
       m_LastClickedID: 0
-      m_ExpandedIDs: 2af6ffff2efbffff2e720000
+      m_ExpandedIDs: 36d9ffff54daffff6adbffff7cdcffffa2e0ffff2efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -16392,7 +17111,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &16
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16412,10 +17131,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 236
+    x: 246
     y: 73
-    width: 1199
-    height: 656
+    width: 1176
+    height: 639
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -16436,9 +17155,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: 101, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 0
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -16645,14 +17364,14 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 1
+  m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 598.8924, y: 307.2246, z: -4.55134}
+    m_Target: {x: 343.30225, y: 118.83252, z: -183.82918}
     speed: 2
-    m_Value: {x: 598.8924, y: 307.2246, z: -4.55134}
+    m_Value: {x: 343.30225, y: 118.83252, z: -183.82918}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -16681,17 +17400,17 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -16699,17 +17418,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.10420596, y: 0.88397723, z: -0.23639904, w: -0.3896816}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.1042054, y: 0.88397247, z: -0.23639777, w: -0.38967952}
   m_Size:
-    m_Target: 338.30185
+    m_Target: 118.62448
     speed: 2
-    m_Value: 338.30185
+    m_Value: 118.62448
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -16723,14 +17442,14 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: 0.07461006, y: 0.017048992, z: 0.001275911, w: -0.9970683}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &17
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16750,10 +17469,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 236
+    x: 246
     y: 73
-    width: 1199
-    height: 656
+    width: 1176
+    height: 639
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -16764,7 +17483,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1199, y: 635}
+  m_TargetSize: {x: 1176, y: 618}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -16779,10 +17498,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -599.5
-    m_HBaseRangeMax: 599.5
-    m_VBaseRangeMin: -317.5
-    m_VBaseRangeMax: 317.5
+    m_HBaseRangeMin: -588
+    m_HBaseRangeMax: 588
+    m_VBaseRangeMin: -309
+    m_VBaseRangeMax: 309
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -16800,29 +17519,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1199
-      height: 635
+      width: 1176
+      height: 618
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 599.5, y: 317.5}
+    m_Translation: {x: 588, y: 309}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -599.5
-      y: -317.5
-      width: 1199
-      height: 635
+      x: -588
+      y: -309
+      width: 1176
+      height: 618
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1199, y: 656}
+  m_LastWindowPixelSize: {x: 1176, y: 639}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
