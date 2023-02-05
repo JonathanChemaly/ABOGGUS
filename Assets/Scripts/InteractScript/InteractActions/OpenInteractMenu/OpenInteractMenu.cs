@@ -40,7 +40,6 @@ namespace ABOGGUS.Interact
         */
         IEnumerator CheckIfUnloaded()
         {
-            Debug.Log(SceneManager.GetSceneByName("InteractableMenu").name);
             //Get interactMenuScene
             Scene interactMenu = SceneManager.GetSceneByName("InteractableMenu");
             
