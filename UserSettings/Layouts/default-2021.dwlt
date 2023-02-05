@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 52
+  controlID: 56
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,9 +64,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1424
+    x: 1522
     y: 0
-    width: 496
+    width: 398
     height: 947
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
@@ -93,8 +93,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 246
-    height: 660
+    width: 374
+    height: 707
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 660
-    width: 1424
-    height: 287
+    y: 707
+    width: 1522
+    height: 240
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 14}
@@ -219,7 +219,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1424
+    width: 1522
     height: 947
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
@@ -244,8 +244,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1424
-    height: 660
+    width: 1522
+    height: 707
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
@@ -260,24 +260,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 246
+    x: 374
     y: 0
-    width: 1178
-    height: 660
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 17}
+    width: 1148
+    height: 707
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
   - {fileID: 12}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -298,10 +298,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 250
+    x: 246
     y: 73
-    width: 1185
-    height: 656
+    width: 1176
+    height: 639
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -326,9 +326,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1437
+    x: 1522
     y: 73
-    width: 482
+    width: 397
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -338,7 +338,7 @@ MonoBehaviour:
   notificationClearTime: -1
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
-  currentTrackingStatusHasUpdate: 0
+  currentTrackingStatusHasUpdate: 1
   currentStatusEntriesHasUpdate: 1
   repositoryProgressHasUpdate: 1
   appManagerProgressHasUpdate: 1
@@ -669,7 +669,7 @@ MonoBehaviour:
     - name: origin/UnityPackages
       tracking: '[None]'
   changesView:
-    currentBranchHasUpdate: 1
+    currentBranchHasUpdate: 0
     currentStatusEntriesHasUpdate: 1
     currentLocksHasUpdate: 1
     commitBody: 
@@ -678,281 +678,15 @@ MonoBehaviour:
     treeScroll: {x: 0, y: 0}
     treeChanges:
       assets:
-        keys:
-        - 00000000000000001000000000000000
-        - f4a952563aa46bf47807546df5800ca4
-        - 459fb8384e6130a419074bd384baf8a6
-        - 6ea315d0fd7389c41b19996891e99ae3
-        - fbc05f93c257df140b49aa7a8a3fdcd8
-        - 13161a2922b8be3418b562577abb8834
-        - 61ab98e562191914a9a44957ae33df9d
-        - 22d89b96b0d317842944ce8327ea3bb6
-        - 14187c6429c1f9b478c934c2f0f95f4e
-        - dbfff9f832895c94e872c46dea1cf632
-        values:
-        - path: Assets
-          label: Assets
-          level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Prefabs
-          label: Prefabs
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Prefabs\InteractUI.prefab
-          label: InteractUI.prefab
-          level: 2
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Prefabs\InteractUI.prefab
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
-            projectPath: Assets\Prefabs\InteractUI.prefab
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: Assets\Scenes
-          label: Scenes
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scenes\MiniGame.unity
-          label: MiniGame.unity
-          level: 2
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scenes\MiniGame.unity
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
-            projectPath: Assets\Scenes\MiniGame.unity
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript
-          label: InteractScript
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\Interactable.cs
-          label: Interactable.cs
-          level: 3
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\Interactable.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-            projectPath: Assets\Scripts\InteractScript\Interactable.cs
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: Assets\Scripts\InteractScript\InteractionManager.cs
-          label: InteractionManager.cs
-          level: 3
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\InteractionManager.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-            projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-          label: TextSnapToLeftOf.cs
-          level: 3
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-            projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
+        keys: []
+        values: []
       folders:
         keys:
-        - Assets
-        - Assets\Prefabs
-        - Assets\Scenes
-        - Assets\Scripts
-        - Assets\Scripts\InteractScript
+        - UserSettings
         values:
-        - path: Assets
-          label: Assets
+        - path: UserSettings
+          label: UserSettings
           level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Prefabs
-          label: Prefabs
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scenes
-          label: Scenes
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript
-          label: InteractScript
-          level: 2
           isFolder: 1
           isContainer: 0
           isCollapsed: 0
@@ -996,8 +730,8 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-      - path: Assets
-        label: Assets
+      - path: UserSettings
+        label: UserSettings
         level: 0
         isFolder: 1
         isContainer: 0
@@ -1014,45 +748,9 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-      - path: Assets\Prefabs
-        label: Prefabs
+      - path: UserSettings\EditorUserSettings.asset
+        label: EditorUserSettings.asset
         level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Prefabs\InteractParent.prefab
-        label: InteractParent.prefab
-        level: 2
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Prefabs\InteractParent.prefab
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab
-          projectPath: Assets\Prefabs\InteractParent.prefab
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 5
-      - path: Assets\Prefabs\InteractParent.prefab.meta
-        label: InteractParent.prefab.meta
-        level: 3
         isFolder: 0
         isContainer: 0
         isCollapsed: 0
@@ -1062,189 +760,9 @@ MonoBehaviour:
         checkState: 0
         isLocked: 0
         gitStatusEntry:
-          path: Assets\Prefabs\InteractParent.prefab.meta
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab.meta
-          projectPath: Assets\Prefabs\InteractParent.prefab.meta
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 5
-      - path: Assets\Prefabs\InteractUI.prefab
-        label: InteractUI.prefab
-        level: 2
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Prefabs\InteractUI.prefab
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
-          projectPath: Assets\Prefabs\InteractUI.prefab
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: Assets\Prefabs\InteractUI.prefab.meta
-        label: InteractUI.prefab.meta
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Prefabs\InteractUI.prefab.meta
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab.meta
-          projectPath: Assets\Prefabs\InteractUI.prefab.meta
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: Assets\Scenes
-        label: Scenes
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scenes\MiniGame.unity
-        label: MiniGame.unity
-        level: 2
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scenes\MiniGame.unity
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
-          projectPath: Assets\Scenes\MiniGame.unity
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts
-        label: Scripts
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript
-        label: InteractScript
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript\Interactable.cs
-        label: Interactable.cs
-        level: 3
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\Interactable.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-          projectPath: Assets\Scripts\InteractScript\Interactable.cs
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: Assets\Scripts\InteractScript\Interactable.cs.meta
-        label: Interactable.cs.meta
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\Interactable.cs.meta
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs.meta
-          projectPath: Assets\Scripts\InteractScript\Interactable.cs.meta
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: Assets\Scripts\InteractScript\InteractionManager.cs
-        label: InteractionManager.cs
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\InteractionManager.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-          projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-        label: TextSnapToLeftOf.cs
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-          projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
+          path: UserSettings\EditorUserSettings.asset
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\EditorUserSettings.asset
+          projectPath: UserSettings\EditorUserSettings.asset
           originalPath: 
           indexStatus: 0
           workTreeStatus: 3
@@ -1268,66 +786,18 @@ MonoBehaviour:
           indexStatus: 0
           workTreeStatus: 0
     gitStatusEntries:
-    - path: Assets\Prefabs\InteractParent.prefab
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab
-      projectPath: Assets\Prefabs\InteractParent.prefab
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 5
-    - path: Assets\Prefabs\InteractParent.prefab.meta
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractParent.prefab.meta
-      projectPath: Assets\Prefabs\InteractParent.prefab.meta
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 5
-    - path: Assets\Prefabs\InteractUI.prefab
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab
-      projectPath: Assets\Prefabs\InteractUI.prefab
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: Assets\Prefabs\InteractUI.prefab.meta
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Prefabs\InteractUI.prefab.meta
-      projectPath: Assets\Prefabs\InteractUI.prefab.meta
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: Assets\Scenes\MiniGame.unity
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scenes\MiniGame.unity
-      projectPath: Assets\Scenes\MiniGame.unity
+    - path: UserSettings\EditorUserSettings.asset
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\EditorUserSettings.asset
+      projectPath: UserSettings\EditorUserSettings.asset
       originalPath: 
       indexStatus: 0
       workTreeStatus: 3
-    - path: Assets\Scripts\InteractScript\Interactable.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-      projectPath: Assets\Scripts\InteractScript\Interactable.cs
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: Assets\Scripts\InteractScript\Interactable.cs.meta
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs.meta
-      projectPath: Assets\Scripts\InteractScript\Interactable.cs.meta
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: Assets\Scripts\InteractScript\InteractionManager.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-      projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-      projectPath: Assets\Scripts\InteractScript\TextSnapToLeftOf.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    changedFilesText: 9 changed files
+    changedFilesText: 1 changed file
     lastCurrentBranchChangedEvent:
-      updatedTimeString: 2023-02-04T01:46:00.848-05:00
+      updatedTimeString: 2023-02-04T23:55:31.075-05:00
       cacheType: 1
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-02-04T01:46:44.486-05:00
+      updatedTimeString: 2023-02-05T00:12:57.077-05:00
       cacheType: 6
     lastLocksChangedEvent:
       updatedTimeString: 0001-01-01T00:00:00.000+00:00
@@ -16847,10 +16317,10 @@ MonoBehaviour:
     updatedTimeString: 2023-02-03T21:32:47.358-05:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-02-03T21:32:48.149-05:00
+    updatedTimeString: 2023-02-05T00:07:09.437-05:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-02-03T22:31:24.923-05:00
+    updatedTimeString: 2023-02-05T00:07:09.401-05:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -16894,9 +16364,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 733
-    width: 1423
-    height: 266
+    y: 780
+    width: 1521
+    height: 219
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -16926,24 +16396,24 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
+    scrollPos: {x: 0, y: 120}
     m_SelectedIDs: 0e710000
     m_LastClickedID: 28942
-    m_ExpandedIDs: 00000000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e000000ca9a3b
+    m_ExpandedIDs: 00000000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e0000107100001e7100006c81000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: LoadingScreen
+      m_OriginalName: LoadingScreen
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 28946
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -16985,7 +16455,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000465e000000000000785c00004a5d0000
+    m_ExpandedInstanceIDs: c6230000465e0000785c00004a5d000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -17001,7 +16471,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -17033,9 +16503,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1424
+    x: 1522
     y: 73
-    width: 495
+    width: 397
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -17048,7 +16518,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 486
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -17076,8 +16546,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
-    width: 245
-    height: 639
+    width: 373
+    height: 686
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17085,9 +16555,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a2710000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 36d9ffff54daffff6adbffff7cdcffffa2e0ffff2efbffff
+      m_SelectedIDs: e2c60000
+      m_LastClickedID: 50914
+      m_ExpandedIDs: e6d9fcff34defcff90eefcfff0f6fcffdcf7fcff7402fdffa23ffdffa4dcfdffaee4fdff76e5fdff46e6fdff0ce7fdff04e8fdff32e9fdffa0effdff94f1fdff9af2fdfff407feff560bfeff3421feff562cfeff3c2dfeff144dfeff5052feff6653feffce5dfeffae62feffa272feffa8a1feffc2a3feff52adfeff60b0feff22b1feff38b2feffc4b4feffb4b6feff16bafeff80bcfeffc8cbfeff862affffba3bffff3c3dffff4064ffff5265ffff6c83ffff9e93ffff2cfbffff2efbffff106e00002a6e00007a770000947700005a7b0000647b0000747b0000068300007e830000389200001a9900008a990000849d000018a2000082a7000070b10000dab10000c0b40000eeb6000058b70000e2b8000032c400009cc400004ac50000d2c500003cc60000d0c60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -17131,10 +16601,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 246
+    x: 374
     y: 73
-    width: 1176
-    height: 639
+    width: 1146
+    height: 686
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17369,9 +16839,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 343.30225, y: 118.83252, z: -183.82918}
+    m_Target: {x: -1200.657, y: -2.2968524, z: 8.905869}
     speed: 2
-    m_Value: {x: 343.30225, y: 118.83252, z: -183.82918}
+    m_Value: {x: -1200.657, y: -2.2968524, z: 8.905869}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -17418,13 +16888,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.10420596, y: 0.88397723, z: -0.23639904, w: -0.3896816}
+    m_Target: {x: 0.004116113, y: -0.18581863, z: -0.00078688696, w: -0.9825943}
     speed: 2
-    m_Value: {x: -0.1042054, y: 0.88397247, z: -0.23639777, w: -0.38967952}
+    m_Value: {x: 0.0041160355, y: -0.18581513, z: -0.0007868721, w: -0.98257583}
   m_Size:
-    m_Target: 118.62448
+    m_Target: 9.975915
     speed: 2
-    m_Value: 118.62448
+    m_Value: 9.975915
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -17442,7 +16912,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.07461006, y: 0.017048992, z: 0.001275911, w: -0.9970683}
+  m_LastSceneViewRotation: {x: -0.62663686, y: 0.2620226, z: -0.23630014, w: -0.6948763}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -17469,10 +16939,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 246
+    x: 374
     y: 73
-    width: 1176
-    height: 639
+    width: 1146
+    height: 686
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17483,7 +16953,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1176, y: 618}
+  m_TargetSize: {x: 1146, y: 665}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -17498,10 +16968,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -588
-    m_HBaseRangeMax: 588
-    m_VBaseRangeMin: -309
-    m_VBaseRangeMax: 309
+    m_HBaseRangeMin: -573
+    m_HBaseRangeMax: 573
+    m_VBaseRangeMin: -332.5
+    m_VBaseRangeMax: 332.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -17510,7 +16980,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -17519,23 +16989,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1176
-      height: 618
+      width: 1146
+      height: 665
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 588, y: 309}
+    m_Translation: {x: 573, y: 332.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -588
-      y: -309
-      width: 1176
-      height: 618
+      x: -573
+      y: -332.5
+      width: 1146
+      height: 665
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1176, y: 639}
+  m_LastWindowPixelSize: {x: 1146, y: 686}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -17562,9 +17032,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 750
-    width: 1436
-    height: 249
+    y: 733
+    width: 1423
+    height: 266
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

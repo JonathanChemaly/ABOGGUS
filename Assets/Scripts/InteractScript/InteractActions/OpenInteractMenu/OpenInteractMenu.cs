@@ -17,6 +17,10 @@ namespace ABOGGUS.Interact
         [Tooltip("Main input so we can disable player movement")]
         private InputManager inputM;
 
+        [SerializeField]
+        [Tooltip("Canvas of current Scene so we can close it")]
+        private Canvas canvas;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -27,7 +31,34 @@ namespace ABOGGUS.Interact
         {
             SceneManager.LoadScene("Assets/Scenes/InteractableMenu.unity", LoadSceneMode.Additive);
             inputM.InputScheme.Player.Disable();
+            canvas.enabled = false;
+            StartCoroutine(CheckIfUnloaded());
+        }
 
+        /*
+        * checks for when interactMenu is unloaded
+        */
+        IEnumerator CheckIfUnloaded()
+        {
+            Debug.Log(SceneManager.GetSceneByName("InteractableMenu").name);
+            //Get interactMenuScene
+            Scene interactMenu = SceneManager.GetSceneByName("InteractableMenu");
+            
+            //Wait for menu to be loaded.
+            while (!interactMenu.isLoaded)
+            {
+                yield return null;
+            }
+
+            //Keep spinning while the menu is loaded
+            while (interactMenu.isLoaded)
+            {
+                yield return null;
+            }
+
+            //when the menu is unloaded
+            inputM.InputScheme.Player.Enable(); //re-enable player movement
+            canvas.enabled = true; //re-enable player movement
         }
     }
 }
