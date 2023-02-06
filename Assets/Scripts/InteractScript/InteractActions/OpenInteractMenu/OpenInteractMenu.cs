@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using ABOGGUS.Input;
 using ABOGGUS;
+using ABOGGUS.Interact.Statics;
 
 namespace ABOGGUS.Interact
 {
@@ -54,6 +55,13 @@ namespace ABOGGUS.Interact
             {
                 yield return null;
             }
+            
+            //Checks if the interact menu determined that the user succeed a specfic action before they closed
+            if (InteractStatics.interactActionSuccess)
+            {
+                item.doSuccesAction();
+            }
+            InteractStatics.interactActionSuccess = false;
 
             //when the menu is unloaded
             inputM.InputScheme.Player.Enable(); //re-enable player movement

@@ -1,8 +1,10 @@
+using ABOGGUS.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ABOGGUS.Interact
 {
@@ -36,6 +38,16 @@ namespace ABOGGUS.Interact
 
         private Interactable currentInteractable;
 
+        private InputAction interactInput;
+
+        public void Initialize(InputAction interactAction)
+        {
+            interactInput = interactAction;
+
+            interactAction.performed += interactPress;
+            interactAction.Enable();
+        }
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -51,10 +63,6 @@ namespace ABOGGUS.Interact
             {
                 //enable our interaction UI
                 InteractionUI.SetActive(true);
-                if (UnityEngine.Input.GetKeyDown(KeyCode.E))
-                {
-                    currentInteractable.doAction();
-                }
             }
             else //if we are not looking at something ...
             {
@@ -62,6 +70,18 @@ namespace ABOGGUS.Interact
                 InteractionUI.SetActive(false);
             }
         }
+
+        /**
+         * When interact key is pressed checks if we are looking at an interactable key
+         */
+        private void interactPress(InputAction.CallbackContext obj)
+        {
+            if (LookingAtInteractable()) //if we are looking at something ...
+            {
+                currentInteractable.doAction();
+            }
+        }
+
         /**
          * checks if we are looking at an object
          */

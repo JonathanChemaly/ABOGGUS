@@ -11,7 +11,7 @@ namespace ABOGGUS.Interact.Puzzles
         
         private void OnMouseDown()
         {
-            Debug.Log("click detected on " + gameObject.name);
+            //Debug.Log("click detected on " + gameObject.name);
             ClickEvent?.Invoke();
         }
     }

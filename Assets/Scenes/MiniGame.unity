@@ -1868,6 +1868,7 @@ GameObject:
   - component: {fileID: 746622432}
   - component: {fileID: 746622436}
   - component: {fileID: 746622437}
+  - component: {fileID: 746622438}
   m_Layer: 6
   m_Name: TestInteractable
   m_TagString: Untagged
@@ -1983,6 +1984,19 @@ MonoBehaviour:
   item: {fileID: 746622436}
   inputM: {fileID: 1252102059}
   canvas: {fileID: 1411707093}
+--- !u!114 &746622438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746622431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cd2ecf1d1676d4c8b2a857ecad7438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 746622436}
 --- !u!1 &833321597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2704,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145475669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
+  m_PrefabInstance: {fileID: 9040376219822902787}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14187c6429c1f9b478c934c2f0f95f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1211642760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,6 +2780,7 @@ MonoBehaviour:
   playerController: {fileID: 1565032210}
   pauseManager: {fileID: 839338438}
   cameraController: {fileID: 646952507}
+  interactionManager: {fileID: 1145475669}
 --- !u!4 &1252102060
 Transform:
   m_ObjectHideFlags: 0

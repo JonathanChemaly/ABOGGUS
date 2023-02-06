@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using ABOGGUS.Interact.Statics;
 
 namespace ABOGGUS.Interact.Puzzles
 {
@@ -51,7 +52,9 @@ namespace ABOGGUS.Interact.Puzzles
                 {
                     dial.lockDial.enabled = false;
                 }
-                doOnCorrectPassword?.Invoke(); 
+                doOnCorrectPassword?.Invoke();
+
+                InteractStatics.interactActionSuccess = true;
             }
 
         }

@@ -19,9 +19,18 @@ namespace ABOGGUS.Interact {
         [Tooltip("What action will be taken when item is interacted with")]
         public event Action InteractAction;
 
+        [SerializeField]
+        [Tooltip("What action will be taken when a specfic set of actions are completed in UI")]
+        public event Action SuccessAction;
+
         public void doAction()
         {
             InteractAction?.Invoke();
+        }
+
+        public void doSuccesAction()
+        {
+            SuccessAction?.Invoke();
         }
     }
 }
