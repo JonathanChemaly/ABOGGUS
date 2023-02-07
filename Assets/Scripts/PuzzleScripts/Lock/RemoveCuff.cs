@@ -19,6 +19,10 @@ namespace ABOGGUS.Interact.Puzzles
         [Tooltip("LockManager that this object is listening too")]
         private float yPostionToStop = 10f;
 
+        [SerializeField]
+        [Tooltip("RemoveCuff sound effect")]
+        private AudioSource removeCuff;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -27,6 +31,7 @@ namespace ABOGGUS.Interact.Puzzles
 
         private void MoveObject()
         {
+            removeCuff.Play();
             StartCoroutine(MoveUpOverTime());
             
         }

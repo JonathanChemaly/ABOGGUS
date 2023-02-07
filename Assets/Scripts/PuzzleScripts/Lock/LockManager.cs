@@ -31,12 +31,19 @@ namespace ABOGGUS.Interact.Puzzles
                 dial.gameObject.transform.Rotate(-144, 0, 0, Space.Self);
             }
         }
+
+        private bool passwordHasBeenCorrect = false;
         /**
          * Checks for whether the password is correct
          */
         private void CheckPassword()
         {
-            StartCoroutine(WaitForRotate());
+            //if password hasn't been correct before... do work
+            if (!passwordHasBeenCorrect)
+            {
+                StartCoroutine(WaitForRotate());
+            }
+            
         }
 
         /**
@@ -68,7 +75,8 @@ namespace ABOGGUS.Interact.Puzzles
                 DoOnCorrectPassword?.Invoke();
 
                 InteractStatics.interactActionSuccess = true;
-            }
+                passwordHasBeenCorrect = true; //tell our manager that we already got the password back as true once
+    }
         }
     }
 

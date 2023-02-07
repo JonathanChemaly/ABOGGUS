@@ -13,6 +13,10 @@ namespace ABOGGUS.Interact.Puzzles
         [Tooltip("Value Currently shown on dial")]
         public int CurrentValueShown { get => curValOnDial; }
 
+        [SerializeField]
+        [Tooltip("lock clicking sound")]
+        private AudioSource lockClickSound;
+
         private int curValOnDial = 0;
 
         private const int amountToRotateDial = -36;
@@ -28,6 +32,8 @@ namespace ABOGGUS.Interact.Puzzles
          */
         private void RotateOnClick()
         {
+            lockClickSound.Play();
+
             gameObject.transform.Rotate(amountToRotateDial, 0, 0, Space.Self);
 
             curValOnDial += 1;
