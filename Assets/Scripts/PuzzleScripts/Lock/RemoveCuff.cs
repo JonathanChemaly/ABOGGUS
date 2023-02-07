@@ -22,10 +22,10 @@ namespace ABOGGUS.Interact.Puzzles
         // Start is called before the first frame update
         void Start()
         {
-            LM.doOnCorrectPassword += moveObject;
+            LM.DoOnCorrectPassword += MoveObject;
         }
 
-        private void moveObject()
+        private void MoveObject()
         {
             StartCoroutine(MoveUpOverTime());
             

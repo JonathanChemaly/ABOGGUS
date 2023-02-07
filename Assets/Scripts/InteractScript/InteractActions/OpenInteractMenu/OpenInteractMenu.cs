@@ -22,6 +22,17 @@ namespace ABOGGUS.Interact
         [Tooltip("Canvas of current Scene so we can close it")]
         private Canvas canvas;
 
+        [SerializeField]
+        [Tooltip("Path of the item to loadInTheUI")]
+        private string itemToLoadInUI;
+
+        [SerializeField]
+        [Tooltip("Postion of the item to loadInTheUI")]
+        private Vector3 posToLoadInUI = Vector3.zero;
+
+        [SerializeField]
+        [Tooltip("Path of the item to loadInTheUI")]
+        private Vector3 scaleToLoadInUI = Vector3.one;
         // Start is called before the first frame update
         void Start()
         {
@@ -30,6 +41,9 @@ namespace ABOGGUS.Interact
 
         private void OpenMenu()
         {
+            InteractStatics.pathToLoad = itemToLoadInUI; //set static so we can load the prefabs properly
+            InteractStatics.posToLoadAt = posToLoadInUI;
+            InteractStatics.scaleToLoadAt = scaleToLoadInUI;
             SceneManager.LoadScene("Assets/Scenes/InteractableMenu.unity", LoadSceneMode.Additive);
             inputM.InputScheme.Player.Disable();
             canvas.enabled = false;
@@ -59,13 +73,17 @@ namespace ABOGGUS.Interact
             //Checks if the interact menu determined that the user succeed a specfic action before they closed
             if (InteractStatics.interactActionSuccess)
             {
-                item.doSuccesAction();
+                item.DoSuccesAction();
             }
             InteractStatics.interactActionSuccess = false;
+
+            
 
             //when the menu is unloaded
             inputM.InputScheme.Player.Enable(); //re-enable player movement
             canvas.enabled = true; //re-enable player movement
+
+
         }
     }
 }

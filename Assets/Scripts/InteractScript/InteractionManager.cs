@@ -44,8 +44,8 @@ namespace ABOGGUS.Interact
         {
             interactInput = interactAction;
 
-            interactAction.performed += interactPress;
-            interactAction.Enable();
+            interactInput.performed += InteractPress;
+            interactInput.Enable();
         }
 
         // Start is called before the first frame update
@@ -74,11 +74,11 @@ namespace ABOGGUS.Interact
         /**
          * When interact key is pressed checks if we are looking at an interactable key
          */
-        private void interactPress(InputAction.CallbackContext obj)
+        private void InteractPress(InputAction.CallbackContext obj)
         {
             if (LookingAtInteractable()) //if we are looking at something ...
             {
-                currentInteractable.doAction();
+                currentInteractable.DoAction();
             }
         }
 

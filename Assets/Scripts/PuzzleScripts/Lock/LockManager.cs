@@ -18,7 +18,7 @@ namespace ABOGGUS.Interact.Puzzles
 
         [SerializeField]
         [Tooltip("Event for what happens when we get a correct password")]
-        public event Action doOnCorrectPassword;
+        public event Action DoOnCorrectPassword;
 
         // Start is called before the first frame update
         void Start()
@@ -31,19 +31,32 @@ namespace ABOGGUS.Interact.Puzzles
                 dial.gameObject.transform.Rotate(-144, 0, 0, Space.Self);
             }
         }
-
+        /**
+         * Checks for whether the password is correct
+         */
         private void CheckPassword()
         {
+            StartCoroutine(WaitForRotate());
+        }
+
+        /**
+         * Wait for rotators to catch up
+         */
+        IEnumerator WaitForRotate()
+        {
+            yield return null;
+
             bool passwordIsCorrect = true;
 
             //checks if all dials have same value as our password and create a boolean for it
-            for(int i = 0; i < allLockDials.Length; i++)
+            for (int i = 0; i < allLockDials.Length; i++)
             {
-                passwordIsCorrect &= allLockDials[i].currentValueShown == password[i];
+                passwordIsCorrect &= allLockDials[i].CurrentValueShown == password[i];
             }
-            
+
             //if password is correct do this.
-            if (passwordIsCorrect) {
+            if (passwordIsCorrect)
+            {
                 Debug.Log("Password Correct!");
                 /*
                 * When we get the correct password stop registering further clicks
@@ -52,12 +65,12 @@ namespace ABOGGUS.Interact.Puzzles
                 {
                     dial.lockDial.enabled = false;
                 }
-                doOnCorrectPassword?.Invoke();
+                DoOnCorrectPassword?.Invoke();
 
                 InteractStatics.interactActionSuccess = true;
             }
-
         }
     }
+
 }
 

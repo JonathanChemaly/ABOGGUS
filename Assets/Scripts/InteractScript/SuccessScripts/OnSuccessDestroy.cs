@@ -13,10 +13,10 @@ namespace ABOGGUS.Interact
         // Start is called before the first frame update
         void Start()
         {
-            item.SuccessAction += destoryItem;
+            item.SuccessAction += DestoryItem;
         }
 
-        void destoryItem()
+        void DestoryItem()
         {
             Destroy(gameObject);
         }

@@ -6,13 +6,12 @@ namespace ABOGGUS.Interact.Puzzles
 {
     public class LockRotator : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("Clickable roller that we spin on click")]
         public Clickable lockDial;
 
         [HideInInspector]
         [Tooltip("Value Currently shown on dial")]
-        public int currentValueShown { get => curValOnDial; }
+        public int CurrentValueShown { get => curValOnDial; }
 
         private int curValOnDial = 0;
 
@@ -21,13 +20,13 @@ namespace ABOGGUS.Interact.Puzzles
         // Start is called before the first frame update
         void Start()
         {
-            lockDial.ClickEvent += rotateOnClick; //when clicked rotates
+            lockDial.ClickEvent += RotateOnClick; //when clicked rotates
         }
 
         /**
          * Rotates the dial one tick to the next number then updates the currentValue shown to the new value
          */
-        private void rotateOnClick()
+        private void RotateOnClick()
         {
             gameObject.transform.Rotate(amountToRotateDial, 0, 0, Space.Self);
 

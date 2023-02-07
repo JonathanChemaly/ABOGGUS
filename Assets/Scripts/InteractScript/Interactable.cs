@@ -7,11 +7,9 @@ using UnityEngine.Events;
 namespace ABOGGUS.Interact {
     public class Interactable : MonoBehaviour
     {
-        [SerializeField]
         [Tooltip("The name of the object to appear in UI when looked at")]
         public string itemName = "No Name";
 
-        [SerializeField]
         [Tooltip("The name of the action to appear in UI when looked at")]
         public string actionName = "Interact";
 
@@ -23,12 +21,12 @@ namespace ABOGGUS.Interact {
         [Tooltip("What action will be taken when a specfic set of actions are completed in UI")]
         public event Action SuccessAction;
 
-        public void doAction()
+        public void DoAction()
         {
             InteractAction?.Invoke();
         }
 
-        public void doSuccesAction()
+        public void DoSuccesAction()
         {
             SuccessAction?.Invoke();
         }
