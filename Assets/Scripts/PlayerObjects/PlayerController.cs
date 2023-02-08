@@ -5,90 +5,133 @@ using UnityEngine.InputSystem;
 using ABOGGUS.Input;
 using System;
 
-public class PlayerController : MonoBehaviour
+namespace ABOGGUS.PlayerObjects
 {
-
-    [SerializeField] private GameObject player;
-    public float speed = 0.05f;
-    public float jumpSpeed = 0.01f;
-    public int jumpTime = 5;
-    private InputAction moveAction;
-    private Vector3 target;
-    private bool jumping = false;
-    private int count = 0;
-    private bool crouching = false;
-
-    public void Initialize(InputActions playerActions)
+    public class PlayerController : MonoBehaviour
     {
-        moveAction = playerActions.Player.Move;
-        moveAction.Enable();
 
-        playerActions.Player.Jump.performed += DoJump;
-        playerActions.Player.Jump.Enable();
+        [SerializeField] private Player player;
+        public static float speed = 0.1f;
+        public float jumpHeight = 0.1f;
+        public float totalJumpTime = 5;
+        public float dodgeLength = 0.1f;
+        public float totalDodgeTime = 5;
+        private float cumulativeJumpTime = 0;
+        private float cumulativeDodgeTime = 0;
+        private InputAction moveAction;
+        private Vector3 target;
+        private bool jumping = false;
+        private bool dodging = false;
+        private int count = 0;
+        private bool crouching = false;
 
-        playerActions.Player.Crouch.performed += DoCrouch;
-        playerActions.Player.Crouch.Enable();
-
-        playerActions.Player.Sprint.performed += DoSprint;
-        playerActions.Player.Sprint.canceled += StopSprint;
-        playerActions.Player.Sprint.Enable();
-    }
-
-    private void StopSprint(InputAction.CallbackContext obj)
-    {
-        speed /= 2;
-    }
-
-    private void DoSprint(InputAction.CallbackContext obj)
-    {
-        speed *= 2;
-    }
-
-    private void DoCrouch(InputAction.CallbackContext obj)
-    {
-        crouching = !crouching;
-        if (crouching)
+        public void Initialize(InputActions playerActions)
         {
-            player.transform.localScale = new Vector3(1, 0.6f * player.transform.localScale.y, 1);
+            player.Initialize();
+            moveAction = playerActions.Player.Move;
+            moveAction.Enable();
+
+            playerActions.Player.Jump.performed += DoJump;
+            playerActions.Player.Jump.Enable();
+
+            playerActions.Player.Dodge.performed += DoDodge;
+            playerActions.Player.Dodge.Enable();
+
+            playerActions.Player.Crouch.performed += DoCrouch;
+            playerActions.Player.Crouch.Enable();
+
+            playerActions.Player.Sprint.performed += DoSprint;
+            playerActions.Player.Sprint.canceled += StopSprint;
+            playerActions.Player.Sprint.Enable();
         }
-        else
+
+        private void StopSprint(InputAction.CallbackContext obj)
         {
-            player.transform.localScale = new Vector3(1, 1, 1);
+            speed /= 2;
         }
-    }
 
-    private void DoJump(InputAction.CallbackContext obj)
-    {
-        if (player.transform.localPosition.y <= 0.5f)
+        private void DoSprint(InputAction.CallbackContext obj)
         {
-            jumping = true;
+            speed *= 2;
         }
-    }
 
-    private void OnDisable()
-    {
-        moveAction.Disable();
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 forward = new Vector3(player.transform.forward.x, 0f, player.transform.forward.z);
-        Vector3 right = new Vector3(player.transform.right.x, 0f, player.transform.right.z);
-        if (jumping)
+        private void DoCrouch(InputAction.CallbackContext obj)
         {
-            count++;
-            Vector3 up = new Vector3(player.transform.position.x, jumpSpeed + player.transform.position.y, player.transform.position.z);
-            player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, up, jumpSpeed);
-            if (count >= jumpTime)
+            crouching = !crouching;
+            if (crouching)
             {
-                jumping = false;
-                count = 0;
+                PlayerAnimationStateController.StartCrouchAnimation();
             }
-            crouching = false;
-            player.transform.localScale = new Vector3(1, 1, 1);
+            else
+            {
+                PlayerAnimationStateController.StopCrouchAnimation();
+            }
         }
-        target = player.transform.localPosition + (moveAction.ReadValue<Vector2>().x * right) + (moveAction.ReadValue<Vector2>().y * forward);
-        player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, target, speed);
-    }
 
+        private void DoJump(InputAction.CallbackContext obj)
+        {
+            if (!jumping && !dodging)
+            {
+                jumping = true;
+                PlayerAnimationStateController.StartJumpAnimation();
+            }
+        }
+
+        private void DoDodge(InputAction.CallbackContext obj)
+        {
+            if (!dodging && !jumping)
+            {
+                dodging = true;
+                PlayerAnimationStateController.StartDodgeAnimation();
+            }
+        }
+
+        private void OnDisable()
+        {
+            moveAction.Disable();
+        }
+
+        void FixedUpdate()
+        {
+            player.MovementHandler(moveAction);
+            if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
+            {
+                Debug.Log("Jump time: " + Time.fixedDeltaTime);
+                cumulativeJumpTime += Time.fixedDeltaTime;
+                Vector3 up = new Vector3(player.transform.position.x, jumpHeight * cumulativeJumpTime + player.transform.position.y, player.transform.position.z);
+                player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
+            }
+            else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
+            {
+                Debug.Log("End jump time: " + Time.fixedDeltaTime);
+                cumulativeJumpTime += Time.fixedDeltaTime;
+                PlayerAnimationStateController.StopJumpAnimation();
+            }
+            else
+            {
+                cumulativeJumpTime = 0;
+                jumping = false;
+            }
+
+            if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+            {
+                Debug.Log("Dodge time: " + Time.fixedDeltaTime);
+                cumulativeDodgeTime += Time.fixedDeltaTime;
+                Vector3 target = player.transform.position + player.transform.forward * speed;
+                player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+            }
+            else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+            {
+                Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
+                cumulativeDodgeTime += Time.fixedDeltaTime;
+                PlayerAnimationStateController.StopDodgeAnimation();
+            }
+            else
+            {
+                cumulativeDodgeTime = 0;
+                dodging = false;
+            }
+        }
+
+    }
 }
