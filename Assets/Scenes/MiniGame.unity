@@ -482,6 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lock
   actionName: Use
+  InteractSuccessful: 0
 --- !u!114 &107962191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2283,7 +2284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746622431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.12, y: 1.12, z: 6.17}
+  m_LocalPosition: {x: -7.879, y: 1.12, z: 7.989}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2322,6 +2323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Test Cylinder
   actionName: Use
+  InteractSuccessful: 0
 --- !u!114 &746622438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,6 +2361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Narrator
   actionName: Talk
+  InteractSuccessful: 0
 --- !u!65 &811207554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3942,6 +3945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chest
   actionName: Open
+  InteractSuccessful: 0
 --- !u!1 &1565032209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,6 +4823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tool Box
   actionName: Pick Up
+  InteractSuccessful: 0
 --- !u!1 &1641649791
 GameObject:
   m_ObjectHideFlags: 0
