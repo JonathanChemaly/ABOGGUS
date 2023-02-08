@@ -98,16 +98,16 @@ namespace ABOGGUS.Interact
         {
             Ray lookAtRay = FPScam.ViewportPointToRay(Vector3.one / 2f); //creates ray where camera is looking
 
+            Debug.DrawRay(lookAtRay.origin, lookAtRay.direction, Color.white);
 
             //Checks if we get a hit off an item in our layer of choice.
             if (Physics.Raycast(lookAtRay, out RaycastHit rayHitInfo, maxRayDistance, layerToSearch))
             {
                 //if we got a hit the object should have an interacable item attached to it so we get it
                 Interactable hitObject = rayHitInfo.collider.GetComponent<Interactable>();
-
                 //if for some reason the object is null (for example didn't get the component right)
                 //we ignore it
-                if (hitObject == null)
+                if (hitObject == null || hitObject.enabled == false)
                 {
                     currentInteractable = null;
                 }
