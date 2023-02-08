@@ -118,6 +118,15 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ef7270cf-5508-4744-9a36-26f2523d9b25"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -404,6 +413,17 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbf7aa7c-3323-458d-a0c9-636109616f66"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1001,6 +1021,7 @@ namespace ABOGGUS.Input
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+            m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1082,6 +1103,7 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_Pause;
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_Dodge;
+        private readonly InputAction m_Player_Rotate;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -1096,6 +1118,7 @@ namespace ABOGGUS.Input
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+            public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1135,6 +1158,9 @@ namespace ABOGGUS.Input
                     @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1169,6 +1195,9 @@ namespace ABOGGUS.Input
                     @Dodge.started += instance.OnDodge;
                     @Dodge.performed += instance.OnDodge;
                     @Dodge.canceled += instance.OnDodge;
+                    @Rotate.started += instance.OnRotate;
+                    @Rotate.performed += instance.OnRotate;
+                    @Rotate.canceled += instance.OnRotate;
                 }
             }
         }
@@ -1335,6 +1364,7 @@ namespace ABOGGUS.Input
             void OnPause(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
+            void OnRotate(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

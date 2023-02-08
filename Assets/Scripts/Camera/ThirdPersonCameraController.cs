@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class ThirdPersonCameraController : MonoBehaviour
 {
     public GameObject player;
+    [SerializeField] float yOffset = 4f;
     private float camSpeed = 5f;
     private float rotateSpeed = 1f;
     float x, y;
@@ -32,7 +33,7 @@ public class ThirdPersonCameraController : MonoBehaviour
                 lRotateSpeed = -lRotateSpeed;
             }
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
-            tpOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), 4, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            tpOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + tpOffset, camSpeed);
         }

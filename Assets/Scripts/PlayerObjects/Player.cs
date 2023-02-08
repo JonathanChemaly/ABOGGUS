@@ -8,6 +8,8 @@ namespace ABOGGUS.PlayerObjects
 {
     public class Player : MonoBehaviour
     {
+        public float health;
+        public GameObject gameOverText;
         public bool key = true;
         private IPlayerState playerState;
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
@@ -109,6 +111,27 @@ namespace ABOGGUS.PlayerObjects
                 playerState = new PlayerFacingBackLeft(this);
             }
             facingDirection = newFacingDirection;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                StartCoroutine(ToCredits());
+            }
+        }
+
+        IEnumerator ToCredits()
+        {
+            gameOverText.SetActive(true);
+            Time.timeScale = 0;
+            yield return new WaitForSeconds(5f);
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
+
         }
     }
 }
