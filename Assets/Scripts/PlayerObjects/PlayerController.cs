@@ -11,9 +11,9 @@ namespace ABOGGUS.PlayerObjects
     {
 
         [SerializeField] private Player player;
-        public static float speed = 0.1f;
-        public float jumpHeight = 0.1f;
-        public float totalJumpTime = 5;
+        public static float speed = 0.6f;
+        public float jumpHeight = 3.0f;
+        public float totalJumpTime = 40;
         public float dodgeLength = 0.1f;
         public float totalDodgeTime = 5;
         private float cumulativeJumpTime = 0;
