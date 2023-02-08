@@ -39,7 +39,7 @@ public class Boss : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("PlayerCharacter").transform;
         agent = GetComponent<NavMeshAgent>();
         sparkCount = 0;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ABOGGUS.Input;
 
 public class RotateControl : MonoBehaviour
 {

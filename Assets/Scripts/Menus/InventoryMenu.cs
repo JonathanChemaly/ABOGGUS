@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ABOGGUS {
     public class InventoryMenu : MonoBehaviour
     {
-        public Player player;
+        public PlayerObjects.Player player;
         public GameObject inventoryMenu;
 
         public Sprite keyImage;

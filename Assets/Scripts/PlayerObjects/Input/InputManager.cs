@@ -12,16 +12,26 @@ namespace ABOGGUS
         [SerializeField] private PauseManager pauseManager;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private ThirdPersonCameraController thirdPersonCameraController;
-        private InputActions inputScheme;
+        [SerializeField] private RotateControl rotateController;
+        private Input.InputActions inputScheme;
         private string str;
 
         private void Awake()
         {
-            inputScheme = new InputActions();
+            inputScheme = new Input.InputActions();
             playerController.Initialize(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
             cameraController.Initialize(inputScheme.Player.CameraSwitch);
             thirdPersonCameraController.Initialize(inputScheme.Player.Look);
+            rotateController.Initialize(inputScheme.Player.Rotate);
+            Cursor.lockState = CursorLockMode.Locked;
         }
+
+        /*Not needed anymore I think- Josh
+        void OnEnable()
+        {
+            var _ = new QuitHandler(inputScheme.Player.Quit);
+        }
+        */
     }
 }

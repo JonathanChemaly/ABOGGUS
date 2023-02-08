@@ -25,7 +25,7 @@ namespace ABOGGUS.PlayerObjects
         private int count = 0;
         private bool crouching = false;
 
-        public void Initialize(InputActions playerActions)
+        public void Initialize(Input.InputActions playerActions)
         {
             player.Initialize();
             moveAction = playerActions.Player.Move;
