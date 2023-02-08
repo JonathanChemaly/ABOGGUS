@@ -48,7 +48,7 @@ namespace ABOGGUS.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f8c15f83-1a44-4eab-b953-4da0b7b2bcdc"",
                     ""expectedControlType"": ""Button"",
@@ -109,6 +109,15 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""53ac606b-8552-46af-8de1-780df5ac0c23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -146,31 +155,9 @@ namespace ABOGGUS.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""8180e8bd-4097-4f4e-ab88-4523101a6ce9"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""down"",
                     ""id"": ""320bffee-a40b-4347-ac70-c210eb8bc73a"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1c5327b5-f71c-4f60-99c7-4e737386f1d1"",
-                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -190,31 +177,9 @@ namespace ABOGGUS.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""2e46982e-44cc-431b-9f0b-c11910bf467a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""right"",
                     ""id"": ""fcfe95b8-67b9-4526-84b5-5d0bc98d6400"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""77bff152-3580-4b21-b6de-dcd0c7e41164"",
-                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -256,26 +221,59 @@ namespace ABOGGUS.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""name"": ""ArrowKeys"",
+                    ""id"": ""b0874520-8990-4a92-817f-fbe8d423ea4a"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""groups"": """",
                     ""action"": ""Look"",
-                    ""isComposite"": false,
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""name"": ""up"",
+                    ""id"": ""45b847ff-1552-4f14-8866-b534b9aa4476"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Joystick"",
+                    ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2fba91c6-8c6a-46b2-a29a-0e99e7a968ef"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""64d18e64-8aa2-45f3-a337-12e6953d5587"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0ad47c78-6ab6-4909-a9db-98640eacd61a"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -284,7 +282,7 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -295,7 +293,7 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -306,7 +304,7 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -317,7 +315,7 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -328,7 +326,7 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -395,6 +393,17 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f364d9f-30ea-4526-80d3-652e956cf454"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -984,13 +993,14 @@ namespace ABOGGUS.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_CameraSwitch = m_Player.FindAction("CameraSwitch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1064,26 +1074,28 @@ namespace ABOGGUS.Input
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_CameraSwitch;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Crouch;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Pause;
         private readonly InputAction m_Player_Inventory;
+        private readonly InputAction m_Player_Dodge;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @CameraSwitch => m_Wrapper.m_Player_CameraSwitch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+            public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1099,9 +1111,9 @@ namespace ABOGGUS.Input
                     @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                    @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                    @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                     @CameraSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
                     @CameraSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
                     @CameraSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
@@ -1120,6 +1132,9 @@ namespace ABOGGUS.Input
                     @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1130,9 +1145,9 @@ namespace ABOGGUS.Input
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
-                    @Fire.started += instance.OnFire;
-                    @Fire.performed += instance.OnFire;
-                    @Fire.canceled += instance.OnFire;
+                    @Attack.started += instance.OnAttack;
+                    @Attack.performed += instance.OnAttack;
+                    @Attack.canceled += instance.OnAttack;
                     @CameraSwitch.started += instance.OnCameraSwitch;
                     @CameraSwitch.performed += instance.OnCameraSwitch;
                     @CameraSwitch.canceled += instance.OnCameraSwitch;
@@ -1151,6 +1166,9 @@ namespace ABOGGUS.Input
                     @Inventory.started += instance.OnInventory;
                     @Inventory.performed += instance.OnInventory;
                     @Inventory.canceled += instance.OnInventory;
+                    @Dodge.started += instance.OnDodge;
+                    @Dodge.performed += instance.OnDodge;
+                    @Dodge.canceled += instance.OnDodge;
                 }
             }
         }
@@ -1309,13 +1327,14 @@ namespace ABOGGUS.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
+            void OnAttack(InputAction.CallbackContext context);
             void OnCameraSwitch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
+            void OnDodge(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
