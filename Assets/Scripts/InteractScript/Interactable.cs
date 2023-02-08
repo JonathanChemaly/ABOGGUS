@@ -21,6 +21,11 @@ namespace ABOGGUS.Interact {
         [Tooltip("What action will be taken when a specfic set of actions are completed in UI")]
         public event Action SuccessAction;
 
+        [HideInInspector]
+        [SerializeField]
+        [Tooltip("What action will be taken when a specfic set of actions are completed in UI")]
+        public bool InteractSuccessful = false;
+
         public void DoAction()
         {
             InteractAction?.Invoke();
@@ -28,6 +33,7 @@ namespace ABOGGUS.Interact {
 
         public void DoSuccesAction()
         {
+            InteractSuccessful = true;
             SuccessAction?.Invoke();
         }
     }

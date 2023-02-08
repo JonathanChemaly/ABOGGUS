@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 114
+  controlID: 312
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -59,23 +59,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Window
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1522
+    x: 1424
     y: 0
-    width: 398
+    width: 496
     height: 947
-  m_MinSize: {x: 101, y: 121}
+  m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 15}
-  - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  - {fileID: 16}
+  - {fileID: 14}
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -93,13 +93,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 368
-    height: 707
+    width: 340
+    height: 658
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 16}
+  - {fileID: 17}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &5
@@ -118,15 +118,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 707
-    width: 1522
-    height: 240
+    y: 658
+    width: 1424
+    height: 289
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 14}
-  - {fileID: 19}
+  - {fileID: 15}
+  - {fileID: 20}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &6
@@ -219,12 +219,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
+    width: 1424
     height: 947
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 115
+  controlID: 109
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,12 +244,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1522
-    height: 707
+    width: 1424
+    height: 658
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 116
+  controlID: 110
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,20 +265,102 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 368
+    x: 340
     y: 0
-    width: 1154
-    height: 707
+    width: 1084
+    height: 658
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 18}
   m_Panes:
-  - {fileID: 17}
   - {fileID: 18}
+  - {fileID: 19}
+  - {fileID: 13}
   - {fileID: 12}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &12
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Animator
+    m_Image: {fileID: -1673928668082335149, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 2260
+    y: 73
+    width: 1082
+    height: 637
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ViewTransforms:
+    m_KeySerializationHelper:
+    - {fileID: 1107905649089028422, guid: b60dc9aa529b314489f628aa3b57c470, type: 2}
+    - {fileID: 1107905649089028422, guid: 191b3744b2b8914449b1c096993dfe6d, type: 2}
+    m_ValueSerializationHelper:
+    - e00: 0.81860465
+      e01: 0
+      e02: 0
+      e03: -24.29303
+      e10: 0
+      e11: 0.81860465
+      e12: 0
+      e13: 234.33023
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.81860465
+      e01: 0
+      e02: 0
+      e03: -24.29303
+      e10: 0
+      e11: 0.81860465
+      e12: 0
+      e13: 234.33023
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_PreviewAnimator: {fileID: 0}
+  m_AnimatorController: {fileID: 9100000, guid: 191b3744b2b8914449b1c096993dfe6d, type: 2}
+  m_BreadCrumbs:
+  - m_Target: {fileID: 1107905649089028422, guid: 191b3744b2b8914449b1c096993dfe6d, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
+  stateMachineGraph: {fileID: 0}
+  stateMachineGraphGUI: {fileID: 0}
+  blendTreeGraph: {fileID: 0}
+  blendTreeGraphGUI: {fileID: 0}
+  m_AutoLiveLink: 1
+  m_MiniTool: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_CurrentEditor: 0
+  m_LayerEditor:
+    m_SelectedLayerIndex: 0
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,15 +380,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 374
+    x: 2260
     y: 73
-    width: 1146
-    height: 686
+    width: 1082
+    height: 637
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &13
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,9 +408,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1522
+    x: 3344
     y: 73
-    width: 397
+    width: 495
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -339,11 +421,11 @@ MonoBehaviour:
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
   currentTrackingStatusHasUpdate: 0
-  currentStatusEntriesHasUpdate: 0
-  repositoryProgressHasUpdate: 0
-  appManagerProgressHasUpdate: 0
-  changeTab: 3
-  activeTab: 3
+  currentStatusEntriesHasUpdate: 1
+  repositoryProgressHasUpdate: 1
+  appManagerProgressHasUpdate: 1
+  changeTab: 5
+  activeTab: 5
   initProjectView:
     hasCompletedInitialCheck: 0
     isUserDataPresent: 0
@@ -523,16 +605,6 @@ MonoBehaviour:
         isActive: 0
         treeIsCheckable: 0
         checkState: 0
-      - path: origin/Josh
-        label: Josh
-        level: 2
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 0
-        checkState: 0
       - path: origin/Lobby
         label: Lobby
         level: 2
@@ -563,6 +635,16 @@ MonoBehaviour:
         isActive: 0
         treeIsCheckable: 0
         checkState: 0
+      - path: origin/Player
+        label: Player
+        level: 2
+        isFolder: 0
+        isContainer: 0
+        isCollapsed: 0
+        isHidden: 0
+        isActive: 0
+        treeIsCheckable: 0
+        checkState: 0
       - path: origin/QuitFunction
         label: QuitFunction
         level: 2
@@ -575,16 +657,6 @@ MonoBehaviour:
         checkState: 0
       - path: origin/test
         label: test
-        level: 2
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 0
-        checkState: 0
-      - path: origin/test2
-        label: test2
         level: 2
         isFolder: 0
         isContainer: 0
@@ -620,10 +692,10 @@ MonoBehaviour:
     disableDelete: 0
     disableCreate: 0
     lastLocalAndRemoteBranchListChangedEvent:
-      updatedTimeString: 2023-02-03T18:40:25.417-05:00
+      updatedTimeString: 2023-02-07T23:40:25.694-05:00
       cacheType: 2
     lastCurrentBranchAndRemoteChange:
-      updatedTimeString: 2023-02-03T18:40:24.432-05:00
+      updatedTimeString: 2023-02-07T23:40:23.763-05:00
       cacheType: 1
     currentBranch:
       name: ProceduralPuzzle
@@ -652,19 +724,17 @@ MonoBehaviour:
       tracking: '[None]'
     - name: origin/Jonathan
       tracking: '[None]'
-    - name: origin/Josh
-      tracking: '[None]'
     - name: origin/Lobby
       tracking: '[None]'
     - name: origin/master
       tracking: '[None]'
     - name: origin/PauseMenu
       tracking: '[None]'
+    - name: origin/Player
+      tracking: '[None]'
     - name: origin/QuitFunction
       tracking: '[None]'
     - name: origin/test
-      tracking: '[None]'
-    - name: origin/test2
       tracking: '[None]'
     - name: origin/UnityPackages
       tracking: '[None]'
@@ -678,414 +748,15 @@ MonoBehaviour:
     treeScroll: {x: 0, y: 0}
     treeChanges:
       assets:
-        keys:
-        - 00000000000000001000000000000000
-        - 13161a2922b8be3418b562577abb8834
-        - 61ab98e562191914a9a44957ae33df9d
-        - 22d89b96b0d317842944ce8327ea3bb6
-        - cc743c6576c9f8844886a623a6ad4f37
-        - 45cd01709cf7e4649ae2c44c51816411
-        - 34cd2ecf1d1676d4c8b2a857ecad7438
-        - 8d1fa6272a30abd48a24da3ff5ccc37f
-        - 14187c6429c1f9b478c934c2f0f95f4e
-        - cc14fb4008f22f54cbdd5dbf2e8dda32
-        - 0eda12c49e3e7b148b868f088ede0d53
-        - edf20ca717054e041aa6f2260dec81e9
-        - 994d5bd1f94e0904ab49c18fb62f83d0
-        values:
-        - path: Assets
-          label: Assets
-          level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript
-          label: InteractScript
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\Interactable.cs
-          label: Interactable.cs
-          level: 3
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\Interactable.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-            projectPath: Assets\Scripts\InteractScript\Interactable.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\InteractScript\InteractActions
-          label: InteractActions
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu
-          label: OpenInteractMenu
-          level: 4
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-          label: OnSuccessDestroy.cs
-          level: 5
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-            projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-          label: OpenInteractMenu.cs
-          level: 5
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-            projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\InteractScript\InteractionManager.cs
-          label: InteractionManager.cs
-          level: 3
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\InteractScript\InteractionManager.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-            projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\PuzzleScripts
-          label: PuzzleScripts
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\PuzzleScripts\Lock
-          label: Lock
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-          label: LockManager.cs
-          level: 4
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-            projectPath: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-          label: RemoveCuff.cs
-          level: 4
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-            fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-            projectPath: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
+        keys: []
+        values: []
       folders:
         keys:
-        - Assets
-        - Assets\Scripts
-        - Assets\Scripts\InteractScript
-        - Assets\Scripts\InteractScript\InteractActions
-        - Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu
-        - Assets\Scripts\PuzzleScripts
-        - Assets\Scripts\PuzzleScripts\Lock
         - UserSettings
-        - UserSettings\Layouts
         values:
-        - path: Assets
-          label: Assets
-          level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript
-          label: InteractScript
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\InteractActions
-          label: InteractActions
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu
-          label: OpenInteractMenu
-          level: 4
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\PuzzleScripts
-          label: PuzzleScripts
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\PuzzleScripts\Lock
-          label: Lock
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
         - path: UserSettings
           label: UserSettings
           level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: UserSettings\Layouts
-          label: Layouts
-          level: 1
           isFolder: 1
           isContainer: 0
           isCollapsed: 0
@@ -1129,240 +800,6 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-      - path: Assets
-        label: Assets
-        level: 0
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts
-        label: Scripts
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript
-        label: InteractScript
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript\Interactable.cs
-        label: Interactable.cs
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\Interactable.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-          projectPath: Assets\Scripts\InteractScript\Interactable.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\InteractScript\InteractActions
-        label: InteractActions
-        level: 3
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu
-        label: OpenInteractMenu
-        level: 4
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-        label: OnSuccessDestroy.cs
-        level: 5
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-          projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-        label: OpenInteractMenu.cs
-        level: 5
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-          projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\InteractScript\InteractionManager.cs
-        label: InteractionManager.cs
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\InteractScript\InteractionManager.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-          projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\PuzzleScripts
-        label: PuzzleScripts
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\PuzzleScripts\Lock
-        label: Lock
-        level: 3
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-        label: LockManager.cs
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-          projectPath: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-        label: RemoveCuff.cs
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-          projectPath: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
       - path: UserSettings
         label: UserSettings
         level: 0
@@ -1381,27 +818,9 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-      - path: UserSettings\Layouts
-        label: Layouts
+      - path: UserSettings\EditorUserSettings.asset
+        label: EditorUserSettings.asset
         level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: UserSettings\Layouts\default-2021.dwlt
-        label: default-2021.dwlt
-        level: 2
         isFolder: 0
         isContainer: 0
         isCollapsed: 0
@@ -1411,9 +830,9 @@ MonoBehaviour:
         checkState: 0
         isLocked: 0
         gitStatusEntry:
-          path: UserSettings\Layouts\default-2021.dwlt
-          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\Layouts\default-2021.dwlt
-          projectPath: UserSettings\Layouts\default-2021.dwlt
+          path: UserSettings\EditorUserSettings.asset
+          fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\EditorUserSettings.asset
+          projectPath: UserSettings\EditorUserSettings.asset
           originalPath: 
           indexStatus: 0
           workTreeStatus: 3
@@ -1437,57 +856,21 @@ MonoBehaviour:
           indexStatus: 0
           workTreeStatus: 0
     gitStatusEntries:
-    - path: Assets\Scripts\InteractScript\Interactable.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\Interactable.cs
-      projectPath: Assets\Scripts\InteractScript\Interactable.cs
+    - path: UserSettings\EditorUserSettings.asset
+      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\EditorUserSettings.asset
+      projectPath: UserSettings\EditorUserSettings.asset
       originalPath: 
       indexStatus: 0
       workTreeStatus: 3
-    - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-      projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OnSuccessDestroy.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-      projectPath: Assets\Scripts\InteractScript\InteractActions\OpenInteractMenu\OpenInteractMenu.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\InteractScript\InteractionManager.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\InteractScript\InteractionManager.cs
-      projectPath: Assets\Scripts\InteractScript\InteractionManager.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-      projectPath: Assets\Scripts\PuzzleScripts\Lock\LockManager.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-      projectPath: Assets\Scripts\PuzzleScripts\Lock\RemoveCuff.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: UserSettings\Layouts\default-2021.dwlt
-      fullPath: C:\Users\tropi\CPSTNE_VER_1.0\UserSettings\Layouts\default-2021.dwlt
-      projectPath: UserSettings\Layouts\default-2021.dwlt
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    changedFilesText: 7 changed files
+    changedFilesText: 1 changed file
     lastCurrentBranchChangedEvent:
-      updatedTimeString: 2023-02-06T01:20:57.056-05:00
+      updatedTimeString: 2023-02-07T23:40:23.763-05:00
       cacheType: 1
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-02-06T01:21:26.676-05:00
+      updatedTimeString: 2023-02-08T00:08:32.466-05:00
       cacheType: 6
     lastLocksChangedEvent:
-      updatedTimeString: 2023-02-06T01:20:58.908-05:00
+      updatedTimeString: 0001-01-01T00:00:00.000+00:00
       cacheType: 7
   historyView:
     currentLogHasUpdate: 0
@@ -16824,7 +16207,7 @@ MonoBehaviour:
       changingManually: 0
     hasRemote: 1
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-02-03T18:40:24.432-05:00
+      updatedTimeString: 2023-02-08T00:40:23.219-05:00
       cacheType: 1
     newRepositoryRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
     repositoryRemoteName: origin
@@ -17001,13 +16384,13 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: Url of the origin remote
   lastCurrentBranchAndRemoteChangedEvent:
-    updatedTimeString: 2023-02-06T01:20:57.056-05:00
+    updatedTimeString: 2023-02-08T00:09:09.771-05:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-02-06T01:20:58.953-05:00
+    updatedTimeString: 2023-02-08T00:09:09.945-05:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-02-06T01:21:26.676-05:00
+    updatedTimeString: 2023-02-08T00:15:50.247-05:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -17025,12 +16408,12 @@ MonoBehaviour:
     m_Text: Fetch
     m_Image: {fileID: 0}
     m_Tooltip: 
-  repositoryProgressValue: 0
+  repositoryProgressValue: 1
   repositoryProgressMessage: 
   appManagerProgressValue: 1
   appManagerProgressMessage: 
   primaryConnectionUsername: 
---- !u!114 &14
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17050,10 +16433,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 780
-    width: 1521
-    height: 219
+    x: 1920
+    y: 731
+    width: 1423
+    height: 268
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17071,36 +16454,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Template
+    - Assets/Resources/NarratorAudio
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 74
   m_LastFolders:
-  - Assets/Template
+  - Assets/Resources/NarratorAudio
   m_LastFoldersGridSize: 74
   m_LastProjectPath: C:\Users\tropi\CPSTNE_VER_1.0
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 477}
-    m_SelectedIDs: b2720000
-    m_LastClickedID: 29362
-    m_ExpandedIDs: 000000006e72000070720000727200007472000076720000787200007a7200007c7200007e72000000ca9a3b
+    scrollPos: {x: 0, y: 368}
+    m_SelectedIDs: 5c910000
+    m_LastClickedID: 37212
+    m_ExpandedIDs: 000000008473000086730000887300008a7300008c7300008e73000090730000927300009473000096730000987300009a730000c27300009a80000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Animations
+      m_OriginalName: Animations
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 32918
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -17114,7 +16497,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006e72000070720000727200007472000076720000787200007a7200007c7200007e720000
+    m_ExpandedIDs: 000000008473000086730000887300008a7300008c7300008e73000090730000927300009473000096730000987300009a730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -17142,7 +16525,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000465e0000785c00004a5d000000000000
+    m_ExpandedInstanceIDs: c6230000465e0000785c00004a5d000000000000aec5000090800000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -17170,7 +16553,7 @@ MonoBehaviour:
     m_GridSize: 74
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &15
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17190,9 +16573,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1522
+    x: 3344
     y: 73
-    width: 397
+    width: 495
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -17211,7 +16594,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &16
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17231,10 +16614,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: 1920
     y: 73
-    width: 367
-    height: 686
+    width: 339
+    height: 637
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17242,9 +16625,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c86e0000
-      m_LastClickedID: 28360
-      m_ExpandedIDs: 2efbffff
+      m_SelectedIDs: b255ffff
+      m_LastClickedID: -43598
+      m_ExpandedIDs: 86d5ffff8ed5ffff92d5ffff96d5ffff9ed5ffffa2d5ffffa6d5ffffaed5ffffb2d5ffffb6d5ffffbad5ffffc2d5ffffcad5ffffd6d5ffffe2d5ffffead5fffff6d5ffff02d6ffff06d6ffff0ad6ffff16d6ffff1ad6ffff22d6ffff26d6ffff2ed6ffff32d6ffff36d6ffff3ad6ffff3ed6ffff42d6ffff7ad6ffff7ed6ffff82d6ffff86d6ffff92d6ffff96d6ffff9ad6ffff28daffff20f3fffff4faffff5a7a0000787b0000ca7b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -17268,7 +16651,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &17
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17288,10 +16671,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 368
+    x: 2260
     y: 73
-    width: 1152
-    height: 686
+    width: 1082
+    height: 637
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17526,9 +16909,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.12, y: 1.1199999, z: 6.17}
+    m_Target: {x: -1.819783, y: 0.7105521, z: 6.1142335}
     speed: 2
-    m_Value: {x: -6.12, y: 1.1199999, z: 6.17}
+    m_Value: {x: -1.819783, y: 0.7105521, z: 6.1142335}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -17575,13 +16958,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.0146894045, y: 0.011095457, z: 0.0001558335, w: -0.99984866}
+    m_Target: {x: -0.13478136, y: -0.34529483, z: 0.05016329, w: -0.92744255}
     speed: 2
-    m_Value: {x: 0.014688888, y: 0.012594989, z: 0.00017786422, w: -0.9998128}
+    m_Value: {x: -0.13477728, y: -0.34528437, z: 0.05016177, w: -0.9274145}
   m_Size:
-    m_Target: 1.2247448
+    m_Target: 2.4169886
     speed: 2
-    m_Value: 1.2247454
+    m_Value: 2.4169886
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -17606,7 +16989,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17626,10 +17009,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 368
+    x: 2260
     y: 73
-    width: 1152
-    height: 686
+    width: 1082
+    height: 637
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -17640,7 +17023,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1152, y: 665}
+  m_TargetSize: {x: 1082, y: 616}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -17655,10 +17038,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -576
-    m_HBaseRangeMax: 576
-    m_VBaseRangeMin: -332.5
-    m_VBaseRangeMax: 332.5
+    m_HBaseRangeMin: -541
+    m_HBaseRangeMax: 541
+    m_VBaseRangeMin: -308
+    m_VBaseRangeMax: 308
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -17676,29 +17059,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1152
-      height: 665
+      width: 1082
+      height: 616
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 576, y: 332.5}
+    m_Translation: {x: 541, y: 308}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -576
-      y: -332.5
-      width: 1152
-      height: 665
+      x: -541
+      y: -308
+      width: 1082
+      height: 616
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1152, y: 686}
+  m_LastWindowPixelSize: {x: 1082, y: 637}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &19
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17718,10 +17101,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 780
-    width: 1521
-    height: 219
+    x: 1920
+    y: 731
+    width: 1423
+    height: 268
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

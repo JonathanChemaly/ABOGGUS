@@ -29,13 +29,8 @@ namespace ABOGGUS.Interact
         //Plays animation on 
         private void PlayAni()
         {
-            //Don't play if both are false in that we have already played once 
-            if(playFoward)
-            {
-                aniToPlay.Play();
-                StartCoroutine(disableWhileAniPlaying());
-
-            }
+            aniToPlay.Play();
+            StartCoroutine(disableWhileAniPlaying());
 
         }
 

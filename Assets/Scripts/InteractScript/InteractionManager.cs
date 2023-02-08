@@ -107,7 +107,7 @@ namespace ABOGGUS.Interact
                 Interactable hitObject = rayHitInfo.collider.GetComponent<Interactable>();
                 //if for some reason the object is null (for example didn't get the component right)
                 //we ignore it
-                if (hitObject == null || hitObject.enabled == false)
+                if (hitObject == null || hitObject.enabled == false || hitObject.InteractSuccessful)
                 {
                     currentInteractable = null;
                 }
