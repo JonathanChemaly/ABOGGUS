@@ -9,7 +9,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     private Vector3 topDoorRPO;
     private Vector3 topDoorLPO;
 
-    private float doorSpeed = 0.01f;
+    private float doorSpeed = 0.08f;
 
     public GameObject topDoorR;
     public GameObject topDoorL;
@@ -21,8 +21,8 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         topDoorRP = topDoorR.transform.position;
         topDoorLP = topDoorL.transform.position;
 
-        topDoorRPO = topDoorRP + new Vector3(1.3f, 0.0f, 0.0f);
-        topDoorLPO = topDoorLP - new Vector3(1.3f, 0.0f, 0.0f);
+        topDoorRPO = topDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
+        topDoorLPO = topDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -39,22 +39,18 @@ public class TopElevatorDoorTrigger : MonoBehaviour
             topDoorL.transform.position = Vector3.MoveTowards(topDoorL.transform.position, topDoorLP, doorSpeed);
         }
     }
-    public void OpenTopDoor()
-    {
-        openTopDoor = !openTopDoor;
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            OpenTopDoor();
+            openTopDoor = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            OpenTopDoor();
+            openTopDoor = false;
         }
     }
 

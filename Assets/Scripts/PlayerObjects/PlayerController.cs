@@ -9,15 +9,16 @@ namespace ABOGGUS.PlayerObjects
 {
     public class PlayerController : MonoBehaviour
     {
+        public Player player;
+        private GameObject physicalGameObject;
 
-        [SerializeField] private Player player;
-        public static float speed = 0.1f;
-        public float jumpHeight = 0.1f;
-        public float totalJumpTime = 5;
-        public float dodgeLength = 0.1f;
-        public float totalDodgeTime = 5;
-        private float cumulativeJumpTime = 0;
-        private float cumulativeDodgeTime = 0;
+        public static float speed = PlayerConstants.SPEED_DEFAULT;
+        public float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;
+        public float totalJumpTime = PlayerConstants.JUMP_TIME_DEFAULT;
+        public float dodgeLength = PlayerConstants.DODGE_LENGTH_DEFAULT;
+        public float totalDodgeTime = PlayerConstants.DODGE_TIME_DEFAULT;
+        private float cumulativeJumpTime = PlayerConstants.JUMP_TIME_CUMULATIVE_DEFAULT;
+        private float cumulativeDodgeTime = PlayerConstants.DODGE_TIME_CUMULATIVE_DEFAULT;
         private InputAction moveAction;
         private Vector3 target;
         private bool jumping = false;
@@ -25,8 +26,9 @@ namespace ABOGGUS.PlayerObjects
         private int count = 0;
         private bool crouching = false;
 
-        public void Initialize(InputActions playerActions)
+        public void Initialize(Input.InputActions playerActions)
         {
+            player.SetController(this);
             player.Initialize();
             moveAction = playerActions.Player.Move;
             moveAction.Enable();
@@ -45,14 +47,19 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.Sprint.Enable();
         }
 
+        public void SetGameObject(GameObject physicalGameObject)
+        {
+            this.physicalGameObject = physicalGameObject;
+        }
+
         private void StopSprint(InputAction.CallbackContext obj)
         {
-            speed /= 2;
+            speed /= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
         }
 
         private void DoSprint(InputAction.CallbackContext obj)
         {
-            speed *= 2;
+            speed *= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
         }
 
         private void DoCrouch(InputAction.CallbackContext obj)
@@ -91,15 +98,15 @@ namespace ABOGGUS.PlayerObjects
             moveAction.Disable();
         }
 
-        void FixedUpdate()
+        public void _FixedUpdate()
         {
             player.MovementHandler(moveAction);
             if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
             {
                 Debug.Log("Jump time: " + Time.fixedDeltaTime);
                 cumulativeJumpTime += Time.fixedDeltaTime;
-                Vector3 up = new Vector3(player.transform.position.x, jumpHeight * cumulativeJumpTime + player.transform.position.y, player.transform.position.z);
-                player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
+                Vector3 up = new Vector3(physicalGameObject.transform.position.x, jumpHeight * cumulativeJumpTime + physicalGameObject.transform.position.y, physicalGameObject.transform.position.z);
+                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
             }
             else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
             {
@@ -117,8 +124,8 @@ namespace ABOGGUS.PlayerObjects
             {
                 Debug.Log("Dodge time: " + Time.fixedDeltaTime);
                 cumulativeDodgeTime += Time.fixedDeltaTime;
-                Vector3 target = player.transform.position + player.transform.forward * speed;
-                player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
+                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
             }
             else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
             {
