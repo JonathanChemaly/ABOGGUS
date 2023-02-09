@@ -22,7 +22,7 @@ public class Spark : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("PlayerCharacter").transform;
     }
 
     private void AttackPlayer()

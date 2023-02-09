@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1252133727167143388}
   - component: {fileID: 3263549538472859452}
   - component: {fileID: 3541434747514774630}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3313996510257354515}
   - component: {fileID: 7254697693223429277}
   - component: {fileID: 4857682968489047738}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Spark
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -175,12 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   health: 50
   speed: 5
   timeBetweenAttacks: 2
-  projectile: {fileID: 3159643037487557488, guid: 14f42f419a7351045bedc51c8e763019,
-    type: 3}
+  projectile: {fileID: 3159643037487557488, guid: 14f42f419a7351045bedc51c8e763019, type: 3}
   sightRange: 0
   attackRange: 10
   playerInAttackRange: 0

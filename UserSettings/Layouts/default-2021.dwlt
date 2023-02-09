@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Git for Unity
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 50
+  controlID: 241
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Window
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -68,14 +68,14 @@ MonoBehaviour:
     y: 0
     width: 623
     height: 947
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 14}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 311
     height: 658
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 51
+  controlID: 48
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 43
+  controlID: 49
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -421,9 +421,9 @@ MonoBehaviour:
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
   currentTrackingStatusHasUpdate: 0
-  currentStatusEntriesHasUpdate: 0
-  repositoryProgressHasUpdate: 0
-  appManagerProgressHasUpdate: 0
+  currentStatusEntriesHasUpdate: 1
+  repositoryProgressHasUpdate: 1
+  appManagerProgressHasUpdate: 1
   changeTab: 5
   activeTab: 5
   initProjectView:
@@ -19754,28 +19754,28 @@ MonoBehaviour:
     detailsScroll: {x: 0, y: 0}
   settingsView:
     gitPathView:
-      gitPath: C:\Program Files\Git\bin\git.exe
-      gitLfsPath: C:\Program Files\Git\mingw64\bin\git-lfs.exe
+      gitPath: C:\Program Files\Git\cmd\git.exe
+      gitLfsPath: C:\Program Files\Git\cmd\git-lfs.exe
       errorMessage: 
       resetToBundled: 0
       resetToSystem: 0
       changingManually: 0
     hasRemote: 1
     lastCurrentRemoteChangedEvent:
-      updatedTimeString: 2023-02-08T20:36:38.976-05:00
+      updatedTimeString: 2023-02-09T15:43:38.621-05:00
       cacheType: 1
     newRepositoryRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
     repositoryRemoteName: origin
     repositoryRemoteUrl: https://github.com/JonathanChemaly/ABOGGUS.git
     scroll: {x: 0, y: 0}
     userSettingsView:
-      gitName: phangen
-      gitEmail: ph.hangen@gmail.com
-      newGitName: phangen
-      newGitEmail: ph.hangen@gmail.com
+      gitName: CameronC123
+      gitEmail: cdang1234@gmail.com
+      newGitName: CameronC123
+      newGitEmail: cdang1234@gmail.com
       needsSaving: 0
       lastCheckUserChangedEvent:
-        updatedTimeString: 2023-02-08T20:35:11.389-05:00
+        updatedTimeString: 2023-02-09T15:34:44.548-05:00
         cacheType: 8
     webTimeout: 100000
     gitTimeout: 5000
@@ -26223,13 +26223,13 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: Url of the origin remote
   lastCurrentBranchAndRemoteChangedEvent:
-    updatedTimeString: 2023-02-08T20:36:38.976-05:00
+    updatedTimeString: 2023-02-09T15:34:20.801-05:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-02-08T20:36:40.648-05:00
+    updatedTimeString: 2023-02-09T15:34:21.741-05:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-02-08T20:37:14.784-05:00
+    updatedTimeString: 2023-02-09T15:35:29.184-05:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -26293,22 +26293,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/PlayerObjects
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 74
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/PlayerObjects
   m_LastFoldersGridSize: 74
-  m_LastProjectPath: C:\Users\tropi\CPSTNE_VER_1.0
+  m_LastProjectPath: C:\Users\Cam\Documents\GitHub\ABOGGUS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 108}
-    m_SelectedIDs: c68b0000
-    m_LastClickedID: 35782
-    m_ExpandedIDs: 0000000086730000887300008a7300008c7300008e730000907300009273000000ca9a3b
+    scrollPos: {x: 0, y: 180}
+    m_SelectedIDs: 488d0000
+    m_LastClickedID: 36168
+    m_ExpandedIDs: 0000000066830000a0830000488d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -26336,7 +26336,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000086730000887300008a7300008c7300008e7300009073000092730000
+    m_ExpandedIDs: 0000000066830000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -26361,9 +26361,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 6a1c0000
+    m_LastClickedInstanceID: 7274
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000465e0000785c00004a5d000000000000aec5000090800000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -26464,9 +26464,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff
+      m_SelectedIDs: 8a840000
+      m_LastClickedID: 33930
+      m_ExpandedIDs: 4af1ffffb8f4ffffdc830000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -26748,9 +26748,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 13.75317, y: 26.017984, z: 5.553425}
+    m_Target: {x: 0.23702621, y: -0.3175583, z: -3.6963325}
     speed: 2
-    m_Value: {x: 13.75317, y: 26.017984, z: 5.553425}
+    m_Value: {x: 0.23702621, y: -0.3175583, z: -3.6963325}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -26797,13 +26797,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.24500078, y: -0.09435302, z: 0.023974465, w: -0.9646663}
+    m_Target: {x: -0.10744019, y: 0.72848064, z: -0.11878633, w: -0.66655177}
     speed: 2
-    m_Value: {x: -0.24499053, y: -0.09434907, z: 0.023973461, w: -0.96462595}
+    m_Value: {x: -0.107406415, y: 0.72825164, z: -0.118748985, w: -0.6663422}
   m_Size:
-    m_Target: 38.247524
+    m_Target: 18.444254
     speed: 2
-    m_Value: 38.247524
+    m_Value: 18.444254
   m_Ortho:
     m_Target: 0
     speed: 2

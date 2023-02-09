@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 
         for (int i = 0; i < player.Length; i++)
         {
-            player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+            if (player[i].transform.name == "PlayerCharacter") player[i].GetComponent<Player>().TakeDamage(explosionDamage);
         }
         Invoke("Delay", 0.05f);
         Invoke("ExplosionDelay", 1f);

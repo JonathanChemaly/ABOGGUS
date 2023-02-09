@@ -27,7 +27,7 @@ public class ShockWave : MonoBehaviour
 
         for (int i = 0; i < player.Length; i++)
         {
-            player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+            if (player[i].transform.name == "PlayerCharacter") player[i].GetComponent<Player>().TakeDamage(explosionDamage);
         }
         Invoke("Delay", 2f);
     }
@@ -41,6 +41,6 @@ public class ShockWave : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag != "Enemy") Explode();
-        if (collision.transform.name == "Player") gameObject.GetComponent<SphereCollider>().enabled = false;
+        if (collision.transform.name == "PlayerCharacter") gameObject.GetComponent<SphereCollider>().enabled = false;
     }
 }
