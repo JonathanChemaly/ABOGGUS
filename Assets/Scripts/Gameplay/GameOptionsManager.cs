@@ -29,7 +29,7 @@ namespace ABOGGUS.Gameplay
         }
         private void TriggerReturnToMainMenu(InputAction.CallbackContext obj)
         {
-            GameController.ChangeScene("Pressed return to main menu key.", GameConstants.SCENE_MAINMENU);
+            GameController.ChangeScene("Pressed return to main menu key.", GameConstants.SCENE_MAINMENU, true);
         }
         private void OnDisable()
         {

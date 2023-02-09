@@ -47,7 +47,7 @@ namespace ABOGGUS.Menus
 
         public void GoToMainMenu()
         {
-            GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU);
+            GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
