@@ -24,12 +24,10 @@ namespace ABOGGUS.Menus
         }
         private void TriggerPause(InputAction.CallbackContext obj)
         {
-            Debug.Log("Pressed escape");
             PauseMenu.Trigger();
         }
         private void TriggerInventory(InputAction.CallbackContext obj)
         {
-            Debug.Log("Pressed i");
             InventoryMenu.Trigger();
         }
         private void OnDisable()

@@ -38,19 +38,16 @@ namespace ABOGGUS.Menus
         private void PauseGame()
         {
             pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
         }
 
-        private void ResumeGame()
+        public void ResumeGame()
         {
             pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
         }
 
         public void GoToMainMenu()
         {
-            Time.timeScale = 1f;
-            GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU);
+            GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
