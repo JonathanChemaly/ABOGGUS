@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5024490450379584488}
   - component: {fileID: 4711107461313819098}
   - component: {fileID: 2016868234672734877}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5200920747455541213}
   - component: {fileID: 6148317785430330381}
   - component: {fileID: 2119021668699939581}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   explosion: {fileID: 159846, guid: c093f20f7fecffe40968c260ab8382a2, type: 3}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   bounciness: 0.8
   useGravity: 1
   explosionDamage: 40
