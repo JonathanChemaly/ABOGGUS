@@ -10,6 +10,8 @@ public class LoadingController : MonoBehaviour
     [SerializeField] private Image loadingIcon;//field that holds the image that tracks progress
     [SerializeField] private TextMeshProUGUI tipText;
 
+    public static bool complete = true;
+
     //Float to hold time to have loading screen on without skipping to the next sceen.
     [SerializeField] private float timeToHaveLoadingScreenOn; 
 
@@ -27,6 +29,8 @@ public class LoadingController : MonoBehaviour
      */
     IEnumerator LoadNextScene()
     {
+        complete = false;
+
         AsyncOperation sceneLoadingOperation = SceneManager.LoadSceneAsync(LoadingLocation.SceneToLoad);
 
         sceneLoadingOperation.allowSceneActivation = false; //Stops scene activating
@@ -38,7 +42,7 @@ public class LoadingController : MonoBehaviour
             //makes the fill of the image equal to the amount of progress made toward the scene loading
             loadingIcon.fillAmount = sceneLoadingOperation.progress;
             
-            //Because of inaccuracy of progress need to do this to enable scene activivastion again
+            //Because of inaccuracy of progress need to do this to enable scene activation again
             if(sceneLoadingOperation.progress >= 0.8)
             {
                 //waiting time so we have loading screen on a min amount of time.
@@ -49,6 +53,7 @@ public class LoadingController : MonoBehaviour
             yield return null;
         }
 
+        complete = true;
         
     }
 

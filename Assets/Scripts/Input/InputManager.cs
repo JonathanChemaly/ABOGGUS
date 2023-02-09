@@ -1,30 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ABOGGUS.Input;
 
 using ABOGGUS.Interact;
-
+using ABOGGUS.Menus;
+using ABOGGUS.Gameplay;
 using ABOGGUS.PlayerObjects;
 
-
-namespace ABOGGUS
+namespace ABOGGUS.Input
 {
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private PlayerController playerController;
         [SerializeField] private PauseManager pauseManager;
         [SerializeField] private CameraController cameraController;
-
         [SerializeField] private InteractionManager interactionManager;
-
-        
-
-
         [SerializeField] private ThirdPersonCameraController thirdPersonCameraController;
         [SerializeField] private RotateControl rotateController;
-        private Input.InputActions inputScheme;
 
+        private Input.InputActions inputScheme;
         public InputActions InputScheme { get => inputScheme; }
 
         private string str;

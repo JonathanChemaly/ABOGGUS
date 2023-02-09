@@ -129,6 +129,24 @@ namespace ABOGGUS.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""39eea253-9beb-40de-ae72-25e566df58b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReturnToMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""471f233a-1ce4-4f1d-9d72-c5ec575e7071"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""69d22e24-fbf7-4d2f-b182-46e9d0a18171"",
@@ -416,6 +434,17 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8b00867e-f4d4-4b0c-aee8-2a3bc5eb090a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1f364d9f-30ea-4526-80d3-652e956cf454"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
@@ -433,6 +462,39 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c39a83bb-e77b-4ec8-8d8d-c4af5ea8b0f8"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b582a799-48d7-4661-a0d2-4732817f6c86"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""356957e3-0a81-4cb4-b6fc-f7efbaec0233"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnToMainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1042,6 +1104,8 @@ namespace ABOGGUS.Input
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+            m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
+            m_Player_ReturnToMainMenu = m_Player.FindAction("ReturnToMainMenu", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1125,6 +1189,8 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_Dodge;
         private readonly InputAction m_Player_Rotate;
+        private readonly InputAction m_Player_Quit;
+        private readonly InputAction m_Player_ReturnToMainMenu;
         private readonly InputAction m_Player_Interact;
         public struct PlayerActions
         {
@@ -1141,6 +1207,8 @@ namespace ABOGGUS.Input
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+            public InputAction @Quit => m_Wrapper.m_Player_Quit;
+            public InputAction @ReturnToMainMenu => m_Wrapper.m_Player_ReturnToMainMenu;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -1184,6 +1252,12 @@ namespace ABOGGUS.Input
                     @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                     @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                     @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Quit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @Quit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @Quit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @ReturnToMainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
+                    @ReturnToMainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
+                    @ReturnToMainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
                     @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
@@ -1224,6 +1298,12 @@ namespace ABOGGUS.Input
                     @Rotate.started += instance.OnRotate;
                     @Rotate.performed += instance.OnRotate;
                     @Rotate.canceled += instance.OnRotate;
+                    @Quit.started += instance.OnQuit;
+                    @Quit.performed += instance.OnQuit;
+                    @Quit.canceled += instance.OnQuit;
+                    @ReturnToMainMenu.started += instance.OnReturnToMainMenu;
+                    @ReturnToMainMenu.performed += instance.OnReturnToMainMenu;
+                    @ReturnToMainMenu.canceled += instance.OnReturnToMainMenu;
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
@@ -1394,6 +1474,8 @@ namespace ABOGGUS.Input
             void OnInventory(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
             void OnRotate(InputAction.CallbackContext context);
+            void OnQuit(InputAction.CallbackContext context);
+            void OnReturnToMainMenu(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
         }
         public interface IUIActions

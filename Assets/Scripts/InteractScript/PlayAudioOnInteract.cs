@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using ABOGGUS.Input;
+
 namespace ABOGGUS.Interact
 {
     public class PlayAudioOnInteract : MonoBehaviour
