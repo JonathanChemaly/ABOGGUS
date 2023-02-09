@@ -17,14 +17,15 @@ namespace ABOGGUS
         [SerializeField] private CameraController cameraController;
 
         [SerializeField] private InteractionManager interactionManager;
-        private InputActions inputScheme;
 
-        public InputActions InputScheme { get => inputScheme; }
+        
 
 
         [SerializeField] private ThirdPersonCameraController thirdPersonCameraController;
         [SerializeField] private RotateControl rotateController;
         private Input.InputActions inputScheme;
+
+        public InputActions InputScheme { get => inputScheme; }
 
         private string str;
 
