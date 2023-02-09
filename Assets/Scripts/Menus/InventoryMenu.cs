@@ -50,13 +50,11 @@ namespace ABOGGUS.Menus
             {
                 keyContainer.enabled = false;
             }
-            Time.timeScale = 0f;
         }
 
         private void CloseInventory()
         {
             inventoryMenu.SetActive(false);
-            Time.timeScale = 1f;
         }
     }
 }
