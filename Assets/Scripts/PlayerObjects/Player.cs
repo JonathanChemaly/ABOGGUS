@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ABOGGUS.Input;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class Player : MonoBehaviour
     {
-        public float health;
+        public GameObject debugGameObject;
+
+        public static float health = PlayerConstants.MAX_HEALTH;
         public GameObject gameOverText;
-        public bool key = true;
+        public static bool key = true;
+        public bool debug = true;
+        private PlayerController playerController;
+
         private IPlayerState playerState;
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
         public void Initialize()
         {
+            GameController.player = this;
             playerState = new PlayerFacingForward(this);
             facingDirection = FacingDirection.Forward;
+
+            if (debug) SetGameObject(debugGameObject);
         }
 
         public void MovementHandler(InputAction moveAction)
@@ -124,14 +133,31 @@ namespace ABOGGUS.PlayerObjects
 
         IEnumerator ToCredits()
         {
-            gameOverText.SetActive(true);
+            //gameOverText.SetActive(true);
             Time.timeScale = 0;
             yield return new WaitForSeconds(5f);
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
-            Application.Quit();
+            GameController.QuitGame("Player died lol.");
 
+        }
+
+        void FixedUpdate()
+        {
+            if (debug) _FixedUpdate();
+        }
+
+        public void _FixedUpdate()
+        {
+            this.playerController._FixedUpdate();
+        }
+
+        public void SetController(PlayerController playerController)
+        {
+            this.playerController = playerController;
+        }
+
+        public void SetGameObject(GameObject physicalGameObject)
+        {
+            this.playerController.SetGameObject(physicalGameObject);
         }
     }
 }

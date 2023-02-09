@@ -38,7 +38,7 @@ public class PlayerAnimationStateController : MonoBehaviour
         bool rightPressed = Input.GetKey(KeyCode.D);
         bool movePressed = forwardPressed || backwardPressed || leftPressed || rightPressed;
         bool sprintPressed = Input.GetKey(KeyCode.LeftShift);
-        bool attackPressed = Input.GetKey(KeyCode.Mouse0);
+        bool attackPressed = Input.GetKey(KeyCode.F);
 
         if (!isMoving && movePressed)
         {

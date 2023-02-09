@@ -4,10 +4,10 @@ using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using UnityEngine.UI;
 
-namespace ABOGGUS {
+namespace ABOGGUS.Menus
+{
     public class InventoryMenu : MonoBehaviour
     {
-        public PlayerObjects.Player player;
         public GameObject inventoryMenu;
 
         public Sprite keyImage;
@@ -43,20 +43,18 @@ namespace ABOGGUS {
         private void OpenInventory()
         {
             inventoryMenu.SetActive(true);
-            if (player.key)
+            if (Player.key)
             {
                 keyContainer.enabled = true;
             } else
             {
                 keyContainer.enabled = false;
             }
-            Time.timeScale = 0f;
         }
 
         private void CloseInventory()
         {
             inventoryMenu.SetActive(false);
-            Time.timeScale = 1f;
         }
     }
 }
