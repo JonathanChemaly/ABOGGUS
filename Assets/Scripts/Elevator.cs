@@ -55,24 +55,24 @@ public class Elevator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
+        
         if (other.CompareTag("Player"))
         {
-            if ( Vector3.Distance(player.transform.position, upPosition) < Vector3.Distance(player.transform.position, downPosition))
-            {
-                trueUpFalseDown = false;
-            }
-            if (Vector3.Distance(player.transform.position, downPosition) < Vector3.Distance(player.transform.position, upPosition))
+            if (player.transform.position.y < (playerUp.y + playerDown.y) / 2)
             {
                 trueUpFalseDown = true;
             }
-        }*/
+            else if (player.transform.position.y > (playerUp.y + playerDown.y) / 2)
+            {
+                trueUpFalseDown = false;
+            }
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            timer = 0.0f;
+            timer = 4.0f;
             elevatorMoving = false;
         }
     }
