@@ -87,6 +87,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "6641174c-55c7-41f7-892e-40fd83d26959",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dodge",
                     "type": "Button",
                     "id": "53ac606b-8552-46af-8de1-780df5ac0c23",
@@ -94,6 +103,7 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+
                 },
                 {
                     "name": "Rotate",
@@ -396,6 +406,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b00867e-f4d4-4b0c-aee8-2a3bc5eb090a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

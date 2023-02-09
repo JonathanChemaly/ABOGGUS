@@ -111,6 +111,15 @@ namespace ABOGGUS.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6641174c-55c7-41f7-892e-40fd83d26959"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""53ac606b-8552-46af-8de1-780df5ac0c23"",
@@ -420,6 +429,17 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b00867e-f4d4-4b0c-aee8-2a3bc5eb090a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1071,6 +1091,7 @@ namespace ABOGGUS.Input
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
@@ -1155,6 +1176,7 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Pause;
         private readonly InputAction m_Player_Inventory;
+        private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Dodge;
         private readonly InputAction m_Player_Rotate;
         private readonly InputAction m_Player_Quit;
@@ -1172,6 +1194,7 @@ namespace ABOGGUS.Input
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+            public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
@@ -1212,6 +1235,9 @@ namespace ABOGGUS.Input
                     @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
@@ -1255,6 +1281,9 @@ namespace ABOGGUS.Input
                     @Inventory.started += instance.OnInventory;
                     @Inventory.performed += instance.OnInventory;
                     @Inventory.canceled += instance.OnInventory;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
                     @Dodge.started += instance.OnDodge;
                     @Dodge.performed += instance.OnDodge;
                     @Dodge.canceled += instance.OnDodge;
@@ -1432,6 +1461,7 @@ namespace ABOGGUS.Input
             void OnJump(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
             void OnRotate(InputAction.CallbackContext context);
             void OnQuit(InputAction.CallbackContext context);

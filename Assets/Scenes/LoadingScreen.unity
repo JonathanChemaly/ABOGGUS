@@ -260,7 +260,8 @@ MonoBehaviour:
   m_text: New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d8210b6648311c4d863c84a3e89cf89, type: 2}
-  m_sharedMaterial: {fileID: 1346471735639931136, guid: 7d8210b6648311c4d863c84a3e89cf89, type: 2}
+  m_sharedMaterial: {fileID: 1346471735639931136, guid: 7d8210b6648311c4d863c84a3e89cf89,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1085,7 +1086,8 @@ MonoBehaviour:
   m_text: '"INSERT TIP TEXT HERE"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d8210b6648311c4d863c84a3e89cf89, type: 2}
-  m_sharedMaterial: {fileID: 1346471735639931136, guid: 7d8210b6648311c4d863c84a3e89cf89, type: 2}
+  m_sharedMaterial: {fileID: 1346471735639931136, guid: 7d8210b6648311c4d863c84a3e89cf89,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1169,6 +1171,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1852408977}
   - component: {fileID: 1852408978}
+  - component: {fileID: 1852408979}
+  - component: {fileID: 1852408980}
   m_Layer: 5
   m_Name: BGM
   m_TagString: Untagged
@@ -1208,7 +1212,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 61dcd776bf046484386781739f188e05, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.45
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1292,6 +1296,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!170 &1852408979
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852408976}
+  m_Enabled: 0
+  m_DistortionLevel: 0
+--- !u!166 &1852408980
+AudioChorusFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852408976}
+  m_Enabled: 0
+  m_DryMix: 0.5
+  m_WetMix1: 0.5
+  m_WetMix2: 0.5
+  m_WetMix3: 0.5
+  m_Delay: 40
+  m_Rate: 0.8
+  m_Depth: 0.03
 --- !u!1 &1965060402
 GameObject:
   m_ObjectHideFlags: 0
