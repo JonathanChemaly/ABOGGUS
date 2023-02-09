@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace ABOGGUS
+namespace ABOGGUS.Menus
 {
     public class HoverTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

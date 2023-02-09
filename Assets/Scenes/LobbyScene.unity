@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2509,8 +2509,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451824, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_Name
-      value: PlayerCharacter
+      value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a, type: 3}
+      propertyPath: DEBUG
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a, type: 3}
+      propertyPath: debugGameObject
+      value: 
+      objectReference: {fileID: 60894435}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4002837582f1c648a402990254be77a, type: 3}
 --- !u!1 &442594662
@@ -8679,7 +8687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528a6171134f50d4f83aa05303fe5bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   inventoryMenu: {fileID: 96416879}
   keyImage: {fileID: 21300000, guid: fff89dac89dc35f4da0d3b66c3311356, type: 3}
   keyContainer: {fileID: 1766475642}
@@ -10175,17 +10182,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
---- !u!114 &1851275462 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8614269286436277534, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
-  m_PrefabInstance: {fileID: 1851275461}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3718a3b5ea195bc45aa0cc701f5af9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1857024253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11052,7 +11048,6 @@ MonoBehaviour:
   playerController: {fileID: 2118977218}
   pauseManager: {fileID: 1884968952}
   cameraController: {fileID: 1930449627}
-  thirdPersonCameraController: {fileID: 1851275462}
 --- !u!4 &2009062317
 Transform:
   m_ObjectHideFlags: 0
