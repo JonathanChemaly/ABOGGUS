@@ -133,7 +133,7 @@ namespace ABOGGUS.PlayerObjects
 
         IEnumerator ToCredits()
         {
-            gameOverText.SetActive(true);
+            //gameOverText.SetActive(true);
             Time.timeScale = 0;
             yield return new WaitForSeconds(5f);
             GameController.QuitGame("Player died lol.");
