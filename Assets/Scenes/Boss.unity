@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2238,12 +2238,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451824, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_Name
-      value: PlayerCharacter
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: health
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a, type: 3}
+      propertyPath: debugGameObject
+      value: 
+      objectReference: {fileID: 1099942557}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4002837582f1c648a402990254be77a, type: 3}
 --- !u!1 &1099942557 stripped
@@ -2732,17 +2736,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &1394079724 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8614269286436277534, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
-  m_PrefabInstance: {fileID: 839892450}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3718a3b5ea195bc45aa0cc701f5af9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1447953037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,11 +2866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc09a368192e9c479cbd0e3b56120d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 788729812}
-  pauseManager: {fileID: 886215402}
-  cameraController: {fileID: 488794936}
-  thirdPersonCameraController: {fileID: 1394079724}
-  rotateController: {fileID: 2126055595}
 --- !u!4 &1487851534
 Transform:
   m_ObjectHideFlags: 0
@@ -3418,7 +3406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528a6171134f50d4f83aa05303fe5bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1099942559}
   inventoryMenu: {fileID: 1271462484}
   keyImage: {fileID: 21300000, guid: fff89dac89dc35f4da0d3b66c3311356, type: 3}
   keyContainer: {fileID: 2125990955}

@@ -49,13 +49,20 @@ namespace ABOGGUS.Gameplay
             }
         }
 
-        public static void ChangeScene(string message, string newScene)
+        public static void ChangeScene(string message, string newScene, bool loading)
         {
             Debug.Log(message);
 
-            LoadingLocation.SceneToLoad = newScene;
-            SceneManager.LoadScene(sceneName: GameConstants.SCENE_LOADING);
-            scene = newScene;
+            if (loading)
+            {
+                LoadingLocation.SceneToLoad = newScene;
+                SceneManager.LoadScene(sceneName: GameConstants.SCENE_LOADING);
+            }
+            else
+            {
+                scene = newScene;
+                SceneManager.LoadScene(sceneName: newScene);
+            }
 
             switch (scene)
             {

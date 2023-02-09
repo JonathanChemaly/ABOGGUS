@@ -24,13 +24,13 @@ namespace ABOGGUS.Menus
         IEnumerator PlayGameEnum()
         {
             yield return new WaitForSeconds(0.3f);
-            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY);
+            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, true);
         }
 
         IEnumerator PlayCreditsEnum()
         {
             yield return new WaitForSeconds(0.3f);
-            GameController.ChangeScene("Main menu to credits.", GameConstants.SCENE_CREDITS);
+            GameController.ChangeScene("Main menu to credits.", GameConstants.SCENE_CREDITS, true);
         }
 
         public void QuitGame()
