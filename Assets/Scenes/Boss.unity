@@ -3717,7 +3717,7 @@ GameObject:
   - component: {fileID: 1011255964}
   - component: {fileID: 1011255963}
   - component: {fileID: 1011255962}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4123,16 +4123,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451790, guid: a4002837582f1c648a402990254be77a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451824, guid: a4002837582f1c648a402990254be77a,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451824, guid: a4002837582f1c648a402990254be77a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a,
         type: 3}
       propertyPath: health
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a,
+        type: 3}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 240462514}
     - target: {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a,
         type: 3}
       propertyPath: debugGameObject
@@ -5247,6 +5262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1487851534}
   - component: {fileID: 1487851533}
+  - component: {fileID: 1487851535}
   m_Layer: 0
   m_Name: Input Manager
   m_TagString: Untagged
@@ -5281,6 +5297,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487851535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487851532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0968a939318646a4e808abfea6c13617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 788729812}
+  pauseManager: {fileID: 886215402}
+  thirdPersonCameraController: {fileID: 1963205052}
 --- !u!1 &1489074428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5547,7 +5578,7 @@ GameObject:
   - component: {fileID: 1548026681}
   - component: {fileID: 1548026682}
   - component: {fileID: 1548026683}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5691,7 +5722,7 @@ MonoBehaviour:
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 8
   health: 100
   speed: 5
   walkPoint: {x: 0, y: 0, z: 0}
@@ -6445,6 +6476,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1935596349}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1963205052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8614269286436277534, guid: 143b32ec949bdbb4099e21def97de4e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 839892450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3718a3b5ea195bc45aa0cc701f5af9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1964750179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7078,7 +7121,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126055590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5bb357fef82ad94abc7fab3b3f8fd25, type: 3}
   m_Name: 
