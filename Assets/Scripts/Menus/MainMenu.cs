@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private float initialVolume = 0.25f;
+    private void Start()
+    {
+        AudioListener.volume = initialVolume;
+    }
     public void PlayGame()
     {
         StartCoroutine(PlayGameEnum());
