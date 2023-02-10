@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 public class ThirdPersonCameraController : MonoBehaviour
 {
     public GameObject player;
-    private float yOffset = 20f;
+    [SerializeField] float yOffset = 20f;
     private float camSpeed = 5f;
     private float rotateSpeed = 1f;
     float x, y;
 
     private Vector3 tpOffset;
     private Vector3 camOffset;
-    private float offset = -15f;
+    [SerializeField] float offset = -15f;
     private InputAction look;
     private bool lookAround = false;
 
