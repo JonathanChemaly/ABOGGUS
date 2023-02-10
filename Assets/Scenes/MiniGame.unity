@@ -3977,9 +3977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 466203923}
-  speed: 0.15
-  jumpSpeed: 1
-  jumpTime: 3
+  jumpHeight: 3
+  totalJumpTime: 0.3
+  dodgeLength: 0.1
+  totalDodgeTime: 0.6
 --- !u!4 &1565032211
 Transform:
   m_ObjectHideFlags: 0
@@ -4007,7 +4008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8a3f762c53add4f9b2e5a8b4add1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 1
+  debugGameObject: {fileID: 0}
+  gameOverText: {fileID: 0}
+  debug: 1
 --- !u!1 &1581520321
 GameObject:
   m_ObjectHideFlags: 0
@@ -5149,6 +5152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13717092, guid: 6d4148e7b91c0ad4a99f74621237239b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4298974927603569640, guid: c8c70af90e0beaa469ec78e2d1b10ac9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4148e7b91c0ad4a99f74621237239b, type: 3}
 --- !u!1 &2002483508
@@ -5297,7 +5304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528a6171134f50d4f83aa05303fe5bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1565032212}
   inventoryMenu: {fileID: 257337268}
   keyImage: {fileID: 21300000, guid: fff89dac89dc35f4da0d3b66c3311356, type: 3}
   keyContainer: {fileID: 848496405}

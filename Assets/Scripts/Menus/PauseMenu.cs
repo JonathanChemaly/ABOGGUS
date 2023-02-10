@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using ABOGGUS.Gameplay;
+using ABOGGUS.SaveSystem;
 
 namespace ABOGGUS.Menus
 {
@@ -47,12 +48,20 @@ namespace ABOGGUS.Menus
 
         public void GoToMainMenu()
         {
+            SaveProgress();
             GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
         {
+            SaveProgress();
             GameController.QuitGame("Quit from pause menu.");
+        }
+
+        private void SaveProgress()
+        {
+            SaveGameManager.SaveScene(GameController.scene);
+
         }
     }
 }

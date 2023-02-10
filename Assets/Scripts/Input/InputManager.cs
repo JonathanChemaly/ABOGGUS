@@ -14,7 +14,7 @@ namespace ABOGGUS.Input
         [SerializeField] private PlayerController playerController;
         [SerializeField] private PauseManager pauseManager;
         //[SerializeField] private CameraController cameraController;
-        //[SerializeField] private InteractionManager interactionManager;
+        [SerializeField] private InteractionManager interactionManager;
         [SerializeField] private ThirdPersonCameraController thirdPersonCameraController;
 
         private Input.InputActions inputScheme;
@@ -28,8 +28,8 @@ namespace ABOGGUS.Input
             playerController.Initialize(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
             //cameraController.Initialize(inputScheme.Player.CameraSwitch);
-
-            //interactionManager.Initialize(inputScheme.Player.Interact);
+            if (interactionManager != null)
+                interactionManager.Initialize(inputScheme.Player.Interact);
 
             thirdPersonCameraController.Initialize(inputScheme.Player.Look, inputScheme.Player.CameraSwitch);
 
