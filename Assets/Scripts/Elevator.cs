@@ -52,7 +52,6 @@ public class Elevator : MonoBehaviour
         }
         if(timer < -8.0f && GameController.scene == GameConstants.SCENE_MAINLOBBY)
         {
-            
             GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
         }
     }
