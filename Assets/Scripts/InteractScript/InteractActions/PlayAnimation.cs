@@ -31,19 +31,18 @@ namespace ABOGGUS.Interact
         {
             aniToPlay.Play();
             StartCoroutine(disableWhileAniPlaying());
+            interact.enabled = false;
 
         }
 
         //disables the interactable while it is animating so we do not have worry about more the one input messing with animation
         IEnumerator disableWhileAniPlaying()
         {
-            interact.enabled = false;
             while (aniToPlay.isPlaying)
             {
                 yield return null;
             }
-            if(!playMultipleTimes)interact.enabled = true; //do not renable if we only want to play once
-            aniToPlay.Rewind();
+            if(false)interact.enabled = true; //do not renable if we only want to play once
         }
         
     }
