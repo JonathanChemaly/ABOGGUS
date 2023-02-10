@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 public class Elevator : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class Elevator : MonoBehaviour
     public float timer = 4.0f;
     public bool elevatorMoving = false;
     public bool trueUpFalseDown = true;
-    
 
     private void Start()
     {
@@ -49,6 +49,11 @@ public class Elevator : MonoBehaviour
                 elevator.transform.position = Vector3.MoveTowards(elevator.transform.position, downPosition, elevatorSpeed);
                 player.transform.position = Vector3.MoveTowards(player.transform.position, playerDown, elevatorSpeed);
             }
+        }
+        if(timer < -8.0f && GameController.scene == GameConstants.SCENE_MAINLOBBY)
+        {
+            
+            GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
         }
     }
 
