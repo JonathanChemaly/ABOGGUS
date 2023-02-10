@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d8ba45e3bc7024544a5ca3fb835f48c4, type: 2}
   m_LightingSettings: {fileID: 527407579}
 --- !u!196 &4
 NavMeshSettings:
@@ -11558,7 +11558,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5258285006295581901, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
   m_PrefabInstance: {fileID: 1892380544}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1892380549 stripped
+--- !u!114 &1892380548 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1820244251771188797, guid: 459fb8384e6130a419074bd384baf8a6, type: 3}
   m_PrefabInstance: {fileID: 1892380544}
@@ -11898,7 +11898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2118977218}
   pauseManager: {fileID: 1884968952}
-  interactionManager: {fileID: 1892380549}
+  interactionManager: {fileID: 1892380548}
   thirdPersonCameraController: {fileID: 1452490000}
 --- !u!4 &2009062317
 Transform:
@@ -11932,7 +11932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2014187146
 RectTransform:
   m_ObjectHideFlags: 0
