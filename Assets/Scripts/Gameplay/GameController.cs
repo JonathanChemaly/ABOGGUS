@@ -17,7 +17,8 @@ namespace ABOGGUS.Gameplay
         public static GameController instance;
 
         public static GameConstants.GameState gameState = GameConstants.GameState.StartMenu;
-        public static string scene = GameConstants.SCENE_MAINMENU;
+        //Change to main menu
+        public static string scene = GameConstants.SCENE_MAINLOBBY;
 
         // Start is called before the first frame update
         void Awake()
@@ -56,6 +57,11 @@ namespace ABOGGUS.Gameplay
             if (loading)
             {
                 LoadingLocation.SceneToLoad = newScene;
+                scene = newScene;
+                if (scene.Equals(GameConstants.SCENE_BOSS))
+                    PlayerController.speed = 0.1f;
+                else
+                    PlayerController.speed = PlayerConstants.SPEED_DEFAULT;
                 SceneManager.LoadScene(sceneName: GameConstants.SCENE_LOADING);
             }
             else
