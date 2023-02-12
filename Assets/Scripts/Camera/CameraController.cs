@@ -11,7 +11,7 @@ namespace ABOGGUS
         public GameObject player;
         private float camSpeed = 0.0032f;
         private float rotateSpeed = 0.04f;
-        private float playerHeight = 13.0f;
+        private float playerHeight = 2.2f;
         private float fov = 90.0f;
 
         private Vector3 tpOffset;

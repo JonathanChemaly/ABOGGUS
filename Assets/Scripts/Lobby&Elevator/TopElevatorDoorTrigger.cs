@@ -21,8 +21,8 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         topDoorRP = topDoorR.transform.position;
         topDoorLP = topDoorL.transform.position;
 
-        topDoorRPO = topDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
-        topDoorLPO = topDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+        topDoorRPO = topDoorRP + new Vector3(1.7f, 0.0f, 0.0f);
+        topDoorLPO = topDoorLP - new Vector3(1.7f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame

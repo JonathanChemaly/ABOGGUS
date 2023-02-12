@@ -85,14 +85,14 @@ public class ThirdPersonCameraController : MonoBehaviour
         thirdPerson = !thirdPerson;
         if (thirdPerson)
         {
-            offset = -15f;
-            yOffset = 20f;
+            offset = -2.5f;
+            yOffset = 3.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
         }
         else
         {
-            offset = 2f;
-            yOffset = 14f;
+            offset = .33f;
+            yOffset = 2.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }
