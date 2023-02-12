@@ -24,11 +24,11 @@ public class Elevator : MonoBehaviour
         
         upPosition = elevator.transform.position;
         downPosition = elevator.transform.position;
-        downPosition.y -= 90.5f;
+        downPosition.y -= 15f;
         
         playerDown = elevatorShaftFloor.transform.position;
         playerUp = playerDown;
-        playerUp.y += 90.5f;
+        playerUp.y += 15f;
     }
     void FixedUpdate()
     {
