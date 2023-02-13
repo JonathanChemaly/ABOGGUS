@@ -30,6 +30,7 @@ public class Boss : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private int wait = 500;
     private int sparkCount;
     public int maxSparkCount;
     public GameObject spark;
@@ -103,18 +104,22 @@ public class Boss : MonoBehaviour
         Destroy(gameObject);
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.LookAt(player);
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (wait > 0) wait--;
+        else
+        {
+            transform.LookAt(player);
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        /*if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();*/
-        if (playerInAttackRange) AttackPlayer();
-        else transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        ShockWaveAttack();
-        if (sparkCount < maxSparkCount && !sparkCreated) CreateSpark();
+            /*if (!playerInSightRange && !playerInAttackRange) Patrolling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();*/
+            if (playerInAttackRange) AttackPlayer();
+            else transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            ShockWaveAttack();
+            if (sparkCount < maxSparkCount && !sparkCreated) CreateSpark();
+        }
     }
 
     private void ShockWaveAttack()
