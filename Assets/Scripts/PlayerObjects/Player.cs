@@ -11,9 +11,9 @@ namespace ABOGGUS.PlayerObjects
     {
         public GameObject debugGameObject;
 
-        public static float health = PlayerConstants.MAX_HEALTH;
+        public float health = PlayerConstants.MAX_HEALTH;
         public GameObject gameOverText;
-        public static bool key = true;
+        public bool key = true;
         public bool debug = true;
         private PlayerController playerController;
 
