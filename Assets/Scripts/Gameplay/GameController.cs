@@ -77,18 +77,18 @@ namespace ABOGGUS.Gameplay
             switch (scene)
             {
                 case GameConstants.SCENE_MAINMENU:
-                    SaveGameManager.SaveScene(oldScene);
                     ChangeState(GameConstants.GameState.StartMenu);
+                    SaveGameManager.SaveScene(oldScene);
                     break;
                 case GameConstants.SCENE_CREDITS:
+                    ChangeState(GameConstants.GameState.EndGame);
                     SaveGameManager.SaveScene(oldScene);
-                    ChangeState(GameConstants.GameState.EndGame); 
                     break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
                     {
-                        SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in game
                         ChangeState(GameConstants.GameState.InGame);
+                        SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in game
                     }
                     break;
             }
