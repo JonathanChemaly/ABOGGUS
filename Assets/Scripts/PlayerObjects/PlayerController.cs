@@ -10,7 +10,7 @@ namespace ABOGGUS.PlayerObjects
     public class PlayerController : MonoBehaviour
     {
         public Player player;
-        private GameObject physicalGameObject;
+        public GameObject physicalGameObject;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
         public float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;

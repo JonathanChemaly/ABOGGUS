@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 public class BotElevatorDoorTrigger : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     private Vector3 botDoorRPO;
     private Vector3 botDoorLPO;
 
-    private float doorSpeed = 0.08f;
+    private float doorSpeed = 0.02f;
 
     public GameObject botDoorR;
     public GameObject botDoorL;
@@ -38,12 +39,17 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             botDoorR.transform.position = Vector3.MoveTowards(botDoorR.transform.position, botDoorRP, doorSpeed);
             botDoorL.transform.position = Vector3.MoveTowards(botDoorL.transform.position, botDoorLP, doorSpeed);
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             openBottomDoor = true;
+            if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+            {
+                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
