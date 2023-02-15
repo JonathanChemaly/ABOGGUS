@@ -2925,7 +2925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451789, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.29
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451789, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5155,10 +5155,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonElevator
       objectReference: {fileID: 0}
+    - target: {fileID: 1750414057655433214, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1995371975469263805, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 60894435}
+    - target: {fileID: 1995371975469263805, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: elevatorSpeed
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 2901185703296602775, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5167,6 +5175,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 362e97038e89e094191d678568386412, type: 2}
+    - target: {fileID: 4444285267085779453, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: timer
+      value: 16.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5456479363217145577, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5223,7 +5235,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7517493111278859558, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
 --- !u!1 &905962816
 GameObject:
@@ -10954,23 +10967,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.04
+      value: 3.44
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 3.23
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.22
+      value: -5.62
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9574204
+      value: 0.999962
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2886976
+      value: 0.008726558
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -10982,7 +10995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 33.56
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -11014,7 +11027,7 @@ PrefabInstance:
       objectReference: {fileID: 60894435}
     - target: {fileID: 8614269286436277534, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: yOffset
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277534, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: fpRotation.w
@@ -12424,6 +12437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 60894437}
+  physicalGameObject: {fileID: 0}
   jumpHeight: 1
   totalJumpTime: 1
   dodgeLength: 1

@@ -6,21 +6,26 @@ using UnityEngine.InputSystem;
 public class ThirdPersonCameraController : MonoBehaviour
 {
     public GameObject player;
-    [SerializeField] float yOffset = 20f;
+    private float yOffset = 2.33f;
     private float camSpeed = 5f;
     private float rotateSpeed = 1f;
     float x, y;
 
     private Vector3 tpOffset;
     private Vector3 camOffset;
-    [SerializeField] float offset = -15f;
+    private float offset = 1f;
     private InputAction look;
     private bool lookAround = false;
 
     private float transitionSpeed = 0.04f;
     public Quaternion fpRotation;
     public Quaternion tpRotation;
-    public static bool thirdPerson = true;
+    public bool thirdPerson = false;
+    public static bool animationState = false;
+    public static bool adjustCam = false;
+    public static bool moveCam = false;
+    public static bool preAnimCam = false;
+
     private InputAction cameraSwitch;
     private float fov = 90.0f;
 
@@ -28,15 +33,39 @@ public class ThirdPersonCameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tpOffset = transform.position - player.transform.position;
-        tpRotation = transform.rotation;
-        fpRotation = Quaternion.Euler(1, 0, 0);
-        camOffset = tpOffset;
+        tpRotation = Quaternion.Euler(33.5f, 0, 0);
+        fpRotation = Quaternion.Euler(1f, 0, 0);
+        camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
     }
 
     private void LateUpdate()
     {
-        if (lookAround)
+        if (adjustCam)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, tpRotation, 0.03f);
+            camSpeed = 0.01f;
+        }
+        else if (preAnimCam)
+        {
+            offset = 1f;
+            yOffset = 2.33f;
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, fpRotation, 0.1f);
+        }
+        else if (moveCam)
+        {
+            camSpeed = 5f;
+            transform.RotateAround(player.transform.position, Vector3.up, 0.1f);
+        }
+
+        if (animationState)
+        {
+            offset = -2f;
+            yOffset = 3.5f;
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+        }
+        else if (lookAround)
         {
             Vector2 lookVector = look.ReadValue<Vector2>();
             float lRotateSpeed = rotateSpeed;
@@ -48,11 +77,11 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
-        } else {
+        }
+        else
+        {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
- 
-        
         Camera.main.fieldOfView = fov;
     }
 
@@ -79,43 +108,36 @@ public class ThirdPersonCameraController : MonoBehaviour
         lookAround = false;
     }
 
-
-    public void Trigger(InputAction.CallbackContext obj) 
+    public void startAnimation()
     {
-        thirdPerson = !thirdPerson;
+        animationState = !animationState;
+    }
+    public static void globalCameraSwitch()
+    {
+        
+    }
+    public void CameraPosition()
+    {
         if (thirdPerson)
         {
-            offset = -2.5f;
-            yOffset = 3.33f;
+            offset = -2f;
+            yOffset = 3.5f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            transform.rotation = tpRotation;
         }
         else
         {
-            offset = .33f;
+            offset = 1f;
             yOffset = 2.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }
     }
-    /*
-    private void FixedUpdate()
+
+
+    public void Trigger(InputAction.CallbackContext obj) 
     {
-        if (thirdPerson && fov < 90.0f)
-        {
-            camSpeed = 0.0032f;
-            fov += Time.deltaTime * 12.0f;
-            isPaused = false;
-        }
-        else if (!thirdPerson && fov > 70.0f)
-        {
-            camSpeed = 0.0032f;
-            fov -= Time.deltaTime * 12.0f;
-            isPaused = false;
-        }
-        else if (fov <= 70.0f || fov >= 90.0f)
-        {
-            camSpeed = 0.1f;
-            isPaused = true;
-        }
-    }*/
+        thirdPerson = !thirdPerson;
+        CameraPosition();
+    }
 }

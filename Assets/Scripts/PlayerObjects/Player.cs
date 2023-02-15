@@ -159,5 +159,9 @@ namespace ABOGGUS.PlayerObjects
         {
             this.playerController.SetGameObject(physicalGameObject);
         }
+        public GameObject GetGameObject()
+        {
+            return this.playerController.physicalGameObject;
+        }
     }
 }
