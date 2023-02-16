@@ -33,37 +33,39 @@ namespace ABOGGUS.PlayerObjects
         public void MovementHandler(InputAction moveAction)
         {
             Vector2 movement = moveAction.ReadValue<Vector2>();
+            //Debug.Log("Movement vector: " + movement);
             FacingDirection currentFacingDirection;
+            //Debug.Log("Facing direction: " + facingDirection);
             //Get the current facing direction
-            if (movement.x > 0 && movement.y > 0)
+            if (movement.x > 0.5 && movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.FrontRight;
             }
-            else if (movement.x < 0 && movement.y > 0)
+            else if (movement.x < -0.5 && movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.FrontLeft;
             }
-            else if (movement.x == 0 && movement.y > 0)
+            else if (movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.Forward;
             }
-            else if (movement.x > 0 && movement.y < 0)
+            else if (movement.x > 0.5 && movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.BackRight;
             }
-            else if (movement.x < 0 && movement.y < 0)
+            else if (movement.x < -0.5 && movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.BackLeft;
             }
-            else if (movement.x == 0 && movement.y < 0)
+            else if (movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.Backward;
             }
-            else if (movement.x > 0 && movement.y == 0)
+            else if (movement.x > 0.5)
             {
                 currentFacingDirection = FacingDirection.Right;
             }
-            else if (movement.x < 0 && movement.y == 0)
+            else if (movement.x < -0.5)
             {
                 currentFacingDirection = FacingDirection.Left;
             }
