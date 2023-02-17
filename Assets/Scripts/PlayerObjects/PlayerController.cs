@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ABOGGUS.Input;
 using System;
+using UnityEngine.Playables;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class PlayerController : MonoBehaviour
     {
-        public Player player;
         private GameObject physicalGameObject;
+        private InputAction moveAction;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
         public float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;
@@ -19,17 +20,21 @@ namespace ABOGGUS.PlayerObjects
         public float totalDodgeTime = PlayerConstants.DODGE_TIME_DEFAULT;
         private float cumulativeJumpTime = PlayerConstants.JUMP_TIME_CUMULATIVE_DEFAULT;
         private float cumulativeDodgeTime = PlayerConstants.DODGE_TIME_CUMULATIVE_DEFAULT;
-        private InputAction moveAction;
         private Vector3 target;
         private bool jumping = false;
         private bool dodging = false;
         private int count = 0;
         private bool crouching = false;
 
-        public void Initialize(Input.InputActions playerActions)
+        private IPlayerState playerState;
+        enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
+        private FacingDirection facingDirection;
+
+        public void Initialize(Input.InputActions playerActions, GameObject physicalGameObject)
         {
-            player.SetController(this);
-            player.Initialize();
+            facingDirection = FacingDirection.Forward;
+            SetGameObject(physicalGameObject);
+
             moveAction = playerActions.Player.Move;
             moveAction.Enable();
 
@@ -45,11 +50,17 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.Sprint.performed += DoSprint;
             playerActions.Player.Sprint.canceled += StopSprint;
             playerActions.Player.Sprint.Enable();
+
+            playerState = new PlayerFacingForward(this);
         }
 
         public void SetGameObject(GameObject physicalGameObject)
         {
             this.physicalGameObject = physicalGameObject;
+        }
+        public GameObject GetGameObject()
+        {
+            return this.physicalGameObject;
         }
 
         private void StopSprint(InputAction.CallbackContext obj)
@@ -100,7 +111,7 @@ namespace ABOGGUS.PlayerObjects
 
         public void _FixedUpdate()
         {
-            player.MovementHandler(moveAction);
+            MovementHandler(moveAction);
             if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
             {
                 Debug.Log("Jump time: " + Time.fixedDeltaTime);
@@ -138,6 +149,96 @@ namespace ABOGGUS.PlayerObjects
                 cumulativeDodgeTime = 0;
                 dodging = false;
             }
+        }
+        public void MovementHandler(InputAction moveAction)
+        {
+            Vector2 movement = moveAction.ReadValue<Vector2>();
+            FacingDirection currentFacingDirection;
+            //Get the current facing direction
+            if (movement.x > 0 && movement.y > 0)
+            {
+                currentFacingDirection = FacingDirection.FrontRight;
+            }
+            else if (movement.x < 0 && movement.y > 0)
+            {
+                currentFacingDirection = FacingDirection.FrontLeft;
+            }
+            else if (movement.x == 0 && movement.y > 0)
+            {
+                currentFacingDirection = FacingDirection.Forward;
+            }
+            else if (movement.x > 0 && movement.y < 0)
+            {
+                currentFacingDirection = FacingDirection.BackRight;
+            }
+            else if (movement.x < 0 && movement.y < 0)
+            {
+                currentFacingDirection = FacingDirection.BackLeft;
+            }
+            else if (movement.x == 0 && movement.y < 0)
+            {
+                currentFacingDirection = FacingDirection.Backward;
+            }
+            else if (movement.x > 0 && movement.y == 0)
+            {
+                currentFacingDirection = FacingDirection.Right;
+            }
+            else if (movement.x < 0 && movement.y == 0)
+            {
+                currentFacingDirection = FacingDirection.Left;
+            }
+            else
+            {
+                currentFacingDirection = FacingDirection.Idle;
+            }
+
+            //Check if the facing direction is the same and not idle to move
+            if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
+            {
+                playerState.Move();
+            }
+            //Otherwise if the facing direction is not the same then change to new state
+            else if (!currentFacingDirection.Equals(facingDirection))
+            {
+                SetFacingState(currentFacingDirection);
+            }
+        }
+        //Set player state to new facing direction state
+        private void SetFacingState(FacingDirection newFacingDirection)
+        {
+            if (newFacingDirection.Equals(FacingDirection.Forward))
+            {
+                playerState = new PlayerFacingForward(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.Backward))
+            {
+                playerState = new PlayerFacingBackward(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.Left))
+            {
+                playerState = new PlayerFacingLeft(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.Right))
+            {
+                playerState = new PlayerFacingRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.FrontRight))
+            {
+                playerState = new PlayerFacingFrontRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.FrontLeft))
+            {
+                playerState = new PlayerFacingFrontLeft(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.BackRight))
+            {
+                playerState = new PlayerFacingBackRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.BackLeft))
+            {
+                playerState = new PlayerFacingBackLeft(this);
+            }
+            facingDirection = newFacingDirection;
         }
 
     }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Menus;
-using Unity.VisualScripting;
-using UnityEngine.SceneManagement;
 
 namespace ABOGGUS.Gameplay
 {
@@ -41,6 +42,11 @@ namespace ABOGGUS.Gameplay
             {
                 gameState = GameConstants.GameState.Paused;
             }
+
+            if (gameState == GameConstants.GameState.EndGame)
+            {
+
+            }
         }
 
         private void FixedUpdate()
@@ -49,6 +55,18 @@ namespace ABOGGUS.Gameplay
             {
                 player._FixedUpdate();
             }
+        }
+
+        public static void NewGame()
+        {
+            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, false);
+
+            Player.PlayerDied += Respawn;
+        }
+
+        public static void Respawn()
+        {
+            GameController.ChangeScene("Player died go to hotel lobby", GameConstants.SCENE_MAINLOBBY, true);
         }
 
         public static void ChangeScene(string message, string newScene, bool loading)
@@ -85,7 +103,7 @@ namespace ABOGGUS.Gameplay
             {
                 while (!LoadingController.complete) ;
 
-                GameObject physicalGameObject = GameObject.Find("Player");
+                GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
                 player.SetGameObject(physicalGameObject);
             }
         }
@@ -99,17 +117,16 @@ namespace ABOGGUS.Gameplay
             Debug.Log(message);
             QuitGame();
         }
-
         private static void QuitGame()
         {
 
-#if UNITY_STANDALONE
+            #if UNITY_STANDALONE
             Application.Quit();
-#endif
+            #endif
 
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            #endif
         }
     }
 }

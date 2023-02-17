@@ -29,7 +29,7 @@ namespace ABOGGUS.Menus
         IEnumerator PlayGameEnum()
         {
             yield return new WaitForSeconds(0.3f);
-            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, true);
+            GameController.NewGame();
         }
 
         IEnumerator LoadGameEnum()

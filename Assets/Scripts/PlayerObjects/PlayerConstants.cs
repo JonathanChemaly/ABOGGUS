@@ -8,6 +8,8 @@ namespace ABOGGUS.PlayerObjects
 {
     public static class PlayerConstants
     {
+        public const string GAMEOBJECT_PLAYERNAME = "Player";
+
         public const float MAX_HEALTH = 1000;
         public const float SPEED_DEFAULT = 0.1f;
         public const float SPRINT_MULTIPLIER_DEFAULT = 2;

@@ -11,7 +11,7 @@ namespace ABOGGUS.Input
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private PlayerController playerController;
+        [SerializeField] private Player player;
         [SerializeField] private PauseManager pauseManager;
         //[SerializeField] private CameraController cameraController;
         [SerializeField] private InteractionManager interactionManager;
@@ -25,7 +25,7 @@ namespace ABOGGUS.Input
         private void Awake()
         {
             inputScheme = new Input.InputActions();
-            playerController.Initialize(inputScheme);
+            player.Initialize(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
             //cameraController.Initialize(inputScheme.Player.CameraSwitch);
             if (interactionManager != null)
