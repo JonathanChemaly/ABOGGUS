@@ -72,13 +72,22 @@ public class ThirdPersonCameraController : MonoBehaviour
             if (!PauseMenu.isPaused) Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
             float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
+            float yRotateSpeed = -lookVector.y * Time.deltaTime * rotationSpeed;
             /*if (lookVector.x < 0)
             {
                 lRotateSpeed = -lRotateSpeed;
             }*/
+            
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
+            transform.RotateAround(player.transform.position, new Vector3(1, 0, 0), yRotateSpeed);
+            //if(transform.eulerAngles.x > 90) transform.eulerAngles = new Vector3(90, transform.eulerAngles.x, 0);
+            //else if (transform.eulerAngles.x < -90) transform.eulerAngles = new Vector3(-90, transform.eulerAngles.y, 0);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            
+
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
+          
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
         else
