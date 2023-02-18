@@ -26,6 +26,7 @@ namespace ABOGGUS.Interact
         [Tooltip("Whether You want the animation to play multiple times")]
         private bool playMultipleTimes = true;
 
+        private Dialogue dial;
 
         private void Start()
         {
@@ -35,14 +36,21 @@ namespace ABOGGUS.Interact
         //Plays audio on interact
         private void PlayAudio()
         {
-            Dialogue dial = gameObject.AddComponent<Dialogue>();
+            dial = gameObject.AddComponent<Dialogue>();
             dial.locationOfSoundFile = pathToAudio;
             dial.subtitleText = subtitleText;
 
-            if (!playMultipleTimes)
+            StartCoroutine(disableWhileAudioPlaying());
+        }
+
+        IEnumerator disableWhileAudioPlaying()
+        {
+            interact.enabled = false;
+            while (dial != null)
             {
-                interact.enabled = false;
+                yield return null;
             }
+            if (playMultipleTimes) interact.enabled = true; //do not renable if we only want to play once
         }
 
     }
