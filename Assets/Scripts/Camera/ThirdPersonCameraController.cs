@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ABOGGUS.Menus;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float fov = 90.0f;
 
     public static bool isPaused = false;
+    [SerializeField] private float rotationSpeed = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,12 +69,13 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else if (lookAround)
         {
+            if (!PauseMenu.isPaused) Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
-            float lRotateSpeed = rotateSpeed;
-            if (lookVector.x < 0)
+            float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
+            /*if (lookVector.x < 0)
             {
                 lRotateSpeed = -lRotateSpeed;
-            }
+            }*/
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;

@@ -46,7 +46,7 @@ namespace ABOGGUS.Gameplay
 
         private void FixedUpdate()
         {
-            if(gameState == GameConstants.GameState.InGame)
+            if (gameState == GameConstants.GameState.InGame)
             {
                 player._FixedUpdate();
             }
