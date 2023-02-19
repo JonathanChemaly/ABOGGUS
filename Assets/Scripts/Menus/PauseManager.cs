@@ -30,6 +30,8 @@ namespace ABOGGUS.Menus
         }
         private void TriggerInventory(InputAction.CallbackContext obj)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             InventoryMenu.Trigger();
         }
         private void OnDisable()

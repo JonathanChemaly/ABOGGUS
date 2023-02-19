@@ -32,6 +32,11 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     public static bool isPaused = false;
     [SerializeField] private float rotationSpeed = 20f;
+    private Vector3 rotateDirection;
+    private float rotX;
+    private float rotY;
+    Quaternion rotateCamera;
+    Quaternion rotateTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,27 +72,39 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround)
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && thirdPerson)
         {
-            if (!PauseMenu.isPaused) Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
             float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
             float yRotateSpeed = -lookVector.y * Time.deltaTime * rotationSpeed;
-            /*if (lookVector.x < 0)
-            {
-                lRotateSpeed = -lRotateSpeed;
-            }*/
-            
+
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
-            transform.RotateAround(player.transform.position, new Vector3(1, 0, 0), yRotateSpeed);
-            //if(transform.eulerAngles.x > 90) transform.eulerAngles = new Vector3(90, transform.eulerAngles.x, 0);
-            //else if (transform.eulerAngles.x < -90) transform.eulerAngles = new Vector3(-90, transform.eulerAngles.y, 0);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-            
+
 
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
-          
+
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+        }
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
+            rotX += rotateDirection.x;
+            rotY += rotateDirection.y;
+
+            if (rotY < -90.0f) rotY = -90.0f;
+            if (rotY > 90.0f) rotY = 90.0f;
+            rotateCamera = Quaternion.Euler(-rotY, rotX, 0.0f);
+            rotateTarget = Quaternion.Euler(0.0f, rotX, 0.0f);
+
+            player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotateCamera, rotationSpeed);
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            Rotator.cameraYRot = transform.eulerAngles.y;
+
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
         else
