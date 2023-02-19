@@ -37,6 +37,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float rotY;
     Quaternion rotateCamera;
     Quaternion rotateTarget;
+
+    private float targetPosition;
+
+    public float cameraSphereRadius = 0.1f;
+    public float cameraCollisionOffset = 1f;
+    public float minimumCollisionOffset = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,11 +88,12 @@ public class ThirdPersonCameraController : MonoBehaviour
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
-
+            HandleCameraCollisions(0.5f);
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            
         }
         else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
         {
@@ -161,6 +168,33 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }
+    }
+
+    private void HandleCameraCollisions(float delta)
+    {
+        targetPosition = transform.localPosition.z;
+        RaycastHit hit;
+        Vector3 direction = transform.position - player.transform.position;
+        direction.Normalize();
+
+        if (Physics.SphereCast(player.transform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPosition)))
+        {
+            float dis = Vector3.Distance(player.transform.position, hit.point);
+            targetPosition = -(dis - cameraCollisionOffset);
+            if (dis < 2) offset = -dis;
+            else offset = -2;
+        }
+
+        if(Mathf.Abs(targetPosition) < minimumCollisionOffset)
+        {
+            targetPosition = -minimumCollisionOffset;
+        }
+
+        
+        transform.localPosition = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.localPosition.z, targetPosition, delta / 0.2f));
+        
+        Debug.Log(offset);
+        //transform.localPosition = transform.position;
     }
 
 
