@@ -48,19 +48,19 @@ namespace ABOGGUS.Menus
 
         public void GoToMainMenu()
         {
-            SaveProgress();
+            //SaveProgress();     // Save scene before going to main menu
             GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
         {
-            SaveProgress();
+            //SaveProgress();
             GameController.QuitGame("Quit from pause menu.");
         }
 
         private void SaveProgress()
         {
-            SaveGameManager.SaveScene(GameController.scene);
+            SaveGameManager.SaveProgressToFile(null, GameController.player, GameController.scene);
 
         }
     }

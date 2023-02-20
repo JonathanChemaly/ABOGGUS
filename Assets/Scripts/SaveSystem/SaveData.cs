@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using ABOGGUS.Gameplay;
+using ABOGGUS.PlayerObjects;
 
 namespace ABOGGUS.SaveSystem
 {
@@ -17,6 +19,10 @@ namespace ABOGGUS.SaveSystem
 
         // real data
         public string lastScene = GameConstants.SCENE_MAINLOBBY;
-        public Vector3 lastPosition = Vector3.zero;
+
+        // player data
+        public float playerHealth = PlayerConstants.MAX_HEALTH;
+        public bool playerHasKey = false;
+        //public Vector3 lastPosition = Vector3.zero;
     }
 }

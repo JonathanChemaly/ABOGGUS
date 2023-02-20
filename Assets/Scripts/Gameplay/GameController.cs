@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Menus;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+using ABOGGUS.SaveSystem;
 
 namespace ABOGGUS.Gameplay
 {
@@ -73,6 +76,8 @@ namespace ABOGGUS.Gameplay
         {
             Debug.Log(message);
 
+            string oldScene = scene;
+
             if (loading)
             {
                 LoadingLocation.SceneToLoad = newScene; 
@@ -91,10 +96,20 @@ namespace ABOGGUS.Gameplay
 
             switch (scene)
             {
-                case GameConstants.SCENE_MAINMENU: ChangeState(GameConstants.GameState.StartMenu); break;
-                case GameConstants.SCENE_CREDITS: ChangeState(GameConstants.GameState.EndGame); break;
-                default: 
-                    if(GameConstants.SCENES_INGAME.Contains(newScene)) ChangeState(GameConstants.GameState.InGame);
+                case GameConstants.SCENE_MAINMENU:
+                    ChangeState(GameConstants.GameState.StartMenu);
+                    SaveGameManager.SaveScene(oldScene);
+                    break;
+                case GameConstants.SCENE_CREDITS:
+                    ChangeState(GameConstants.GameState.EndGame);
+                    SaveGameManager.SaveScene(oldScene);
+                    break;
+                default:
+                    if (GameConstants.SCENES_INGAME.Contains(newScene))
+                    {
+                        ChangeState(GameConstants.GameState.InGame);
+                        SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in game
+                    }
                     break;
             }
 
@@ -105,7 +120,11 @@ namespace ABOGGUS.Gameplay
 
                 GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
                 player.SetGameObject(physicalGameObject);
+
+                SaveGameManager.SavePlayerProgress(player);
             }
+
+            SaveGameManager.SaveDataToFile(null);
         }
 
         public static void ChangeState(GameConstants.GameState gameState)
