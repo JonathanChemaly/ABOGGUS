@@ -10,7 +10,9 @@ namespace ABOGGUS.PlayerObjects
     {
         public const string GAMEOBJECT_PLAYERNAME = "Player";
 
-        public const float MAX_HEALTH = 1000;
+        public const int FIXED_UPDATES_PER_SECOND = 50;
+
+        public const float MAX_HEALTH = 100;
         public const float SPEED_DEFAULT = 0.1f;
         public const float SPRINT_MULTIPLIER_DEFAULT = 2;
         public const float JUMP_HEIGHT_DEFAULT = 3.0f;
@@ -19,5 +21,7 @@ namespace ABOGGUS.PlayerObjects
         public const float DODGE_TIME_DEFAULT = 0.6f;
         public const float JUMP_TIME_CUMULATIVE_DEFAULT = 0;
         public const float DODGE_TIME_CUMULATIVE_DEFAULT = 0;
+
+        public const float INVULNERABILITY_FRAMES = 2 * FIXED_UPDATES_PER_SECOND;
     }
 }

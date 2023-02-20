@@ -8,17 +8,23 @@ namespace ABOGGUS.PlayerObjects
 {
     public class PlayerInventory
     {
+        public float maxHealth = PlayerConstants.MAX_HEALTH;
         public float health = PlayerConstants.MAX_HEALTH;
+        public bool invulnerable { get; set; } = false;
         public bool key { get; set; } = true;
 
         public PlayerInventory() { }
 
         public void TakeDamage(float damage)
         {
-            health -= damage;
+            if (!invulnerable)
+            {
+                health -= damage;
+            }
             if (health <= 0)
             {
-                Player.PlayerDied();
+                health = maxHealth;
+                invulnerable = true;                Player.PlayerDied();
             }
         }
     }

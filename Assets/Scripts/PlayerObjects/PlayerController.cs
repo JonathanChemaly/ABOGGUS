@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using ABOGGUS.Input;
 using System;
 using UnityEngine.Playables;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -30,10 +31,10 @@ namespace ABOGGUS.PlayerObjects
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
-        public void Initialize(Input.InputActions playerActions, GameObject physicalGameObject)
+        public void Initialize(Input.InputActions playerActions)
         {
+            GameController.player.SetController(this);
             facingDirection = FacingDirection.Forward;
-            SetGameObject(physicalGameObject);
 
             moveAction = playerActions.Player.Move;
             moveAction.Enable();
@@ -50,7 +51,11 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.Sprint.performed += DoSprint;
             playerActions.Player.Sprint.canceled += StopSprint;
             playerActions.Player.Sprint.Enable();
+        }
 
+        public void InitializePlayerState(GameObject physicalGameObject)
+        {
+            SetGameObject(physicalGameObject);
             playerState = new PlayerFacingForward(this);
         }
 
@@ -111,79 +116,84 @@ namespace ABOGGUS.PlayerObjects
 
         public void _FixedUpdate()
         {
-            MovementHandler(moveAction);
-            if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
+            if (physicalGameObject != null)
             {
-                Debug.Log("Jump time: " + Time.fixedDeltaTime);
-                cumulativeJumpTime += Time.fixedDeltaTime;
-                Vector3 up = new Vector3(physicalGameObject.transform.position.x, jumpHeight * cumulativeJumpTime + physicalGameObject.transform.position.y, physicalGameObject.transform.position.z);
-                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
-            }
-            else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
-            {
-                Debug.Log("End jump time: " + Time.fixedDeltaTime);
-                cumulativeJumpTime += Time.fixedDeltaTime;
-                PlayerAnimationStateController.StopJumpAnimation();
-            }
-            else
-            {
-                cumulativeJumpTime = 0;
-                jumping = false;
-            }
+                MovementHandler(moveAction);
+                if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
+                {
+                    Debug.Log("Jump time: " + Time.fixedDeltaTime);
+                    cumulativeJumpTime += Time.fixedDeltaTime;
+                    Vector3 up = new Vector3(physicalGameObject.transform.position.x, jumpHeight * cumulativeJumpTime + physicalGameObject.transform.position.y, physicalGameObject.transform.position.z);
+                    physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
+                }
+                else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
+                {
+                    Debug.Log("End jump time: " + Time.fixedDeltaTime);
+                    cumulativeJumpTime += Time.fixedDeltaTime;
+                    PlayerAnimationStateController.StopJumpAnimation();
+                }
+                else
+                {
+                    cumulativeJumpTime = 0;
+                    jumping = false;
+                }
 
-            if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
-            {
-                Debug.Log("Dodge time: " + Time.fixedDeltaTime);
-                cumulativeDodgeTime += Time.fixedDeltaTime;
-                Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
-                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
-            }
-            else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
-            {
-                Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
-                cumulativeDodgeTime += Time.fixedDeltaTime;
-                PlayerAnimationStateController.StopDodgeAnimation();
-            }
-            else
-            {
-                cumulativeDodgeTime = 0;
-                dodging = false;
+                if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+                {
+                    Debug.Log("Dodge time: " + Time.fixedDeltaTime);
+                    cumulativeDodgeTime += Time.fixedDeltaTime;
+                    Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
+                    physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                }
+                else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+                {
+                    Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
+                    cumulativeDodgeTime += Time.fixedDeltaTime;
+                    PlayerAnimationStateController.StopDodgeAnimation();
+                }
+                else
+                {
+                    cumulativeDodgeTime = 0;
+                    dodging = false;
+                }
             }
         }
         public void MovementHandler(InputAction moveAction)
         {
             Vector2 movement = moveAction.ReadValue<Vector2>();
+            //Debug.Log("Movement vector: " + movement);
             FacingDirection currentFacingDirection;
+            //Debug.Log("Facing direction: " + facingDirection);
             //Get the current facing direction
-            if (movement.x > 0 && movement.y > 0)
+            if (movement.x > 0.5 && movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.FrontRight;
             }
-            else if (movement.x < 0 && movement.y > 0)
+            else if (movement.x < -0.5 && movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.FrontLeft;
             }
-            else if (movement.x == 0 && movement.y > 0)
+            else if (movement.y > 0.5)
             {
                 currentFacingDirection = FacingDirection.Forward;
             }
-            else if (movement.x > 0 && movement.y < 0)
+            else if (movement.x > 0.5 && movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.BackRight;
             }
-            else if (movement.x < 0 && movement.y < 0)
+            else if (movement.x < -0.5 && movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.BackLeft;
             }
-            else if (movement.x == 0 && movement.y < 0)
+            else if (movement.y < -0.5)
             {
                 currentFacingDirection = FacingDirection.Backward;
             }
-            else if (movement.x > 0 && movement.y == 0)
+            else if (movement.x > 0.5)
             {
                 currentFacingDirection = FacingDirection.Right;
             }
-            else if (movement.x < 0 && movement.y == 0)
+            else if (movement.x < -0.5)
             {
                 currentFacingDirection = FacingDirection.Left;
             }

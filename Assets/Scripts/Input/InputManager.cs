@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 using ABOGGUS.Interact;
@@ -11,7 +12,7 @@ namespace ABOGGUS.Input
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private Player player;
+        [SerializeField] private PlayerController playerController;
         [SerializeField] private PauseManager pauseManager;
         //[SerializeField] private CameraController cameraController;
         [SerializeField] private InteractionManager interactionManager;
@@ -25,7 +26,7 @@ namespace ABOGGUS.Input
         private void Awake()
         {
             inputScheme = new Input.InputActions();
-            player.Initialize(inputScheme);
+            playerController.Initialize(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
             //cameraController.Initialize(inputScheme.Player.CameraSwitch);
             if (interactionManager != null)

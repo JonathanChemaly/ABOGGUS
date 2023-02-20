@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Menus;
-using Unity.VisualScripting;
-using UnityEngine.SceneManagement;
 using ABOGGUS.SaveSystem;
 
 namespace ABOGGUS.Gameplay
@@ -24,6 +22,8 @@ namespace ABOGGUS.Gameplay
 
         //For running the elevator scene change back to mainmenu 
         public static string scene = GameConstants.SCENE_MAINMENU;
+
+        internal static PlayerUpdater playerUpdater;
 
         // Start is called before the first frame update
         void Awake()
@@ -63,8 +63,6 @@ namespace ABOGGUS.Gameplay
         public static void NewGame()
         {
             GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, false);
-
-            Player.PlayerDied += Respawn;
         }
 
         public static void Respawn()
@@ -80,7 +78,7 @@ namespace ABOGGUS.Gameplay
 
             if (loading)
             {
-                LoadingLocation.SceneToLoad = newScene; 
+                LoadingLocation.SceneToLoad = newScene;
                 scene = newScene;
                 if (scene.Equals(GameConstants.SCENE_BOSS))
                     PlayerController.speed = 0.1f;
@@ -104,6 +102,10 @@ namespace ABOGGUS.Gameplay
                     ChangeState(GameConstants.GameState.EndGame);
                     SaveGameManager.SaveScene(oldScene);
                     break;
+                case GameConstants.SCENE_MAINLOBBY:
+                    ChangeState(GameConstants.GameState.InGame);
+                    SaveGameManager.SaveScene(newScene);
+                    break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
                     {
@@ -113,15 +115,9 @@ namespace ABOGGUS.Gameplay
                     break;
             }
 
-
-            if (player != null)
+            if (gameState == GameConstants.GameState.InGame)
             {
-                while (!LoadingController.complete) ;
-
-                GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
-                player.SetGameObject(physicalGameObject);
-
-                SaveGameManager.SavePlayerProgress(player);
+                playerUpdater.UpdatePhysicalGameObjectForPlayer(scene);
             }
 
             SaveGameManager.SaveDataToFile(null);

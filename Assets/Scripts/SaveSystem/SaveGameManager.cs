@@ -81,8 +81,8 @@ namespace ABOGGUS.SaveSystem
 
         public static void SavePlayerProgress(Player player)
         {
-            currentSaveData.playerHealth = player.health;
-            currentSaveData.playerHasKey = player.key;
+            currentSaveData.playerHealth = player.inventory.health;
+            currentSaveData.playerHasKey = player.inventory.key;
         }
     }
 }

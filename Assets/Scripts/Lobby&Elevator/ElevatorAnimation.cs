@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+
 using ABOGGUS.Gameplay;
+using ABOGGUS.PlayerObjects;
+using UnityEngine.SceneManagement;
 
 public class ElevatorAnimation : MonoBehaviour
 {
-    private GameObject player;
+    private Player player;
     private bool animationState = false;
     public float timer = 16.5f;
     public float rotation = 180f;
     public float rotationSpeed = 0.6f;
+
+    private AsyncOperation sceneLoadingOperation;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameController.player.GetGameObject();
+        player = GameController.player;
     }
 
     // Update is called once per frame
@@ -27,13 +34,13 @@ public class ElevatorAnimation : MonoBehaviour
         {
             ThirdPersonCameraController.animationState = true;
             ThirdPersonCameraController.adjustCam = true;
-            player.transform.position += new Vector3(0, 0, 0.06f);
+            player.GetGameObject().transform.position += new Vector3(0, 0, 0.06f);
         }
         else if (animationState && timer <= 12f && timer >= 8.5f)
         {
             ThirdPersonCameraController.adjustCam = false;
             ThirdPersonCameraController.moveCam = true;
-            player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed);
+            player.GetGameObject().transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed);
         }
         else if (animationState && timer <= 8.5f && timer >= 0f)
         {
@@ -41,7 +48,7 @@ public class ElevatorAnimation : MonoBehaviour
         }
         if (animationState && timer <= 0f)
         {
-            player.transform.position += new Vector3(0, 0, -0.06f);
+            player.GetGameObject().transform.position += new Vector3(0, 0, -0.06f);
         }
     }
     private void OnTriggerEnter(Collider other)

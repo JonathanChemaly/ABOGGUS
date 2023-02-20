@@ -21,22 +21,31 @@ namespace ABOGGUS.PlayerObjects
         public static Action PlayerDied;
 
         public PlayerInventory inventory;
+        public float invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
 
-        public void Initialize(Input.InputActions playerActions)
+        private static bool exists = false;
+
+        public void Awake()
         {
-            if (debug || GameController.player == null)
+            if (debug || !exists)
             {
                 GameController.player = this;
 
-                playerController.Initialize(playerActions, physicalGameObject);
-
                 inventory = new PlayerInventory();
+
+                exists = true;
+
+                DontDestroyOnLoad(gameObject);
             }
         }
 
         public void TakeDamage(float damage)
         {
-            inventory.TakeDamage(damage);
+            if (invulnerabilityFrames == 0)
+            {
+                inventory.TakeDamage(damage);
+                invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
+            }
         }
 
         IEnumerator ToCredits()
@@ -55,7 +64,8 @@ namespace ABOGGUS.PlayerObjects
 
         public void _FixedUpdate()
         {
-            this.playerController._FixedUpdate();
+            if (this.playerController != null) { this.playerController._FixedUpdate(); }
+            if (invulnerabilityFrames > 0) invulnerabilityFrames--;
         }
 
         public void SetController(PlayerController playerController)
@@ -65,12 +75,22 @@ namespace ABOGGUS.PlayerObjects
 
         public void SetGameObject(GameObject physicalGameObject)
         {
+            this.physicalGameObject = physicalGameObject;
             this.playerController.SetGameObject(physicalGameObject);
+            this.playerController.InitializePlayerState(physicalGameObject);
         }
 
         public GameObject GetGameObject()
         {
             return this.playerController.GetGameObject();
+        }
+        private void OnEnable()
+        {
+            PlayerDied += GameController.Respawn;
+        }
+        private void OnDisable()
+        {
+            PlayerDied -= GameController.Respawn;
         }
     }
 }
