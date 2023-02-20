@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class LoadingController : MonoBehaviour
 {
     [SerializeField] private Image loadingIcon;//field that holds the image that tracks progress
     [SerializeField] private TextMeshProUGUI tipText;
 
-    public static bool complete = true;
+    public static Action loadingFinished;
 
     public const float COMPLETION_AMOUNT = 0.8f;
 
@@ -31,8 +32,6 @@ public class LoadingController : MonoBehaviour
      */
     IEnumerator LoadNextScene()
     {
-        complete = false;
-
         AsyncOperation sceneLoadingOperation = SceneManager.LoadSceneAsync(LoadingLocation.SceneToLoad);
 
         sceneLoadingOperation.allowSceneActivation = false; //Stops scene activating
@@ -49,14 +48,13 @@ public class LoadingController : MonoBehaviour
             {
                 //waiting time so we have loading screen on a min amount of time.
                 yield return new WaitForSeconds(timeToHaveLoadingScreenOn);
-                complete = true;
                 sceneLoadingOperation.allowSceneActivation = true; //now that scene is down we can all the scene to load
             }
 
             yield return null;
         }
 
-        
+        loadingFinished();
     }
 
     /*

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +46,7 @@ namespace ABOGGUS.Menus
         private void OpenInventory()
         {
             inventoryMenu.SetActive(true);
-            if (GameController.player.key)
+            if (GameController.player.inventory.key)
             {
                 keyContainer.enabled = true;
             } else
