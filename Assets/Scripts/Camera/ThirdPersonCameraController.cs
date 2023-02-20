@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ABOGGUS.Menus;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -30,6 +31,18 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float fov = 90.0f;
 
     public static bool isPaused = false;
+    [SerializeField] private float rotationSpeed = 20f;
+    private Vector3 rotateDirection;
+    private float rotX;
+    private float rotY;
+    Quaternion rotateCamera;
+    Quaternion rotateTarget;
+
+    private float targetPosition;
+
+    public float cameraSphereRadius = 0.1f;
+    public float cameraCollisionOffset = 1f;
+    public float minimumCollisionOffset = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,17 +78,40 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround)
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && thirdPerson)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
-            float lRotateSpeed = rotateSpeed;
-            if (lookVector.x < 0)
-            {
-                lRotateSpeed = -lRotateSpeed;
-            }
+            float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
+            float yRotateSpeed = -lookVector.y * Time.deltaTime * rotationSpeed;
+
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+
+            HandleCameraCollisions(0.5f);
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
+
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            
+        }
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
+            rotX += rotateDirection.x;
+            rotY += rotateDirection.y;
+
+            if (rotY < -90.0f) rotY = -90.0f;
+            if (rotY > 90.0f) rotY = 90.0f;
+            rotateCamera = Quaternion.Euler(-rotY, rotX, 0.0f);
+            rotateTarget = Quaternion.Euler(0.0f, rotX, 0.0f);
+
+            player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotateCamera, rotationSpeed);
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            Rotator.cameraYRot = transform.eulerAngles.y;
+
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
         else
@@ -132,6 +168,33 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }
+    }
+
+    private void HandleCameraCollisions(float delta)
+    {
+        targetPosition = transform.localPosition.z;
+        RaycastHit hit;
+        Vector3 direction = transform.position - player.transform.position;
+        direction.Normalize();
+
+        if (Physics.SphereCast(player.transform.position, cameraSphereRadius, direction, out hit, Mathf.Abs(targetPosition)))
+        {
+            float dis = Vector3.Distance(player.transform.position, hit.point);
+            targetPosition = -(dis - cameraCollisionOffset);
+            if (dis < 2) offset = -dis;
+            else offset = -2;
+        }
+
+        if(Mathf.Abs(targetPosition) < minimumCollisionOffset)
+        {
+            targetPosition = -minimumCollisionOffset;
+        }
+
+        
+        transform.localPosition = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.localPosition.z, targetPosition, delta / 0.2f));
+        
+        Debug.Log(offset);
+        //transform.localPosition = transform.position;
     }
 
 

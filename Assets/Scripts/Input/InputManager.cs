@@ -32,7 +32,7 @@ namespace ABOGGUS.Input
             if (interactionManager != null)
                 interactionManager.Initialize(inputScheme.Player.Interact);
 
-            thirdPersonCameraController.Initialize(inputScheme.Player.Look, inputScheme.Player.CameraSwitch);
+            thirdPersonCameraController.Initialize(inputScheme.Player.Rotate, inputScheme.Player.CameraSwitch);
 
         }
 
