@@ -10,10 +10,16 @@ using System.Collections;
 
 namespace ABOGGUS.Gameplay
 {
-    internal class PlayerUpdater : MonoBehaviour
+    public class PlayerUpdater : MonoBehaviour
     {
         public void Awake()
         {
+            if (GameController.playerUpdater != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             GameController.playerUpdater = this;
         }
 
