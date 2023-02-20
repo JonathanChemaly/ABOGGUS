@@ -23,7 +23,7 @@ namespace ABOGGUS.Gameplay
         //For running the elevator scene change back to mainmenu 
         public static string scene = GameConstants.SCENE_MAINMENU;
 
-        internal static PlayerUpdater playerUpdater;
+        public static PlayerUpdater playerUpdater;
 
         // Start is called before the first frame update
         void Awake()
