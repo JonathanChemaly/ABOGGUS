@@ -24,7 +24,8 @@ namespace ABOGGUS.PlayerObjects
             if (health <= 0)
             {
                 health = maxHealth;
-                invulnerable = true;                Player.PlayerDied();
+                invulnerable = true;                
+                Player.PlayerDied();
             }
         }
     }
