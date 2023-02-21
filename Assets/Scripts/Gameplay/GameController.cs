@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Menus;
-using Unity.VisualScripting;
-using UnityEngine.SceneManagement;
 using ABOGGUS.SaveSystem;
 
 namespace ABOGGUS.Gameplay
@@ -21,6 +22,8 @@ namespace ABOGGUS.Gameplay
 
         //For running the elevator scene change back to mainmenu 
         public static string scene = GameConstants.SCENE_MAINMENU;
+
+        public static PlayerUpdater playerUpdater;
 
         // Start is called before the first frame update
         void Awake()
@@ -42,14 +45,29 @@ namespace ABOGGUS.Gameplay
             {
                 gameState = GameConstants.GameState.Paused;
             }
+
+            if (gameState == GameConstants.GameState.EndGame)
+            {
+
+            }
         }
 
         private void FixedUpdate()
         {
-            if(gameState == GameConstants.GameState.InGame)
+            if (gameState == GameConstants.GameState.InGame)
             {
                 player._FixedUpdate();
             }
+        }
+
+        public static void NewGame()
+        {
+            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, false);
+        }
+
+        public static void Respawn()
+        {
+            GameController.ChangeScene("Player died go to hotel lobby", GameConstants.SCENE_MAINLOBBY, true);
         }
 
         public static void ChangeScene(string message, string newScene, bool loading)
@@ -60,7 +78,7 @@ namespace ABOGGUS.Gameplay
 
             if (loading)
             {
-                LoadingLocation.SceneToLoad = newScene; 
+                LoadingLocation.SceneToLoad = newScene;
                 scene = newScene;
                 if (scene.Equals(GameConstants.SCENE_BOSS))
                     PlayerController.speed = 0.1f;
@@ -84,6 +102,10 @@ namespace ABOGGUS.Gameplay
                     ChangeState(GameConstants.GameState.EndGame);
                     SaveGameManager.SaveScene(oldScene);
                     break;
+                case GameConstants.SCENE_MAINLOBBY:
+                    ChangeState(GameConstants.GameState.InGame);
+                    SaveGameManager.SaveScene(newScene);
+                    break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
                     {
@@ -93,15 +115,9 @@ namespace ABOGGUS.Gameplay
                     break;
             }
 
-
-            if (player != null)
+            if (gameState == GameConstants.GameState.InGame)
             {
-                while (!LoadingController.complete) ;
-
-                GameObject physicalGameObject = GameObject.Find("Player");
-                player.SetGameObject(physicalGameObject);
-
-                SaveGameManager.SavePlayerProgress(player);
+                playerUpdater.UpdatePhysicalGameObjectForPlayer(scene);
             }
 
             SaveGameManager.SaveDataToFile(null);
@@ -116,17 +132,16 @@ namespace ABOGGUS.Gameplay
             Debug.Log(message);
             QuitGame();
         }
-
         private static void QuitGame()
         {
 
-#if UNITY_STANDALONE
+            #if UNITY_STANDALONE
             Application.Quit();
-#endif
+            #endif
 
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            #endif
         }
     }
 }

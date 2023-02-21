@@ -24,10 +24,14 @@ namespace ABOGGUS.Menus
         }
         private void TriggerPause(InputAction.CallbackContext obj)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             PauseMenu.Trigger();
         }
         private void TriggerInventory(InputAction.CallbackContext obj)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             InventoryMenu.Trigger();
         }
         private void OnDisable()

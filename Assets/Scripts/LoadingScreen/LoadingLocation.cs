@@ -1,3 +1,4 @@
+using ABOGGUS.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class LoadingLocation
     public static void LoadSceneAtPath(string path)
     {
         SceneToLoad = path;
-        SceneManager.LoadScene("Assets/Scenes/LoadingScreen.unity");
+        SceneManager.LoadScene(GameConstants.SCENE_LOADING);
     }
 
     public static string SceneToLoad

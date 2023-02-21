@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 
 public class ShockWave : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ShockWave : MonoBehaviour
 
     public int explosionDamage;
     public float explosionRange;
+
+    public bool active = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +31,12 @@ public class ShockWave : MonoBehaviour
 
         for (int i = 0; i < player.Length; i++)
         {
-            player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+            if (active)
+            {
+                //player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+                GameController.player.TakeDamage(explosionDamage);
+                active = false;
+            }
         }
         Invoke("Delay", 2f);
     }

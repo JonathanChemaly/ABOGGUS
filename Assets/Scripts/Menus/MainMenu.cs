@@ -25,25 +25,25 @@ namespace ABOGGUS.Menus
                 loadButton.interactable = false;
             }
         }
-        public void PlayGame()
+        public void PlayNewGame()
         {
-            StartCoroutine(PlayGameEnum());
+            StartCoroutine(PlayNewGameEnum());
         }
-        public void LoadGame()
+        public void PlayLoadGame()
         {
-            StartCoroutine(LoadGameEnum());
+            StartCoroutine(PlayLoadGameEnum());
         }
         public void PlayCredits()
         {
             StartCoroutine(PlayCreditsEnum());
         }
-        IEnumerator PlayGameEnum()
+        IEnumerator PlayNewGameEnum()
         {
             yield return new WaitForSeconds(0.3f);
-            GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, true);
+            GameController.NewGame();
         }
 
-        IEnumerator LoadGameEnum()
+        IEnumerator PlayLoadGameEnum()
         {
             SaveGameManager.LoadProgressFromFile(null);
             string sceneName = SaveGameManager.currentSaveData.lastScene;
