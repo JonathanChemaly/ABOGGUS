@@ -38,6 +38,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float rotY;
     Quaternion rotateCamera;
     Quaternion rotateTarget;
+    [SerializeField] CinemachineFreeLook freeLookCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -112,6 +113,8 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
+        if (PauseMenu.isPaused || InventoryMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
+        else freeLookCam.m_XAxis.m_MaxSpeed = 1000.0f;
         Camera.main.fieldOfView = fov;
     }
 
