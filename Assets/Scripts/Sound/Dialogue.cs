@@ -8,7 +8,7 @@ namespace ABOGGUS.Sound.Dialogue
     public class Dialogue: MonoBehaviour
     {
         [Tooltip("Holder of the text data for this dialogue")]
-        public List<DialogueLine> subtitleText;
+        public List<DialogueRecord> subtitleText;
 
         [Tooltip("")]
         public string locationOfSoundFile;

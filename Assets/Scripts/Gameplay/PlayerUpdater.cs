@@ -23,26 +23,20 @@ namespace ABOGGUS.Gameplay
             GameController.playerUpdater = this;
         }
 
-        public void UpdatePhysicalGameObjectForPlayer(string scene, bool loadingPlayer)
+        public void UpdatePhysicalGameObjectForPlayer(string scene)
         {
-            StartCoroutine(waitForSceneLoad(scene, loadingPlayer));
+            StartCoroutine(waitForSceneLoad(scene));
         }
 
-        IEnumerator waitForSceneLoad(string scene, bool loadingPlayer)
+        IEnumerator waitForSceneLoad(string scene)
         {
             while (SceneManager.GetActiveScene().name != scene || GameController.player == null) yield return null;
 
-            Player player = GameController.player;
-
             GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
-            player.SetGameObject(physicalGameObject);
-            player.inventory.invulnerable = false;
+            GameController.player.SetGameObject(physicalGameObject);
+            GameController.player.inventory.invulnerable = false;
 
-            if (loadingPlayer)
-            {
-                SaveGameManager.LoadPlayerProgress(GameController.player);
-            }
-            SaveGameManager.SavePlayerProgress(GameController.player);  // autosave for going between different play scenes
+            SaveGameManager.SavePlayerProgress(GameController.player);
 
             Debug.Log("Successfully updated player game object");
         }

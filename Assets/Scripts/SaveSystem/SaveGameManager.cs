@@ -62,11 +62,6 @@ namespace ABOGGUS.SaveSystem
             currentSaveData = temp;
         }
 
-        public static void StartNewData()
-        {
-            currentSaveData = new SaveData();
-        }
-
         public static void SaveProgressToFile(string fileName, Player player, string sceneName)
         {
             SaveScene(sceneName);
@@ -88,14 +83,6 @@ namespace ABOGGUS.SaveSystem
         {
             currentSaveData.playerHealth = player.inventory.health;
             currentSaveData.playerHasKey = player.inventory.key;
-            Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
-        }
-
-        public static void LoadPlayerProgress(Player player)
-        {
-            player.inventory.health = currentSaveData.playerHealth;
-            player.inventory.key = currentSaveData.playerHasKey;
-            Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
     }
 }
