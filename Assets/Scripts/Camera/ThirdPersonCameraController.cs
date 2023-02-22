@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 using ABOGGUS.Menus;
 
 public class ThirdPersonCameraController : MonoBehaviour
@@ -149,6 +150,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         if (thirdPerson)
         {
+            GetComponent<CinemachineBrain>().enabled = true;
             offset = -2f;
             yOffset = 3.5f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
@@ -156,6 +158,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else
         {
+            GetComponent<CinemachineBrain>().enabled = false;
             offset = 1f;
             yOffset = 2.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
