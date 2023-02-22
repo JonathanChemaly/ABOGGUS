@@ -25,6 +25,8 @@ namespace ABOGGUS.Gameplay
 
         public static PlayerUpdater playerUpdater;
 
+        private static bool loadingPlayer = false;
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -65,8 +67,15 @@ namespace ABOGGUS.Gameplay
             GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, false);
         }
 
+        public static void LoadGame(string sceneName)
+        {
+            loadingPlayer = true;
+            GameController.ChangeScene("Main menu to loaded scene: " + sceneName, sceneName, false);
+        }
+
         public static void Respawn()
         {
+            player.inventory.health = player.inventory.maxHealth;
             GameController.ChangeScene("Player died go to hotel lobby", GameConstants.SCENE_MAINLOBBY, true);
         }
 
@@ -96,31 +105,32 @@ namespace ABOGGUS.Gameplay
             {
                 case GameConstants.SCENE_MAINMENU:
                     ChangeState(GameConstants.GameState.StartMenu);
-                    SaveGameManager.SaveScene(oldScene);
+                    SaveGameManager.SaveProgressToFile(null, player, oldScene);
+                    //SaveGameManager.SaveScene(oldScene);
                     break;
                 case GameConstants.SCENE_CREDITS:
                     ChangeState(GameConstants.GameState.EndGame);
-                    SaveGameManager.SaveScene(oldScene);
-                    break;
-                case GameConstants.SCENE_MAINLOBBY:
-                    ChangeState(GameConstants.GameState.InGame);
-                    SaveGameManager.SaveScene(newScene);
+                    SaveGameManager.SaveProgressToFile(null, player, oldScene);
+                    //SaveGameManager.SaveScene(oldScene);
                     break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
                     {
                         ChangeState(GameConstants.GameState.InGame);
-                        SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in game
+                        //SaveGameManager.SaveProgressToFile(null, player, newScene);
+                        SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in-game (play state)
+                        SaveGameManager.SaveDataToFile(null);
                     }
                     break;
             }
 
             if (gameState == GameConstants.GameState.InGame)
             {
-                playerUpdater.UpdatePhysicalGameObjectForPlayer(scene);
+                playerUpdater.UpdatePhysicalGameObjectForPlayer(scene, loadingPlayer);
             }
+            loadingPlayer = false;
 
-            SaveGameManager.SaveDataToFile(null);
+            //SaveGameManager.SaveDataToFile(null);
         }
 
         public static void ChangeState(GameConstants.GameState gameState)

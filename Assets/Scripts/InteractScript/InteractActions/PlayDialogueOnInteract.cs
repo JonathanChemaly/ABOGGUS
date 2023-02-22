@@ -20,7 +20,7 @@ namespace ABOGGUS.Interact
 
         [SerializeField]
         [Tooltip("Text of dialogue to ouput as subtitles")]
-        private List<DialogueRecord> subtitleText;
+        private List<DialogueLine> subtitleText;
 
         [SerializeField]
         [Tooltip("Whether You want the animation to play multiple times")]
