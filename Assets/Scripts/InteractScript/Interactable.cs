@@ -13,7 +13,6 @@ namespace ABOGGUS.Interact {
         [Tooltip("The name of the action to appear in UI when looked at")]
         public string actionName = "Interact";
 
-        [SerializeField]
         [Tooltip("What action will be taken when item is interacted with")]
         public event Action InteractAction;
 
@@ -22,8 +21,11 @@ namespace ABOGGUS.Interact {
         public event Action SuccessAction;
 
         [HideInInspector]
-        [SerializeField]
-        [Tooltip("What action will be taken when a specfic set of actions are completed in UI")]
+        [Tooltip("bool to signify when certain conditions have been satisfied for the interactable to activate")]
+        public bool enableCondition = true;
+
+        [HideInInspector]
+        [Tooltip("Bool for saving")]
         public bool InteractSuccessful = false;
 
         public void DoAction()

@@ -98,7 +98,7 @@ namespace ABOGGUS.Interact
         {
             Ray lookAtRay = FPScam.ViewportPointToRay(Vector3.one / 2f); //creates ray where camera is looking
 
-            Debug.DrawRay(lookAtRay.origin, lookAtRay.direction, Color.white);
+            Debug.DrawRay(lookAtRay.origin, lookAtRay.direction * maxRayDistance, Color.white);
 
             //Checks if we get a hit off an item in our layer of choice.
             if (Physics.Raycast(lookAtRay, out RaycastHit rayHitInfo, maxRayDistance, layerToSearch))

@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7924722161969611482}
-  - component: {fileID: 7924722161969611480}
-  - component: {fileID: 7924722161969611483}
   m_Layer: 8
   m_Name: ItemInChest
   m_TagString: Untagged
@@ -34,35 +32,6 @@ Transform:
   m_Father: {fileID: 7924722162847526372}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7924722161969611480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7924722161969611493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d89b96b0d317842944ce8327ea3bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Tool Box
-  actionName: Pick Up
-  InteractSuccessful: 0
---- !u!114 &7924722161969611483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7924722161969611493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580784f137fd7f84aad2f4c15b0d9448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactToEnable: {fileID: 7924722161969611480}
-  interactToWatch: {fileID: 7924722161190111237}
 --- !u!1 &7924722162847526375
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +182,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.69, y: 0.55, z: 1.31}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2831803498252616371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7924722161189985843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5ac0220f069df4c9a38a364d89c4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 7924722161190111237}
+  gObject: {fileID: 7924722161189985843}
+  layerName: Default
 --- !u!114 &7924722161190111237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chest
   actionName: Open
+  enableCondition: 1
   InteractSuccessful: 0
 --- !u!114 &7924722161190111354
 MonoBehaviour:
@@ -365,7 +350,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 773686411877069559, guid: 89073c793c0805b43ab9afcbb0431641, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 89073c793c0805b43ab9afcbb0431641, type: 3}
 --- !u!4 &6975040210880549488 stripped
 Transform:
@@ -435,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lock
   actionName: Use
+  enableCondition: 1
   InteractSuccessful: 0
 --- !u!1001 &9163959690928369184
 PrefabInstance:
@@ -493,6 +480,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a97e55aaa1cb44baa0d865b75dfdae, type: 3}
+--- !u!1 &4810365484089822681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4462281228610036729, guid: 14a97e55aaa1cb44baa0d865b75dfdae, type: 3}
+  m_PrefabInstance: {fileID: 9163959690928369184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2249520063155689621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810365484089822681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d89b96b0d317842944ce8327ea3bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Grimoire
+  actionName: Pick Up
+  enableCondition: 1
+  InteractSuccessful: 0
+--- !u!114 &7821782236839053177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810365484089822681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af62ab6c1674694e9e8969645cc97de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 2249520063155689621}
+--- !u!114 &8585501713570838292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810365484089822681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580784f137fd7f84aad2f4c15b0d9448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactToEnable: {fileID: 2249520063155689621}
+  interactToWatch: {fileID: 7924722161190111237}
 --- !u!4 &6326116883312146176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2947057302037027104, guid: 14a97e55aaa1cb44baa0d865b75dfdae, type: 3}
