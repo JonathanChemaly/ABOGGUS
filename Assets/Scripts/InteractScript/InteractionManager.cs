@@ -34,6 +34,14 @@ namespace ABOGGUS.Interact
         [Tooltip("UI holder of Action name")]
         private TextMeshProUGUI actionName;
 
+        [SerializeField]
+        [Tooltip("UI holder of the condition message")]
+        private TextMeshProUGUI conditionText;
+
+        [SerializeField]
+        [Tooltip("Time to display condition failed")]
+        private float timeToDisplayFailure;
+
         public event Action ObjectNameChangeEvent;
 
         private Interactable currentInteractable;
@@ -78,8 +86,28 @@ namespace ABOGGUS.Interact
         {
             if (LookingAtInteractable()) //if we are looking at something ...
             {
-                currentInteractable.DoAction();
+                //if we have no condition or the condition to active is satisfied
+                if (currentInteractable.conditionCheck == null || currentInteractable.conditionCheck.DoCheck())
+                { 
+                    currentInteractable.DoAction();
+                } 
+                else //otherwise are condition is not satisfied
+                {
+                    StartCoroutine(DisplayFailure());
+                }
+                
             }
+        }
+
+        /**
+         * Displays fail condition for the specfied amount of time
+         */
+        IEnumerator DisplayFailure()
+        {
+            conditionText.enabled = true;
+            conditionText.text = currentInteractable.conditionCheck.GetFailureText();
+            yield return new WaitForSeconds(timeToDisplayFailure);
+            conditionText.enabled = false;
         }
 
         /**
