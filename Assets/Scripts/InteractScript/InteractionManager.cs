@@ -78,6 +78,8 @@ namespace ABOGGUS.Interact
         {
             if (LookingAtInteractable()) //if we are looking at something ...
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 currentInteractable.DoAction();
             }
         }
