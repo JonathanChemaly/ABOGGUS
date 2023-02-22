@@ -39,6 +39,7 @@ namespace ABOGGUS.Menus
         }
         IEnumerator PlayNewGameEnum()
         {
+            SaveGameManager.StartNewData();
             yield return new WaitForSeconds(0.3f);
             GameController.NewGame();
         }
@@ -48,7 +49,7 @@ namespace ABOGGUS.Menus
             SaveGameManager.LoadProgressFromFile(null);
             string sceneName = SaveGameManager.currentSaveData.lastScene;
             yield return new WaitForSeconds(0.3f);
-            GameController.ChangeScene("Main menu to last saved scene: " + sceneName, sceneName, true);
+            GameController.LoadGame(sceneName);
         }
 
         IEnumerator PlayCreditsEnum()
