@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ABOGGUS.Input;
-
 namespace ABOGGUS.Interact
 {
-    public class PlayAudioOnInteract : MonoBehaviour
+    public class PlayAudioAfterDelayOnInteract : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("interact to watch")]
@@ -15,6 +14,10 @@ namespace ABOGGUS.Interact
         [SerializeField]
         [Tooltip("Audio to play when interacted with")]
         private AudioSource audioToPlay;
+
+        [SerializeField]
+        [Tooltip("Time to wait for audio to play")]
+        private float delaySec;
 
         [SerializeField]
         [Tooltip("Whether You want the animation to play multiple times")]
@@ -32,16 +35,22 @@ namespace ABOGGUS.Interact
         //Plays audio on interact
         private void PlayAudio()
         {
+            StartCoroutine(PlayAudioRoutine());
+        }
+
+        IEnumerator PlayAudioRoutine()
+        {
+            yield return new WaitForSeconds(delaySec);
             if (IM != null) IM.InputScheme.Player.Disable();//if given IM disable player actions
             Debug.Log("playing audio for " + this.gameObject.name);
             audioToPlay.Play();
             StartCoroutine(disableWhileAudioPlaying());
-
         }
 
         //disables the interactable while it is animating so we do not have worry about more the one input messing with animation
         IEnumerator disableWhileAudioPlaying()
         {
+            
             interact.enabled = false;
             while (audioToPlay.isPlaying)
             {
