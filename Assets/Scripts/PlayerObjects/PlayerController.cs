@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ABOGGUS.Input;
 using System;
+using UnityEngine.Playables;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class PlayerController : MonoBehaviour
     {
-        public Player player;
-        public GameObject physicalGameObject;
+        private GameObject physicalGameObject;
+        private InputAction moveAction;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
         public float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;
@@ -19,17 +21,21 @@ namespace ABOGGUS.PlayerObjects
         public float totalDodgeTime = PlayerConstants.DODGE_TIME_DEFAULT;
         private float cumulativeJumpTime = PlayerConstants.JUMP_TIME_CUMULATIVE_DEFAULT;
         private float cumulativeDodgeTime = PlayerConstants.DODGE_TIME_CUMULATIVE_DEFAULT;
-        private InputAction moveAction;
         private Vector3 target;
         private bool jumping = false;
         private bool dodging = false;
         private int count = 0;
         private bool crouching = false;
 
+        private IPlayerState playerState;
+        enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
+        private FacingDirection facingDirection;
+
         public void Initialize(Input.InputActions playerActions)
         {
-            player.SetController(this);
-            player.Initialize();
+            GameController.player.SetController(this);
+            facingDirection = FacingDirection.Forward;
+
             moveAction = playerActions.Player.Move;
             moveAction.Enable();
 
@@ -47,9 +53,19 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.Sprint.Enable();
         }
 
+        public void InitializePlayerState(GameObject physicalGameObject)
+        {
+            SetGameObject(physicalGameObject);
+            playerState = new PlayerFacingForward(this);
+        }
+
         public void SetGameObject(GameObject physicalGameObject)
         {
             this.physicalGameObject = physicalGameObject;
+        }
+        public GameObject GetGameObject()
+        {
+            return this.physicalGameObject;
         }
 
         private void StopSprint(InputAction.CallbackContext obj)
@@ -100,44 +116,139 @@ namespace ABOGGUS.PlayerObjects
 
         public void _FixedUpdate()
         {
-            player.MovementHandler(moveAction);
-            if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
+            if (physicalGameObject != null)
             {
-                Debug.Log("Jump time: " + Time.fixedDeltaTime);
-                cumulativeJumpTime += Time.fixedDeltaTime;
-                Vector3 up = new Vector3(physicalGameObject.transform.position.x, jumpHeight * cumulativeJumpTime + physicalGameObject.transform.position.y, physicalGameObject.transform.position.z);
-                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
+                MovementHandler(moveAction);
+                if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
+                {
+                    Debug.Log("Jump time: " + Time.fixedDeltaTime);
+                    cumulativeJumpTime += Time.fixedDeltaTime;
+                    Vector3 up = new Vector3(physicalGameObject.transform.position.x, jumpHeight * cumulativeJumpTime + physicalGameObject.transform.position.y, physicalGameObject.transform.position.z);
+                    physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, up, jumpHeight * cumulativeJumpTime);
+                }
+                else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
+                {
+                    Debug.Log("End jump time: " + Time.fixedDeltaTime);
+                    cumulativeJumpTime += Time.fixedDeltaTime;
+                    PlayerAnimationStateController.StopJumpAnimation();
+                }
+                else
+                {
+                    cumulativeJumpTime = 0;
+                    jumping = false;
+                }
+
+                if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+                {
+                    Debug.Log("Dodge time: " + Time.fixedDeltaTime);
+                    cumulativeDodgeTime += Time.fixedDeltaTime;
+                    Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
+                    physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                }
+                else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+                {
+                    Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
+                    cumulativeDodgeTime += Time.fixedDeltaTime;
+                    PlayerAnimationStateController.StopDodgeAnimation();
+                }
+                else
+                {
+                    cumulativeDodgeTime = 0;
+                    dodging = false;
+                }
             }
-            else if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < totalJumpTime)
+        }
+        public void MovementHandler(InputAction moveAction)
+        {
+            Vector2 movement = moveAction.ReadValue<Vector2>();
+            //Debug.Log("Movement vector: " + movement);
+            FacingDirection currentFacingDirection;
+            //Debug.Log("Facing direction: " + facingDirection);
+            //Get the current facing direction
+            if (movement.x > 0.5 && movement.y > 0.5)
             {
-                Debug.Log("End jump time: " + Time.fixedDeltaTime);
-                cumulativeJumpTime += Time.fixedDeltaTime;
-                PlayerAnimationStateController.StopJumpAnimation();
+                currentFacingDirection = FacingDirection.FrontRight;
+            }
+            else if (movement.x < -0.5 && movement.y > 0.5)
+            {
+                currentFacingDirection = FacingDirection.FrontLeft;
+            }
+            else if (movement.y > 0.5)
+            {
+                currentFacingDirection = FacingDirection.Forward;
+            }
+            else if (movement.x > 0.5 && movement.y < -0.5)
+            {
+                currentFacingDirection = FacingDirection.BackRight;
+            }
+            else if (movement.x < -0.5 && movement.y < -0.5)
+            {
+                currentFacingDirection = FacingDirection.BackLeft;
+            }
+            else if (movement.y < -0.5)
+            {
+                currentFacingDirection = FacingDirection.Backward;
+            }
+            else if (movement.x > 0.5)
+            {
+                currentFacingDirection = FacingDirection.Right;
+            }
+            else if (movement.x < -0.5)
+            {
+                currentFacingDirection = FacingDirection.Left;
             }
             else
             {
-                cumulativeJumpTime = 0;
-                jumping = false;
+                currentFacingDirection = FacingDirection.Idle;
             }
 
-            if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+            //Check if the facing direction is the same and not idle to move
+            if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
             {
-                Debug.Log("Dodge time: " + Time.fixedDeltaTime);
-                cumulativeDodgeTime += Time.fixedDeltaTime;
-                Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
-                physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                playerState.Move();
             }
-            else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+            //Otherwise if the facing direction is not the same then change to new state
+            else if (!currentFacingDirection.Equals(facingDirection))
             {
-                Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
-                cumulativeDodgeTime += Time.fixedDeltaTime;
-                PlayerAnimationStateController.StopDodgeAnimation();
+                SetFacingState(currentFacingDirection);
             }
-            else
+        }
+        //Set player state to new facing direction state
+        private void SetFacingState(FacingDirection newFacingDirection)
+        {
+            if (newFacingDirection.Equals(FacingDirection.Forward))
             {
-                cumulativeDodgeTime = 0;
-                dodging = false;
+                playerState = new PlayerFacingForward(this);
             }
+            else if (newFacingDirection.Equals(FacingDirection.Backward))
+            {
+                playerState = new PlayerFacingBackward(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.Left))
+            {
+                playerState = new PlayerFacingLeft(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.Right))
+            {
+                playerState = new PlayerFacingRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.FrontRight))
+            {
+                playerState = new PlayerFacingFrontRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.FrontLeft))
+            {
+                playerState = new PlayerFacingFrontLeft(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.BackRight))
+            {
+                playerState = new PlayerFacingBackRight(this);
+            }
+            else if (newFacingDirection.Equals(FacingDirection.BackLeft))
+            {
+                playerState = new PlayerFacingBackLeft(this);
+            }
+            facingDirection = newFacingDirection;
         }
 
     }

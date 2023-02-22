@@ -87,11 +87,11 @@ public class ThirdPersonCameraController : MonoBehaviour
             transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
-
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             Rotator.cameraYRot = transform.eulerAngles.y;
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            
         }
         else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
         {
@@ -171,6 +171,8 @@ public class ThirdPersonCameraController : MonoBehaviour
             transform.rotation = fpRotation;
         }
     }
+
+    
 
 
     public void Trigger(InputAction.CallbackContext obj) 

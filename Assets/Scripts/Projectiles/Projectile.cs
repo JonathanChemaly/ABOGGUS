@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 
 public class Projectile : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
     public float explosionRange;
 
     public bool explodeOnTouch = true;
+    public bool active = true;
 
     PhysicMaterial physics_mat;
 
@@ -33,7 +35,12 @@ public class Projectile : MonoBehaviour
 
         for (int i = 0; i < player.Length; i++)
         {
-            player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+            if (active)
+            {
+                //player[i].GetComponent<Player>().TakeDamage(explosionDamage);
+                GameController.player.TakeDamage(explosionDamage);
+                active = false;
+            }
         }
         Invoke("Delay", 0.05f);
         Invoke("ExplosionDelay", 1f);
