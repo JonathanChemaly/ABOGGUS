@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 using ABOGGUS.Interact;
@@ -31,7 +32,7 @@ namespace ABOGGUS.Input
             if (interactionManager != null)
                 interactionManager.Initialize(inputScheme.Player.Interact);
 
-            thirdPersonCameraController.Initialize(inputScheme.Player.Look, inputScheme.Player.CameraSwitch);
+            thirdPersonCameraController.Initialize(inputScheme.Player.Rotate, inputScheme.Player.CameraSwitch);
 
         }
 

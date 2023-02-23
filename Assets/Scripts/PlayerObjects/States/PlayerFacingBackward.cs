@@ -8,20 +8,20 @@ namespace ABOGGUS.PlayerObjects
     {
         private float yRotOffset = 180;
         private float yRot;
-        Player player;
+        GameObject physicalGameObject;
 
-        public PlayerFacingBackward(Player player)
+        public PlayerFacingBackward(PlayerController playerController)
         {
             yRot = Rotator.cameraYRot + yRotOffset;
-            this.player = player;
-            this.player.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
+            this.physicalGameObject = playerController.GetGameObject();
+            this.physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
         }
         public void Move()
         {
             yRot = Rotator.cameraYRot + yRotOffset;
-            player.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
-            Vector3 target = player.transform.position + player.transform.forward * PlayerController.speed;
-            player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, target, PlayerController.speed);
+            physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
+            Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * PlayerController.speed;
+            physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, PlayerController.speed);
         }
     }
 }

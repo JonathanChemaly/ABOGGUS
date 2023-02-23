@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+using ABOGGUS.PlayerObjects;
+
 
 namespace ABOGGUS.SaveSystem
 {
@@ -11,58 +13,89 @@ namespace ABOGGUS.SaveSystem
         public static SaveData currentSaveData = new SaveData();    // save data currently used in game
 
         public const string saveFolder = "/Saves/";
-        public const string fileName = "DefaultSave.sav";  // currently only one save file at a time
-
-        public static bool Save()
+        public const string defaultFileName = "DefaultSave.sav";  // currently only one save file at a time
+        
+        public static bool SaveDataToFile(string fileName)
         {
-            var dir = Application.persistentDataPath + saveFolder;  // find default directory to store our save
+            //var dir = Application.persistentDataPath + saveFolder;  // find default directory to store our save
+
+            var dir = Application.dataPath + saveFolder;
 
             // create "Saves" directory if it doesn't exist yet
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+            // use default savefile if none given
+            if (fileName is null) fileName = defaultFileName;
 
             // convert SaveData object to JSON, then write to save file
             string json = JsonUtility.ToJson(currentSaveData, true);
             File.WriteAllText(dir + fileName, json);
 
-            GUIUtility.systemCopyBuffer = dir;  // copies path to clipboard
+            //GUIUtility.systemCopyBuffer = dir;  // copies path to clipboard
 
             return true;
 
         }
 
-        public static void Load()
+        public static void LoadDataFromFile(string fileName)
         {
-            string path = Application.persistentDataPath + saveFolder + fileName;
+            //string path = Application.persistentDataPath + saveFolder + fileName;
+
+            // use default savefile if none given
+            if (fileName is null) fileName = defaultFileName;
+
+            string pathToFile = Application.dataPath + saveFolder + fileName;
 
             // if save path exists, read and convert all JSON data to SaveData object
             SaveData temp = new SaveData();
-            if (File.Exists(path))
+            if (File.Exists(pathToFile))
             {
-                string json = File.ReadAllText(path);
+                string json = File.ReadAllText(pathToFile);
                 temp = JsonUtility.FromJson<SaveData>(json);
             }
             else
             {
-                Debug.LogError("Save file does not exist.");
+                Debug.Log("Save file does not exist.");
             }
 
             // assign loaded data
             currentSaveData = temp;
         }
 
+        public static void StartNewData()
+        {
+            currentSaveData = new SaveData();
+        }
+
+        public static void SaveProgressToFile(string fileName, Player player, string sceneName)
+        {
+            SaveScene(sceneName);
+            SavePlayerProgress(player);
+            SaveDataToFile(fileName);
+        }
+
+        public static void LoadProgressFromFile(string fileName)
+        {
+            LoadDataFromFile(fileName);
+        }
+
         public static void SaveScene(string sceneName)
         {
             currentSaveData.lastScene = sceneName;
-            Save();
         }
 
-        public static string LoadScene()
+        public static void SavePlayerProgress(Player player)
         {
-            Load();
-            return currentSaveData.lastScene;
+            currentSaveData.playerHealth = player.inventory.health;
+            currentSaveData.playerHasKey = player.inventory.key;
+            Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
+        }
+
+        public static void LoadPlayerProgress(Player player)
+        {
+            player.inventory.health = currentSaveData.playerHealth;
+            player.inventory.key = currentSaveData.playerHasKey;
+            Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
     }
 }

@@ -2,57 +2,122 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using ABOGGUS.Menus;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
     public GameObject player;
-    [SerializeField] float yOffset = 20f;
+    private float yOffset = 2.33f;
     private float camSpeed = 5f;
     private float rotateSpeed = 1f;
     float x, y;
 
     private Vector3 tpOffset;
     private Vector3 camOffset;
-    [SerializeField] float offset = -15f;
+    private float offset = 1f;
     private InputAction look;
     private bool lookAround = false;
 
     private float transitionSpeed = 0.04f;
     public Quaternion fpRotation;
     public Quaternion tpRotation;
-    public static bool thirdPerson = true;
+    public bool thirdPerson = false;
+    public static bool animationState = false;
+    public static bool adjustCam = false;
+    public static bool moveCam = false;
+    public static bool preAnimCam = false;
+
     private InputAction cameraSwitch;
     private float fov = 90.0f;
 
     public static bool isPaused = false;
+    [SerializeField] private float rotationSpeed = 20f;
+    private Vector3 rotateDirection;
+    private float rotX;
+    private float rotY;
+    Quaternion rotateCamera;
+    Quaternion rotateTarget;
+    [SerializeField] CinemachineFreeLook freeLookCam;
+
+    private float freeLookCamSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        tpOffset = transform.position - player.transform.position;
-        tpRotation = transform.rotation;
-        fpRotation = Quaternion.Euler(1, 0, 0);
-        camOffset = tpOffset;
+        tpRotation = Quaternion.Euler(33.5f, 0, 0);
+        fpRotation = Quaternion.Euler(1f, 0, 0);
+        camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+        freeLookCamSpeed = freeLookCam.m_XAxis.m_MaxSpeed;
     }
 
     private void LateUpdate()
     {
-        if (lookAround)
+        if (adjustCam)
         {
-            Vector2 lookVector = look.ReadValue<Vector2>();
-            float lRotateSpeed = rotateSpeed;
-            if (lookVector.x < 0)
-            {
-                lRotateSpeed = -lRotateSpeed;
-            }
-            transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, tpRotation, 0.03f);
+            camSpeed = 0.01f;
+        }
+        else if (preAnimCam)
+        {
+            offset = 1f;
+            yOffset = 2.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
-            Rotator.cameraYRot = transform.eulerAngles.y;
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
-        } else {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, fpRotation, 0.1f);
+        }
+        else if (moveCam)
+        {
+            camSpeed = 5f;
+            transform.RotateAround(player.transform.position, Vector3.up, 0.1f);
+        }
+
+        if (animationState)
+        {
+            offset = -2f;
+            yOffset = 3.5f;
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
- 
-        
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && thirdPerson)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Vector2 lookVector = look.ReadValue<Vector2>();
+            float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
+            float yRotateSpeed = -lookVector.y * Time.deltaTime * rotationSpeed;
+
+            transform.RotateAround(player.transform.position, new Vector3(0, 1, 0), lRotateSpeed);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+
+
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            Rotator.cameraYRot = transform.eulerAngles.y;
+
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+        }
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
+            rotX += rotateDirection.x;
+            rotY += rotateDirection.y;
+
+            if (rotY < -90.0f) rotY = -90.0f;
+            if (rotY > 90.0f) rotY = 90.0f;
+            rotateCamera = Quaternion.Euler(-rotY, rotX, 0.0f);
+            rotateTarget = Quaternion.Euler(0.0f, rotX, 0.0f);
+
+            player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotateCamera, rotationSpeed);
+            camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            Rotator.cameraYRot = transform.eulerAngles.y;
+
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+        }
+        if (PauseMenu.isPaused || InventoryMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
+        else freeLookCam.m_XAxis.m_MaxSpeed = freeLookCamSpeed;
         Camera.main.fieldOfView = fov;
     }
 
@@ -79,43 +144,38 @@ public class ThirdPersonCameraController : MonoBehaviour
         lookAround = false;
     }
 
-
-    public void Trigger(InputAction.CallbackContext obj) 
+    public void startAnimation()
     {
-        thirdPerson = !thirdPerson;
+        animationState = !animationState;
+    }
+    public static void globalCameraSwitch()
+    {
+
+    }
+    public void CameraPosition()
+    {
         if (thirdPerson)
         {
-            offset = -2.5f;
-            yOffset = 3.33f;
+            GetComponent<CinemachineBrain>().enabled = true;
+            offset = -2f;
+            yOffset = 3.5f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+            transform.rotation = tpRotation;
         }
         else
         {
-            offset = .33f;
+            GetComponent<CinemachineBrain>().enabled = false;
+            offset = 1f;
             yOffset = 2.33f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }
     }
-    /*
-    private void FixedUpdate()
+
+
+    public void Trigger(InputAction.CallbackContext obj)
     {
-        if (thirdPerson && fov < 90.0f)
-        {
-            camSpeed = 0.0032f;
-            fov += Time.deltaTime * 12.0f;
-            isPaused = false;
-        }
-        else if (!thirdPerson && fov > 70.0f)
-        {
-            camSpeed = 0.0032f;
-            fov -= Time.deltaTime * 12.0f;
-            isPaused = false;
-        }
-        else if (fov <= 70.0f || fov >= 90.0f)
-        {
-            camSpeed = 0.1f;
-            isPaused = true;
-        }
-    }*/
+        thirdPerson = !thirdPerson;
+        CameraPosition();
+    }
 }
