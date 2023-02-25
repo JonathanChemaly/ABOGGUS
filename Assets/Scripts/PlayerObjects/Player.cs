@@ -31,11 +31,10 @@ namespace ABOGGUS.PlayerObjects
             if (debug || !exists)
             {
                 GameController.player = this;
-
+                playerController = this.transform.GetComponent<PlayerController>();
+                playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
-
                 exists = true;
-
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -77,7 +76,7 @@ namespace ABOGGUS.PlayerObjects
         public void SetGameObject(GameObject physicalGameObject)
         {
             this.physicalGameObject = physicalGameObject;
-            this.playerController.SetGameObject(physicalGameObject);
+            //this.playerController.SetGameObject(physicalGameObject);
             this.playerController.InitializePlayerState(physicalGameObject);
         }
 

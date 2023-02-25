@@ -31,11 +31,14 @@ namespace ABOGGUS.PlayerObjects
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
-        public void Initialize(Input.InputActions playerActions)
+        public void InitializeForPlayer()
         {
             GameController.player.SetController(this);
             facingDirection = FacingDirection.Forward;
+        }
 
+        public void InitializeInput(Input.InputActions playerActions)
+        {
             moveAction = playerActions.Player.Move;
             moveAction.Enable();
 
@@ -163,7 +166,6 @@ namespace ABOGGUS.PlayerObjects
             Vector2 movement = moveAction.ReadValue<Vector2>();
             //Debug.Log("Movement vector: " + movement);
             FacingDirection currentFacingDirection;
-            //Debug.Log("Facing direction: " + facingDirection);
             //Get the current facing direction
             if (movement.x > 0.5 && movement.y > 0.5)
             {
@@ -201,6 +203,8 @@ namespace ABOGGUS.PlayerObjects
             {
                 currentFacingDirection = FacingDirection.Idle;
             }
+
+           // Debug.Log("Old facing direction: " + facingDirection + ", new facing direction: " + currentFacingDirection);
 
             //Check if the facing direction is the same and not idle to move
             if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
