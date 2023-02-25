@@ -14,13 +14,17 @@ namespace ABOGGUS.Gameplay
     {
         public void Awake()
         {
-            if (GameController.playerUpdater != null)
+            if (GameController.playerUpdater is not null)
             {
                 Destroy(gameObject);
                 return;
             }
-
             GameController.playerUpdater = this;
+        }
+
+        public void FixedUpdate()
+        {
+            //Debug.Log("Game controller's player updater: " + GameController.playerUpdater);
         }
 
         public void UpdatePhysicalGameObjectForPlayer(string scene, bool loadingPlayer)
