@@ -80,7 +80,7 @@ namespace ABOGGUS.Gameplay
 
         private void FixedUpdate()
         {
-            if (gameState == GameConstants.GameState.InGame)
+            if (!PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused)
             {
                 player._FixedUpdate();
             }

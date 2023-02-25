@@ -30,10 +30,12 @@ namespace ABOGGUS.Menus
 
         public static void ActivateGameOver()
         {
+            Debug.Log("Player died, game over man");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             isPaused = true;
             GameController.PauseGame();
+            //GameController.player.debug = false;
         }
 
         private void OpenGameOverMenu()
