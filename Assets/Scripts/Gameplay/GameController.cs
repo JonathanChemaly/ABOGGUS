@@ -57,7 +57,7 @@ namespace ABOGGUS.Gameplay
         // Update is called once per frame
         void Update()
         {
-            if (InventoryMenu.isPaused || PauseMenu.isPaused || ThirdPersonCameraController.isPaused)
+            /*if (InventoryMenu.isPaused || PauseMenu.isPaused || GameOverMenu.isPaused || ThirdPersonCameraController.isPaused)
             {
                 gameState = GameConstants.GameState.Paused;
             }
@@ -65,7 +65,17 @@ namespace ABOGGUS.Gameplay
             if (gameState == GameConstants.GameState.EndGame)
             {
 
-            }
+            }*/
+        }
+
+        public static void PauseGame()
+        {
+            gameState = GameConstants.GameState.Paused;
+        }
+
+        public static void ResumeGame()
+        {
+            gameState = GameConstants.GameState.InGame;
         }
 
         private void FixedUpdate()

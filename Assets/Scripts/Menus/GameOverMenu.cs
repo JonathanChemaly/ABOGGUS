@@ -13,25 +13,32 @@ namespace ABOGGUS.Menus
     public class GameOverMenu : MonoBehaviour
     {
         public GameObject gameOverMenu;
-        public static bool playerDied;
+        public static bool isPaused;
 
         // Start is called before the first frame update
         void Start()
         {
             gameOverMenu.SetActive(false);
-            playerDied = false;
+            isPaused = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (playerDied) gameOverMenu.SetActive(true);
-            //else this.ResumeGame();
+            if (isPaused) OpenGameOverMenu();
         }
 
         public static void ActivateGameOver()
         {
-            playerDied = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            isPaused = true;
+            GameController.PauseGame();
+        }
+
+        private void OpenGameOverMenu()
+        {
+            gameOverMenu.SetActive(true);
         }
 
         public void GoToLobby()

@@ -30,7 +30,7 @@ namespace ABOGGUS.Menus
 
         public static void Trigger()
         {
-            if (!InventoryMenu.isPaused)
+            if (!InventoryMenu.isPaused && !GameOverMenu.isPaused)
             {
                 isPaused = !isPaused;
             }
@@ -39,11 +39,13 @@ namespace ABOGGUS.Menus
         private void PauseGame()
         {
             pauseMenu.SetActive(true);
+            GameController.PauseGame();
         }
 
         public void ResumeGame()
         {
             pauseMenu.SetActive(false);
+            GameController.ResumeGame();
         }
 
         public void GoToMainMenu()
