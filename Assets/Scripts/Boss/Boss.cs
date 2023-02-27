@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     private Vector3 shockwavePlayerPos;
     public float speed;
     public BossHealthBar healthBar;
+    public AudioFade bossMusic;
 
     // Patrolling
     public Vector3 walkPoint;
@@ -103,6 +104,7 @@ public class Boss : MonoBehaviour
         if (health <= 0)
         {
             healthBar.OnDeath();
+            bossMusic.AudioFadeOut();
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }
