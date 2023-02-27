@@ -34,6 +34,7 @@ namespace ABOGGUS.Menus
             Cursor.visible = true;
             InventoryMenu.Trigger();
         }
+
         private void OnDisable()
         {
             pauseAction.Disable();

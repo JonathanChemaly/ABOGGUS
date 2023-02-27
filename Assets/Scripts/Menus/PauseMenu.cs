@@ -30,7 +30,7 @@ namespace ABOGGUS.Menus
 
         public static void Trigger()
         {
-            if (!InventoryMenu.isPaused)
+            if (!InventoryMenu.isPaused && !GameOverMenu.isPaused)
             {
                 isPaused = !isPaused;
             }
@@ -39,29 +39,23 @@ namespace ABOGGUS.Menus
         private void PauseGame()
         {
             pauseMenu.SetActive(true);
+            GameController.PauseGame();
         }
 
         public void ResumeGame()
         {
             pauseMenu.SetActive(false);
+            GameController.ResumeGame();
         }
 
         public void GoToMainMenu()
         {
-            //SaveProgress();     // Save scene before going to main menu
             GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
         {
-            //SaveProgress();
             GameController.QuitGame("Quit from pause menu.");
-        }
-
-        private void SaveProgress()
-        {
-            SaveGameManager.SaveProgressToFile(null, GameController.player, GameController.scene);
-
         }
     }
 }

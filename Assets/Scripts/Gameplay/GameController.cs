@@ -27,6 +27,7 @@ namespace ABOGGUS.Gameplay
 
         private static bool loadingPlayer = false;
 
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -35,15 +36,28 @@ namespace ABOGGUS.Gameplay
                 Destroy(gameObject);
                 return;
             }
-
             instance = this;
+
+            // get current scene name
+            scene = SceneManager.GetActiveScene().name;
+            //Debug.Log("Current game scene: " + scene);
+
+            // update game state
+            UpdateStateFromScene(scene);
+            //Debug.Log("Current state: " + gameState);
+
+            // update player stuff (play states only)
+            if (gameState == GameConstants.GameState.InGame) {
+                StartCoroutine(UpdatePlayerNotNull());
+            }
+
             DontDestroyOnLoad(gameObject);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (InventoryMenu.isPaused || PauseMenu.isPaused || ThirdPersonCameraController.isPaused)
+            /*if (InventoryMenu.isPaused || PauseMenu.isPaused || GameOverMenu.isPaused || ThirdPersonCameraController.isPaused)
             {
                 gameState = GameConstants.GameState.Paused;
             }
@@ -51,12 +65,22 @@ namespace ABOGGUS.Gameplay
             if (gameState == GameConstants.GameState.EndGame)
             {
 
-            }
+            }*/
+        }
+
+        public static void PauseGame()
+        {
+            gameState = GameConstants.GameState.Paused;
+        }
+
+        public static void ResumeGame()
+        {
+            gameState = GameConstants.GameState.InGame;
         }
 
         private void FixedUpdate()
         {
-            if (gameState == GameConstants.GameState.InGame)
+            if (!PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused)
             {
                 player._FixedUpdate();
             }
@@ -106,31 +130,57 @@ namespace ABOGGUS.Gameplay
                 case GameConstants.SCENE_MAINMENU:
                     ChangeState(GameConstants.GameState.StartMenu);
                     SaveGameManager.SaveProgressToFile(null, player, oldScene);
-                    //SaveGameManager.SaveScene(oldScene);
                     break;
                 case GameConstants.SCENE_CREDITS:
                     ChangeState(GameConstants.GameState.EndGame);
                     SaveGameManager.SaveProgressToFile(null, player, oldScene);
-                    //SaveGameManager.SaveScene(oldScene);
                     break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
                     {
                         ChangeState(GameConstants.GameState.InGame);
-                        //SaveGameManager.SaveProgressToFile(null, player, newScene);
                         SaveGameManager.SaveScene(newScene);    // Autosave: only save new scene if its in-game (play state)
                         SaveGameManager.SaveDataToFile(null);
                     }
                     break;
             }
 
+            UpdatePlayer();
+            loadingPlayer = false;
+        }
+
+        public static void UpdateStateFromScene(string scene)
+        {
+            switch (scene)
+            {
+                case GameConstants.SCENE_MAINMENU:
+                    ChangeState(GameConstants.GameState.StartMenu);
+                    break;
+                case GameConstants.SCENE_CREDITS:
+                    ChangeState(GameConstants.GameState.EndGame);
+                    break;
+                default:
+                    if (GameConstants.SCENES_INGAME.Contains(scene))
+                    {
+                        ChangeState(GameConstants.GameState.InGame);
+                    }
+                    break;
+            }
+        }
+
+        public static IEnumerator UpdatePlayerNotNull()
+        {
+            while (playerUpdater is null) yield return null;
+
+            UpdatePlayer();
+        }
+
+        public static void UpdatePlayer()
+        {
             if (gameState == GameConstants.GameState.InGame)
             {
                 playerUpdater.UpdatePhysicalGameObjectForPlayer(scene, loadingPlayer);
             }
-            loadingPlayer = false;
-
-            //SaveGameManager.SaveDataToFile(null);
         }
 
         public static void ChangeState(GameConstants.GameState gameState)

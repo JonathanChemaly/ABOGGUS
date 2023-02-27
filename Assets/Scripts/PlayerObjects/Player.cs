@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 using ABOGGUS.Input;
 using ABOGGUS.Gameplay;
+using ABOGGUS.Menus;
 using System;
 
 namespace ABOGGUS.PlayerObjects
@@ -30,11 +31,10 @@ namespace ABOGGUS.PlayerObjects
             if (debug || !exists)
             {
                 GameController.player = this;
-
+                playerController = this.transform.GetComponent<PlayerController>();
+                playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
-
                 exists = true;
-
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -76,7 +76,7 @@ namespace ABOGGUS.PlayerObjects
         public void SetGameObject(GameObject physicalGameObject)
         {
             this.physicalGameObject = physicalGameObject;
-            this.playerController.SetGameObject(physicalGameObject);
+            //this.playerController.SetGameObject(physicalGameObject);
             this.playerController.InitializePlayerState(physicalGameObject);
         }
 
@@ -86,11 +86,13 @@ namespace ABOGGUS.PlayerObjects
         }
         private void OnEnable()
         {
-            PlayerDied += GameController.Respawn;
+            //PlayerDied += GameController.Respawn;
+            PlayerDied += GameOverMenu.ActivateGameOver;
         }
         private void OnDisable()
         {
-            PlayerDied -= GameController.Respawn;
+            //PlayerDied -= GameController.Respawn;
+            PlayerDied -= GameOverMenu.ActivateGameOver;
         }
     }
 }

@@ -38,7 +38,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float rotY;
     Quaternion rotateCamera;
     Quaternion rotateTarget;
-    [SerializeField] CinemachineFreeLook freeLookCam;
+    CinemachineFreeLook freeLookCam;
 
     private float freeLookCamSpeed;
     // Start is called before the first frame update
@@ -47,6 +47,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         tpRotation = Quaternion.Euler(33.5f, 0, 0);
         fpRotation = Quaternion.Euler(1f, 0, 0);
         camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
+        freeLookCam = GameObject.FindGameObjectWithTag("FreeLook").GetComponent<CinemachineFreeLook>();
         freeLookCamSpeed = freeLookCam.m_XAxis.m_MaxSpeed;
     }
 
@@ -77,7 +78,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && thirdPerson)
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && thirdPerson)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
@@ -93,7 +94,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !thirdPerson)
+        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !thirdPerson)
         {
             Cursor.lockState = CursorLockMode.Locked;
             rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
@@ -116,7 +117,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        if (PauseMenu.isPaused || InventoryMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
+        if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
         else freeLookCam.m_XAxis.m_MaxSpeed = freeLookCamSpeed;
         Camera.main.fieldOfView = fov;
     }
