@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 using ABOGGUS.Input;
 using ABOGGUS.Gameplay;
+using ABOGGUS.Menus;
 using System;
 
 namespace ABOGGUS.PlayerObjects
@@ -85,11 +86,13 @@ namespace ABOGGUS.PlayerObjects
         }
         private void OnEnable()
         {
-            PlayerDied += GameController.Respawn;
+            //PlayerDied += GameController.Respawn;
+            PlayerDied += GameOverMenu.ActivateGameOver;
         }
         private void OnDisable()
         {
-            PlayerDied -= GameController.Respawn;
+            //PlayerDied -= GameController.Respawn;
+            PlayerDied -= GameOverMenu.ActivateGameOver;
         }
     }
 }
