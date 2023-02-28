@@ -19,6 +19,10 @@ namespace ABOGGUS.Interact
         [Tooltip("Whether You want the animation to play multiple times")]
         private bool playMultipleTimes = false;
 
+        [SerializeField]
+        [Tooltip("Whether You want to evoke the success actions associated with this after animation is done")]
+        private bool triggerSuccessOnFinishing = true;
+
         private bool playFoward = true;
         // Start is called before the first frame update
         private void Start()
@@ -42,7 +46,9 @@ namespace ABOGGUS.Interact
             {
                 yield return null;
             }
-            if(false)interact.enabled = true; //do not renable if we only want to play once
+            if (triggerSuccessOnFinishing) interact.DoSuccesAction();
+            if (playMultipleTimes)interact.enabled = true; //do not renable if we only want to play once
+            
         }
         
     }

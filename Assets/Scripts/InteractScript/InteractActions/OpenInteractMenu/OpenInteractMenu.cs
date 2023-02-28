@@ -45,7 +45,11 @@ namespace ABOGGUS.Interact
             InteractStatics.posToLoadAt = posToLoadInUI;
             InteractStatics.scaleToLoadAt = scaleToLoadInUI;
             SceneManager.LoadScene("Assets/Scenes/InteractableMenu.unity", LoadSceneMode.Additive);
+            //Temp Change for input
             inputM.InputScheme.Player.Disable();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            //Temp Change for input end
             canvas.enabled = false;
             StartCoroutine(CheckIfUnloaded());
         }
@@ -57,7 +61,11 @@ namespace ABOGGUS.Interact
         {
             //Get interactMenuScene
             Scene interactMenu = SceneManager.GetSceneByName("InteractableMenu");
-            
+            Debug.Log(Cursor.lockState);
+            Debug.Log(Cursor.visible);
+
+            //Temp Change for input end
+
             //Wait for menu to be loaded.
             while (!interactMenu.isLoaded)
             {
@@ -77,12 +85,15 @@ namespace ABOGGUS.Interact
             }
             InteractStatics.interactActionSuccess = false;
 
-            
+
 
             //when the menu is unloaded
+            //Temp Change for input
             inputM.InputScheme.Player.Enable(); //re-enable player movement
             canvas.enabled = true; //re-enable player movement
-
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            //Temp Change for input end
 
         }
     }
