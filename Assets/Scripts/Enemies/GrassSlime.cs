@@ -16,6 +16,8 @@ public class GrassSlime : MonoBehaviour
     [SerializeField] private AudioSource vineSound;
     private int damping = 2;
     private Transform target;
+    private bool attacking = false;
+    private float attackDelay = 1.0f;
 
     void Start()
     {
@@ -27,9 +29,11 @@ public class GrassSlime : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.transform.position) < 2.5f)
         {
+            attacking = true;
             if (timer == 1f)
             {
                 //use vine attack
+                VineAttack();
                 vineSound.Play();
             }
             inRange = false;
@@ -43,13 +47,14 @@ public class GrassSlime : MonoBehaviour
         else if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             inRange = true;
+            if (attacking) Invoke("AttackDelay", attackDelay);
         }
         else
         {
             inRange = false;
         }
 
-        if (inRange)
+        if (inRange && !attacking)
         {
             Vector3 lookPos = target.position - transform.position;
             lookPos.y = 0;
@@ -74,12 +79,13 @@ public class GrassSlime : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            // player take damage
 
-        }
+    private void AttackDelay()
+    {
+        attacking = false;
+    }
+    private void VineAttack()
+    {
+        var VineProjectile = Instantiate(vine, transform.position + transform.forward*1.5f, Quaternion.identity).GetComponent<Rigidbody>();
     }
 }

@@ -1167,7 +1167,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296092210}
-  m_LocalRotation: {x: -0.0007864191, y: 0.998904, z: -0.01822388, w: -0.04310592}
+  m_LocalRotation: {x: -0.00010174396, y: 0.9998181, z: -0.01824057, w: -0.0055768793}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2805,8 +2805,24 @@ PrefabInstance:
       value: GrassSlime
       objectReference: {fileID: 0}
     - target: {fileID: 1681943549269364611, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406665424054989005, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
+      propertyPath: vine
+      value: 
+      objectReference: {fileID: 6166122733863570538, guid: d5db381c77a53ae4fb2e2e124f524005, type: 3}
+    - target: {fileID: 5414357067109662237, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699583c5ba1b2294caef2cd171ce3313, type: 3}
@@ -2823,7 +2839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.818635
+      value: -2.0436068
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2831,23 +2847,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.9411516
+      value: -8.210187
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.043105915
+      value: -0.0055768755
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0007864185
+      value: -0.00010174391
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.998904
+      value: 0.9998181
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.01822388
+      value: -0.018240578
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3658,7 +3674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451789, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.93
+      value: -11.21
       objectReference: {fileID: 0}
     - target: {fileID: 6326273326907451789, guid: a4002837582f1c648a402990254be77a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3818,6 +3834,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414357067109662237, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
 --- !u!1 &1198687556
@@ -3889,7 +3921,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198687556}
-  m_LocalRotation: {x: 0.0013199875, y: 0.99860185, z: 0.030588375, w: -0.043092903}
+  m_LocalRotation: {x: 0.0001707744, y: 0.9995157, z: 0.030616367, w: -0.005575178}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3954,8 +3986,24 @@ PrefabInstance:
       value: FireSlime
       objectReference: {fileID: 0}
     - target: {fileID: 1681943549269364611, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569099163597934675, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
+      propertyPath: fireBallToShoot
+      value: 
+      objectReference: {fileID: 14507791419593305, guid: a8f71a6d685f04746ba2086e93cdd618, type: 3}
+    - target: {fileID: 5414357067109662237, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a47ee6b469f0977448c3fa2a9d8faa4f, type: 3}
@@ -5010,8 +5058,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606977873}
-  m_LocalRotation: {x: 0.00077988487, y: 0.99761814, z: -0.06801916, w: 0.011438355}
-  m_LocalPosition: {x: -0.32722306, y: 0, z: 0.010363579}
+  m_LocalRotation: {x: 0.0002521174, y: 0.99767685, z: -0.06802316, w: 0.0036977364}
+  m_LocalPosition: {x: -0.055704117, y: 0, z: 0.000104904175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6134,7 +6182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023517976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.818635, y: 3.1, z: -1.9411516}
+  m_LocalPosition: {x: -2.0436068, y: 3.1, z: -8.210187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6340,8 +6388,20 @@ PrefabInstance:
       value: WaterSlime
       objectReference: {fileID: 0}
     - target: {fileID: 1681943549269364611, guid: ed989a9653266fa4c99ac54f5c6bc399, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: ed989a9653266fa4c99ac54f5c6bc399, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681943549269364611, guid: ed989a9653266fa4c99ac54f5c6bc399, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414357067109662237, guid: ed989a9653266fa4c99ac54f5c6bc399, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed989a9653266fa4c99ac54f5c6bc399, type: 3}

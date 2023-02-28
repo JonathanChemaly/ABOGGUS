@@ -13,6 +13,8 @@ public class FireSlime : MonoBehaviour
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource fireballSound;
     [SerializeField] private GameObject fireBall;
+    [SerializeField] private GameObject fireBallToShoot;
+    private float fireBallSpeed = 25.0f;
 
     void Start()
     {
@@ -40,6 +42,7 @@ public class FireSlime : MonoBehaviour
             if (timer < 0)
             {
                 //shoot fireball
+                ShootFireball();
                 fireballSound.Play();
                 timer = 3f;
                 fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -65,12 +68,11 @@ public class FireSlime : MonoBehaviour
 
 
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
-            // player take damage
 
-        }
+    private void ShootFireball()
+    {
+        var fireBallProjectile = Instantiate(fireBallToShoot, transform.position + transform.forward * 2 + transform.up / 2, Quaternion.identity).GetComponent<Rigidbody>();
+        fireBallProjectile.GetComponent<Rigidbody>().velocity = transform.forward * fireBallSpeed;
     }
+
 }
