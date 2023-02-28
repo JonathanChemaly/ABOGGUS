@@ -11,7 +11,9 @@ namespace ABOGGUS.Interact
         void Start()
         {
             Debug.Log(InteractStatics.pathToLoad);
-            GameObject item = Instantiate(Resources.Load<GameObject>(InteractStatics.pathToLoad));
+            GameObject prefab = Resources.Load<GameObject>(InteractStatics.pathToLoad);
+            Debug.Log(prefab);
+            GameObject item = Instantiate(prefab);
             item.layer = 5; //set Layer to UI
 
             item.transform.parent = transform; //sets the created object so its parent is under this
