@@ -96,6 +96,7 @@ namespace ABOGGUS.PlayerObjects
         {
             return this.playerController.GetGameObject();
         }
+
         private void OnEnable()
         {
             //PlayerDied += GameController.Respawn;
