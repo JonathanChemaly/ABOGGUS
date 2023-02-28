@@ -22,6 +22,7 @@ namespace ABOGGUS.PlayerObjects
         public static Action PlayerDied;
 
         public PlayerInventory inventory;
+        public PlayerHUD playerHUD;
         public float invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
 
         private static bool exists = false;
@@ -34,9 +35,17 @@ namespace ABOGGUS.PlayerObjects
                 playerController = this.transform.GetComponent<PlayerController>();
                 playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
+                SetHUD();
                 exists = true;
                 DontDestroyOnLoad(gameObject);
             }
+        }
+
+        private void SetHUD()
+        {
+            GameObject hudObj = physicalGameObject.transform.Find("HUD").gameObject;
+            playerHUD = hudObj.GetComponent<PlayerHUD>();
+            playerHUD.playerInventory = this.inventory;
         }
 
         public void TakeDamage(float damage)
@@ -46,6 +55,8 @@ namespace ABOGGUS.PlayerObjects
                 inventory.TakeDamage(damage);
                 invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
             }
+
+            playerHUD.UpdateHealthBar();
         }
 
         IEnumerator ToCredits()

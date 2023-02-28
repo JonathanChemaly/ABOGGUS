@@ -45,16 +45,19 @@ namespace ABOGGUS.Menus
 
         public void GoToLobby()
         {
+            GameController.ResetPlayerHealth();
             GameController.Respawn();
         }
 
         public void GoToMainMenu()
         {
+            GameController.ResetPlayerHealth();
             GameController.ChangeScene("Going to main menu from game over menu.", GameConstants.SCENE_MAINMENU, true);
         }
 
         public void QuitGame()
         {
+            GameController.ResetPlayerHealth();
             GameController.QuitGame("Quit from game over menu.");
         }
     }
