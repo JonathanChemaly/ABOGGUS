@@ -32,6 +32,15 @@ public class RoomNode : MonoBehaviour
         this.roomType = roomType;
     }
 
+    public RoomNode()
+    {
+        northDoor = WALL;
+        southDoor = WALL;
+        eastDoor = WALL;
+        westDoor = WALL;
+        roomType = MAIN_ROOM;
+    }
+
     public int GetDoor(int dir)
     {
         switch(dir)
