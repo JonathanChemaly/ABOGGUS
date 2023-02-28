@@ -89,6 +89,7 @@ namespace ABOGGUS.PlayerObjects
             this.physicalGameObject = physicalGameObject;
             //this.playerController.SetGameObject(physicalGameObject);
             this.playerController.InitializePlayerState(physicalGameObject);
+            SetHUD();
         }
 
         public GameObject GetGameObject()
