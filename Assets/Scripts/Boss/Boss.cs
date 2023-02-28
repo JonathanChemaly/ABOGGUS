@@ -9,8 +9,11 @@ public class Boss : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
+    public float maxHealth;
     private Vector3 shockwavePlayerPos;
     public float speed;
+    public BossHealthBar healthBar;
+    public AudioFade bossMusic;
 
     // Patrolling
     public Vector3 walkPoint;
@@ -43,6 +46,7 @@ public class Boss : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         sparkCount = 0;
+        maxHealth = health;
     }
 
     /*private void Patrolling()
@@ -96,7 +100,13 @@ public class Boss : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        healthBar.UpdateHealthBar();
+        if (health <= 0)
+        {
+            healthBar.OnDeath();
+            bossMusic.AudioFadeOut();
+            Invoke(nameof(DestroyEnemy), 0.5f);
+        }
     }
 
     private void DestroyEnemy()
@@ -120,6 +130,11 @@ public class Boss : MonoBehaviour
             ShockWaveAttack();
             if (sparkCount < maxSparkCount && !sparkCreated) CreateSpark();
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) TakeDamage(20);
     }
 
     private void ShockWaveAttack()
