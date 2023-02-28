@@ -80,7 +80,7 @@ namespace ABOGGUS.Gameplay
 
         private void FixedUpdate()
         {
-            if (!PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused)
+            if (GameConstants.SCENES_INGAME.Contains(scene) && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused)
             {
                 player._FixedUpdate();
             }
@@ -99,8 +99,12 @@ namespace ABOGGUS.Gameplay
 
         public static void Respawn()
         {
-            player.inventory.health = player.inventory.maxHealth;
             GameController.ChangeScene("Player died go to hotel lobby", GameConstants.SCENE_MAINLOBBY, true);
+        }
+
+        public static void ResetPlayerHealth()
+        {
+            player.inventory.health = player.inventory.maxHealth;
         }
 
         public static void ChangeScene(string message, string newScene, bool loading)
