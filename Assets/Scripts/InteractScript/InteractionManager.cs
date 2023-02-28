@@ -96,6 +96,8 @@ namespace ABOGGUS.Interact
                     StartCoroutine(DisplayFailure());
                 }
                 
+                currentInteractable.DoAction();
+
             }
         }
 
