@@ -5,10 +5,9 @@ using UnityEngine;
 public class RoomNode : MonoBehaviour
 {
     public const int WALL = 0;
-    public const int UNLINKED_DOOR = 1;
+    public const int DOOR = 1;
     public const int VINE = 2;
     public const int ELEVATOR = 3;
-    public const int LINKED_DOOR = 4;
 
     public const int MAIN_ROOM = 0;
     public const int OPT_ROOM = 1;
