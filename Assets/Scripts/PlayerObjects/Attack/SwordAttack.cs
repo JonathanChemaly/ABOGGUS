@@ -8,6 +8,7 @@ namespace ABOGGUS.PlayerObjects
     {
         private int damage = 1;
         private float knockback = 0.2f;
+        private bool active = true;
 
         private void Awake()
         {
@@ -16,22 +17,22 @@ namespace ABOGGUS.PlayerObjects
 
         public void Unequip()
         {
-            gameObject.SetActive(false);
+            active = false;
         }
 
         public void Equip()
         {
-            gameObject.SetActive(true);
+            active = true;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag.Equals("Enemy")) MoveObject(other.GetComponent<Rigidbody>(), true);
+            if (active && other.transform.CompareTag("Enemy")) MoveObject(other.GetComponent<Rigidbody>(), true);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.tag.Equals("Enemy")) MoveObject(collision.rigidbody, true);
+            if (active && collision.transform.CompareTag("Enemy")) MoveObject(collision.rigidbody, true);
         }
 
         private void MoveObject(Rigidbody rb, bool enemy)
@@ -41,6 +42,11 @@ namespace ABOGGUS.PlayerObjects
                 rb.GetComponent<Boss>().TakeDamage(damage);
             }
             rb.MovePosition(rb.position + transform.root.forward * knockback);
+        }
+
+        private void FixedUpdate()
+        {
+            gameObject.GetComponent<Renderer>().enabled = active;
         }
     }
 }

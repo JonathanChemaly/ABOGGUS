@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3816240401072873947}
   - component: {fileID: 7478942996197186850}
   - component: {fileID: 1792662018535097025}
-  - component: {fileID: 8690183382286673722}
   m_Layer: 0
   m_Name: Grimoire
   m_TagString: Untagged
@@ -97,48 +96,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f49a8214c29db4793d4ca34d116cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8690183382286673722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9220659589218347518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
-          m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
-          m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  windAttackPrefab: {fileID: 901498047228852221, guid: f763287a20f9f8b4b897a72aac7798d3, type: 3}
+  windAOEPrefab: {fileID: 1537662096674581619, guid: 35b34ee798a104a4395bd86c6d66f986, type: 3}

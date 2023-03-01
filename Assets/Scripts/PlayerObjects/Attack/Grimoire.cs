@@ -6,6 +6,9 @@ namespace ABOGGUS.PlayerObjects
 {
     public class Grimoire : MonoBehaviour
     {
+        private bool active;
+        public GameObject windAttackPrefab;
+        public GameObject windAOEPrefab;
 
         private void Awake()
         {
@@ -14,14 +17,18 @@ namespace ABOGGUS.PlayerObjects
 
         public void Unequip()
         {
-            gameObject.SetActive(false);
+            active = false;
         }
 
         public void Equip()
         {
-            gameObject.SetActive(true);
+            active = true;
         }
 
+        private void FixedUpdate()
+        {
+            gameObject.GetComponent<Renderer>().enabled = active;
+        }
         //Add method for changing the elemental glow of the grimoire
     }
 }

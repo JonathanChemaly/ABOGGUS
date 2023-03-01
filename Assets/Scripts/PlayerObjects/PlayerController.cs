@@ -13,8 +13,8 @@ namespace ABOGGUS.PlayerObjects
     {
         private GameObject physicalGameObject;
         //Change to event triggers later
-        private GameObject grimoire;
-        private GameObject sword;
+        private Grimoire grimoire;
+        private SwordAttack sword;
         private InputAction moveAction;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
@@ -36,8 +36,6 @@ namespace ABOGGUS.PlayerObjects
         private bool transitioning = false;
         private PlayerConstants.Magic castType = PlayerConstants.Magic.Wind;
         private PlayerConstants.Weapon weaponEquipped = PlayerConstants.Weapon.Sword;
-        public GameObject windAttackPrefab;
-        public GameObject windAOEPrefab;
 
         private IPlayerState playerState;
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
@@ -109,12 +107,12 @@ namespace ABOGGUS.PlayerObjects
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
                 PlayerAnimationStateController.StartDequipSwordAnimation();
-                sword.SetActive(false);
+                sword.Unequip();
             }
             else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
             {
                 PlayerAnimationStateController.StartDequipGrimoireAnimation();
-                grimoire.SetActive(false);
+                grimoire.Unequip();
             }
             weaponEquipped = PlayerConstants.Weapon.Unarmed;
             PlayerAnimationStateController.SetArmedStatus(false);
@@ -126,12 +124,12 @@ namespace ABOGGUS.PlayerObjects
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
                 PlayerAnimationStateController.StartDequipSwordAnimation();
-                sword.SetActive(false);
+                sword.Unequip();
             }
             PlayerAnimationStateController.StartEquipGrimoireAnimation();
             weaponEquipped = PlayerConstants.Weapon.Grimoire;
             PlayerAnimationStateController.SetArmedStatus(true);
-            grimoire.SetActive(true);
+            grimoire.Equip();
             transitioning = true;
         }
 
@@ -140,12 +138,12 @@ namespace ABOGGUS.PlayerObjects
             if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
             {
                 PlayerAnimationStateController.StartDequipGrimoireAnimation();
-                grimoire.SetActive(false);
+                grimoire.Unequip();
             }
             PlayerAnimationStateController.StartEquipSwordAnimation();
             weaponEquipped = PlayerConstants.Weapon.Sword;
             PlayerAnimationStateController.SetArmedStatus(true);
-            sword.SetActive(true);
+            sword.Equip();
             transitioning = true;
         }
 
@@ -234,15 +232,8 @@ namespace ABOGGUS.PlayerObjects
         {
             if (physicalGameObject != null)
             {
-                if (grimoire == null)
-                {
-                    grimoire = GameObject.FindGameObjectWithTag("Grimoire");
-                    grimoire.SetActive(false);
-                }
-                if (sword == null)
-                {
-                    sword = GameObject.FindGameObjectWithTag("Grimoire");
-                }
+                grimoire = physicalGameObject.GetComponentInChildren<Grimoire>();
+                sword = physicalGameObject.GetComponentInChildren<SwordAttack>();
                 MovementHandler(moveAction);
 
                 //Check if jumping and in what stage
@@ -419,9 +410,9 @@ namespace ABOGGUS.PlayerObjects
         public void CastMagic(PlayerConstants.Magic castType, bool aoe)
         {
             if (castType == PlayerConstants.Magic.Wind && aoe)
-                playerState.CastMagic(windAOEPrefab, aoe, castType);
+                playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Wind && !aoe)
-                playerState.CastMagic(windAttackPrefab, aoe, castType);
+                playerState.CastMagic(grimoire.windAttackPrefab, aoe, castType);
         }
 
     }
