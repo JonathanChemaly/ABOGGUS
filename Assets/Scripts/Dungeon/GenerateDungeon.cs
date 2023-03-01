@@ -6,7 +6,9 @@ public class GenerateDungeon : MonoBehaviour
 {
     public GameObject[] mainRooms;
     public GameObject[] optionalRooms;
-    public int numOfRooms;
+    public int height = 5;
+    public int width = 5;
+    public int loops = 2;
 
     private RoomNode[,] RoomArr;
     private List<(int, int)> traversed;
@@ -17,16 +19,14 @@ public class GenerateDungeon : MonoBehaviour
         traversed = new List<(int, int)>();
         nonTraversed = new List<(int, int)>();
         RoomArr = GenerateFloor();
+        CreateLoops();
         BuildFloor();
+        
     }
 
     private RoomNode[,] GenerateFloor()
     {
-        RoomArr = new RoomNode[5, 5];
-        foreach ((int, int) neighbor in GetNeighbors(4, 4))
-        {
-            Debug.Log(neighbor);
-        }
+        RoomArr = new RoomNode[width, height];
         for (int i = 0; i < RoomArr.GetLength(0); i++)
         {
             for (int j = 0; j < RoomArr.GetLength(1); j++)
@@ -38,9 +38,9 @@ public class GenerateDungeon : MonoBehaviour
 
         
         RoomNode startRoom = new RoomNode(RoomNode.WALL, RoomNode.DOOR, RoomNode.WALL, RoomNode.WALL, RoomNode.MAIN_ROOM);
-        RoomArr[2, 0] = startRoom;
-        nonTraversed.Remove((2, 0));
-        traversed.Add((2, 0));
+        RoomArr[width/2, 0] = startRoom;
+        nonTraversed.Remove((width/2, 0));
+        traversed.Add((width/2, 0));
 
         // Maze Generation Algo (Prim's)
         while(nonTraversed.Count > 0)
@@ -148,7 +148,42 @@ public class GenerateDungeon : MonoBehaviour
         if (y > 0) yield return (x, y-1);
         if (y < RoomArr.GetLength(1) - 1) yield return (x, y + 1);
     }
+    IEnumerable GetNonConnectedNeightbors(int x, int y)
+    {
+        if (x > 0 && RoomArr[x, y].GetDoor(RoomNode.WEST) == RoomNode.WALL) yield return (x - 1, y);
+        if (x < RoomArr.GetLength(0) - 1 && RoomArr[x, y].GetDoor(RoomNode.EAST) == RoomNode.WALL) yield return (x + 1, y);
+        if (y > 0 && RoomArr[x, y].GetDoor(RoomNode.SOUTH) == RoomNode.WALL) yield return (x, y - 1);
+        if (y < RoomArr.GetLength(1) - 1 && RoomArr[x, y].GetDoor(RoomNode.NORTH) == RoomNode.WALL) yield return (x, y + 1);
+    }
 
+    private void CreateLoops()
+    {
+        
+        for(int i = 0; i < loops; i++)
+        {
+            bool loopCreated = false;
+            while (!loopCreated)
+            {
+                int x = Random.Range(0, RoomArr.GetLength(0));
+                int y = Random.Range(0, RoomArr.GetLength(1));
+                RoomNode room = RoomArr[x, y];
+
+                List<(int, int)> neighborList = new List<(int, int)>();
+                foreach ((int, int) neighbor in GetNonConnectedNeightbors(x, y))
+                {
+                    neighborList.Add(neighbor);
+                }
+                if(neighborList.Count > 0)
+                {
+                    int wallNum = Random.Range(0, neighborList.Count);
+                    ConnectRooms((x, y), neighborList[wallNum]);
+                    Debug.Log("Connected " + (x, y) + neighborList[wallNum]);
+                    loopCreated = true;
+                }
+            }
+
+        }
+    }
 
     
 

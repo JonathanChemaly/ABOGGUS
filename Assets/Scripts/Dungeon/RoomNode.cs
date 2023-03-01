@@ -83,4 +83,12 @@ public class RoomNode : MonoBehaviour
     {
         return roomType;
     }
+
+    public IEnumerable GetWalls()
+    {
+        for(int i = 0; i < 4; i ++)
+        {
+            if (GetDoor(i) == WALL) yield return i;
+        }
+    }
 }

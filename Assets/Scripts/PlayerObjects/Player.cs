@@ -32,6 +32,13 @@ namespace ABOGGUS.PlayerObjects
             {
                 GameController.player = this;
                 playerController = this.transform.GetComponent<PlayerController>();
+
+                if (debug)
+                {
+                    GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
+                    SetGameObject(physicalGameObject);
+                }
+
                 playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
                 exists = true;
