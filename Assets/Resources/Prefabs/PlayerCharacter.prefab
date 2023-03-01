@@ -1150,6 +1150,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 2
+--- !u!114 &6326273326907451825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326273326907451824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a3f762c53add4f9b2e5a8b4add1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physicalGameObject: {fileID: 0}
+  playerController: {fileID: 0}
+  gameOverText: {fileID: 0}
+  debug: 0
+  playerHUD: {fileID: 0}
+  invulnerabilityFrames: 100
 --- !u!65 &6326273326907451786
 BoxCollider:
   m_ObjectHideFlags: 0
