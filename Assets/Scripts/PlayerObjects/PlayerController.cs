@@ -12,20 +12,30 @@ namespace ABOGGUS.PlayerObjects
     public class PlayerController : MonoBehaviour
     {
         private GameObject physicalGameObject;
+        //Change to event triggers later
+        private Grimoire grimoire;
+        private SwordAttack sword;
         private InputAction moveAction;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
-        public float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;
-        public float totalJumpTime = PlayerConstants.JUMP_TIME_DEFAULT;
-        public float dodgeLength = PlayerConstants.DODGE_LENGTH_DEFAULT;
-        public float totalDodgeTime = PlayerConstants.DODGE_TIME_DEFAULT;
+        private float jumpHeight = PlayerConstants.JUMP_HEIGHT_DEFAULT;
+        private float totalJumpTime = PlayerConstants.JUMP_TIME_DEFAULT;
+        private float dodgeLength = PlayerConstants.DODGE_LENGTH_DEFAULT;
+        private float totalDodgeTime = PlayerConstants.DODGE_TIME_DEFAULT;
         private float cumulativeJumpTime = PlayerConstants.JUMP_TIME_CUMULATIVE_DEFAULT;
         private float cumulativeDodgeTime = PlayerConstants.DODGE_TIME_CUMULATIVE_DEFAULT;
         private Vector3 target;
         private bool jumping = false;
         private bool dodging = false;
+        private bool attacking = false;
+        private bool sprinting = false;
         private int count = 0;
         private bool crouching = false;
+        private bool casting = false;
+        private bool aoe = false;
+        private bool transitioning = false;
+        private PlayerConstants.Magic castType = PlayerConstants.Magic.Wind;
+        private PlayerConstants.Weapon weaponEquipped = PlayerConstants.Weapon.Sword;
 
         private IPlayerState playerState;
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
@@ -54,6 +64,27 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.Sprint.performed += DoSprint;
             playerActions.Player.Sprint.canceled += StopSprint;
             playerActions.Player.Sprint.Enable();
+
+            playerActions.Player.Attack.performed += DoAttack;
+            playerActions.Player.Attack.canceled += StopAttack;
+            playerActions.Player.Attack.Enable();
+
+            playerActions.Player.Cast.performed += DoCast;
+            playerActions.Player.Cast.Enable();
+
+            playerActions.Player.CastAOE.performed += DoCastAOE;
+            playerActions.Player.CastAOE.Enable();
+
+            playerActions.Player.EquipSword.performed += DoEquipSword;
+            playerActions.Player.EquipSword.Enable();
+
+            playerActions.Player.EquipGrimoire.performed += DoEquipGrimoire;
+            playerActions.Player.EquipGrimoire.Enable();
+
+            playerActions.Player.Dequip.performed += DoDequip;
+            playerActions.Player.Dequip.Enable();
+
+            PlayerAnimationStateController.SetArmedStatus(true);
         }
 
         public void InitializePlayerState(GameObject physicalGameObject)
@@ -71,14 +102,94 @@ namespace ABOGGUS.PlayerObjects
             return this.physicalGameObject;
         }
 
+        private void DoDequip(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+            {
+                PlayerAnimationStateController.StartDequipSwordAnimation();
+                sword.Unequip();
+            }
+            else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
+            {
+                PlayerAnimationStateController.StartDequipGrimoireAnimation();
+                grimoire.Unequip();
+            }
+            weaponEquipped = PlayerConstants.Weapon.Unarmed;
+            PlayerAnimationStateController.SetArmedStatus(false);
+            transitioning = true;
+        }
+
+        private void DoEquipGrimoire(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+            {
+                PlayerAnimationStateController.StartDequipSwordAnimation();
+                sword.Unequip();
+            }
+            PlayerAnimationStateController.StartEquipGrimoireAnimation();
+            weaponEquipped = PlayerConstants.Weapon.Grimoire;
+            PlayerAnimationStateController.SetArmedStatus(true);
+            grimoire.Equip();
+            transitioning = true;
+        }
+
+        private void DoEquipSword(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
+            {
+                PlayerAnimationStateController.StartDequipGrimoireAnimation();
+                grimoire.Unequip();
+            }
+            PlayerAnimationStateController.StartEquipSwordAnimation();
+            weaponEquipped = PlayerConstants.Weapon.Sword;
+            PlayerAnimationStateController.SetArmedStatus(true);
+            sword.Equip();
+            transitioning = true;
+        }
+
+        private void DoCast(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && !casting)
+            {
+                casting = true;
+                aoe = false;
+            }
+        }
+
+        private void DoCastAOE(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging)
+            {
+                casting = true;
+                aoe = true;
+            }
+        }
+
+        private void StopAttack(InputAction.CallbackContext obj)
+        {
+            attacking = false;
+        }
+
+        private void DoAttack(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Sword && !dodging)
+            {
+                attacking = true;
+            }
+        }
+
         private void StopSprint(InputAction.CallbackContext obj)
         {
             speed /= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
+            PlayerAnimationStateController.StopSprintAnimation();
+            sprinting = false;
         }
 
         private void DoSprint(InputAction.CallbackContext obj)
         {
             speed *= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
+            PlayerAnimationStateController.StartSprintAnimation();
+            sprinting = true;
         }
 
         private void DoCrouch(InputAction.CallbackContext obj)
@@ -90,7 +201,7 @@ namespace ABOGGUS.PlayerObjects
             }
             else
             {
-                PlayerAnimationStateController.StopCrouchAnimation();
+                PlayerAnimationStateController.StartIdleAnimation();
             }
         }
 
@@ -121,7 +232,11 @@ namespace ABOGGUS.PlayerObjects
         {
             if (physicalGameObject != null)
             {
+                grimoire = physicalGameObject.GetComponentInChildren<Grimoire>();
+                sword = physicalGameObject.GetComponentInChildren<SwordAttack>();
                 MovementHandler(moveAction);
+
+                //Check if jumping and in what stage
                 if (jumping && Time.fixedDeltaTime + cumulativeJumpTime < (totalJumpTime / 2))
                 {
                     Debug.Log("Jump time: " + Time.fixedDeltaTime);
@@ -133,31 +248,66 @@ namespace ABOGGUS.PlayerObjects
                 {
                     Debug.Log("End jump time: " + Time.fixedDeltaTime);
                     cumulativeJumpTime += Time.fixedDeltaTime;
-                    PlayerAnimationStateController.StopJumpAnimation();
                 }
-                else
+                else if (jumping)
                 {
                     cumulativeJumpTime = 0;
                     jumping = false;
                 }
 
-                if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+                //Check if dodging and in what stage
+                if (dodging)
                 {
-                    Debug.Log("Dodge time: " + Time.fixedDeltaTime);
-                    cumulativeDodgeTime += Time.fixedDeltaTime;
-                    Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
-                    physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                    if (Time.fixedDeltaTime + cumulativeDodgeTime < (totalDodgeTime / 2))
+                    {
+                        Debug.Log("Dodge time: " + Time.fixedDeltaTime);
+                        cumulativeDodgeTime += Time.fixedDeltaTime;
+                        Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * speed;
+                        physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, dodgeLength * cumulativeDodgeTime);
+                    }
+                    else if (Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+                    {
+                        Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
+                        cumulativeDodgeTime += Time.fixedDeltaTime;
+                    }
+                    else
+                    {
+                        cumulativeDodgeTime = 0;
+                        dodging = false;
+                    }
                 }
-                else if (dodging && Time.fixedDeltaTime + cumulativeDodgeTime < totalDodgeTime)
+
+                if (attacking)
                 {
-                    Debug.Log("End Dodge time: " + Time.fixedDeltaTime);
-                    cumulativeDodgeTime += Time.fixedDeltaTime;
-                    PlayerAnimationStateController.StopDodgeAnimation();
+                    //Jump attack
+                    if (jumping)
+                    {
+                        PlayerAnimationStateController.StartJumpAttackAnimation();
+                    }
+                    //Run Attack
+                    else if (sprinting)
+                    {
+                        PlayerAnimationStateController.StartRunAttackAnimation();
+                    }
+                    //Normal Attack Sequence
+                    else
+                    {
+                        PlayerAnimationStateController.StartAttackAnimation();
+                    }
                 }
-                else
+
+
+                if (casting)
                 {
-                    cumulativeDodgeTime = 0;
-                    dodging = false;
+                    PlayerAnimationStateController.StartMagicAttackAnimation(castType, aoe);
+                    CastMagic(castType, aoe);
+                    casting = false;
+                }
+
+                //If not making any action then become idle
+                if (!jumping && !dodging && !attacking && !casting && !crouching && moveAction.ReadValue<Vector2>().magnitude == 0)
+                {
+                    PlayerAnimationStateController.StartIdleAnimation();
                 }
             }
         }
@@ -210,6 +360,7 @@ namespace ABOGGUS.PlayerObjects
             if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
             {
                 playerState.Move();
+                PlayerAnimationStateController.StartMoveAnimation();
             }
             //Otherwise if the facing direction is not the same then change to new state
             else if (!currentFacingDirection.Equals(facingDirection))
@@ -217,6 +368,7 @@ namespace ABOGGUS.PlayerObjects
                 SetFacingState(currentFacingDirection);
             }
         }
+
         //Set player state to new facing direction state
         private void SetFacingState(FacingDirection newFacingDirection)
         {
@@ -253,6 +405,14 @@ namespace ABOGGUS.PlayerObjects
                 playerState = new PlayerFacingBackLeft(this);
             }
             facingDirection = newFacingDirection;
+        }
+
+        public void CastMagic(PlayerConstants.Magic castType, bool aoe)
+        {
+            if (castType == PlayerConstants.Magic.Wind && aoe)
+                playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
+            else if (castType == PlayerConstants.Magic.Wind && !aoe)
+                playerState.CastMagic(grimoire.windAttackPrefab, aoe, castType);
         }
 
     }

@@ -2,133 +2,285 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationStateController : MonoBehaviour
+namespace ABOGGUS.PlayerObjects
 {
-    static Animator animator;
-    private bool isMovingForward, isMovingBackward, isMovingLeft, isMovingRight, isMoving, isSprinting, isAttacking;
-    private int isForwardHash, isSprintingHash, isBackwardHash, isLeftHash, isRightHash, isAttackingHash;
-    public static bool startJump;
-    public static bool startDodge;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerAnimationStateController : MonoBehaviour
     {
-        animator = GetComponent<Animator>();
-        animator.fireEvents = false;
-        isForwardHash = Animator.StringToHash("isForward");
-        //isBackwardHash = Animator.StringToHash("isBackward");
-        //isLeftHash = Animator.StringToHash("isLeft");
-        //isRightHash = Animator.StringToHash("isRight");
-        isSprintingHash = Animator.StringToHash("isSprinting");
-        isAttackingHash = Animator.StringToHash("isAttacking");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        isMovingForward = animator.GetBool(isForwardHash);
-        //isMovingBackward = animator.GetBool(isBackwardHash);
-        //isMovingLeft = animator.GetBool(isLeftHash);
-        //isMovingRight = animator.GetBool(isRightHash);
-        isSprinting = animator.GetBool(isSprintingHash);
-        isAttacking = animator.GetBool(isAttackingHash);
-        isMoving = isMovingForward; //|| isMovingBackward || isMovingLeft || isMovingRight;
-        bool forwardPressed = Input.GetKey(KeyCode.W);
-        bool backwardPressed = Input.GetKey(KeyCode.S);
-        bool leftPressed = Input.GetKey(KeyCode.A);
-        bool rightPressed = Input.GetKey(KeyCode.D);
-        bool movePressed = forwardPressed || backwardPressed || leftPressed || rightPressed;
-        bool sprintPressed = Input.GetKey(KeyCode.LeftShift);
-        bool attackPressed = Input.GetKey(KeyCode.F);
-
-        if (!isMoving && movePressed)
+        static Animator animator;
+        private static int idleHash, moveHash, sprintHash, crouchHash, jumpHash, dodgeHash, attackHash, magicAttackHash, airAOEHash, equipGrimoireHash, dequipGrimoireHash, equipSwordHash, dequipSwordHash;
+        private static int aIdleHash, aMoveHash, aLandHash, aCrouchHash, aJumpHash, aDodgeHash, jumpAttackHash, runAttackHash;
+        private static int currentState = idleHash;
+        private static string[] attackAnims = { "Sword-Attack-L1", "Sword-Attack-L2", "Sword-Attack-L3", "Sword-Attack-L4", "Sword-Attack-L5", "Sword-Attack-L6" };
+        private static int attackIdx;
+        private static bool animationToFinish, isSprinting, armed;
+        // Start is called before the first frame update
+        void Start()
         {
-            animator.SetBool("isForward", true);
+            animator = GetComponent<Animator>();
+            animator.fireEvents = false;
+            idleHash = Animator.StringToHash("Unarmed-Idle");
+            aIdleHash = Animator.StringToHash("Armed-Idle");
+            moveHash = Animator.StringToHash("Unarmed-Run-Forward");
+            aMoveHash = Animator.StringToHash("Armed-Run-Forward");
+            sprintHash = Animator.StringToHash("Unarmed-Sprint");
+            crouchHash = Animator.StringToHash("Unarmed-Idle-Crouch");
+            aCrouchHash = Animator.StringToHash("Armed-Idle-Crouch");
+            jumpHash = Animator.StringToHash("Unarmed-Jump");
+            aJumpHash = Animator.StringToHash("Armed-Jump");
+            dodgeHash = Animator.StringToHash("Unarmed-DiveRoll-Forward1");
+            aDodgeHash = Animator.StringToHash("Armed-DiveRoll-Forward1");
+            attackHash = Animator.StringToHash("Sword-Attack-L1");
+            magicAttackHash = Animator.StringToHash("Staff-Cast-Attack3_start");
+            airAOEHash = Animator.StringToHash("Staff-Cast-L-Summon1_start");
+            equipGrimoireHash = Animator.StringToHash("Armed-WeaponSwitch-R-Hips");
+            dequipGrimoireHash = Animator.StringToHash("Armed-Sheath-R-Hips-Unarmed");
+            equipSwordHash = Animator.StringToHash("Armed-WeaponSwitch-L-Back");
+            dequipSwordHash = Animator.StringToHash("Armed-Sheath-L-Back-Unarmed");
+            jumpAttackHash = Animator.StringToHash("Armed-Air-Attack-L1");
+            runAttackHash = Animator.StringToHash("Armed-Run-Attack-L1");
+            attackIdx = 0;
         }
 
-        if (isMoving && !movePressed)
+        public static void SetArmedStatus(bool a)
         {
-            animator.SetBool("isForward", false);
-        }
-        /*
-        if (!isMovingBackward && backwardPressed)
-        {
-            animator.SetBool("isBackward", true);
+            armed = a;
         }
 
-        if (isMovingBackward && !backwardPressed)
+        public static void StartIdleAnimation()
         {
-            animator.SetBool("isBackward", false);
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                if (armed)
+                {
+                    animator.Play(aIdleHash);
+                    currentState = aIdleHash;
+                }
+                else
+                {
+                    animator.Play(idleHash);
+                    currentState = idleHash;
+                }
+                animationToFinish = false;
+            }
         }
 
-        if (!isMovingLeft && leftPressed)
+        public static void StartMoveAnimation()
         {
-            animator.SetBool("isLeft", true);
+            if (!isSprinting && (!animationToFinish || CheckIfAnimationIsOver()))
+            {
+                if (armed)
+                {
+                    animator.Play(aMoveHash);
+                    currentState = aMoveHash;
+                }
+                else
+                {
+                    animator.Play(moveHash);
+                    currentState = moveHash;
+                }
+                animationToFinish = false;
+            }
+            else if (isSprinting)
+            {
+                StartSprintAnimation();
+            }
         }
 
-        if (isMovingLeft && !leftPressed)
+        public static void StartSprintAnimation()
         {
-            animator.SetBool("isLeft", false);
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(sprintHash);
+                animationToFinish = false;
+                isSprinting = true;
+                currentState = sprintHash;
+            }
         }
 
-        if (!isMovingRight && rightPressed)
+        public static void StopSprintAnimation()
         {
-            animator.SetBool("isRight", true);
+            isSprinting = false;
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                currentState = moveHash;
+                animationToFinish = false;
+                animator.Play(moveHash);
+            }
         }
 
-        if (isMovingRight && !rightPressed)
+        public static void StartAttackAnimation()
         {
-            animator.SetBool("isRight", false);
-        }
-        */
-
-        if (!isSprinting && (isMoving && sprintPressed))
-        {
-            animator.SetBool("isSprinting", true);
-        }
-
-        if (isSprinting && (!isMoving || !sprintPressed))
-        {
-            animator.SetBool("isSprinting", false);
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(attackAnims[SwitchAttackAnimation()]);
+                animationToFinish = true;
+                currentState = attackHash;
+            }
         }
 
-        if (!startJump && !isAttacking && attackPressed)
+        public static void StartCrouchAnimation()
         {
-            animator.SetBool("isAttacking", true);
+
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                if (armed)
+                {
+                    animator.Play(aCrouchHash);
+                    currentState = aCrouchHash;
+                }
+                else
+                {
+                    animator.Play(crouchHash);
+                    currentState = crouchHash;
+                }
+                animationToFinish = true;
+            }
         }
 
-        if (isAttacking && !attackPressed)
+        public static void StartJumpAnimation()
         {
-            animator.SetBool("isAttacking", false);
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                if (armed)
+                {
+                    animator.Play(aJumpHash);
+                    currentState = aJumpHash;
+                }
+                else
+                {
+                    animator.Play(jumpHash);
+                    currentState = jumpHash;
+                }
+                animationToFinish = true;
+            }
         }
-    }
 
-    public static void StartJumpAnimation()
-    {
-        animator.SetBool("isJumping", true);
-    }
+        public static void StartDodgeAnimation()
+        {
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                if (armed)
+                {
+                    animator.Play(aDodgeHash);
+                    currentState = aDodgeHash;
+                }
+                else
+                {
+                    animator.Play(dodgeHash);
+                    currentState = dodgeHash;
+                }
+                animationToFinish = true;
+            }
+        }
 
-    public static void StopJumpAnimation()
-    {
-        animator.SetBool("isJumping", false);
-    }
+        public static void StartMagicAttackAnimation(PlayerConstants.Magic castType, bool aoe)
+        {
+            if ((!animationToFinish || CheckIfAnimationIsOver()) && !aoe)
+            {
+                animator.Play(magicAttackHash);
+                currentState = magicAttackHash;
+            }
+            else if ((!animationToFinish || CheckIfAnimationIsOver()) && aoe && castType == PlayerConstants.Magic.Wind)
+            {
+                animator.Play(airAOEHash);
+                currentState = airAOEHash;
+            }
+            animationToFinish = true;
+        }
 
-    public static void StartDodgeAnimation()
-    {
-        animator.SetBool("isDodging", true);
-    }
+        public static void StartEquipGrimoireAnimation()
+        {
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(equipGrimoireHash);
+                animationToFinish = true;
+                currentState = equipGrimoireHash;
+            }
+            else if (currentState == dequipSwordHash)
+            {
+                animator.CrossFade(equipGrimoireHash, 1f, 0);
+                animationToFinish = true;
+                currentState = equipGrimoireHash;
+            }
+        }
 
-    public static void StopDodgeAnimation()
-    {
-        animator.SetBool("isDodging", false);
-    }
+        public static void StartDequipGrimoireAnimation()
+        {
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(dequipGrimoireHash);
+                animationToFinish = true;
+                currentState = dequipGrimoireHash;
+            }
+        }
 
-    public static void StartCrouchAnimation()
-    {
-        animator.SetBool("isCrouching", true);
-    }
+        public static void StartEquipSwordAnimation()
+        {
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(equipSwordHash);
+                animationToFinish = true;
+                currentState = equipSwordHash;
+            }
+            else if (currentState == dequipGrimoireHash)
+            {
+                animator.CrossFade(equipSwordHash, 1f, 0);
+                animationToFinish = true;
+                currentState = equipSwordHash;
+            }
+        }
 
-    public static void StopCrouchAnimation()
-    {
-        animator.SetBool("isCrouching", false);
+        public static void StartDequipSwordAnimation()
+        {
+            if (!animationToFinish || CheckIfAnimationIsOver())
+            {
+                animator.Play(dequipSwordHash);
+                animationToFinish = true;
+                currentState = dequipSwordHash;
+            }
+        }
+
+        public static void StartJumpAttackAnimation()
+        {
+            animator.Play(jumpAttackHash);
+            animationToFinish = true;
+            currentState = jumpAttackHash;
+        }
+
+        public static void StartRunAttackAnimation()
+        {
+            animator.Play(runAttackHash);
+            animationToFinish = true;
+            currentState = runAttackHash;
+        }
+
+        public static void StopAnimation()
+        {
+            animator.StopPlayback();
+            animationToFinish = false;
+            currentState = idleHash;
+        }
+
+
+        private static bool CheckIfAnimationIsOver()
+        {
+            animationToFinish = false;
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f)
+            {
+                animationToFinish = true;
+            }
+            return !animationToFinish;
+        }
+
+        private static int SwitchAttackAnimation()
+        {
+            if (!(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f))
+            {
+                attackIdx++;
+                if (attackIdx >= attackAnims.Length)
+                    attackIdx = 0;
+            }
+            return attackIdx;
+        }
     }
 }
