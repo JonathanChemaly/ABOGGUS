@@ -8,6 +8,15 @@ public class FreeLook : MonoBehaviour
     // Start is called before the first frame update
     private Transform follow;
     private Transform lookAt;
+    private static bool exists = false;
+    private void Awake()
+    {
+        if (!exists)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        exists = true;
+    }
     void Start()
     {
         follow = GameObject.Find("Player").transform;

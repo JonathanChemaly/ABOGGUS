@@ -182,13 +182,13 @@ namespace ABOGGUS.PlayerObjects
 
         private void StopSprint(InputAction.CallbackContext obj)
         {
-            speed /= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
+            speed = PlayerConstants.SPEED_DEFAULT;
             sprinting = false;
         }
 
         private void DoSprint(InputAction.CallbackContext obj)
         {
-            speed *= PlayerConstants.SPRINT_MULTIPLIER_DEFAULT;
+            speed = PlayerConstants.SPRINT_MULTIPLIER_DEFAULT*PlayerConstants.SPEED_DEFAULT;
             sprinting = true;
         }
 

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using ABOGGUS.Input;
 using ABOGGUS;
 using ABOGGUS.Interact.Statics;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact
 {
@@ -25,6 +26,10 @@ namespace ABOGGUS.Interact
         [SerializeField]
         [Tooltip("Path of the item to loadInTheUI")]
         private string itemToLoadInUI;
+
+        [SerializeField]
+        [Tooltip("Postion of the item to loadInTheUI")]
+        private ThirdPersonCameraController camera;
 
         [SerializeField]
         [Tooltip("Postion of the item to loadInTheUI")]
@@ -49,9 +54,13 @@ namespace ABOGGUS.Interact
             inputM.InputScheme.Player.Disable();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            camera.enabled = false;
+            //GameController.PauseGame();
+            Debug.Log("After open menu Game state = " + GameController.gameState);
             //Temp Change for input end
             canvas.enabled = false;
             StartCoroutine(CheckIfUnloaded());
+            
         }
 
         /*
@@ -61,8 +70,6 @@ namespace ABOGGUS.Interact
         {
             //Get interactMenuScene
             Scene interactMenu = SceneManager.GetSceneByName("InteractableMenu");
-            Debug.Log(Cursor.lockState);
-            Debug.Log(Cursor.visible);
 
             //Temp Change for input end
 
@@ -75,6 +82,9 @@ namespace ABOGGUS.Interact
             //Keep spinning while the menu is loaded
             while (interactMenu.isLoaded)
             {
+                Debug.Log("While menu open Game state = " + GameController.gameState);
+                Debug.Log(Cursor.lockState);
+                Debug.Log(Cursor.visible);
                 yield return null;
             }
             
@@ -89,6 +99,8 @@ namespace ABOGGUS.Interact
 
             //when the menu is unloaded
             //Temp Change for input
+            //GameController.ResumeGame();
+            camera.enabled = true;
             inputM.InputScheme.Player.Enable(); //re-enable player movement
             canvas.enabled = true; //re-enable player movement
             Cursor.lockState = CursorLockMode.Locked;

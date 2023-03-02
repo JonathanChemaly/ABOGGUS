@@ -6,7 +6,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class SwordAttack : MonoBehaviour
     {
-        private int damage = 1;
+        private int damage = 20;
         private float knockback = 0.2f;
         private bool active = true;
 

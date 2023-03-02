@@ -3323,6 +3323,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   gameOverText: {fileID: 240462514}
   debug: 0
+  playerHUD: {fileID: 0}
   invulnerabilityFrames: 100
 --- !u!1 &1026080548
 GameObject:
@@ -3800,6 +3801,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &1235191535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4381204627693349674, guid: a4002837582f1c648a402990254be77a, type: 3}
+  m_PrefabInstance: {fileID: 1099942556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1250193568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5386,9 +5392,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1360939538825651356, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1650700950314414053, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
       propertyPath: m_Name
       value: Menus
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689336991126992165, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689336991126992165, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689336991126992165, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689336991126992165, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3624850361154054438, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4293556108600507863, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
       propertyPath: m_RootOrder
@@ -5434,6 +5464,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7424936998010640168, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
+      propertyPath: pHUD
+      value: 
+      objectReference: {fileID: 1235191535}
     - target: {fileID: 7424936998010640168, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
       propertyPath: gameOverMenu
       value: 
