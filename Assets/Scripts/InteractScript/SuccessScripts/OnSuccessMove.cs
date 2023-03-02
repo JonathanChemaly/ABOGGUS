@@ -17,6 +17,10 @@ namespace ABOGGUS.Interact
         [Tooltip("LockManager that this object is listening too")]
         private float yPostionToStop = 10f;
 
+        [SerializeField]
+        [Tooltip("LockManager that this object is listening too")]
+        private float xPostionToStop = 10f;
+
         void Start()
         {
             interact.SuccessAction += MoveObject;
@@ -33,6 +37,11 @@ namespace ABOGGUS.Interact
             {
                 yield return null;
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.up, speed);
+            }
+            while (transform.position.x > xPostionToStop)
+            {
+                yield return null;
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.left, speed);
             }
         }
     }
