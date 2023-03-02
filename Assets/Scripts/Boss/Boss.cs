@@ -105,6 +105,11 @@ public class Boss : MonoBehaviour
         {
             healthBar.OnDeath();
             bossMusic.AudioFadeOut();
+            GameObject[] sparkArr = GameObject.FindGameObjectsWithTag("Spark");
+            foreach (GameObject minion in sparkArr)
+            {
+                Destroy(minion);
+            }
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }

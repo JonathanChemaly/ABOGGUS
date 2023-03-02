@@ -12,16 +12,17 @@ namespace ABOGGUS.PlayerObjects
 
         public PlayerFacingBackward(PlayerController playerController)
         {
-            yRot = Rotator.cameraYRot + yRotOffset;
+            yRot = ThirdPersonCameraController.cameraYRot + yRotOffset;
             this.physicalGameObject = playerController.GetGameObject();
             this.physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
         }
         public void Move()
         {
-            yRot = Rotator.cameraYRot + yRotOffset;
+            yRot = ThirdPersonCameraController.cameraYRot + yRotOffset;
             physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
             Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * PlayerController.speed;
             physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, PlayerController.speed);
+            //Debug.Log(ThirdPersonCameraController.cameraYRot);
         }
         public void CastMagic(GameObject magicAttackPrefab, bool aoe, PlayerConstants.Magic castType)
         {

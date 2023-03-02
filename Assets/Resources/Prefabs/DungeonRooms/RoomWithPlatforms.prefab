@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492909179251855154}
+  - component: {fileID: -7093008538697850781}
   m_Layer: 0
   m_Name: RoomWithPlatforms
   m_TagString: Untagged
@@ -39,6 +40,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7093008538697850781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536690719827582479}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a5959759bad964ea84fecdddc65cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Doors: 01010101
 --- !u!1 &624923056044991668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonLayer1Door
       objectReference: {fileID: 0}
+    - target: {fileID: 6944527274450716265, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8003938824752948969, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.9
@@ -1164,6 +1182,14 @@ PrefabInstance:
     - target: {fileID: 8003938824752948969, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_LocalPosition.z
       value: 12.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005719033964214275, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724912145017478486, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8790122845150339828, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_RootOrder
@@ -1230,6 +1256,10 @@ PrefabInstance:
     - target: {fileID: 8003938824752948969, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_LocalPosition.z
       value: 12.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724912145017478486, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8790122845150339828, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_RootOrder
@@ -1433,9 +1463,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6043825022547672992}
     m_Modifications:
+    - target: {fileID: 576514230553659828, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112078178129946896, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2715285185068992536, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_Name
       value: DungeonLayer1Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944527274450716265, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005719033964214275, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724912145017478486, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8790122845150339828, guid: cc2a399609b1f9c47a0afc41298b3d28, type: 3}
       propertyPath: m_RootOrder

@@ -7478,6 +7478,10 @@ PrefabInstance:
       propertyPath: playMultipleTimes
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7404734387397600941, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
+      propertyPath: itemName
+      value: key
+      objectReference: {fileID: 0}
     - target: {fileID: 7924722161189756427, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -7522,6 +7526,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7924722161394119146, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1452490000}
     - target: {fileID: 7924722161394119146, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
       propertyPath: canvas
       value: 
@@ -9169,11 +9177,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interact: {fileID: 1514885490}
-  pathToAudio: NarratorAudio/TestNarratorClip
+  pathToAudio: NarratorAudio/Narrator-IntroPuzzleLine
   subtitleText:
-  - line: I am the receptionist.
-    timeToPlay: 1.5
-  - line: Welcome to our hotel.
+  - line: Welcome to The Fifth Season Hotel
+    timeToPlay: 2.81
+  - line: Explore the building as you wish; however,
+    timeToPlay: 5.42
+  - line: Start with getting the elevator working. also...
+    timeToPlay: 8.739
+  - line: Never enter room 201.
+    timeToPlay: 11.483
+  - line: Thank You.
     timeToPlay: 0
   playMultipleTimes: 1
 --- !u!114 &1514885490
@@ -10758,10 +10772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 1
-  totalJumpTime: 1
-  dodgeLength: 1
-  totalDodgeTime: 0.8
 --- !u!114 &1778891769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11496,15 +11506,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1102231e-18
+      value: 3.3306692e-18
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.100000024
+      value: 0.30000007
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.323489e-25
+      value: 3.9704664e-25
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.w
