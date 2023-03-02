@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class FireSlime : MonoBehaviour
 {
     private GameObject player;
@@ -11,6 +12,7 @@ public class FireSlime : MonoBehaviour
     private float timer = 3.0f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource fireballSound;
     [SerializeField] private GameObject fireBall;
@@ -69,7 +71,13 @@ public class FireSlime : MonoBehaviour
             }
         }
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            GameController.player.TakeDamage(damage);
+        }
+    }
     private void ShootFireball()
     {
         var fireBallProjectile = Instantiate(fireBallToShoot, transform.position + transform.forward * 2 + transform.up / 2, Quaternion.identity).GetComponent<Rigidbody>();

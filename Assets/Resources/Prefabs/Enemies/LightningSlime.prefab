@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 6442043968987089806}
   m_Layer: 0
   m_Name: SlimeBody
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightningAOE: {fileID: 394459464434354107}
+  damage: 10
   deathSound: {fileID: 6442043968987089806}
   zapSound: {fileID: 7463310712560808066}
 --- !u!54 &2079426235087059410

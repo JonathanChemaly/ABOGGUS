@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 2299138558376302021}
   m_Layer: 0
   m_Name: SlimeBody
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152925c5d3539ca45a6f20e374e5233a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   deathSound: {fileID: 2299138558376302021}
   windSound: {fileID: 5055046605127455708}
 --- !u!54 &655538870292776831

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class GrassSlime : MonoBehaviour
 {
     private GameObject player;
@@ -13,6 +14,7 @@ public class GrassSlime : MonoBehaviour
     private float timer = 1f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
     private int damping = 2;
@@ -83,7 +85,13 @@ public class GrassSlime : MonoBehaviour
             }
         }
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            GameController.player.TakeDamage(damage);
+        }
+    }
     private void AttackDelay()
     {
         attacking = false;
