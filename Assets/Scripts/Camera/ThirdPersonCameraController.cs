@@ -107,7 +107,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
 
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
-            Debug.Log("tpc: " + cameraYRot);
+            //Debug.Log("tpc: " + cameraYRot);
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
