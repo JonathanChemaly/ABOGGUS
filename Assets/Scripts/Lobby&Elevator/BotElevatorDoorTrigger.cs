@@ -16,14 +16,22 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     public GameObject botDoorL;
 
     public bool openBottomDoor = false;
+    public bool flipOrientation = false;
 
     void Start()
     {
         botDoorRP = botDoorR.transform.position;
         botDoorLP = botDoorL.transform.position;
-
-        botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
-        botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+        if (flipOrientation)
+        {
+            botDoorRPO = botDoorRP -new Vector3(10.4f, 0.0f, 0.0f);
+            botDoorLPO = botDoorLP + new Vector3(10.4f, 0.0f, 0.0f);
+        }
+        else
+        {
+            botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
+            botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+        }
     }
 
     // Update is called once per frame

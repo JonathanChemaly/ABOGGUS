@@ -201,10 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 1
-  totalJumpTime: 1
-  dodgeLength: 1
-  totalDodgeTime: 0.8
 --- !u!114 &136031836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +217,7 @@ MonoBehaviour:
   playerController: {fileID: 136031835}
   gameOverText: {fileID: 0}
   debug: 1
+  playerHUD: {fileID: 0}
   invulnerabilityFrames: 100
 --- !u!4 &136031837
 Transform:
@@ -350,6 +347,10 @@ PrefabInstance:
     - target: {fileID: 1373766429309847624, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: m_Name
       value: DungeonElevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375510760601521271, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: flipOrientation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5456479363217145577, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: m_RootOrder
