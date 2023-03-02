@@ -23,7 +23,25 @@ namespace ABOGGUS.Interact
 
         private void pickUpObject()
         {
-            player.inventory.key = true;
+            if (interact.CompareTag("grimore")) {
+                player.inventory.grimore = true;
+            }
+            else if (interact.CompareTag("wheel"))
+            {
+                player.inventory.wheel = true;
+            }
+            else if (interact.CompareTag("wrench"))
+            {
+                player.inventory.wrench = true;
+            }
+            else if (interact.CompareTag("gas"))
+            {
+                player.inventory.gas = true;
+            }
+            else if (interact.CompareTag("tractorkey"))
+            {
+                player.inventory.tractorkey = true;
+            }
             interact.DoSuccesAction();
         }
     }
