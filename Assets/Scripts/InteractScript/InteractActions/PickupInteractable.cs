@@ -30,23 +30,23 @@ namespace ABOGGUS.Interact
         private void pickUpObject()
         {
             if (interact.CompareTag("grimore")) {
-                player.inventory.grimore = true;
+                playerInv.grimore = true;
             }
             else if (interact.CompareTag("wheel"))
             {
-                player.inventory.wheel = true;
+                playerInv.wheel = true;
             }
             else if (interact.CompareTag("wrench"))
             {
-                player.inventory.wrench = true;
+                playerInv.wrench = true;
             }
             else if (interact.CompareTag("gas"))
             {
-                player.inventory.gas = true;
+                playerInv.gas = true;
             }
             else if (interact.CompareTag("tractorkey"))
             {
-                player.inventory.tractorkey = true;
+                playerInv.tractorkey = true;
             }
             itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
