@@ -9,6 +9,7 @@ public class FireSlime : MonoBehaviour
     private bool dead = false;
     private float range = 20f;
     private float timer = 3.0f;
+    private float deathTimer = 1f;
     private float health = 3f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource fireballSound;
@@ -52,21 +53,21 @@ public class FireSlime : MonoBehaviour
         if (health == 0 && dead == false)
         {
             dead = true;
-            timer = 0.5f;
         }
 
         if (dead)
         {
-            timer -= Time.deltaTime;
-            transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-            if (timer < 0)
+            if (deathTimer == 1f)
             {
                 deathSound.Play();
+            }
+            deathTimer -= Time.deltaTime;
+            transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
+            if (deathTimer < 0)
+            {
                 Destroy(gameObject);
             }
         }
-
-
     }
 
     private void ShootFireball()

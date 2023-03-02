@@ -11,6 +11,7 @@ public class GrassSlime : MonoBehaviour
     private float range = 15f;
     private float speed = 0.075f;
     private float timer = 1f;
+    private float deathTimer = 1f;
     private float health = 3f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
@@ -70,11 +71,14 @@ public class GrassSlime : MonoBehaviour
 
         if (dead)
         {
-            timer -= Time.deltaTime;
-            transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-            if (timer < 0)
+            if (deathTimer == 1f)
             {
                 deathSound.Play();
+            }
+            deathTimer -= Time.deltaTime;
+            transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
+            if (deathTimer < 0)
+            {
                 Destroy(gameObject);
             }
         }

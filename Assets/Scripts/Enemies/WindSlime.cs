@@ -8,9 +8,12 @@ public class WindSlime : MonoBehaviour
     private bool inRange = false;
     private bool dead = false;
     private float range = 15f;
-    private float speed = 0.01f;
-    private float timer = 0.5f;
+    private float speed = 0.03f;
+    private float pull = 0.025f;
+    private float deathTimer = 1f;
     private float health = 3f;
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource windSound;
 
     void Start()
     {
@@ -19,15 +22,17 @@ public class WindSlime : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < 3f)
+        if (Vector3.Distance(transform.position, player.transform.position) < 5f)
         {
             inRange = false;
-
-            player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, 0.005f);
+            windSound.Play();
+            player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, pull);
         }
         else if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
+            windSound.Stop();
             inRange = true;
+            pull = 0.025f;
         }
         else
         {
@@ -36,7 +41,7 @@ public class WindSlime : MonoBehaviour
 
         if (inRange)
         {
-            transform.LookAt(player.transform);
+            transform.LookAt(player.transform.position + new Vector3(0, 1f, 0f));
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, player.transform.position.y + 1f, player.transform.position.z), speed);
         }
 
@@ -47,9 +52,14 @@ public class WindSlime : MonoBehaviour
 
         if (dead)
         {
-            timer -= Time.deltaTime;
-            transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
-            if (timer < 0)
+            if (deathTimer == 1f)
+            {
+                deathSound.Play();
+            }
+ 
+            deathTimer -= Time.deltaTime;
+            transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
+            if (deathTimer < 0)
             {
                 Destroy(gameObject);
             }
@@ -60,8 +70,8 @@ public class WindSlime : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            // player take damage
-
+            health = 0;
+            pull = 0f;
         }
     }
 }
