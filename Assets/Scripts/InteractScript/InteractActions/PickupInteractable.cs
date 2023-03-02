@@ -12,13 +12,19 @@ namespace ABOGGUS.Interact
         [Tooltip("interact to watch")]
         private Interactable interact;
 
-        private Player player;
+        [SerializeField]
+        [Tooltip("name of bool field in player inventory to check if the player has (case-sensitive)")]
+        private string itemName = "key";
+
+        private PlayerInventory playerInv;
+        private System.Reflection.PropertyInfo itemInfo;
 
         // Start is called before the first frame update
         void Start()
         {
             interact.InteractAction += pickUpObject;
-            player = GameController.player;
+            playerInv = GameController.player.inventory;
+            itemInfo = playerInv.GetType().GetProperty(itemName);
         }
 
         private void pickUpObject()
@@ -42,8 +48,8 @@ namespace ABOGGUS.Interact
             {
                 player.inventory.tractorkey = true;
             }
+            itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
         }
     }
 }
-

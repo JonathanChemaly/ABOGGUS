@@ -33,6 +33,13 @@ namespace ABOGGUS.PlayerObjects
             {
                 GameController.player = this;
                 playerController = this.transform.GetComponent<PlayerController>();
+
+                if (debug)
+                {
+                    GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
+                    SetGameObject(physicalGameObject);
+                }
+
                 playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
                 SetHUD();
@@ -96,6 +103,7 @@ namespace ABOGGUS.PlayerObjects
         {
             return this.playerController.GetGameObject();
         }
+
         private void OnEnable()
         {
             //PlayerDied += GameController.Respawn;
