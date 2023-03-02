@@ -94,4 +94,12 @@ public class LightningSlime : MonoBehaviour
             GameController.player.TakeDamage(damage);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
 }

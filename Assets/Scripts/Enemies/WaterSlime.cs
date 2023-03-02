@@ -79,4 +79,12 @@ public class WaterSlime : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
 }

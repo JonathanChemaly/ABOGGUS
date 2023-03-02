@@ -78,6 +78,14 @@ public class FireSlime : MonoBehaviour
             GameController.player.TakeDamage(damage);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
     private void ShootFireball()
     {
         var fireBallProjectile = Instantiate(fireBallToShoot, transform.position + transform.forward * 2 + transform.up / 2, Quaternion.identity).GetComponent<Rigidbody>();
