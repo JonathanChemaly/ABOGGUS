@@ -18,6 +18,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     public bool openBottomDoor = false;
     public bool flipOrientation = false;
 
+    [SerializeField] private bool transition = false;
     void Start()
     {
         botDoorRP = botDoorR.transform.position;
@@ -51,13 +52,18 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (transition && other.CompareTag("Player"))
         {
             openBottomDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
                 GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
             }
+        }
+        else if (other.CompareTag("Player"))
+        {
+            openBottomDoor = true;
+            Debug.Log("botOpen");
         }
     }
     private void OnTriggerExit(Collider other)

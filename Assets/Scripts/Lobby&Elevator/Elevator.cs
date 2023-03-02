@@ -18,19 +18,33 @@ public class Elevator : MonoBehaviour
 
     private float elevatorSpeed = 0.05f;
     private float timer = 8.0f;
+    [SerializeField] private float elevatorHieght = 15.1f;
+
     private bool elevatorMoving = false;
     private bool trueUpFalseDown = true;
 
+    [SerializeField] private bool startPositiontrueUpFalseDown = true;
+
     private void Start()
     {
-        
-        upPosition = elevator.transform.position;
-        downPosition = elevator.transform.position;
-        downPosition.y -= 15.1f;
-        
+        if (startPositiontrueUpFalseDown)
+        {
+            upPosition = elevator.transform.position;
+            downPosition = elevator.transform.position;
+            downPosition.y -= elevatorHieght;
+            trueUpFalseDown = true;
+        }
+        else
+        {
+            downPosition = elevator.transform.position;
+            upPosition = elevator.transform.position;
+            upPosition.y += elevatorHieght;
+            trueUpFalseDown = false;
+        }
         playerDown = elevatorShaftFloor.transform.position;
         playerUp = playerDown;
-        playerUp.y += 15.1f;
+        playerUp.y += elevatorHieght;
+
     }
     void FixedUpdate()
     {

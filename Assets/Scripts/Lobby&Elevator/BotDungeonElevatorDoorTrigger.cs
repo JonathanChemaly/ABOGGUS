@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.Gameplay;
 
-public class BotAutumnElevatorDoorTrigger : MonoBehaviour
+public class BotDungeonElevatorDoorTrigger : MonoBehaviour
 {
     private Vector3 botDoorRP;
     private Vector3 botDoorLP;
@@ -17,7 +17,7 @@ public class BotAutumnElevatorDoorTrigger : MonoBehaviour
 
     public bool openBottomDoor = false;
     public bool flipOrientation = false;
-
+    [SerializeField] private bool transition = false;
     void Start()
     {
         botDoorRP = botDoorR.transform.position;
@@ -51,12 +51,12 @@ public class BotAutumnElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (transition && other.CompareTag("Player"))
         {
             openBottomDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
-                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_AUTUMNROOM, false);
+                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_DUNGEON, false);
             }
         }
     }
