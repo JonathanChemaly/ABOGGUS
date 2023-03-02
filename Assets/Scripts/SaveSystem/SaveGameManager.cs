@@ -88,6 +88,7 @@ namespace ABOGGUS.SaveSystem
         {
             currentSaveData.playerHealth = player.inventory.health;
             currentSaveData.playerHasKey = player.inventory.key;
+            currentSaveData.playerMana = player.inventory.mana;
             Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
         }
 
@@ -95,6 +96,7 @@ namespace ABOGGUS.SaveSystem
         {
             player.inventory.health = currentSaveData.playerHealth;
             player.inventory.key = currentSaveData.playerHasKey;
+            player.inventory.mana = currentSaveData.playerMana;
             Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
     }

@@ -23,6 +23,7 @@ namespace ABOGGUS.SaveSystem
         // player data
         public float playerHealth = PlayerConstants.MAX_HEALTH;
         public bool playerHasKey = false;
+        public int playerMana = 0;
         //public Vector3 lastPosition = Vector3.zero;
     }
 }

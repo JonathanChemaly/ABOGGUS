@@ -33,6 +33,7 @@ namespace ABOGGUS.Interact
         private void PlayAudio()
         {
             if (IM != null) IM.InputScheme.Player.Disable();//if given IM disable player actions
+            Debug.Log("playing audio for " + this.gameObject.name);
             audioToPlay.Play();
             StartCoroutine(disableWhileAudioPlaying());
 
@@ -46,7 +47,7 @@ namespace ABOGGUS.Interact
             {
                 yield return null;
             }
-            if (!playMultipleTimes) interact.enabled = true; //do not renable if we only want to play once
+            if (playMultipleTimes) interact.enabled = true; //do not renable if we only want to play once
             if (IM != null) IM.InputScheme.Player.Enable();//if given IM disable player actions
         }
     }

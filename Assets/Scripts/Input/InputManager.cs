@@ -26,7 +26,7 @@ namespace ABOGGUS.Input
         private void Awake()
         {
             inputScheme = new Input.InputActions();
-            playerController.Initialize(inputScheme);
+            playerController.InitializeInput(inputScheme);
             pauseManager.Initialize(inputScheme.Player.Pause, inputScheme.Player.Inventory);
             //cameraController.Initialize(inputScheme.Player.CameraSwitch);
             if (interactionManager != null)
