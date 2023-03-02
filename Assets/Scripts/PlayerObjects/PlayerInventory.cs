@@ -13,6 +13,11 @@ namespace ABOGGUS.PlayerObjects
         public int mana = 0;
         public bool invulnerable { get; set; } = false;
         public bool key { get; set; } = false;
+        public bool grimore { get; set; } = false;
+        public bool wheel { get; set; } = false;
+        public bool wrench { get; set; } = false;
+        public bool gas { get; set; } = false;
+        public bool tractorkey { get; set; } = false;
 
         public PlayerInventory() { }
 
