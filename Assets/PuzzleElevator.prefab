@@ -2240,6 +2240,8 @@ MonoBehaviour:
   player: {fileID: 0}
   elevator: {fileID: 5934891208754244429}
   elevatorShaftFloor: {fileID: 1624770150504161073}
+  elevatorHieght: 15.1
+  startPositiontrueUpFalseDown: 1
 --- !u!1 &2224235256427936138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3283,7 @@ MonoBehaviour:
   botDoorL: {fileID: 9186375899879336867}
   openBottomDoor: 0
   flipOrientation: 0
+  transition: 0
 --- !u!1 &3159129646514419282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,6 +4015,8 @@ MonoBehaviour:
   topDoorR: {fileID: 591358002835890644}
   topDoorL: {fileID: 697204950926695459}
   openTopDoor: 0
+  flipOrientation: 0
+  transition: 0
 --- !u!1 &3878604337988285216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,7 +4456,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3988668978929742584}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22d89b96b0d317842944ce8327ea3bb6, type: 3}
   m_Name: 

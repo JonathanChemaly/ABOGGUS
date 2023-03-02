@@ -35,7 +35,6 @@ public class GrassSlime : MonoBehaviour
             attacking = true;
             if (timer == 1f)
             {
-                //use vine attack
                 VineAttack();
                 vineSound.Play();
             }
@@ -90,9 +89,24 @@ public class GrassSlime : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             GameController.player.TakeDamage(damage);
+            
+        }
+        if (collision.gameObject.tag == "Sword" || collision.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
         }
     }
-    private void AttackDelay()
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
+        private void AttackDelay()
     {
         attacking = false;
     }
