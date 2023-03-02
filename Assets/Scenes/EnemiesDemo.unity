@@ -1167,7 +1167,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296092210}
-  m_LocalRotation: {x: -0.00010174408, y: 0.9998181, z: -0.01824057, w: -0.005576886}
+  m_LocalRotation: {x: -0.00010174396, y: 0.9998181, z: -0.01824057, w: -0.0055768793}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2912,11 +2912,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0055768886
+      value: -0.0055768755
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00010174414
+      value: -0.00010174391
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3334,10 +3334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 3
-  totalJumpTime: 0.3
-  dodgeLength: 3
-  totalDodgeTime: 0.6
 --- !u!114 &1017496742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3354,6 +3350,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   gameOverText: {fileID: 240462514}
   debug: 0
+  playerHUD: {fileID: 0}
   invulnerabilityFrames: 100
 --- !u!1 &1026080548
 GameObject:
@@ -3907,6 +3904,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2299138558376302021, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5414357067109662237, guid: 7358b7974abd91e4c9b4d9f02024a60b, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3982,7 +3983,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198687556}
-  m_LocalRotation: {x: 0.00017077546, y: 0.9995157, z: 0.030616364, w: -0.005575213}
+  m_LocalRotation: {x: 0.0001707744, y: 0.9995157, z: 0.030616367, w: -0.005575178}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
