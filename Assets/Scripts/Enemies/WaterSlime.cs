@@ -60,6 +60,7 @@ public class WaterSlime : MonoBehaviour
 
             if (timer < 0)
             {
+                GameController.player.updateMana(1);
                 deathSound.Play();
                 Destroy(gameObject);
             }
@@ -85,6 +86,11 @@ public class WaterSlime : MonoBehaviour
         {
             Debug.Log("Grass Slime health:" + health);
             health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
         }
     }
 }

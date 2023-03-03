@@ -65,7 +65,11 @@ namespace ABOGGUS.PlayerObjects
 
             playerHUD.UpdateHealthBar();
         }
-
+        public void updateMana(int value)
+        {
+            inventory.mana += value;
+            playerHUD.UpdateMana();
+        }
         IEnumerator ToCredits()
         {
             //gameOverText.SetActive(true);

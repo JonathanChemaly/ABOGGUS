@@ -82,6 +82,7 @@ public class LightningSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
+                GameController.player.updateMana(1);
                 Destroy(gameObject);
             }
         }
@@ -100,6 +101,11 @@ public class LightningSlime : MonoBehaviour
         {
             Debug.Log("Grass Slime health:" + health);
             health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
         }
     }
 }

@@ -39,17 +39,18 @@ public class FireSlime : MonoBehaviour
 
         if (inRange)
         {
+            Debug.Log(timer);
             transform.LookAt(player.transform);
             timer -= Time.deltaTime;
             fireBall.transform.localScale += new Vector3(0.005f, 0.005f, 0.005f);
-            if (timer < 0)
-            {
-                //shoot fireball
-                ShootFireball();
-                fireballSound.Play();
-                timer = 3f;
-                fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            
+        }
+        if (timer < 0)
+        {
+            ShootFireball();
+            fireballSound.Play();
+            timer = 3f;
+            fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         if (health == 0 && dead == false)
@@ -67,6 +68,7 @@ public class FireSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
+                GameController.player.updateMana(1);
                 Destroy(gameObject);
             }
         }
@@ -84,7 +86,13 @@ public class FireSlime : MonoBehaviour
         {
             Debug.Log("Grass Slime health:" + health);
             health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
         }
+
     }
     private void ShootFireball()
     {

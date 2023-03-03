@@ -158,7 +158,6 @@ Transform:
   m_Children:
   - {fileID: 5846262423639641690}
   - {fileID: 3304855183468218538}
-  - {fileID: 790592151613086898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,7 +192,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 790592151613086898}
   m_Father: {fileID: 190655715443007152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -276,7 +276,7 @@ MonoBehaviour:
   deathSound: {fileID: 1767727015738009004}
   fireballSound: {fileID: 8473415604285645266}
   fireBall: {fileID: 6111087627138541170}
-  fireBallToShoot: {fileID: 0}
+  fireBallToShoot: {fileID: 14507791419593305, guid: a8f71a6d685f04746ba2086e93cdd618, type: 3}
 --- !u!1 &6111087627138541170
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 5206866828875070973}
   - component: {fileID: 8237599398188982574}
   - component: {fileID: 8473415604285645266}
+  - component: {fileID: 9166095210972782064}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -309,8 +310,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 190655715443007152}
-  m_RootOrder: 2
+  m_Father: {fileID: 5846262423639641690}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2629880051089261618
 MeshFilter:
@@ -471,3 +472,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9166095210972782064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111087627138541170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390a18f3de08f2c4f97c61a9411765e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

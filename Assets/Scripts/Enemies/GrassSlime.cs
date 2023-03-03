@@ -11,7 +11,7 @@ public class GrassSlime : MonoBehaviour
     private bool dead = false;
     private float range = 15f;
     private float speed = 0.075f;
-    private float timer = 1f;
+    private float timer = 1.5f;
     private float deathTimer = 1f;
     private float health = 3f;
     public float damage = 10f;
@@ -33,7 +33,7 @@ public class GrassSlime : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < 2.5f)
         {
             attacking = true;
-            if (timer == 1f)
+            if (timer == 1.5f)
             {
                 VineAttack();
                 vineSound.Play();
@@ -42,7 +42,7 @@ public class GrassSlime : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                timer = 1f;
+                timer = 1.5f;
                 
             }
         }
@@ -80,6 +80,7 @@ public class GrassSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
+                GameController.player.updateMana(1);
                 Destroy(gameObject);
             }
         }
@@ -102,9 +103,14 @@ public class GrassSlime : MonoBehaviour
     {
         if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
         {
-            Debug.Log("Grass Slime health:" + health);
             health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
         }
+
     }
         private void AttackDelay()
     {
