@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.Gameplay;
-public class TopElevatorDoorTrigger : MonoBehaviour
+public class TopAutumnElevatorDoorTrigger : MonoBehaviour
 {
     private Vector3 topDoorRP;
     private Vector3 topDoorLP;
@@ -18,6 +18,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     public bool openTopDoor = false;
     public bool flipOrientation = false;
     [SerializeField] private bool transition = false;
+
     void Start()
     {
         topDoorRP = topDoorR.transform.position;
@@ -27,8 +28,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         {
             topDoorRPO = topDoorRP - new Vector3(1.7f, 0.0f, 0.0f);
             topDoorLPO = topDoorLP + new Vector3(1.7f, 0.0f, 0.0f);
-        }
-        else
+        }else
         {
             topDoorRPO = topDoorRP + new Vector3(1.7f, 0.0f, 0.0f);
             topDoorLPO = topDoorLP - new Vector3(1.7f, 0.0f, 0.0f);
@@ -55,6 +55,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+       
         if (transition && other.CompareTag("Player"))
         {
             openTopDoor = true;
@@ -62,11 +63,6 @@ public class TopElevatorDoorTrigger : MonoBehaviour
             {
                 GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_AUTUMNROOM, false);
             }
-        }
-        if (other.CompareTag("Player"))
-        {
-            timer = 2.0f;
-            openTopDoor = true;
         }
     }
     private void OnTriggerExit(Collider other)

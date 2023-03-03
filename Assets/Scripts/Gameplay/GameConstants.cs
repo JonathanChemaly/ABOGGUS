@@ -27,6 +27,7 @@ namespace ABOGGUS.Gameplay
         public const string SCENE_PLAYERDEMO = "PlayerDemo";
         public const string SCENE_DUNGEONTEST = "DungeonTest";
         public const string SCENE_AUTUMNROOM = "AutumnRoom";
+        public const string SCENE_DUNGEON = "Dungeon";
 
         public const string NAME_PLAYERGAMEOBJECT = "Player";
 

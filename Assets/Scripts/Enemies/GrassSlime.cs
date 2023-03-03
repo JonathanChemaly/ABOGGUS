@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class GrassSlime : MonoBehaviour
 {
     private GameObject player;
@@ -13,6 +14,7 @@ public class GrassSlime : MonoBehaviour
     private float timer = 1f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
     private int damping = 2;
@@ -33,7 +35,6 @@ public class GrassSlime : MonoBehaviour
             attacking = true;
             if (timer == 1f)
             {
-                //use vine attack
                 VineAttack();
                 vineSound.Play();
             }
@@ -83,8 +84,29 @@ public class GrassSlime : MonoBehaviour
             }
         }
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            GameController.player.TakeDamage(damage);
+            
+        }
+        if (collision.gameObject.tag == "Sword" || collision.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
 
-    private void AttackDelay()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
+        private void AttackDelay()
     {
         attacking = false;
     }

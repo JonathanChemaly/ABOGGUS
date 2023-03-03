@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class WindSlime : MonoBehaviour
 {
     private GameObject player;
@@ -12,6 +13,7 @@ public class WindSlime : MonoBehaviour
     private float pull = 0.025f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource windSound;
 
@@ -22,10 +24,13 @@ public class WindSlime : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) == 5f)
+        {
+            windSound.Play();
+        }
         if (Vector3.Distance(transform.position, player.transform.position) < 5f)
         {
             inRange = false;
-            windSound.Play();
             player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, pull);
         }
         else if (Vector3.Distance(transform.position, player.transform.position) < range)
@@ -70,8 +75,16 @@ public class WindSlime : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            health = 0;
             pull = 0f;
+            GameController.player.TakeDamage(damage);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
         }
     }
 }
