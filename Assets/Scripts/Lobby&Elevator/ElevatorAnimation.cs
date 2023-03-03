@@ -10,10 +10,11 @@ using UnityEngine.SceneManagement;
 public class ElevatorAnimation : MonoBehaviour
 {
     private Player player;
+    private Transform playerTransform;
     private bool animationState = false;
-    public float timer = 16.5f;
-    public float rotation = 180f;
-    public float rotationSpeed = 0.6f;
+    public float timer = 16f;
+    private float rotation = 180f;
+    private float rotationSpeed = 1f;
 
     private AsyncOperation sceneLoadingOperation;
 
@@ -21,6 +22,7 @@ public class ElevatorAnimation : MonoBehaviour
     void Start()
     {
         player = GameController.player;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -34,13 +36,13 @@ public class ElevatorAnimation : MonoBehaviour
         {
             ThirdPersonCameraController.animationState = true;
             ThirdPersonCameraController.adjustCam = true;
-            player.GetGameObject().transform.position += new Vector3(0, 0, 0.06f);
+            playerTransform.position += new Vector3(0, 0, 0.05f);
         }
         else if (animationState && timer <= 12f && timer >= 8.5f)
         {
             ThirdPersonCameraController.adjustCam = false;
             ThirdPersonCameraController.moveCam = true;
-            player.GetGameObject().transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed);
+            playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed);
         }
         else if (animationState && timer <= 8.5f && timer >= 0f)
         {
@@ -50,6 +52,7 @@ public class ElevatorAnimation : MonoBehaviour
         {
             player.GetGameObject().transform.position += new Vector3(0, 0, -0.06f);
         }
+        //ThirdPersonCameraController.cameraYRot = ThirdPersonCameraController.transform.eulerAngles.y;
     }
     private void OnTriggerEnter(Collider other)
     {
