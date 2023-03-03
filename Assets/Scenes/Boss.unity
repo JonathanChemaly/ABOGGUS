@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94c4cca40ef28de4194ebe05ef11171f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35da0af7fdccae64abb5e56595107a26, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2902,7 +2902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3303,10 +3303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 3
-  totalJumpTime: 0.3
-  dodgeLength: 3
-  totalDodgeTime: 0.6
 --- !u!114 &1017496742
 MonoBehaviour:
   m_ObjectHideFlags: 0
