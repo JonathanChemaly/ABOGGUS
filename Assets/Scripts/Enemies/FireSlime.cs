@@ -17,6 +17,7 @@ public class FireSlime : MonoBehaviour
     [SerializeField] private AudioSource fireballSound;
     [SerializeField] private GameObject fireBall;
     [SerializeField] private GameObject fireBallToShoot;
+    [SerializeField] private GameObject ElementalDrop;
     private float fireBallSpeed = 25.0f;
 
     void Start()
@@ -68,7 +69,7 @@ public class FireSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
-                GameController.player.updateMana(1);
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

@@ -17,6 +17,7 @@ public class GrassSlime : MonoBehaviour
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
+    [SerializeField] private GameObject ElementalDrop;
     private int damping = 2;
     private Transform target;
     private bool attacking = false;
@@ -80,7 +81,7 @@ public class GrassSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
-                GameController.player.updateMana(1);
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

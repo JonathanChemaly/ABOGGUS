@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5846262423639641690}
+  - {fileID: 2123141221800365103}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -241,7 +242,6 @@ GameObject:
   - component: {fileID: 4675657290020336529}
   - component: {fileID: 24238683986132074}
   - component: {fileID: 655538870292776831}
-  - component: {fileID: 2299138558376302021}
   m_Layer: 0
   m_Name: SlimeBody
   m_TagString: Slime
@@ -341,8 +341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  deathSound: {fileID: 2299138558376302021}
+  deathSound: {fileID: 2255461888539996816}
   windSound: {fileID: 5055046605127455708}
+  ElementalDrop: {fileID: 5655304804746880693, guid: 9d42ced37fecb534894a1898c2e86994, type: 3}
 --- !u!54 &655538870292776831
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -359,25 +360,57 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &2299138558376302021
+--- !u!1 &6093019414420382798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123141221800365103}
+  - component: {fileID: 2255461888539996816}
+  m_Layer: 0
+  m_Name: DeathSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123141221800365103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093019414420382798}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3014965, y: -0.3352008, z: 0.5272459}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 190655715443007152}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2255461888539996816
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5414357067109662237}
+  m_GameObject: {fileID: 6093019414420382798}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 47e191eb4b586054a93c8e8e98323281, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.814
+  m_Volume: 0.484
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 126
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
