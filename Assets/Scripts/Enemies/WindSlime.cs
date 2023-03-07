@@ -16,6 +16,7 @@ public class WindSlime : MonoBehaviour
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource windSound;
+    [SerializeField] private GameObject ElementalDrop;
 
     void Start()
     {
@@ -67,7 +68,7 @@ public class WindSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
-                GameController.player.updateMana(1);
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

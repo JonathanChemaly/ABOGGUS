@@ -14,6 +14,7 @@ public class WaterSlime : MonoBehaviour
     private float health = 1f;
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private GameObject ElementalDrop;
     private int damping = 2;
     private Transform target;
 
@@ -60,7 +61,7 @@ public class WaterSlime : MonoBehaviour
 
             if (timer < 0)
             {
-                GameController.player.updateMana(1);
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 deathSound.Play();
                 Destroy(gameObject);
             }
