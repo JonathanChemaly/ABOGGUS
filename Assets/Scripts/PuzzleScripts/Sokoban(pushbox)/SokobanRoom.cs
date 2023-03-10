@@ -7,7 +7,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     public class SokobanRoom
     {
 
-        ISokobanCell[,] cellArray;
+        SokobanCell[,] cellArray;
         
         public SokobanRoom(int templateNum)
         {

@@ -7,9 +7,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 {
     public static class SokobanHelper
     {
-        public static List<SCells> GenerateRoom(int width, int height)
+        public static List<SCellType> GenerateRoom(int width, int height)
         {
-            List<SCells> room = new List<SCells>();
+            List<SCellType> room = new List<SCellType>();
 
             return room;
         }

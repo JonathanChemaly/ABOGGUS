@@ -6,7 +6,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 {
     public static class SokobanStructs
     {
-        public enum SCells
+        public enum SCellType
         {
             Wall,
             Floor,
