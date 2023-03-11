@@ -1358,6 +1358,7 @@ GameObject:
   - component: {fileID: 466203925}
   - component: {fileID: 466203924}
   - component: {fileID: 466203929}
+  - component: {fileID: 466203930}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1472,6 +1473,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countText: {fileID: 686823386}
+--- !u!114 &466203930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466203923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a3f762c53add4f9b2e5a8b4add1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  gameOverText: {fileID: 0}
+  key: 1
+  debug: 1
 --- !u!1 &513310060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,7 +3265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1565032211}
   - component: {fileID: 1565032210}
-  - component: {fileID: 1565032212}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -3268,10 +3284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152284892dc82fe4cb4b0ee4c0c855c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 466203923}
-  speed: 0.15
-  jumpSpeed: 1
-  jumpTime: 3
+  player: {fileID: 466203930}
+  jumpHeight: 3
+  totalJumpTime: 40
+  dodgeLength: 0.1
+  totalDodgeTime: 5
 --- !u!4 &1565032211
 Transform:
   m_ObjectHideFlags: 0
@@ -3287,19 +3304,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1565032212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1565032209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8a3f762c53add4f9b2e5a8b4add1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 1
 --- !u!1 &1581520321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,7 +4095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528a6171134f50d4f83aa05303fe5bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1565032212}
+  player: {fileID: 0}
   inventoryMenu: {fileID: 257337268}
   keyImage: {fileID: 21300000, guid: fff89dac89dc35f4da0d3b66c3311356, type: 3}
   keyContainer: {fileID: 848496405}

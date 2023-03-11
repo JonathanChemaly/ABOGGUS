@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
-using ABOGGUS.PlayerObjects;
 using UnityEngine.UI;
 
-namespace ABOGGUS {
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
+
+namespace ABOGGUS.Menus
+{
     public class InventoryMenu : MonoBehaviour
     {
-        public Player player;
         public GameObject inventoryMenu;
 
         public Sprite keyImage;
@@ -34,7 +37,7 @@ namespace ABOGGUS {
 
         public static void Trigger()
         {
-            if (!PauseMenu.isPaused)
+            if (!PauseMenu.isPaused && !GameOverMenu.isPaused)
             {
                 isPaused = !isPaused;
             }
@@ -43,20 +46,20 @@ namespace ABOGGUS {
         private void OpenInventory()
         {
             inventoryMenu.SetActive(true);
-            if (player.key)
+            if (GameController.player.inventory.key)
             {
                 keyContainer.enabled = true;
             } else
             {
                 keyContainer.enabled = false;
             }
-            Time.timeScale = 0f;
+            GameController.PauseGame();
         }
 
         private void CloseInventory()
         {
             inventoryMenu.SetActive(false);
-            Time.timeScale = 1f;
+            GameController.ResumeGame();
         }
     }
 }

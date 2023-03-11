@@ -8,20 +8,27 @@ namespace ABOGGUS.PlayerObjects
     {
         private float yRotOffset = 270;
         private float yRot;
-        private Player player;
+        private GameObject physicalGameObject;
 
-        public PlayerFacingLeft(Player player)
+        public PlayerFacingLeft(PlayerController playerController)
         {
-            yRot = Rotator.cameraYRot + yRotOffset;
-            this.player = player;
-            this.player.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
+            yRot = ThirdPersonCameraController.cameraYRot + yRotOffset;
+            this.physicalGameObject = playerController.GetGameObject();
+            this.physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
         }
         public void Move()
         {
-            yRot = Rotator.cameraYRot + yRotOffset;
-            player.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
-            Vector3 target = player.transform.position + player.transform.forward * PlayerController.speed;
-            player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, target, PlayerController.speed);
+            yRot = ThirdPersonCameraController.cameraYRot + yRotOffset;
+            physicalGameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, yRot, 0));
+            Vector3 target = physicalGameObject.transform.position + physicalGameObject.transform.forward * PlayerController.speed;
+            physicalGameObject.transform.localPosition = Vector3.MoveTowards(physicalGameObject.transform.localPosition, target, PlayerController.speed);
+        }
+        public void CastMagic(GameObject magicAttackPrefab, bool aoe, PlayerConstants.Magic castType)
+        {
+            if (aoe)
+                Object.Instantiate(magicAttackPrefab, physicalGameObject.transform.position + physicalGameObject.transform.forward * PlayerConstants.WIND_AOE_ATTACK_MAXRANGE + magicAttackPrefab.transform.position, Quaternion.identity);
+            else
+                Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, 1.5f, physicalGameObject.transform.position.z), physicalGameObject.transform.rotation);
         }
     }
 }

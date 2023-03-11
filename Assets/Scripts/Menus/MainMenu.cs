@@ -2,47 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.IO;
 
-public class MainMenu : MonoBehaviour
+using ABOGGUS.Gameplay;
+using ABOGGUS.SaveSystem;
+
+namespace ABOGGUS.Menus
 {
-    private float initialVolume = 0.25f;
-    private void Start()
+    public class MainMenu : MonoBehaviour
     {
-        AudioListener.volume = initialVolume;
-    }
-    public void PlayGame()
-    {
-        StartCoroutine(PlayGameEnum());
-    }
-    public void PlayCredits()
-    {
-        StartCoroutine(PlayCreditsEnum());
-    }
-    IEnumerator PlayGameEnum()
-    {
-        yield return new WaitForSeconds(0.3f);
-        LoadingLocation.LoadSceneAtPath("Assets/Scenes/MiniGame.unity");
-    }
+        //[SerializeField] private GameObject loadButton;
+        private float initialVolume = 0.25f;
+        private void Start()
+        {
+            AudioListener.volume = initialVolume;
 
-    IEnumerator PlayCreditsEnum()
-    {
-        yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene(sceneName: "Scenes/Credits");
-    }
+            // disable load button if no save folder found
+            if (!Directory.Exists(Application.dataPath + SaveGameManager.saveFolder))
+            {
+                Button loadButton = this.gameObject.transform.Find("LoadGameButton").GetComponent<Button>();
+                loadButton.interactable = false;
+            }
+        }
+        public void PlayNewGame()
+        {
+            StartCoroutine(PlayNewGameEnum());
+        }
+        public void PlayLoadGame()
+        {
+            StartCoroutine(PlayLoadGameEnum());
+        }
+        public void PlayCredits()
+        {
+            StartCoroutine(PlayCreditsEnum());
+        }
+        IEnumerator PlayNewGameEnum()
+        {
+            SaveGameManager.StartNewData();
+            yield return new WaitForSeconds(0.3f);
+            GameController.NewGame();
+        }
 
-    public void QuitGame()
-    {
-        Debug.Log("Quit game");
-        #if UNITY_STANDALONE
-                Application.Quit();
-        #endif
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #endif
-    }
+        IEnumerator PlayLoadGameEnum()
+        {
+            SaveGameManager.LoadProgressFromFile(null);
+            string sceneName = SaveGameManager.currentSaveData.lastScene;
+            yield return new WaitForSeconds(0.3f);
+            GameController.LoadGame(sceneName);
+        }
 
-    public void volumeSlider()
-    {
-        
+        IEnumerator PlayCreditsEnum()
+        {
+            yield return new WaitForSeconds(0.3f);
+            GameController.ChangeScene("Main menu to credits.", GameConstants.SCENE_CREDITS, true);
+        }
+
+        public void QuitGame()
+        {
+            Debug.Log("Quit game");
+#if UNITY_STANDALONE
+            Application.Quit();
+#endif
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        }
     }
 }

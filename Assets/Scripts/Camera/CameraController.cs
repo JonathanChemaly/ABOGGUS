@@ -11,6 +11,7 @@ namespace ABOGGUS
         public GameObject player;
         private float camSpeed = 0.0032f;
         private float rotateSpeed = 0.04f;
+        private float playerHeight = 2.2f;
         private float fov = 90.0f;
 
         private Vector3 tpOffset;
@@ -37,7 +38,7 @@ namespace ABOGGUS
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + new Vector3(0.0f, 0.1f, 0.2f), camSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + new Vector3(0.0f, playerHeight, 1f), camSpeed);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, fpRotation, rotateSpeed);
             }
             Camera.main.fieldOfView = fov;

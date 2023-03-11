@@ -4,11 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class LoadingController : MonoBehaviour
 {
     [SerializeField] private Image loadingIcon;//field that holds the image that tracks progress
     [SerializeField] private TextMeshProUGUI tipText;
+
+    public static Action loadingFinished;
+
+    public const float COMPLETION_AMOUNT = 0.8f;
 
     //Float to hold time to have loading screen on without skipping to the next sceen.
     [SerializeField] private float timeToHaveLoadingScreenOn; 
@@ -38,18 +43,18 @@ public class LoadingController : MonoBehaviour
             //makes the fill of the image equal to the amount of progress made toward the scene loading
             loadingIcon.fillAmount = sceneLoadingOperation.progress;
             
-            //Because of inaccuracy of progress need to do this to enable scene activivastion again
-            if(sceneLoadingOperation.progress >= 0.8)
+            //Because of inaccuracy of progress need to do this to enable scene activation again
+            if(sceneLoadingOperation.progress >= COMPLETION_AMOUNT)
             {
                 //waiting time so we have loading screen on a min amount of time.
-                yield return new WaitForSeconds(timeToHaveLoadingScreenOn); 
-                sceneLoadingOperation.allowSceneActivation = true; //now that scene is down we can all the scen to load
+                yield return new WaitForSeconds(timeToHaveLoadingScreenOn);
+                sceneLoadingOperation.allowSceneActivation = true; //now that scene is down we can all the scene to load
             }
 
             yield return null;
         }
 
-        
+        loadingFinished();
     }
 
     /*

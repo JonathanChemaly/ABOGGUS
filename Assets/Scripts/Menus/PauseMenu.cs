@@ -1,61 +1,61 @@
-using ABOGGUS;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+using ABOGGUS.Gameplay;
+using ABOGGUS.SaveSystem;
+
+namespace ABOGGUS.Menus
 {
-    public GameObject pauseMenu;
-    public static bool isPaused;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PauseMenu : MonoBehaviour
     {
-        pauseMenu.SetActive(false);
-        isPaused = false;
-    }
+        public GameObject pauseMenu;
+        public static bool isPaused;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isPaused) this.PauseGame();
-        else this.ResumeGame();
-    }
-
-    public static void Trigger()
-    {
-        if (!InventoryMenu.isPaused)
+        // Start is called before the first frame update
+        void Start()
         {
-            isPaused = !isPaused;
+            pauseMenu.SetActive(false);
+            isPaused = false;
         }
-    }
 
-    private void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-    }
+        // Update is called once per frame
+        void Update()
+        {
+            if (isPaused) this.PauseGame();
+            else this.ResumeGame();
+        }
 
-    private void ResumeGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-    }
+        public static void Trigger()
+        {
+            if (!InventoryMenu.isPaused && !GameOverMenu.isPaused)
+            {
+                isPaused = !isPaused;
+            }
+        }
 
-    public void GoToMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(sceneName: "Scenes/Menu");
-    }
+        private void PauseGame()
+        {
+            pauseMenu.SetActive(true);
+            GameController.PauseGame();
+        }
 
-    public void QuitGame()
-    {
-#if UNITY_STANDALONE
-        Application.Quit();
-#endif
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        public void ResumeGame()
+        {
+            pauseMenu.SetActive(false);
+            GameController.ResumeGame();
+        }
+
+        public void GoToMainMenu()
+        {
+            GameController.ChangeScene("Going to main menu from pause menu.", GameConstants.SCENE_MAINMENU, true);
+        }
+
+        public void QuitGame()
+        {
+            GameController.QuitGame("Quit from pause menu.");
+        }
     }
 }

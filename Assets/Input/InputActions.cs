@@ -118,6 +118,87 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ef7270cf-5508-4744-9a36-26f2523d9b25"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""39eea253-9beb-40de-ae72-25e566df58b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReturnToMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""471f233a-1ce4-4f1d-9d72-c5ec575e7071"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""69d22e24-fbf7-4d2f-b182-46e9d0a18171"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast"",
+                    ""type"": ""Button"",
+                    ""id"": ""37082a83-3f31-45b7-8656-5fae885b35ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cast AOE"",
+                    ""type"": ""Button"",
+                    ""id"": ""49c75e60-3d4d-4f3a-9d35-acdc36bd601c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip Sword"",
+                    ""type"": ""Button"",
+                    ""id"": ""797ff3bd-b486-4e3c-a0f9-362e818fc505"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equip Grimoire"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c846aab-835b-47b1-be79-a379a17a5943"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dequip"",
+                    ""type"": ""Button"",
+                    ""id"": ""091c4253-085a-4da1-9927-ef49975b6528"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,7 +370,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -326,6 +407,17 @@ namespace ABOGGUS.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""191eb167-7525-4f11-a84e-f5a200e31604"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -398,12 +490,122 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8b00867e-f4d4-4b0c-aee8-2a3bc5eb090a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1f364d9f-30ea-4526-80d3-652e956cf454"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbf7aa7c-3323-458d-a0c9-636109616f66"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b582a799-48d7-4661-a0d2-4732817f6c86"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""356957e3-0a81-4cb4-b6fc-f7efbaec0233"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnToMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa2c70c2-0bf3-4290-8281-f6f7fb326f03"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b479a5c-39ec-472e-81a8-f92a6133fd35"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e681e2fc-a6c5-487d-ace0-0425b200ad4a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cast AOE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16957814-e530-47d6-902b-17b023c44a69"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip Sword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""021357c3-78ea-4e84-adc8-921b98cfc7ce"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equip Grimoire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3e2b5e5-2bcd-4bd1-8410-69707744d414"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dequip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1001,6 +1203,15 @@ namespace ABOGGUS.Input
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+            m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+            m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
+            m_Player_ReturnToMainMenu = m_Player.FindAction("ReturnToMainMenu", throwIfNotFound: true);
+            m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Cast = m_Player.FindAction("Cast", throwIfNotFound: true);
+            m_Player_CastAOE = m_Player.FindAction("Cast AOE", throwIfNotFound: true);
+            m_Player_EquipSword = m_Player.FindAction("Equip Sword", throwIfNotFound: true);
+            m_Player_EquipGrimoire = m_Player.FindAction("Equip Grimoire", throwIfNotFound: true);
+            m_Player_Dequip = m_Player.FindAction("Dequip", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1082,6 +1293,15 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_Pause;
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_Dodge;
+        private readonly InputAction m_Player_Rotate;
+        private readonly InputAction m_Player_Quit;
+        private readonly InputAction m_Player_ReturnToMainMenu;
+        private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Cast;
+        private readonly InputAction m_Player_CastAOE;
+        private readonly InputAction m_Player_EquipSword;
+        private readonly InputAction m_Player_EquipGrimoire;
+        private readonly InputAction m_Player_Dequip;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -1096,6 +1316,15 @@ namespace ABOGGUS.Input
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+            public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+            public InputAction @Quit => m_Wrapper.m_Player_Quit;
+            public InputAction @ReturnToMainMenu => m_Wrapper.m_Player_ReturnToMainMenu;
+            public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            public InputAction @Cast => m_Wrapper.m_Player_Cast;
+            public InputAction @CastAOE => m_Wrapper.m_Player_CastAOE;
+            public InputAction @EquipSword => m_Wrapper.m_Player_EquipSword;
+            public InputAction @EquipGrimoire => m_Wrapper.m_Player_EquipGrimoire;
+            public InputAction @Dequip => m_Wrapper.m_Player_Dequip;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1135,6 +1364,33 @@ namespace ABOGGUS.Input
                     @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                     @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                    @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                    @Quit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @Quit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @Quit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @ReturnToMainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
+                    @ReturnToMainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
+                    @ReturnToMainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToMainMenu;
+                    @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Cast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast;
+                    @Cast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast;
+                    @Cast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCast;
+                    @CastAOE.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastAOE;
+                    @CastAOE.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastAOE;
+                    @CastAOE.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCastAOE;
+                    @EquipSword.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipSword;
+                    @EquipSword.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipSword;
+                    @EquipSword.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipSword;
+                    @EquipGrimoire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipGrimoire;
+                    @EquipGrimoire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipGrimoire;
+                    @EquipGrimoire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipGrimoire;
+                    @Dequip.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDequip;
+                    @Dequip.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDequip;
+                    @Dequip.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDequip;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1169,6 +1425,33 @@ namespace ABOGGUS.Input
                     @Dodge.started += instance.OnDodge;
                     @Dodge.performed += instance.OnDodge;
                     @Dodge.canceled += instance.OnDodge;
+                    @Rotate.started += instance.OnRotate;
+                    @Rotate.performed += instance.OnRotate;
+                    @Rotate.canceled += instance.OnRotate;
+                    @Quit.started += instance.OnQuit;
+                    @Quit.performed += instance.OnQuit;
+                    @Quit.canceled += instance.OnQuit;
+                    @ReturnToMainMenu.started += instance.OnReturnToMainMenu;
+                    @ReturnToMainMenu.performed += instance.OnReturnToMainMenu;
+                    @ReturnToMainMenu.canceled += instance.OnReturnToMainMenu;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
+                    @Cast.started += instance.OnCast;
+                    @Cast.performed += instance.OnCast;
+                    @Cast.canceled += instance.OnCast;
+                    @CastAOE.started += instance.OnCastAOE;
+                    @CastAOE.performed += instance.OnCastAOE;
+                    @CastAOE.canceled += instance.OnCastAOE;
+                    @EquipSword.started += instance.OnEquipSword;
+                    @EquipSword.performed += instance.OnEquipSword;
+                    @EquipSword.canceled += instance.OnEquipSword;
+                    @EquipGrimoire.started += instance.OnEquipGrimoire;
+                    @EquipGrimoire.performed += instance.OnEquipGrimoire;
+                    @EquipGrimoire.canceled += instance.OnEquipGrimoire;
+                    @Dequip.started += instance.OnDequip;
+                    @Dequip.performed += instance.OnDequip;
+                    @Dequip.canceled += instance.OnDequip;
                 }
             }
         }
@@ -1335,6 +1618,15 @@ namespace ABOGGUS.Input
             void OnPause(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
+            void OnRotate(InputAction.CallbackContext context);
+            void OnQuit(InputAction.CallbackContext context);
+            void OnReturnToMainMenu(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
+            void OnCast(InputAction.CallbackContext context);
+            void OnCastAOE(InputAction.CallbackContext context);
+            void OnEquipSword(InputAction.CallbackContext context);
+            void OnEquipGrimoire(InputAction.CallbackContext context);
+            void OnDequip(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

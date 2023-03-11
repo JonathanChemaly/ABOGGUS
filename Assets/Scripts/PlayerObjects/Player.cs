@@ -1,114 +1,122 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 using ABOGGUS.Input;
+using ABOGGUS.Gameplay;
+using ABOGGUS.Menus;
+using System;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class Player : MonoBehaviour
     {
-        public bool key = true;
-        private IPlayerState playerState;
-        enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
-        private FacingDirection facingDirection;
+        public GameObject physicalGameObject;
+        public PlayerController playerController;
 
-        public void Initialize()
+        public GameObject gameOverText;
+        public bool debug = false;
+
+        public static Action PlayerDied;
+
+        public PlayerInventory inventory;
+        public PlayerHUD playerHUD;
+        public float invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
+
+        private static bool exists = false;
+
+        public void Awake()
         {
-            playerState = new PlayerFacingForward(this);
-            facingDirection = FacingDirection.Forward;
-        }
+            if (debug || !exists)
+            {
+                GameController.player = this;
+                playerController = this.transform.GetComponent<PlayerController>();
 
-        public void MovementHandler(InputAction moveAction)
-        {
-            Vector2 movement = moveAction.ReadValue<Vector2>();
-            FacingDirection currentFacingDirection;
-            //Get the current facing direction
-            if (movement.x > 0 && movement.y > 0)
-            {
-                currentFacingDirection = FacingDirection.FrontRight;
-            }
-            else if (movement.x < 0 && movement.y > 0)
-            {
-                currentFacingDirection = FacingDirection.FrontLeft;
-            }
-            else if (movement.x == 0 && movement.y > 0)
-            {
-                currentFacingDirection = FacingDirection.Forward;
-            }
-            else if (movement.x > 0 && movement.y < 0)
-            {
-                currentFacingDirection = FacingDirection.BackRight;
-            }
-            else if (movement.x < 0 && movement.y < 0)
-            {
-                currentFacingDirection = FacingDirection.BackLeft;
-            }
-            else if (movement.x == 0 && movement.y < 0)
-            {
-                currentFacingDirection = FacingDirection.Backward;
-            }
-            else if (movement.x > 0 && movement.y == 0)
-            {
-                currentFacingDirection = FacingDirection.Right;
-            }
-            else if (movement.x < 0 && movement.y == 0)
-            {
-                currentFacingDirection = FacingDirection.Left;
-            }
-            else
-            {
-                currentFacingDirection = FacingDirection.Idle;
-            }
+                if (debug)
+                {
+                    GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
+                    SetGameObject(physicalGameObject);
+                }
 
-            //Check if the facing direction is the same and not idle to move
-            if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
-            {
-                playerState.Move();
-            }
-            //Otherwise if the facing direction is not the same then change to new state
-            else if (!currentFacingDirection.Equals(facingDirection))
-            {
-                SetFacingState(currentFacingDirection);
+                playerController.InitializeForPlayer();
+                inventory = new PlayerInventory();
+                SetHUD();
+                exists = true;
+                DontDestroyOnLoad(gameObject);
             }
         }
 
-        //Set player state to new facing direction state
-        private void SetFacingState(FacingDirection newFacingDirection)
+        private void SetHUD()
         {
-            if (newFacingDirection.Equals(FacingDirection.Forward))
+            GameObject hudObj = physicalGameObject.transform.Find("HUD").gameObject;
+            playerHUD = hudObj.GetComponent<PlayerHUD>();
+            playerHUD.playerInventory = this.inventory;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            if (invulnerabilityFrames == 0)
             {
-                playerState = new PlayerFacingForward(this);
+                inventory.TakeDamage(damage);
+                invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
             }
-            else if (newFacingDirection.Equals(FacingDirection.Backward))
-            {
-                playerState = new PlayerFacingBackward(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.Left))
-            {
-                playerState = new PlayerFacingLeft(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.Right))
-            {
-                playerState = new PlayerFacingRight(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.FrontRight))
-            {
-                playerState = new PlayerFacingFrontRight(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.FrontLeft))
-            {
-                playerState = new PlayerFacingFrontLeft(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.BackRight))
-            {
-                playerState = new PlayerFacingBackRight(this);
-            }
-            else if (newFacingDirection.Equals(FacingDirection.BackLeft))
-            {
-                playerState = new PlayerFacingBackLeft(this);
-            }
-            facingDirection = newFacingDirection;
+
+            playerHUD.UpdateHealthBar();
+        }
+        public void updateMana(int value)
+        {
+            inventory.mana += value;
+            playerHUD.UpdateMana();
+        }
+        IEnumerator ToCredits()
+        {
+            //gameOverText.SetActive(true);
+            Time.timeScale = 0;
+            yield return new WaitForSeconds(5f);
+            GameController.QuitGame("Player died lol.");
+
+        }
+
+        void FixedUpdate()
+        {
+            if (debug) _FixedUpdate();
+        }
+
+        public void _FixedUpdate()
+        {
+            if (this.playerController != null) { this.playerController._FixedUpdate(); }
+            if (invulnerabilityFrames > 0) invulnerabilityFrames--;
+        }
+
+        public void SetController(PlayerController playerController)
+        {
+            this.playerController = playerController;
+        }
+
+        public void SetGameObject(GameObject physicalGameObject)
+        {
+            this.physicalGameObject = physicalGameObject;
+            //this.playerController.SetGameObject(physicalGameObject);
+            this.playerController.InitializePlayerState(physicalGameObject);
+            SetHUD();
+        }
+
+        public GameObject GetGameObject()
+        {
+            return this.playerController.GetGameObject();
+        }
+
+        private void OnEnable()
+        {
+            //PlayerDied += GameController.Respawn;
+            PlayerDied += GameOverMenu.ActivateGameOver;
+        }
+        private void OnDisable()
+        {
+            //PlayerDied -= GameController.Respawn;
+            PlayerDied -= GameOverMenu.ActivateGameOver;
         }
     }
 }
