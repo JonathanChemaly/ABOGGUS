@@ -26,36 +26,35 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         */
 
-        //TODO: Fix out of bounds property
         /**
          * checks all cardinal directions for a floor cell and if there is one puts it into the adjaceny list
          * for the specficed cell
          */
-        private static void addNeighorsToList(SokobanCell[,] room, SokobanCell sc, int row, int col)
+        private static void AddNeighorsToList(SokobanCell[,] room, SokobanCell sc, int row, int col)
         {
-            if (room[row -1, col].isFloor()) sc.AdjacentList.Add(room[row, col]); //north
-            if (room[row +1, col].isFloor()) sc.AdjacentList.Add(room[row, col]); //south
-            if (room[row, col +1].isFloor()) sc.AdjacentList.Add(room[row, col]); //east
-            if (room[row, col -1].isFloor()) sc.AdjacentList.Add(room[row, col]); //west
+            if (row -1 > 0 && room[row -1, col].isFloor()) sc.AdjacentList.Add(room[row -1, col]); //north
+            if (row + 1 < room.GetLength(0) && room[row +1, col].isFloor()) sc.AdjacentList.Add(room[row+1, col]); //south
+            if (col + 1 < room.GetLength(1) && room[row, col +1].isFloor()) sc.AdjacentList.Add(room[row, col+1]); //east
+            if (col - 1 > 0 && room[row, col -1].isFloor()) sc.AdjacentList.Add(room[row, col-1]); //west
         }
 
         //Template Propeties
-        public static SokobanCell[,] Template0 { get => makeTemplate0(); }
-        public static SokobanCell[,] Template1 { get => makeTemplate1(); }
-        public static SokobanCell[,] Template2 { get => makeTemplate2(); }
-        public static SokobanCell[,] Template3 { get => makeTemplate3(); }
-        public static SokobanCell[,] Template4 { get => makeTemplate4(); }
-        public static SokobanCell[,] Template5 { get => makeTemplate5(); }
-        public static SokobanCell[,] Template6 { get => makeTemplate6(); }
-        public static SokobanCell[,] Template7 { get => makeTemplate7(); }
-        public static SokobanCell[,] Template8 { get => makeTemplate8(); }
+        public static SokobanCell[,] Template0 { get => MakeTemplate0(); }
+        public static SokobanCell[,] Template1 { get => MakeTemplate1(); }
+        public static SokobanCell[,] Template2 { get => MakeTemplate2(); }
+        public static SokobanCell[,] Template3 { get => MakeTemplate3(); }
+        public static SokobanCell[,] Template4 { get => MakeTemplate4(); }
+        public static SokobanCell[,] Template5 { get => MakeTemplate5(); }
+        public static SokobanCell[,] Template6 { get => MakeTemplate6(); }
+        public static SokobanCell[,] Template7 { get => MakeTemplate7(); }
+        public static SokobanCell[,] Template8 { get => MakeTemplate8(); }
 
         /*
             Five by five templates
          */
 
         //All Floor room
-        private static SokobanCell[,] makeTemplate0()
+        private static SokobanCell[,] MakeTemplate0()
         {
             SokobanCell[,] room = new SokobanCell[,] {
             
@@ -70,19 +69,19 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 1], 1, 1);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 1], 3, 1);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -98,12 +97,12 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
 
-        private static SokobanCell[,] makeTemplate1()
+        private static SokobanCell[,] MakeTemplate1()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
@@ -113,19 +112,18 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 1], 3, 1);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -142,12 +140,12 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         */
 
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate2()
+        private static SokobanCell[,] MakeTemplate2()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new FloorCell(), new FloorCell() },
+            { new EmptyCell(), new WallCell(), new WallCell(), new FloorCell(), new FloorCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
@@ -157,19 +155,17 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 1], 3, 1);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -184,12 +180,12 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate3()
+        private static SokobanCell[,] MakeTemplate3()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new WallCell(), new WallCell(), new EmptyCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
@@ -198,20 +194,15 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
             //set up adjaceny lists of ..
 
-            //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
-
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 1], 3, 1);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -226,34 +217,27 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate4()
+        private static SokobanCell[,] MakeTemplate4()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new WallCell(), new WallCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
 
             };
 
             //set up adjaceny lists of ..
 
-            //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
-
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -268,14 +252,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate5()
+        private static SokobanCell[,] MakeTemplate5()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new EmptyCell(), new FloorCell(), new EmptyCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new FloorCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new FloorCell(), new FloorCell(), new WallCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
 
             };
@@ -283,19 +267,17 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 1], 3, 1);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
 
             return room;
         }
@@ -310,14 +292,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate6()
+        private static SokobanCell[,] MakeTemplate6()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new FloorCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
             { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
 
             };
@@ -325,19 +307,17 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+            AddNeighorsToList(room, room[3, 3], 3, 3);
 
             return room;
         }
@@ -352,34 +332,33 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate7()
+        private static SokobanCell[,] MakeTemplate7()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
+            { new EmptyCell(), new EmptyCell(), new FloorCell(), new EmptyCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new FloorCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new WallCell(), new EmptyCell() },
+            { new EmptyCell(), new EmptyCell(), new FloorCell(), new EmptyCell(), new EmptyCell() }
 
             };
 
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
+            AddNeighorsToList(room, room[1, 3], 1, 3);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+
+            AddNeighorsToList(room, room[3, 2], 3, 2);
+
 
             return room;
         }
@@ -394,34 +373,30 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         };
         */
         //TODO: Implement
-        private static SokobanCell[,] makeTemplate8()
+        private static SokobanCell[,] MakeTemplate8()
         {
             SokobanCell[,] room = new SokobanCell[,] {
 
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new FloorCell(), new FloorCell(), new FloorCell(), new EmptyCell() },
-            { new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell(), new EmptyCell() }
+            { new EmptyCell(), new EmptyCell(), new FloorCell(), new EmptyCell(), new EmptyCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new WallCell(), new EmptyCell() },
+            { new FloorCell(), new FloorCell(), new FloorCell(), new FloorCell(), new FloorCell() },
+            { new EmptyCell(), new WallCell(), new FloorCell(), new WallCell(), new EmptyCell() },
+            { new EmptyCell(), new EmptyCell(), new FloorCell(), new EmptyCell(), new EmptyCell() }
 
             };
 
             //set up adjaceny lists of ..
 
             //first row
-            addNeighorsToList(room, room[1, 1], 1, 1);
-            addNeighorsToList(room, room[1, 2], 1, 2);
-            addNeighorsToList(room, room[1, 3], 1, 3);
+            AddNeighorsToList(room, room[1, 2], 1, 2);
 
             //second row
-            addNeighorsToList(room, room[2, 1], 2, 1);
-            addNeighorsToList(room, room[2, 2], 2, 2);
-            addNeighorsToList(room, room[2, 3], 2, 3);
+            AddNeighorsToList(room, room[2, 1], 2, 1);
+            AddNeighorsToList(room, room[2, 2], 2, 2);
+            AddNeighorsToList(room, room[2, 3], 2, 3);
 
             //third row
-            addNeighorsToList(room, room[3, 1], 3, 1);
-            addNeighorsToList(room, room[3, 2], 3, 2);
-            addNeighorsToList(room, room[3, 3], 3, 3);
+            AddNeighorsToList(room, room[3, 2], 3, 2);
 
             return room;
         }

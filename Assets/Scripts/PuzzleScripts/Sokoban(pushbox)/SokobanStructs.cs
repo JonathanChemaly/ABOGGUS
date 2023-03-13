@@ -6,15 +6,12 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 {
     public static class SokobanStructs
     {
-        public enum SCellType
+        public enum Direction
         {
-            Wall,
-            Floor,
-            NoBoxFloor, //Floor that a box can not go into
-            Empty,
-            Box,
-            Goal, //Goal where box needs to be pushed
-            PlayerSpawn
+            north,
+            east,
+            south,
+            west
         }
     }
 
