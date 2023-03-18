@@ -19,6 +19,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         {
             adjacencyList = new List<SokobanCell>();
         }
+
+        public FloorCell(SokobanCell sc)
+        {
+            adjacencyList = sc.AdjacentList;
+        }
     }
 }
 

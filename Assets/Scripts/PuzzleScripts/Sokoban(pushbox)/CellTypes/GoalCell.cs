@@ -16,7 +16,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         private List<SokobanCell> adjacencyList;
 
         //Takes existing floor cell and makes it a goal cell
-        public GoalCell(FloorCell fc)
+        public GoalCell(SokobanCell fc)
         {
             adjacencyList = fc.AdjacentList;
         }

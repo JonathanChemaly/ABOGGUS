@@ -16,7 +16,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private static List<Tuple<int, int>> GetRegionList(int rowNum, int colNum, int roomSize) 
         {
-            List<Tuple<int, int>> reigions = new List<Tuple<int, int>>();
+            List<Tuple<int, int>> reigions = new();
 
             //goes through all rows
             for (int row = 0; row < rowNum; row++)
@@ -31,7 +31,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             return reigions;
         }
 
-        private static bool IsOutOfSokobanBounds(int rowNumber, int colNumber, SokobanCell[,] sokoban)
+        public static bool IsOutOfSokobanBounds(int rowNumber, int colNumber, SokobanCell[,] sokoban)
         {
             int sokobanRows = sokoban.GetLength(0);
             int sokobanCols = sokoban.GetLength(1);
@@ -122,13 +122,13 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             int roomColCount = roomArray.GetLength(1);
 
             //go through row 0 which is a check row.
-            canAdd = canAdd & CanAddRowCheck(0, reigion, roomColCount, roomArray, sokoban);
+            canAdd &= CanAddRowCheck(0, reigion, roomColCount, roomArray, sokoban);
             //go through row N-1 which is also a check row
-            canAdd = canAdd & CanAddRowCheck(roomRowCount - 1, reigion, roomColCount, roomArray, sokoban);
+            canAdd &= CanAddRowCheck(roomRowCount - 1, reigion, roomColCount, roomArray, sokoban);
 
             //go through cols similarly skipping already checked row values
-            canAdd = canAdd & CanAddColCheck(0, reigion, roomColCount, roomArray, sokoban);
-            canAdd = canAdd & CanAddColCheck(roomColCount - 1, reigion, roomColCount, roomArray, sokoban);
+            canAdd &= CanAddColCheck(0, reigion, roomColCount, roomArray, sokoban);
+            canAdd &= CanAddColCheck(roomColCount - 1, reigion, roomColCount, roomArray, sokoban);
 
 
             return canAdd;
@@ -191,6 +191,105 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             return numberOfFloorsAdded;
         }
 
+        private static void DisconnectFloors(SokobanCell cellToDisconenct, SokobanCell[,] sokoban, int row, int col)
+        {
+            if (row - 1 > 0 && sokoban[row - 1, col] != null && sokoban[row - 1, col].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row - 1, col])) 
+            {
+                cellToDisconenct.AdjacentList.Remove(sokoban[row - 1, col]); //add adjacent floor cell to our cell
+                sokoban[row - 1, col].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
+            }
+            //south
+            if (row + 1 < sokoban.GetLength(0) && sokoban[row + 1, col] != null && sokoban[row + 1, col].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row + 1, col]))
+            {
+                cellToDisconenct.AdjacentList.Remove(sokoban[row + 1, col]); //add adjacent floor cell to our cell
+                sokoban[row + 1, col].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
+            }
+            //east
+            if (col + 1 < sokoban.GetLength(1) && sokoban[row, col + 1] != null && sokoban[row, col + 1].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col + 1]))
+            {
+                cellToDisconenct.AdjacentList.Remove(sokoban[row, col + 1]); //add adjacent floor cell to our cell
+                sokoban[row, col + 1].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
+            }
+            //west
+            if (col - 1 > 0 && sokoban[row, col - 1] != null && sokoban[row, col - 1].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col - 1]))
+            {
+                cellToDisconenct.AdjacentList.Remove(sokoban[row, col - 1]); //add adjacent floor cell to our cell
+                sokoban[row, col - 1].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
+            }
+        }
+
+        private static bool AddRoomToSokoban(SokobanCell[,] sokoban, SokobanRoom roomToAdd, Tuple<int, int> reigion, int roomSize, int countAdded)
+        {
+            bool roomAdd = true;
+            SokobanCell[,] roomArray = roomToAdd.RoomMatrix;
+            
+            int numberOfFloorsAdded = 0;
+            //goes through center rows ignoring the "Check" rows at 0 and roomSize +1 indexes
+            for (int row = 1; row < roomSize + 1; row++)
+            {
+                //goes through center cols ignoring the "Check" cols at 0 and roomSize +1 indexes
+                for (int col = 1; col < roomSize + 1; col++)
+                {
+                    //Sets the cell at the designated room in col to the approiate space given the reigion offset
+                    sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1] = roomArray[row, col];
+
+                    SokobanCell addedCell = sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1];
+                    if (addedCell.isFloor()) //connect the floors
+                    {
+                        numberOfFloorsAdded += ConnectFloors(addedCell, sokoban, row + reigion.Item1 - 1, col + reigion.Item2 - 1);
+                    }
+                }
+            }
+
+            Debug.Log("Number of floor connections made = " + numberOfFloorsAdded);
+            //checks below
+
+            //Floor spaces form one contiguous room
+            //When connecting floor space check if at least one floor cell connects to an outside cell
+            //or we just added our first room
+            //Note: only works if all floors in template are connected
+                    //Debug.Log("numberOfFloorsAdd = " + numberOfFloorsAdded);
+            roomAdd &= countAdded == 0 || numberOfFloorsAdded > 0;
+
+            //No large open spaces
+                //At end of connecting floor spaces check if there is a 3x4 area room
+
+            //roomAdd &= !LargeOpenSpacesExist(sokoban);
+
+            //no cells border on all 3 sides by walls
+                //check each newly added floor if it is border by 3 walls ignore it.
+            
+            //roomAdd &= !IsThereCellBorderedBy3Walls(sokoban, reigion, roomSize);
+
+            //resets room if inner checks fail
+            if (!roomAdd)
+            { 
+                for (int row = 1; row < roomSize + 1; row++)
+                {
+                    //goes through center cols ignoring the "Check" cols at 0 and roomSize +1 indexes
+                    for (int col = 1; col < roomSize + 1; col++)
+                    {
+                        SokobanCell sc = sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1];
+
+                        if (sc.isFloor())
+                        {
+                            DisconnectFloors(sc, sokoban, row + reigion.Item1 - 1, col + reigion.Item2 - 1);
+                        }
+                        
+                        //Sets the cell at the designated room in col to the approiate space given the reigion offset
+                        sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1] = null;
+
+                        //TO-DO Remove Floor connection
+                    }
+                }
+            }
+            return roomAdd;
+
+        }
+
+        // ************** End: Placement methods **************
+
+        // ************** Start: Valid Ending room check methods **************
         private static bool CheckFor3x4(SokobanCell[,] sokoban, int sokobanRows, int sokobanCols)
         {
             bool threeByFourExists = false;
@@ -303,119 +402,6 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             return largeOpenSpaceExists;
         }
 
-        
-
-        private static bool IsThereCellBorderedBy3Walls(SokobanCell[,] sokoban, Tuple<int, int> reigion, int roomSize)
-        {
-            bool foundCellWith3Walls = false;
-
-            //goes through all rows in newly added room and the adjacent ones
-            for (int row = 0; row < roomSize + 2; row++)
-            {
-                
-                //goes through all cols in newly added room and the adjacent ones
-                for (int col = 0; col < roomSize + 2; col++)
-                {
-                    
-
-                    int rowPosInSokoban = row + reigion.Item1 -1;
-                    int colPosInSokoban = col + reigion.Item2 -1;
-
-                    //Only check floor tiles that are in bounds.
-                    if (!IsOutOfSokobanBounds(rowPosInSokoban, colPosInSokoban, sokoban) && 
-                        sokoban[rowPosInSokoban, colPosInSokoban] != null && sokoban[rowPosInSokoban, colPosInSokoban].isFloor()) 
-                    {
-
-                        int numberOfBorderWalls = 0;
-                        //checks each bordering cell
-                        numberOfBorderWalls += CheckIfCellIsBorderWall(rowPosInSokoban - 1, colPosInSokoban, sokoban); //north
-                        numberOfBorderWalls += CheckIfCellIsBorderWall(rowPosInSokoban + 1, colPosInSokoban, sokoban); //south
-                        numberOfBorderWalls += CheckIfCellIsBorderWall(rowPosInSokoban, colPosInSokoban + 1, sokoban); //east
-                        numberOfBorderWalls += CheckIfCellIsBorderWall(rowPosInSokoban, colPosInSokoban - 1, sokoban); //west
-
-                        //if our current cell has 3 walls stop looping
-                        if (numberOfBorderWalls >= 3)
-                        {
-                            foundCellWith3Walls = true;
-                            //Debug.Log("FoundCell with " + numberOfBorderWalls + " walls bordering it");
-                            break;
-                        }
-                    }
-                }
-                //stop looping if we found a cell with 3 walls
-                if (foundCellWith3Walls) break;
-                
-            }
-            return foundCellWith3Walls;
-        }
-
-        
-
-        private static bool AddRoomToSokoban(SokobanCell[,] sokoban, SokobanRoom roomToAdd, Tuple<int, int> reigion, int roomSize, int countAdded)
-        {
-            bool roomAdd = true;
-            SokobanCell[,] roomArray = roomToAdd.RoomMatrix;
-            
-            int numberOfFloorsAdded = 0;
-            //goes through center rows ignoring the "Check" rows at 0 and roomSize +1 indexes
-            for (int row = 1; row < roomSize + 1; row++)
-            {
-                //goes through center cols ignoring the "Check" cols at 0 and roomSize +1 indexes
-                for (int col = 1; col < roomSize + 1; col++)
-                {
-                    //Sets the cell at the designated room in col to the approiate space given the reigion offset
-                    sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1] = roomArray[row, col];
-
-                    SokobanCell addedCell = sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1];
-                    if (addedCell.isFloor()) //connect the floors
-                    {
-                        numberOfFloorsAdded += ConnectFloors(addedCell, sokoban, row + reigion.Item1 - 1, col + reigion.Item2 - 1);
-                    }
-                }
-            }
-
-            Debug.Log("Number of floor connections made = " + numberOfFloorsAdded);
-            //checks below
-
-            //Floor spaces form one contiguous room
-            //When connecting floor space check if at least one floor cell connects to an outside cell
-            //or we just added our first room
-            //Note: only works if all floors in template are connected
-                    //Debug.Log("numberOfFloorsAdd = " + numberOfFloorsAdded);
-            roomAdd &= countAdded == 0 || numberOfFloorsAdded > 0;
-
-            //No large open spaces
-                //At end of connecting floor spaces check if there is a 3x4 area room
-
-            //roomAdd &= !LargeOpenSpacesExist(sokoban);
-
-            //no cells border on all 3 sides by walls
-                //check each newly added floor if it is border by 3 walls ignore it.
-            
-            //roomAdd &= !IsThereCellBorderedBy3Walls(sokoban, reigion, roomSize);
-
-            //resets room if inner checks fail
-            if (!roomAdd)
-            { 
-                for (int row = 1; row < roomSize + 1; row++)
-                {
-                    //goes through center cols ignoring the "Check" cols at 0 and roomSize +1 indexes
-                    for (int col = 1; col < roomSize + 1; col++)
-                    {
-                        //Sets the cell at the designated room in col to the approiate space given the reigion offset
-                        sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1] = null;
-
-                        //TO-DO Remove Floor connection
-                    }
-                }
-            }
-            return roomAdd;
-
-        }
-
-        // ************** End: Placement methods **************
-
-        // ************** Start: Valid Ending room check methods **************
         private static int CheckIfCellIsBorderWall(int row, int col, SokobanCell[,] sokoban)
         {
             int numberOfBorderWalls = 0;
@@ -519,11 +505,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
             while (regions.Count > 0)
             {
-
-                
                 //Debug.Log("~~~~~~~Current Puzzle~~~~~~~");
                 //DebugPrintSokoban(sokoban);
-                SokobanRoom room = new SokobanRoom(roomSize);
+                SokobanRoom room = new(roomSize);
                 //Debug.Log("~~~~~~~Random Room~~~~~~~");
                 //DebugPrintSokoban(room.RoomMatrix);
                 room.RotateRandomly();
@@ -615,6 +599,18 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         else if (curCellType.Equals(typeof(WallCell)))
                         {
                             line += "W";
+                        }
+                        else if (curCellType.Equals(typeof(GoalCell)))
+                        {
+                            line += "G";
+                        }
+                        else if (curCellType.Equals(typeof(PlayerSpawnCell)))
+                        {
+                            line += "P";
+                        }
+                        else if (curCellType.Equals(typeof(BoxCell)))
+                        {
+                            line += "B";
                         }
                         else
                         {
