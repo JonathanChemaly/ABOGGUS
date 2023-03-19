@@ -6,63 +6,40 @@ namespace ABOGGUS.Interact.Puzzles
 {
     public class TilePuzzleManager : MonoBehaviour
     {
-        public int numTilesLong = 4;
-        public float tileSpace = 2.5f;
+        public int TILE_PUZZLE_LENGTH = 4;
+        public const int TILE_PUZZLE_SPACE = 3;
         public GameObject tilePrefab;
-        [SerializeField] int emptyIndex;
         [SerializeField] Vector2 emptyPos;
-        [SerializeField] Texture2D fullTexture;
 
         private TilePuzzle[,] tiles;
-        //private int orderCnt;
+        private int orderCnt;
         private bool gameOver;
 
         // Start is called before the first frame update
         void Awake()
         {
             CreatePuzzle();
-            gameOver = false;
         }
 
         private void CreatePuzzle()
         {
-            // sets up list to determine order
-            List<int> numList = new List<int>();
-            int num = 0;
-            while (num < numTilesLong * numTilesLong)
-            {
-                if (num != emptyIndex)
-                {
-                    numList.Add(num);
-                }
-                num++;
-            }
+            tiles = new TilePuzzle[TILE_PUZZLE_LENGTH, TILE_PUZZLE_LENGTH];
+            orderCnt = 0;
 
-            tiles = new TilePuzzle[numTilesLong, numTilesLong];
-            //orderCnt = 0;
-            for (int i = 0; i < numTilesLong; i++)
+            for (int i = 0; i < TILE_PUZZLE_LENGTH; i++)
             {
-                for (int j = 0; j < numTilesLong; j++)
+                for (int j = 0; j < TILE_PUZZLE_LENGTH; j++)
                 {
                     // check not empty
                     if (i != emptyPos.x || j != emptyPos.y)
                     {
-                        // create prefab instance
-                        GameObject newObj = Instantiate(tilePrefab, new Vector3(tileSpace * i, 1, tileSpace * j), Quaternion.identity);
+                        GameObject newObj = Instantiate(tilePrefab, new Vector3(TILE_PUZZLE_SPACE * i, 1, TILE_PUZZLE_SPACE * j), Quaternion.identity);
                         newObj.transform.parent = this.transform;
                         TilePuzzle newTile = newObj.GetComponent<TilePuzzle>();
-
-                        // randomly set which piece of picture
-                        int index = Random.Range(0, numList.Count);
-                        int order = numList[index];
-                        numList.RemoveAt(index);
-
-                        // set Tile object
-                        newTile.SetTPM(this, i, j, order);
-                        newTile.ApplyTextureFromOrder(fullTexture);
+                        newTile.SetTPM(this, i, j, orderCnt);
                         tiles[i, j] = newTile;
                     }
-                    //orderCnt++;
+                    orderCnt++;
                 }
             }
         }
@@ -76,19 +53,17 @@ namespace ABOGGUS.Interact.Puzzles
                 // swap tiles
                 Vector2 temp = emptyPos;
                 emptyPos = tile.pos;
-                tiles[(int)temp.x, (int)temp.y] = tiles[(int)tile.pos.x, (int)tile.pos.y];
-                tiles[(int)tile.pos.x, (int)tile.pos.y] = null;
                 tile.SetPosition(temp);
-                CheckWinningOrder();
+                //CheckWinningOrder();
             }
         }
 
         private void CheckWinningOrder()
         {
             int checkCnt = 0;
-            for (int i = 0; i < numTilesLong; i++)
+            for (int i = 0; i < TILE_PUZZLE_LENGTH; i++)
             {
-                for (int j = 0; j < numTilesLong; j++)
+                for (int j = 0; j < TILE_PUZZLE_LENGTH; j++)
                 {
                     checkCnt++;
                     if (i == emptyPos.x && j == emptyPos.y) continue;
