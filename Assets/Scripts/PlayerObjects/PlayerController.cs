@@ -353,7 +353,7 @@ namespace ABOGGUS.PlayerObjects
                             }
                         }
                         //Run Attack
-                        else if (moveAction.ReadValue<Vector2>().magnitude > 0)
+                        else if (moveAction.ReadValue<Vector2>().magnitude > 0.01)
                         {
                             //Run Attack Anim
                             PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DASH_SWORD_ATTACK);
@@ -409,12 +409,12 @@ namespace ABOGGUS.PlayerObjects
                         animationSelectedThisFrame = true;
                     }
 
-                    if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0 && sprinting)
+                    if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0.01 && sprinting)
                     {
                         //Sprint
                         PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SPRINT_ANIMATION);
                     }
-                    else if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0)
+                    else if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0.01)
                     {
                         //Run
                         if (weaponEquipped == PlayerConstants.Weapon.Unarmed)
