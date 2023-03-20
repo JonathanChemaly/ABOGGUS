@@ -19,16 +19,6 @@ namespace ABOGGUS.Interact.Puzzles
             item.InteractAction += Interact;
         }
 
-        private void Interact()
-        {
-            tpm.TileInteract(this);
-            //Debug.Log("Clicked on this tile");
-        }
-
-        public int GetIntendedOrder()
-        {
-            return orderNum;
-        }
         public void SetTPM(TilePuzzleManager tpm, int x, int y, int order)
         {
             this.tpm = tpm;
@@ -39,7 +29,7 @@ namespace ABOGGUS.Interact.Puzzles
         public void SetPosition(Vector2 newPos)
         {
             pos = newPos;
-            this.transform.position = new Vector3(tpm.tileSpace*newPos.x, 1, tpm.tileSpace*newPos.y);
+            this.transform.position = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * newPos.y);
         }
 
         public void ApplyTextureFromOrder(Texture2D texture)
@@ -54,6 +44,17 @@ namespace ABOGGUS.Interact.Puzzles
             GameObject spriteObj = transform.Find("Sprite").gameObject;
             spriteObj.transform.localScale /= (rectLength / 100.0f);
             spriteObj.GetComponent<SpriteRenderer>().sprite = sprite;
+        }
+
+        public bool InteractCheck()
+        {
+            return tpm.CheckTileCanMove(this) && !TilePuzzleManager.gameOver;
+        }
+
+        private void Interact()
+        {
+            tpm.MoveTile(this);
+            //Debug.Log("Clicked on this tile");
         }
     }
 }
