@@ -13,10 +13,15 @@ namespace ABOGGUS.Interact.Puzzles
         public Vector2 pos;
         public int orderNum;
 
+        [SerializeField] Material incorrect;
+        [SerializeField] Material correct;
+        private MeshRenderer mr;
+
         // Start is called before the first frame update
         void Awake()
         {
             item.InteractAction += Interact;
+            mr = transform.Find("Indicator").GetComponent<MeshRenderer>();
         }
 
         public void SetTPM(TilePuzzleManager tpm, int x, int y, int order)
@@ -30,6 +35,10 @@ namespace ABOGGUS.Interact.Puzzles
         {
             pos = newPos;
             this.transform.position = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * -1 * newPos.y);
+
+            // change color (material) of border indicator
+            if (orderNum == tpm.numTilesLong * pos.y + pos.x) mr.material = correct;
+            else mr.material = incorrect;
         }
 
         public void ApplyTextureFromOrder(Texture2D texture)

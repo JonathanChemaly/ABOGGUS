@@ -33,20 +33,19 @@ namespace ABOGGUS.Interact.Puzzles
                 numList.Add(num);
                 num++;
             }
-            Debug.Log("Created list: " + ListToString(numList));
 
             // shuffle list and make sure it can be solved
             int inversions = 0;
             do
             {
                 Shuffle(numList);
-                Debug.Log("Shuffled list: " + ListToString(numList));
+                //Debug.Log("Shuffled list: " + ListToString(numList));
                 inversions = CountInversions(numList);
             } while (!IsSolvable(inversions));
             if (numTilesLong % 2 == 0)
             {
                 if (inversions % 2 == 0) emptyPos = new Vector2(numTilesLong - 1, numTilesLong - 1);
-                else emptyPos = new Vector2(numTilesLong - 1, 1);
+                else emptyPos = new Vector2(numTilesLong - 1, 0);
             }
             else emptyPos = new Vector2(numTilesLong - 1, numTilesLong - 1);
 
@@ -77,13 +76,6 @@ namespace ABOGGUS.Interact.Puzzles
             }
         }
 
-        private string ListToString(List<int> list)
-        {
-            string str = "" + list[0];
-            for (int i = 1; i < list.Count; i++) str += ", " + list[i];
-            return str;
-        }
-
         // Fisher-Yates shuffle algorithm
         private void Shuffle(List<int> list)
         {
@@ -112,7 +104,7 @@ namespace ABOGGUS.Interact.Puzzles
                 }
                 count += tileCount;
             }
-            Debug.Log("Inversion count: " + count);
+            //Debug.Log("Inversion count: " + count);
             return count;
         }
 
@@ -156,5 +148,13 @@ namespace ABOGGUS.Interact.Puzzles
             gameOver = true;
             Debug.Log("Player has solved the puzzle!");
         }
+
+        private string ListToString(List<int> list)
+        {
+            string str = "" + list[0];
+            for (int i = 1; i < list.Count; i++) str += ", " + list[i];
+            return str;
+        }
+
     }
 }
