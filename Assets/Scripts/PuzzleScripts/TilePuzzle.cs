@@ -17,6 +17,8 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] Material correct;
         private MeshRenderer mr;
 
+        public const float moveSpeed = 0.05f;
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -31,21 +33,43 @@ namespace ABOGGUS.Interact.Puzzles
             this.orderNum = order;
         }
 
+        public void MoveTile(Vector2 newPos)
+        {
+            StartCoroutine(MoveTileOverTime(newPos));
+        }
+
+        IEnumerator MoveTileOverTime(Vector2 newPos)
+        {
+            TilePuzzleManager.movingTile = true;
+            Vector3 targetPos = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * -1 * newPos.y);
+            while (transform.position != targetPos)
+            {
+                yield return null;
+                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed);
+            }
+            SetPosition(newPos);
+            TilePuzzleManager.movingTile = false;
+        }
+
         public void SetPosition(Vector2 newPos)
         {
             pos = newPos;
             this.transform.position = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * -1 * newPos.y);
+            UpdateIndicator();
+        }
 
+        private void UpdateIndicator()
+        {
             // change color (material) of border indicator
-            if (orderNum == tpm.numTilesLong * pos.y + pos.x) mr.material = correct;
+            if (orderNum == tpm.dimensionLength * pos.y + pos.x) mr.material = correct;
             else mr.material = incorrect;
         }
 
         public void ApplyTextureFromOrder(Texture2D texture)
         {
             // create sprite
-            int rectLength = texture.width / tpm.numTilesLong;
-            int xStart = orderNum % tpm.numTilesLong, yStart = (tpm.numTilesLong-1) - orderNum / tpm.numTilesLong;
+            int rectLength = texture.width / tpm.dimensionLength;
+            int xStart = orderNum % tpm.dimensionLength, yStart = (tpm.dimensionLength-1) - orderNum / tpm.dimensionLength;
             Rect rect = new Rect(rectLength * xStart, rectLength * yStart, rectLength, rectLength);
             Sprite sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
 
@@ -57,7 +81,7 @@ namespace ABOGGUS.Interact.Puzzles
 
         public bool InteractCheck()
         {
-            return tpm.CheckTileCanMove(this) && !TilePuzzleManager.gameOver;
+            return tpm.CheckTileCanMove(this) && !TilePuzzleManager.gameOver && !TilePuzzleManager.movingTile;
         }
 
         private void Interact()
