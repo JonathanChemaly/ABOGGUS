@@ -33,13 +33,15 @@ namespace ABOGGUS.Interact.Puzzles
                 numList.Add(num);
                 num++;
             }
+            Debug.Log("Created list: " + ListToString(numList));
 
             // shuffle list and make sure it can be solved
             int inversions = 0;
             do
             {
                 Shuffle(numList);
-                CountInversions(numList);
+                Debug.Log("Shuffled list: " + ListToString(numList));
+                inversions = CountInversions(numList);
             } while (!IsSolvable(inversions));
             if (numTilesLong % 2 == 0)
             {
@@ -50,15 +52,15 @@ namespace ABOGGUS.Interact.Puzzles
 
             int index = 0;
             tiles = new TilePuzzle[numTilesLong, numTilesLong];
-            for (int i = 0; i < numTilesLong; i++)
+            for (int j = 0; j < numTilesLong; j++)
             {
-                for (int j = 0; j < numTilesLong; j++)
+                for (int i = 0; i < numTilesLong; i++)
                 {
                     // check not empty tile
                     if (i != emptyPos.x || j != emptyPos.y)
                     {
                         // create prefab instance
-                        GameObject newObj = Instantiate(tilePrefab, new Vector3(tileSpace * i, 1, tileSpace * j), Quaternion.identity);
+                        GameObject newObj = Instantiate(tilePrefab, new Vector3(tileSpace * i, 1, tileSpace * -j), Quaternion.identity);
                         newObj.transform.parent = this.transform;
                         TilePuzzle newTile = newObj.GetComponent<TilePuzzle>();
 
@@ -73,6 +75,13 @@ namespace ABOGGUS.Interact.Puzzles
                     }
                 }
             }
+        }
+
+        private string ListToString(List<int> list)
+        {
+            string str = "" + list[0];
+            for (int i = 1; i < list.Count; i++) str += ", " + list[i];
+            return str;
         }
 
         // Fisher-Yates shuffle algorithm
@@ -103,6 +112,7 @@ namespace ABOGGUS.Interact.Puzzles
                 }
                 count += tileCount;
             }
+            Debug.Log("Inversion count: " + count);
             return count;
         }
 

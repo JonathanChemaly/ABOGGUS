@@ -18,7 +18,7 @@ namespace ABOGGUS.Interact.Checks
 
         [SerializeField]
         [Tooltip("what to display in case game is already finished")]
-        private string failureText2 = "Puzzle already completed!";
+        private string failureText2 = "Puzzle already completed";
 
         public bool DoCheck()
         {
