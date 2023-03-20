@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class GrassSlime : MonoBehaviour
 {
     private GameObject player;
@@ -10,11 +11,13 @@ public class GrassSlime : MonoBehaviour
     private bool dead = false;
     private float range = 15f;
     private float speed = 0.075f;
-    private float timer = 1f;
+    private float timer = 1.5f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
+    [SerializeField] private GameObject ElementalDrop;
     private int damping = 2;
     private Transform target;
     private bool attacking = false;
@@ -31,9 +34,8 @@ public class GrassSlime : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < 2.5f)
         {
             attacking = true;
-            if (timer == 1f)
+            if (timer == 1.5f)
             {
-                //use vine attack
                 VineAttack();
                 vineSound.Play();
             }
@@ -41,7 +43,7 @@ public class GrassSlime : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                timer = 1f;
+                timer = 1.5f;
                 
             }
         }
@@ -79,12 +81,39 @@ public class GrassSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            GameController.player.TakeDamage(damage);
+            
+        }
+        if (collision.gameObject.tag == "Sword" || collision.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+        }
+    }
 
-    private void AttackDelay()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
+        }
+
+    }
+        private void AttackDelay()
     {
         attacking = false;
     }

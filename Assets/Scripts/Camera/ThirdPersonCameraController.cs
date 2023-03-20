@@ -184,8 +184,8 @@ public class ThirdPersonCameraController : MonoBehaviour
         else
         {
             GetComponent<CinemachineBrain>().enabled = false;
-            offset = 1f;
-            yOffset = 2.33f;
+            offset = 1.2f;
+            yOffset = 2f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }

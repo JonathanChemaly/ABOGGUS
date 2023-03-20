@@ -16,14 +16,23 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     public GameObject botDoorL;
 
     public bool openBottomDoor = false;
+    public bool flipOrientation = false;
 
+    [SerializeField] private bool transition = false;
     void Start()
     {
         botDoorRP = botDoorR.transform.position;
         botDoorLP = botDoorL.transform.position;
-
-        botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
-        botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+        if (flipOrientation)
+        {
+            botDoorRPO = botDoorRP -new Vector3(10.4f, 0.0f, 0.0f);
+            botDoorLPO = botDoorLP + new Vector3(10.4f, 0.0f, 0.0f);
+        }
+        else
+        {
+            botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
+            botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+        }
     }
 
     // Update is called once per frame
@@ -43,13 +52,22 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (transition && other.CompareTag("Player"))
         {
             openBottomDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
                 GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
             }
+            if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
+            {
+                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+            }
+        }
+        else if (other.CompareTag("Player"))
+        {
+            openBottomDoor = true;
+            Debug.Log("botOpen");
         }
     }
     private void OnTriggerExit(Collider other)

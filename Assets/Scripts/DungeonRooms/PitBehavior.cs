@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PitBehavior : MonoBehaviour
 {
+    public GameObject floor;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.name == "Player" || other.transform.name == "Sword")
         {
-            GameObject.Find("Floor").GetComponent<BoxCollider>().enabled = false;
+            floor.GetComponent<BoxCollider>().enabled = false;
         }
     }
 
@@ -16,7 +17,7 @@ public class PitBehavior : MonoBehaviour
     {
         if (other.transform.name == "Player" || other.transform.name == "Sword")
         {
-            GameObject.Find("Floor").GetComponent<BoxCollider>().enabled = true;
+            floor.GetComponent<BoxCollider>().enabled = true;
         }
     }
 

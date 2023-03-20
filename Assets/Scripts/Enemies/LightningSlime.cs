@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class LightningSlime : MonoBehaviour
 {
     private GameObject player;
@@ -13,8 +14,10 @@ public class LightningSlime : MonoBehaviour
     private float timer = 2f;
     private float deathTimer = 1f;
     private float health = 3f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource zapSound;
+    [SerializeField] private GameObject ElementalDrop;
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class LightningSlime : MonoBehaviour
             if (timer == 2f)
             {
                 zapSound.Play();
+                GameController.player.TakeDamage(damage);
             }
             
             timer -= Time.deltaTime;
@@ -79,6 +83,7 @@ public class LightningSlime : MonoBehaviour
             transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
             if (deathTimer < 0)
             {
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
@@ -88,8 +93,20 @@ public class LightningSlime : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            // player take damage
+            GameController.player.TakeDamage(damage);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
 
+            }
         }
     }
 }

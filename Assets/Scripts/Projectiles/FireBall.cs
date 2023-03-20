@@ -21,5 +21,15 @@ public class FireBall : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "MagicAttack")
+        {
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+            }
+        }
+    }
 
 }

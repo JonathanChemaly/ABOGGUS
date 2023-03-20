@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ABOGGUS.PlayerObjects;
+using ABOGGUS.Gameplay;
 public class WaterSlime : MonoBehaviour
 {
     private GameObject player;
@@ -11,7 +12,9 @@ public class WaterSlime : MonoBehaviour
     private float speed = 0.1f;
     private float timer = 1.2f;
     private float health = 1f;
+    public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private GameObject ElementalDrop;
     private int damping = 2;
     private Transform target;
 
@@ -58,6 +61,7 @@ public class WaterSlime : MonoBehaviour
 
             if (timer < 0)
             {
+                Instantiate(ElementalDrop, transform.position, Quaternion.identity);
                 deathSound.Play();
                 Destroy(gameObject);
             }
@@ -69,9 +73,25 @@ public class WaterSlime : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            // player take damage
             //slow the player
+            GameController.player.TakeDamage(damage);
             Debug.Log("pop");
+        }
+        if (collision.gameObject.tag == "Slime" && pop){
+            Destroy(collision.gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
+        {
+            Debug.Log("Grass Slime health:" + health);
+            health -= 1;
+            if (other.GetComponent<WindAttack>() != null)
+            {
+                other.GetComponent<WindAttack>().Destroy();
+
+            }
         }
     }
 }
