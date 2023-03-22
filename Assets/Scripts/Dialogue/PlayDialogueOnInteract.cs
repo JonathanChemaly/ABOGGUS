@@ -15,18 +15,14 @@ namespace ABOGGUS.Interact
         private Interactable interact;
 
         [SerializeField]
-        [Tooltip("path to audio to play when interacted with")]
-        private string pathToAudio;
-
-        [SerializeField]
-        [Tooltip("Text of dialogue to ouput as subtitles")]
-        private List<DialogueLine> subtitleText;
+        [Tooltip("Dialogue File with text and clip to play")]
+        private Dialogue dialogue;
 
         [SerializeField]
         [Tooltip("Whether You want the animation to play multiple times")]
         private bool playMultipleTimes = true;
 
-        private Dialogue dial;
+        private DialoguePlayer dial;
 
         private void Start()
         {
@@ -36,14 +32,14 @@ namespace ABOGGUS.Interact
         //Plays audio on interact
         private void PlayAudio()
         {
-            dial = gameObject.AddComponent<Dialogue>();
-            dial.locationOfSoundFile = pathToAudio;
-            dial.subtitleText = subtitleText;
+            dial = gameObject.AddComponent<DialoguePlayer>();
+            dial.audioClip = dialogue.audioClip;
+            dial.subtitleText = dialogue.subtitleText;
 
-            StartCoroutine(disableWhileAudioPlaying());
+            StartCoroutine(DisableWhileAudioPlaying());
         }
 
-        IEnumerator disableWhileAudioPlaying()
+        IEnumerator DisableWhileAudioPlaying()
         {
             interact.enabled = false;
             while (dial != null)

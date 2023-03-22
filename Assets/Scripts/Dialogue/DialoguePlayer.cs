@@ -5,13 +5,13 @@ using UnityEngine.Events;
 
 namespace ABOGGUS.Sound.Dialogue
 {
-    public class Dialogue: MonoBehaviour
+    public class DialoguePlayer: MonoBehaviour
     {
         [Tooltip("Holder of the text data for this dialogue")]
         public List<DialogueLine> subtitleText;
 
         [Tooltip("")]
-        public string locationOfSoundFile;
+        public AudioClip audioClip;
 
         /*
         [SerializeField]
@@ -24,23 +24,17 @@ namespace ABOGGUS.Sound.Dialogue
          */
         private void Start()
         {
-            StartCoroutine(playAudioAndDisplaySubtitles());
+            StartCoroutine(PlayAudioAndDisplaySubtitles());
         }
 
-        IEnumerator playAudioAndDisplaySubtitles()
+        IEnumerator PlayAudioAndDisplaySubtitles()
         {
             int lineNumBeingRead = 0;
 
-
-            AudioClip clip = Resources.Load<AudioClip>(locationOfSoundFile);
-            Debug.Log(clip);
-
             AudioSource dialogue = gameObject.AddComponent<AudioSource>();
 
-            
-            dialogue.clip = clip;
+            dialogue.clip = audioClip;
 
-            Debug.Log("Play Audio at: " + locationOfSoundFile);
             dialogue.Play();
 
             float startTime = Time.time;
@@ -50,6 +44,7 @@ namespace ABOGGUS.Sound.Dialogue
             {
                 DialogueController.subtitleTMP.text = subtitleText[lineNumBeingRead].line;
             }
+
             while (dialogue.isPlaying)
             {
                 yield return null;
