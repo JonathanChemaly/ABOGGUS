@@ -5,19 +5,15 @@ using UnityEngine.Events;
 
 namespace ABOGGUS.Sound.Dialogue
 {
+    /**
+     * Class to be created with a dialogue should be played
+     * 
+     * see "PlayDialogueOnInteract.cs" for how to use
+     */
     public class DialoguePlayer: MonoBehaviour
     {
-        [Tooltip("Holder of the text data for this dialogue")]
-        public List<DialogueLine> subtitleText;
-
-        [Tooltip("")]
-        public AudioClip audioClip;
-
-        /*
-        [SerializeField]
-        [Tooltip("What action will be taken when item is interacted with")]
-        public UnityAction playAudioAndDisplaySubtitles;
-        */
+        [HideInInspector]
+        public Dialogue dialogue;
 
         /**
          * Creates new dialogue object and plays audio and 
@@ -31,11 +27,13 @@ namespace ABOGGUS.Sound.Dialogue
         {
             int lineNumBeingRead = 0;
 
-            AudioSource dialogue = gameObject.AddComponent<AudioSource>();
+            AudioSource source = gameObject.AddComponent<AudioSource>();
 
-            dialogue.clip = audioClip;
+            source.clip = dialogue.audioClip;
 
-            dialogue.Play();
+            source.Play();
+
+            List<DialogueLine> subtitleText = dialogue.subtitleText;
 
             float startTime = Time.time;
             float timeTillNextLine = subtitleText[lineNumBeingRead].timeToPlay;
@@ -45,7 +43,7 @@ namespace ABOGGUS.Sound.Dialogue
                 DialogueController.subtitleTMP.text = subtitleText[lineNumBeingRead].line;
             }
 
-            while (dialogue.isPlaying)
+            while (source.isPlaying)
             {
                 yield return null;
                 if(DialogueController.SubtitlesEnabled && lineNumBeingRead != subtitleText.Count - 1 && Time.time >= startTime + timeTillNextLine )
@@ -57,7 +55,7 @@ namespace ABOGGUS.Sound.Dialogue
             }
             if (DialogueController.SubtitlesEnabled)DialogueController.subtitleTMP.text = "";
 
-            Destroy(dialogue);
+            Destroy(source);
             Destroy(this);
         }
 

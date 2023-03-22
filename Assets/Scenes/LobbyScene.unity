@@ -10033,19 +10033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interact: {fileID: 1514885490}
-  pathToAudio: NarratorAudio/Narrator-IntroPuzzleLine
-  subtitleText:
-  - line: Welcome to The Fifth Season Hotel
-    timeToPlay: 2.81
-  - line: Explore the building as you wish; however,
-    timeToPlay: 5.42
-  - line: Start with getting the elevator working. also...
-    timeToPlay: 8.739
-  - line: Never enter room 201.
-    timeToPlay: 11.483
-  - line: Thank You.
-    timeToPlay: 0
-  playMultipleTimes: 1
+  dialogue: {fileID: 11400000, guid: dbb7686c04cd46943a6ee7fa480cdc41, type: 2}
+  nextDialoguePath: {fileID: 11400000, guid: 661e9023f2b6e9546ab36ba1139d4897, type: 2}
 --- !u!114 &1514885490
 MonoBehaviour:
   m_ObjectHideFlags: 0

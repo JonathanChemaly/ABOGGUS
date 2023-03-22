@@ -8,14 +8,15 @@ using System;
 
 namespace ABOGGUS.Interact
 {
-    public class PlayDialogueOnInteract : MonoBehaviour
+    public class PlayDialogueAfterTime : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("interact to watch")]
-        private Interactable interact;
+        [Tooltip("Time until the dialogue should play")]
+        private float timeUntilPlay;
 
+        [SerializeField]
         [Tooltip("Dialogue File with text and clip to play")]
-        public Dialogue dialogue;
+        private Dialogue dialogue;
 
         [SerializeField]
         [Tooltip("Dialogue File with text and clip to play")]
@@ -25,37 +26,28 @@ namespace ABOGGUS.Interact
 
         private void Start()
         {
-            interact.InteractAction += PlayAudio;
+            StartCoroutine(WaitThenPlay());
         }
 
-        //Plays audio on interact
-        private void PlayAudio()
+        IEnumerator WaitThenPlay()
         {
+            yield return new WaitForSeconds(timeUntilPlay);            
+
             //To play the audio we create a dialogue player object and give it the dialogue to play which plays on start
             dialPlayer = gameObject.AddComponent<DialoguePlayer>();
             dialPlayer.dialogue = dialogue; //giving the player what to play
 
-            //we then in this case what to disable the interactable while this is playing
-            StartCoroutine(DisableWhileAudioPlaying());
-        }
-
-        IEnumerator DisableWhileAudioPlaying()
-        {
-            interact.enabled = false;
-            //Dialogue player destorys itself after it is finished playing so we can reenabel the interact after
-            //the object is null
-            while (dialPlayer != null)
+            //if we do not have another dialogue to play in our sequence
+            if (nextDialoguePath == null)
             {
-                yield return null;
+                //destory this object
+                Destroy(this);
             }
-
-            //Check if we have another dialogue to play in our sequence
-            if (nextDialoguePath != null) 
+            else //we do have another dialogue on our path
             {
-                interact.enabled = true;
                 dialogue = nextDialoguePath.curDialogue; //sets dialogue on the path as we should
                 nextDialoguePath = nextDialoguePath.nextPath; //recursively gets next path (could be null or another path)
-            } //do not renable if we only want to play once
+            }
         }
 
     }

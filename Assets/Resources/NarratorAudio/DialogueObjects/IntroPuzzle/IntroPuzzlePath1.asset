@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d980b9f62fc9f049901a00ce5949a8e, type: 3}
-  m_Name: IntroPuzzle1
+  m_Script: {fileID: 11500000, guid: 31d929e9091d7d145af42f6625ed074e, type: 3}
+  m_Name: IntroPuzzlePath1
   m_EditorClassIdentifier: 
-  pathToAudio: 
-  subtitleText: []
+  nextPath: {fileID: 11400000}
+  curDialogue: {fileID: 11400000, guid: dbb7686c04cd46943a6ee7fa480cdc41, type: 2}
