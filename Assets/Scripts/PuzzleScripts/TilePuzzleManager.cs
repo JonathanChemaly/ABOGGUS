@@ -6,10 +6,11 @@ namespace ABOGGUS.Interact.Puzzles
 {
     public class TilePuzzleManager : MonoBehaviour
     {
-        public int dimensionLength = 4;
+        public int size = 4;
         public float tileSpace = 2.5f;
         [SerializeField] GameObject tilePrefab;
         [SerializeField] Texture2D fullTexture;
+        [SerializeField] float tileHeight;
 
         private TilePuzzle[,] tiles;
         private Vector2 emptyPos;
@@ -35,7 +36,7 @@ namespace ABOGGUS.Interact.Puzzles
             // sets up list to determine random order
             List<int> numList = new List<int>();
             int num = 0;
-            while (num < dimensionLength * dimensionLength - 1)
+            while (num < size * size - 1)
             {
                 numList.Add(num);
                 num++;
@@ -49,18 +50,18 @@ namespace ABOGGUS.Interact.Puzzles
                 //Debug.Log("Shuffled list: " + ListToString(numList));
                 inversions = CountInversions(numList);
             } while (!IsSolvable(inversions));
-            if (dimensionLength % 2 == 0)
+            if (size % 2 == 0)
             {
-                if (inversions % 2 == 0) emptyPos = new Vector2(dimensionLength - 1, dimensionLength - 1);
-                else emptyPos = new Vector2(dimensionLength - 1, 0);
+                if (inversions % 2 == 0) emptyPos = new Vector2(size - 1, size - 1);
+                else emptyPos = new Vector2(size - 1, 0);
             }
-            else emptyPos = new Vector2(dimensionLength - 1, dimensionLength - 1);
+            else emptyPos = new Vector2(size - 1, size - 1);
 
             int index = 0;
-            tiles = new TilePuzzle[dimensionLength, dimensionLength];
-            for (int j = 0; j < dimensionLength; j++)
+            tiles = new TilePuzzle[size, size];
+            for (int j = 0; j < size; j++)
             {
-                for (int i = 0; i < dimensionLength; i++)
+                for (int i = 0; i < size; i++)
                 {
                     // check not empty tile
                     if (i != emptyPos.x || j != emptyPos.y)
@@ -75,7 +76,7 @@ namespace ABOGGUS.Interact.Puzzles
                         index++;
 
                         // set Tile object
-                        newTile.SetTPM(this, i, j, order);
+                        newTile.SetTPM(this, i, j, order, tileHeight);
                         newTile.SetPosition(new Vector2(i, j));
                         newTile.ApplyTextureFromOrder(fullTexture);
                         tiles[i, j] = newTile;
@@ -119,7 +120,7 @@ namespace ABOGGUS.Interact.Puzzles
         // if even then depends on empty space, if odd then inversions must be even
         private bool IsSolvable(int inversions)
         {
-            return dimensionLength % 2 == 0 || inversions % 2 == 0;
+            return size % 2 == 0 || inversions % 2 == 0;
         }
 
         public bool CheckTileCanMove(TilePuzzle tile)
@@ -143,9 +144,9 @@ namespace ABOGGUS.Interact.Puzzles
         private void CheckWinningOrder()
         {
             int checkCnt = 0;
-            for (int j = 0; j < dimensionLength; j++)
+            for (int j = 0; j < size; j++)
             {
-                for (int i = 0; i < dimensionLength; i++)
+                for (int i = 0; i < size; i++)
                 {
                     checkCnt++;
                     if (i == emptyPos.x && j == emptyPos.y) continue;

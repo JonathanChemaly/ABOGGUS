@@ -12,6 +12,7 @@ namespace ABOGGUS.Interact.Puzzles
         private TilePuzzleManager tpm;
         public Vector2 pos;
         public int orderNum;
+        private float height;
 
         [SerializeField] Material incorrect;
         [SerializeField] Material correct;
@@ -26,11 +27,12 @@ namespace ABOGGUS.Interact.Puzzles
             mr = transform.Find("Indicator").GetComponent<MeshRenderer>();
         }
 
-        public void SetTPM(TilePuzzleManager tpm, int x, int y, int order)
+        public void SetTPM(TilePuzzleManager tpm, int x, int y, int order, float height)
         {
             this.tpm = tpm;
             pos = new Vector2(x, y);
             this.orderNum = order;
+            this.height = height;
         }
 
         public void MoveTile(Vector2 newPos)
@@ -41,7 +43,7 @@ namespace ABOGGUS.Interact.Puzzles
         IEnumerator MoveTileOverTime(Vector2 newPos)
         {
             TilePuzzleManager.movingTile = true;
-            Vector3 targetPos = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * -1 * newPos.y);
+            Vector3 targetPos = new Vector3(tpm.tileSpace * newPos.x, height, tpm.tileSpace * -1 * newPos.y);
             while (transform.position != targetPos)
             {
                 yield return null;
@@ -54,22 +56,22 @@ namespace ABOGGUS.Interact.Puzzles
         public void SetPosition(Vector2 newPos)
         {
             pos = newPos;
-            this.transform.position = new Vector3(tpm.tileSpace * newPos.x, 1, tpm.tileSpace * -1 * newPos.y);
+            this.transform.position = new Vector3(tpm.tileSpace * newPos.x, height, tpm.tileSpace * -1 * newPos.y);
             UpdateIndicator();
         }
 
         private void UpdateIndicator()
         {
             // change color (material) of border indicator
-            if (orderNum == tpm.dimensionLength * pos.y + pos.x) mr.material = correct;
+            if (orderNum == tpm.size * pos.y + pos.x) mr.material = correct;
             else mr.material = incorrect;
         }
 
         public void ApplyTextureFromOrder(Texture2D texture)
         {
             // create sprite
-            int rectLength = texture.width / tpm.dimensionLength;
-            int xStart = orderNum % tpm.dimensionLength, yStart = (tpm.dimensionLength-1) - orderNum / tpm.dimensionLength;
+            int rectLength = texture.width / tpm.size;
+            int xStart = orderNum % tpm.size, yStart = (tpm.size-1) - orderNum / tpm.size;
             Rect rect = new Rect(rectLength * xStart, rectLength * yStart, rectLength, rectLength);
             Sprite sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
 
