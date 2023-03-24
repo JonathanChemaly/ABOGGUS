@@ -2666,6 +2666,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6326273326907451825, guid: a4002837582f1c648a402990254be77a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a4002837582f1c648a402990254be77a, type: 3}
+--- !u!4 &417432267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6326273326907451789, guid: a4002837582f1c648a402990254be77a, type: 3}
+  m_PrefabInstance: {fileID: 417432266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &423909594
 GameObject:
   m_ObjectHideFlags: 0
@@ -8284,6 +8289,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270558124}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1279388037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279388038}
+  - component: {fileID: 1279388039}
+  m_Layer: 0
+  m_Name: NarratorHintPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279388038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279388037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 417432267}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279388039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279388037}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bb415ec1d1b55418af25b68379ac66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilPlay: 10
+  dialogue: {fileID: 11400000, guid: dbb7686c04cd46943a6ee7fa480cdc41, type: 2}
+  nextDialoguePath: {fileID: 11400000, guid: 661e9023f2b6e9546ab36ba1139d4897, type: 2}
 --- !u!1001 &1284343395
 PrefabInstance:
   m_ObjectHideFlags: 0

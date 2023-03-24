@@ -37,6 +37,10 @@ namespace ABOGGUS.Interact
             dialPlayer = gameObject.AddComponent<DialoguePlayer>();
             dialPlayer.dialogue = dialogue; //giving the player what to play
 
+            while (dialPlayer != null)
+            {
+                yield return null;
+            }
             //if we do not have another dialogue to play in our sequence
             if (nextDialoguePath == null)
             {
@@ -47,6 +51,7 @@ namespace ABOGGUS.Interact
             {
                 dialogue = nextDialoguePath.curDialogue; //sets dialogue on the path as we should
                 nextDialoguePath = nextDialoguePath.nextPath; //recursively gets next path (could be null or another path)
+                StartCoroutine(WaitThenPlay());
             }
         }
 
