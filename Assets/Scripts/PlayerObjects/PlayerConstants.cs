@@ -23,7 +23,7 @@ namespace ABOGGUS.PlayerObjects
         public const float JUMP_TIME_CUMULATIVE_DEFAULT = 0;
         public const float DODGE_TIME_CUMULATIVE_DEFAULT = 0;
         public const float WIND_AOE_ATTACK_MAXRANGE = 10f;
-        public enum Magic { Wind, Fire, Water, Nature };
+        public enum Magic { Wind, Fire, Water, Nature, Lightning };
         public enum Weapon { Sword, Grimoire, Unarmed };
 
         public const float INVULNERABILITY_FRAMES = 2 * FIXED_UPDATES_PER_SECOND;

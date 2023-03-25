@@ -88,8 +88,27 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.EquipGrimoire.performed += DoEquipGrimoire;
             playerActions.Player.EquipGrimoire.Enable();
 
+            playerActions.Player.EquipSpear.performed += DoEquipSpear;
+            playerActions.Player.EquipSpear.Enable();
+
             playerActions.Player.Dequip.performed += DoDequip;
             playerActions.Player.Dequip.Enable();
+
+            playerActions.Player.EquipWind.performed += DoEquipWind;
+            playerActions.Player.EquipWind.Enable();
+
+            playerActions.Player.EquipFire.performed += DoEquipFire;
+            playerActions.Player.EquipFire.Enable();
+
+            playerActions.Player.EquipWater.performed += DoEquipWater;
+            playerActions.Player.EquipWater.Enable();
+
+            playerActions.Player.EquipNature.performed += DoEquipNature;
+            playerActions.Player.EquipNature.Enable();
+
+            playerActions.Player.EquipLightning.performed += DoEquipLightning;
+            playerActions.Player.EquipLightning.Enable();
+
         }
 
         public void InitializePlayerState(GameObject physicalGameObject)
@@ -147,6 +166,50 @@ namespace ABOGGUS.PlayerObjects
             }
             weaponEquipped = PlayerConstants.Weapon.Sword;
             transitioning = true;
+        }
+
+        private void DoEquipSpear(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+            }
+            else
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+            }
+            weaponEquipped = PlayerConstants.Weapon.Sword;
+            transitioning = true;
+        }
+
+        private void DoEquipWind(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Wind;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipFire(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Fire;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipWater(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Water;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipNature(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Nature;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipLightning(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Lightning;
+            grimoire.SetNewMaterial(castType);
         }
 
         private void DoCast(InputAction.CallbackContext obj)
