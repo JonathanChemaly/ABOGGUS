@@ -7,10 +7,11 @@ namespace ABOGGUS.MazeGeneration
     public class MazeController : MonoBehaviour
     {
         public const int DEFAULT_SCALE = 3;
-        public const int DEFAULT_POSITION = 20 * DEFAULT_SCALE;
+        public const int DEFAULT_POSITION = 15 * DEFAULT_SCALE;
         public const float DEFAULT_HEIGHT_WALLS = 0.25f;
         public const float DEFAULT_HEIGHT_COLLECTABLES = 2f;
         public const float DEFAULT_WIDTH_WALLS = 0.02f;
+        public const float SHIFT = 3.5f;
         public const int ROWS = 10;
         public const int COLUMNS = 10;
         public const int LENGTH_OF_MAZE = ROWS * DEFAULT_SCALE;
@@ -83,29 +84,29 @@ namespace ABOGGUS.MazeGeneration
             MazeGenerator.instance.GenerateMaze();
 
             mazeParent1.transform.localScale = new Vector3(DEFAULT_SCALE, DEFAULT_SCALE, DEFAULT_SCALE);
-            mazeParent1.transform.localPosition = new Vector3(DEFAULT_POSITION / 2 - LENGTH_OF_MAZE / 2, 
-                0, DEFAULT_POSITION / 2 - WIDTH_OF_MAZE / 2);
+            mazeParent1.transform.localPosition = new Vector3(DEFAULT_POSITION / 2 - LENGTH_OF_MAZE / 2 - SHIFT,
+                0, DEFAULT_POSITION / 2 - WIDTH_OF_MAZE / 2 - SHIFT);
             mazeParent2.transform.localScale = new Vector3(DEFAULT_SCALE, DEFAULT_SCALE, DEFAULT_SCALE);
-            mazeParent2.transform.localPosition = new Vector3(DEFAULT_POSITION / 2 - LENGTH_OF_MAZE / 2, 
-                0, -(DEFAULT_POSITION - WIDTH_OF_MAZE / 2));
+            mazeParent2.transform.localPosition = new Vector3(DEFAULT_POSITION / 2 - LENGTH_OF_MAZE / 2 - SHIFT,
+                0, -(DEFAULT_POSITION - WIDTH_OF_MAZE / 2) - SHIFT);
             mazeParent3.transform.localScale = new Vector3(DEFAULT_SCALE, DEFAULT_SCALE, DEFAULT_SCALE);
-            mazeParent3.transform.localPosition = new Vector3(-(DEFAULT_POSITION - LENGTH_OF_MAZE / 2), 
-                0, -(DEFAULT_POSITION - WIDTH_OF_MAZE / 2));
+            mazeParent3.transform.localPosition = new Vector3(-(DEFAULT_POSITION - LENGTH_OF_MAZE / 2) - SHIFT,
+                0, -(DEFAULT_POSITION - WIDTH_OF_MAZE / 2) - SHIFT);
             mazeParent4.transform.localScale = new Vector3(DEFAULT_SCALE, DEFAULT_SCALE, DEFAULT_SCALE);
-            mazeParent4.transform.localPosition = new Vector3(-(DEFAULT_POSITION - LENGTH_OF_MAZE / 2), 
-                0, DEFAULT_POSITION / 2 - WIDTH_OF_MAZE / 2);
+            mazeParent4.transform.localPosition = new Vector3(-(DEFAULT_POSITION - LENGTH_OF_MAZE / 2) - SHIFT,
+                0, DEFAULT_POSITION / 2 - WIDTH_OF_MAZE / 2 - SHIFT);
         }
 
         private void InitializeCollectables()
         {
-            collectable1.transform.localPosition = new Vector3(DEFAULT_POSITION - mazeParent1.transform.localPosition.x - 1, 
-                DEFAULT_HEIGHT_COLLECTABLES, DEFAULT_POSITION - mazeParent1.transform.localPosition.z - 1);
-            collectable2.transform.localPosition = new Vector3((DEFAULT_POSITION - mazeParent1.transform.localPosition.x - 1),
-                DEFAULT_HEIGHT_COLLECTABLES, -(DEFAULT_POSITION - mazeParent1.transform.localPosition.z - 1));
-            collectable3.transform.localPosition = new Vector3(-(DEFAULT_POSITION - mazeParent1.transform.localPosition.x - 1),
-                DEFAULT_HEIGHT_COLLECTABLES, -(DEFAULT_POSITION - mazeParent1.transform.localPosition.z - 1));
-            collectable4.transform.localPosition = new Vector3(-(DEFAULT_POSITION - mazeParent1.transform.localPosition.x - 1),
-                DEFAULT_HEIGHT_COLLECTABLES, DEFAULT_POSITION - mazeParent1.transform.localPosition.z - 1);
+            collectable1.transform.localPosition = new Vector3(LENGTH_OF_MAZE + mazeParent1.transform.localPosition.x - 1,
+                DEFAULT_HEIGHT_COLLECTABLES, WIDTH_OF_MAZE + mazeParent1.transform.localPosition.z - 1);
+            collectable2.transform.localPosition = new Vector3((LENGTH_OF_MAZE + mazeParent2.transform.localPosition.x - 1),
+                DEFAULT_HEIGHT_COLLECTABLES, mazeParent2.transform.localPosition.z + 1);
+            collectable3.transform.localPosition = new Vector3(mazeParent3.transform.localPosition.x + 1,
+                DEFAULT_HEIGHT_COLLECTABLES, mazeParent3.transform.localPosition.z + 1);
+            collectable4.transform.localPosition = new Vector3(mazeParent4.transform.localPosition.x + 1,
+                DEFAULT_HEIGHT_COLLECTABLES, WIDTH_OF_MAZE + mazeParent1.transform.localPosition.z - 1);
         }
 
         private void ApplyOffset()

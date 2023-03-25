@@ -60,6 +60,5 @@ namespace ABOGGUS.PlayerObjects
         {
             gameObject.GetComponent<Renderer>().enabled = active;
         }
-        //Add method for changing the elemental glow of the grimoire
     }
 }
