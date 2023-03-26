@@ -6,9 +6,10 @@ namespace ABOGGUS.PlayerObjects
 {
     public class SpearAttack : MonoBehaviour
     {
-        private int damage = 20;
-        private float knockback = 0.2f;
+        private float damage = 15;
+        private float knockback = 0.4f;
         private bool active;
+        private bool attacking;
 
         private void Awake()
         {
@@ -25,23 +26,34 @@ namespace ABOGGUS.PlayerObjects
             active = true;
         }
 
+        public void Attacking(bool attacking)
+        {
+            this.attacking = attacking;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (active && other.transform.CompareTag("Enemy")) MoveObject(other.GetComponent<Rigidbody>(), true);
+            if (active && attacking && other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
+            else if (active && attacking && other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (active && collision.transform.CompareTag("Enemy")) MoveObject(collision.rigidbody, true);
+            if (active && attacking && collision.transform.CompareTag("Enemy")) DamageObject(collision.rigidbody, PlayerConstants.CollidedWith.Enemy);
+            else if (active && attacking && collision.transform.CompareTag("Boss")) DamageObject(collision.rigidbody, PlayerConstants.CollidedWith.Boss);
         }
 
-        private void MoveObject(Rigidbody rb, bool enemy)
+        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
-            if (enemy)
+            if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);
             }
-            rb.MovePosition(rb.position + transform.root.forward * knockback);
+            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            {
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Spear);
+                rb.GetComponent<IEnemy>().Push(transform.root.forward * knockback);
+            }
         }
 
         private void FixedUpdate()

@@ -256,6 +256,8 @@ namespace ABOGGUS.PlayerObjects
             if ((weaponEquipped == PlayerConstants.Weapon.Sword || weaponEquipped == PlayerConstants.Weapon.Spear) && !dodging)
             {
                 attack = true;
+                sword.Attacking(attack);
+                spear.Attacking(attack);
             }
         }
 
@@ -487,6 +489,8 @@ namespace ABOGGUS.PlayerObjects
                     else
                     {
                         attackIdx = 0;
+                        sword.Attacking(isAttacking);
+                        spear.Attacking(isAttacking);
                     }
 
                     if (casting)

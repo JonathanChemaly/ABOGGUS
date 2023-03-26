@@ -25,6 +25,8 @@ namespace ABOGGUS.PlayerObjects
         public const float WIND_AOE_ATTACK_MAXRANGE = 10f;
         public enum Magic { Wind, Fire, Water, Nature, Lightning };
         public enum Weapon { Sword, Grimoire, Spear, Unarmed };
+        public enum CollidedWith {  Enemy, Boss, Interactable, Wall };
+        public enum DamageSource {  Sword, Spear, Wind, Fire, Water, Nature, Lightning };
 
         public const float INVULNERABILITY_FRAMES = 2 * FIXED_UPDATES_PER_SECOND;
 

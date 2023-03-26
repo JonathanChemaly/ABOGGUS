@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class FireAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private int damage = 3;
+        private float damage = 10f;
         private float totalTime = 10f;
         private float activeTime = 1.5f;
         private float time = 0f;
@@ -36,18 +37,21 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag == "Enemy") DamageObject(other.GetComponent<Rigidbody>(), true);
-        }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.transform.tag == "Enemy") DamageObject(collision.rigidbody, true);
+            Debug.Log(other.tag);
+            if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
+            else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
+            else if (other.transform.CompareTag("Player")) GameController.player.TakeDamage(damage);
         }
 
-        private void DamageObject(Rigidbody rb, bool enemy)
+        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
-            if (enemy)
+            if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);
+            }
+            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            {
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Fire);
             }
         }
     }

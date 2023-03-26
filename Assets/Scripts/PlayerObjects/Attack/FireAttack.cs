@@ -6,8 +6,10 @@ namespace ABOGGUS.PlayerObjects
 {
     public class FireAttack : MonoBehaviour, IMagicAttack
     {
-        private int damage = 5;
-        private float speed = 0.2f;
+        private float damage = 30f;
+        private float speed = 0.18f;
+        private float totalTime = 5f;
+        private float time = 0f;
         private void Start()
         {
 
@@ -17,6 +19,12 @@ namespace ABOGGUS.PlayerObjects
         {
             Vector3 target = transform.position + transform.forward * speed;
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, speed);
+            if (Time.deltaTime + time >= totalTime)
+            {
+                Destroy(gameObject);
+                time = 0;
+            }
+            time += Time.deltaTime;
         }
 
         public void Destroy()
@@ -26,22 +34,21 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag == "Moveable") MoveObject(other.GetComponent<Rigidbody>(), false);
-            else if (other.transform.tag == "Enemy") MoveObject(other.GetComponent<Rigidbody>(), true);
-        }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.transform.tag == "Moveable") MoveObject(collision.rigidbody, false);
-            else if (collision.transform.tag == "Enemy") MoveObject(collision.rigidbody, true);
+            Debug.Log(other.tag);
+            if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
+            else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }
 
-        private void MoveObject(Rigidbody rb, bool enemy)
+        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
-            if (enemy)
+            if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);
             }
-            rb.MovePosition(rb.position + transform.forward);
+            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            {
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Fire);
+            }
             Destroy();
         }
     }

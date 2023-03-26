@@ -6,7 +6,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class WindAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private int damage = 3;
+        private float damage = 5f;
         private float height = 5f;
         private float totalTime = 0.3f;
         private float activeTime = 1.5f;
@@ -37,20 +37,22 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.tag == "Enemy") MoveObject(other.GetComponent<Rigidbody>(), true);
-        }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.transform.tag == "Enemy") MoveObject(collision.rigidbody, true);
+            Debug.Log(other.tag);
+            if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
+            else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }
 
-        private void MoveObject(Rigidbody rb, bool enemy)
+        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
-            if (enemy)
+            if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);
             }
-            rb.MovePosition(rb.position + new Vector3(0, height, 0));
+            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            {
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Wind);
+                rb.GetComponent<IEnemy>().Push(new Vector3(0, height, 0));
+            }
         }
     }
 }
