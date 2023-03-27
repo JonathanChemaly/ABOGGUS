@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class GrassSlime : MonoBehaviour
 {
     private GameObject player;
+    private Animator animator;
     public GameObject vine;
     private bool inRange = false;
     private bool dead = false;
@@ -27,6 +28,8 @@ public class GrassSlime : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
@@ -64,6 +67,7 @@ public class GrassSlime : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+            animator.Play("Jump");
         }
 
         if (health == 0)

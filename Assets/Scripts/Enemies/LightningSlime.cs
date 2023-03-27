@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class LightningSlime : MonoBehaviour
 {
     private GameObject player;
+    private Animator animator;
     public GameObject lightningAOE;
     private bool inRange = false;
     private bool dead = false;
@@ -22,6 +23,8 @@ public class LightningSlime : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
@@ -66,6 +69,7 @@ public class LightningSlime : MonoBehaviour
         {
             transform.LookAt(player.transform.position + new Vector3(0, 0.3f, 0f));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+            animator.Play("Jump");
         }
 
         if (health == 0)

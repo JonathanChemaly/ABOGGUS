@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class FireSlime : MonoBehaviour
 {
     private GameObject player;
+    private Animator animator;
     private bool inRange = false;
     private bool dead = false;
     private float range = 20f;
@@ -23,6 +24,8 @@ public class FireSlime : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
