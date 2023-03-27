@@ -6,6 +6,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     [SerializeField] public int num;
+    [SerializeField] public GameObject fire;
 
     bool activated = false;
     bool colliding = false;
@@ -44,6 +45,7 @@ public class Piece : MonoBehaviour
             else
             {
                 activated = true;
+                this.fire.SetActive(false);
                 FirePuzzle.Instance.ActivatePiece(num);
             }
         }
@@ -53,6 +55,7 @@ public class Piece : MonoBehaviour
     {
         if (FirePuzzle.secondLine.Contains(num))
         {
+            this.fire.SetActive(true);
             this.activated = false;
         }
     }

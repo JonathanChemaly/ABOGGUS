@@ -7,8 +7,7 @@ using UnityEngine;
 public class Halfway : MonoBehaviour
 {
     public GameObject block;
-    public Material readyMaterial;
-    public Material completedMaterial;
+    public GameObject water;
 
     public static Action Ready;
     private bool ready = false;
@@ -22,7 +21,7 @@ public class Halfway : MonoBehaviour
     {
         if (ready && other.CompareTag(GameConstants.NAME_PLAYERGAMEOBJECT))
         {
-            block.GetComponent<Renderer>().material = completedMaterial;
+            water.SetActive(false);
             FirePuzzle.NextHalf();
         }
     }
@@ -30,6 +29,6 @@ public class Halfway : MonoBehaviour
     private void Prepare()
     {
         ready = true;
-        block.GetComponent<Renderer>().material = readyMaterial;
+        water.SetActive(true);
     }
 }

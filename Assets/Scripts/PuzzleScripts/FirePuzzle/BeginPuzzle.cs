@@ -6,13 +6,14 @@ using UnityEngine;
 public class BeginPuzzle : MonoBehaviour
 {
     public GameObject block;
+    public GameObject water;
     public Material completedMaterial;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameConstants.NAME_PLAYERGAMEOBJECT))
         {
-            block.GetComponent<Renderer>().material = completedMaterial;
+            water.SetActive(false);
             FirePuzzle.Instance.fireActive = true;
         }
     }

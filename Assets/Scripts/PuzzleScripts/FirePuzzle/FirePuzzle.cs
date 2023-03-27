@@ -54,8 +54,6 @@ public class FirePuzzle : MonoBehaviour
             FirePuzzle.Reset();
         }
 
-            FireBlocks[num].GetComponent<Renderer>().material = CompletedMaterial;
-
         if (currentLine.Count == 0) Halfway.Ready();
     }
 
@@ -63,10 +61,6 @@ public class FirePuzzle : MonoBehaviour
     {
         if (currentLine.Count == 0 && firstHalf)
         {
-            for (int i = 0; i < secondLine.Count; i++)
-            {
-                FireBlocks[secondLine[i]].GetComponent<Renderer>().material = FireMaterial;
-            }
             currentLine = new Stack<int>(secondLine);
         }
     }
