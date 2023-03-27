@@ -43,7 +43,6 @@ public class FirePuzzle : MonoBehaviour
         for(int i = 0; i < FireBlocks.Length; i++)
         {
             FireBlocks[i] = Fire.transform.GetChild(i).GameObject();
-            FireBlocks[i].GetComponent<Renderer>().material = FireMaterial;
         }
     }
 
