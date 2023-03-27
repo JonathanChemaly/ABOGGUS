@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 675839610204139080}
   - component: {fileID: 675839610204139083}
   - component: {fileID: 675839610204139082}
+  - component: {fileID: 6974142524962638138}
   m_Layer: 5
   m_Name: ShopBox
   m_TagString: Untagged
@@ -220,6 +221,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6974142524962638138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675839610204139087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236d7ab50df6fda4cade1e34a2793bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUpgradeAmount: {fileID: 2939528381896403840}
 --- !u!1 &1282499848023089013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1594,34 @@ PrefabInstance:
     - target: {fileID: 5970408765048966881, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6974142524962638138}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonPressUpgrade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462227144614961837, guid: c2629cbf914a26d4eba8e72879754059, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2629cbf914a26d4eba8e72879754059, type: 3}

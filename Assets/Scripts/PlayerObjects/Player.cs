@@ -53,6 +53,9 @@ namespace ABOGGUS.PlayerObjects
             GameObject hudObj = physicalGameObject.transform.Find("HUD").gameObject;
             playerHUD = hudObj.GetComponent<PlayerHUD>();
             playerHUD.playerInventory = this.inventory;
+            var tempScale = playerHUD.transform.Find("HealthBar").localScale;
+            tempScale.x += 2*0.1f;
+            playerHUD.transform.Find("HealthBar").localScale = tempScale;
         }
 
         public void TakeDamage(float damage)
@@ -83,7 +86,6 @@ namespace ABOGGUS.PlayerObjects
         {
             if (debug) _FixedUpdate();
         }
-
         public void _FixedUpdate()
         {
             if (this.playerController != null) { this.playerController._FixedUpdate(); }

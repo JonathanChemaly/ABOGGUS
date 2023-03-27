@@ -18,6 +18,13 @@ public class PlayerHUD : MonoBehaviour
         bar.fillAmount = Mathf.Clamp(playerInventory.health / playerInventory.maxHealth, 0, 1f);
     }
 
+    public void IncreaseHealthBar()
+    {
+        var tempScale = transform.Find("HealthBar").localScale;
+        tempScale.x += 0.1f;
+        transform.Find("HealthBar").localScale = tempScale;
+    }
+
     public void UpdateMana()
     {
         textbox.text = "" + playerInventory.mana;
