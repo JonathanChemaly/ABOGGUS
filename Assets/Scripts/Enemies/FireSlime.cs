@@ -40,7 +40,6 @@ public class FireSlime : MonoBehaviour
 
         if (inRange)
         {
-            Debug.Log(timer);
             transform.LookAt(player.transform);
             timer -= Time.deltaTime;
             fireBall.transform.localScale += new Vector3(0.005f, 0.005f, 0.005f);
