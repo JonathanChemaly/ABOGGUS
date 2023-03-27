@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1087313260417578348}
   m_Layer: 6
   m_Name: SparkProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +86,7 @@ MonoBehaviour:
   explosionDamage: 5
   explosionRange: 1
   explodeOnTouch: 1
+  active: 1
 --- !u!1 &4102454896127750927
 GameObject:
   m_ObjectHideFlags: 0
