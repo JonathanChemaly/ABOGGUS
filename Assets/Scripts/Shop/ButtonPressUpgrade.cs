@@ -21,7 +21,7 @@ public class ButtonPressUpgrade : MonoBehaviour
         int newVal = Int32.Parse(healthCount.text.Substring(1)) + 1;
         healthCount.text = "+" + newVal;
         UpgradeStats.healthUpgradeCount += 1;
-        UpgradeStats.healthBarSize += 0.025f;
+        UpgradeStats.healthBarSize += UpgradeStats.healthBarInc;
     }
 
     public void OnClickSword()

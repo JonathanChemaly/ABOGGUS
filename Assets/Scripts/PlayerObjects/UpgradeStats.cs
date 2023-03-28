@@ -7,6 +7,7 @@ public static class UpgradeStats
 {
     public static int swordDamInc = 5;
     public static float healthInc = 5f;
+    public static float healthBarInc = 0.025f;
     public static int healthUpgradeCount = 0;
     public static int swordUpgradeCount = 0;
     public static float healthBarSize = 1f;
@@ -17,7 +18,7 @@ public static class UpgradeStats
         GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth += healthInc;
         GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health += healthInc;
         var tempScale = GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale;
-        tempScale.x += 0.1f;
+        tempScale.x += healthBarInc;
         GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
         Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
     }
