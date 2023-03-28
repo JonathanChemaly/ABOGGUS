@@ -248,7 +248,6 @@ public class BlockHole : MonoBehaviour
             pos.z = transform.position.z + (j - boardSize / 2) * 4 - 2;
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(90, 0, 0);
-            wallsToDelete.Add(numObjects);
             objects[numObjects] = Instantiate(wall2Prefab, pos, rot);
             numObjects++;
         }
@@ -260,7 +259,10 @@ public class BlockHole : MonoBehaviour
             pos.z = transform.position.z + (j - boardSize / 2) * 4 + 2;
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(0, 0, 0);
-
+            if (i == boardSize / 2)
+            {
+                wallsToDelete.Add(numObjects);
+            }
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
         }
