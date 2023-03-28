@@ -5,36 +5,27 @@ using ABOGGUS.PlayerObjects;
 
 public static class UpgradeStats
 {
+    public static int swordDamInc = 5;
+    public static float healthInc = 5f;
     public static int healthUpgradeCount = 0;
+    public static int swordUpgradeCount = 0;
+    public static float healthBarSize = 1f;
 
     // Update is called once per frame
     public static void IncHealth()
     {
-            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth += 100;
-            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health += 100;
-            //var tempScale = GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale;
-           // tempScale.x += 0.1f;
-            //GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
-            Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+        GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth += healthInc;
+        GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health += healthInc;
+        var tempScale = GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale;
+        tempScale.x += 0.1f;
+        GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
+        Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
     }
 
-    public static void IncDamage(string weaponType)
+    public static void IncDamageSword()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            var weapon = GameObject.Find(weaponType);
-            if (weaponType == "Sword")
-            {
-                weapon.GetComponent<SwordAttack>().damage+=100;
-                Debug.Log(weapon.GetComponent<SwordAttack>().damage);
-            }
-            else if (weaponType == "Wind")
-            {
-                weapon.GetComponent<WindAttack>().damage += 100;
-                Debug.Log(weapon.GetComponent<WindAttack>().damage);
-                weapon.GetComponent<WindAOEAttack>().damage += 100;
-                Debug.Log(weapon.GetComponent<WindAOEAttack>().damage);
-            }
-        }
+        GameObject.Find("Sword").GetComponent<SwordAttack>().damage+=swordDamInc;
+        WeaponDamageStats.swordDamage += UpgradeStats.swordDamInc;
+        Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
     }
 }

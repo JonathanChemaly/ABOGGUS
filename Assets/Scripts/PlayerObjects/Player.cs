@@ -54,7 +54,7 @@ namespace ABOGGUS.PlayerObjects
             playerHUD = hudObj.GetComponent<PlayerHUD>();
             playerHUD.playerInventory = this.inventory;
             var tempScale = playerHUD.transform.Find("HealthBar").localScale;
-            tempScale.x += 2*0.1f;
+            tempScale.x = UpgradeStats.healthBarSize;
             playerHUD.transform.Find("HealthBar").localScale = tempScale;
         }
 

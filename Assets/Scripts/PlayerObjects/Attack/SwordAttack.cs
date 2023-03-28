@@ -6,13 +6,13 @@ namespace ABOGGUS.PlayerObjects
 {
     public class SwordAttack : MonoBehaviour
     {
-        public int damage = WeaponDamageStats.swordDamage;
+        public int damage;
         private float knockback = 0.2f;
         private bool active = true;
 
         private void Awake()
         {
-            
+            damage = WeaponDamageStats.swordDamage;
         }
 
         public void Unequip()
