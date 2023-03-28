@@ -55,14 +55,19 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (transition && other.CompareTag("Player"))
         {
             openBottomDoor = true;
-            if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+            if (GameController.scene == GameConstants.SCENE_DUNGEON)
             {
                 GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+            }
+            if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+            {
+                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
             }
             if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
             {
                 GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
             }
+            
         }
         else if (other.CompareTag("Player"))
         {
