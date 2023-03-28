@@ -6,7 +6,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class WindAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = 10f;
+        public int damage = WeaponDamageStats.windDamage;
         private float speed = 0.2f;
         private float totalTime = 5f;
         private float time = 0f;
