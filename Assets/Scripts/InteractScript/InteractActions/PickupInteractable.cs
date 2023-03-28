@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.PlayerObjects.Items;
 using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact
@@ -29,24 +30,25 @@ namespace ABOGGUS.Interact
 
         private void pickUpObject()
         {
-            if (interact.CompareTag("grimore")) {
-                playerInv.grimore = true;
-            }
-            else if (interact.CompareTag("wheel"))
+            if (interact.CompareTag(ItemLookup.GrimoreName))
             {
-                playerInv.wheel = true;
+                playerInv.addItem(ItemLookup.GrimoreName);
             }
-            else if (interact.CompareTag("wrench"))
+            else if (interact.CompareTag(ItemLookup.WheelName))
             {
-                playerInv.wrench = true;
+                playerInv.addItem(ItemLookup.WheelName);
             }
-            else if (interact.CompareTag("gas"))
+            else if (interact.CompareTag(ItemLookup.WrenchName))
             {
-                playerInv.gas = true;
+                playerInv.addItem(ItemLookup.WrenchName);
             }
-            else if (interact.CompareTag("tractorkey"))
+            else if (interact.CompareTag(ItemLookup.GasName))
             {
-                playerInv.tractorkey = true;
+                playerInv.addItem(ItemLookup.GasName);
+            }
+            else if (interact.CompareTag(ItemLookup.TractorKeyName))
+            {
+                playerInv.addItem(ItemLookup.TractorKeyName);
             }
             itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
