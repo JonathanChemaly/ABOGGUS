@@ -28,9 +28,10 @@ namespace ABOGGUS.Gameplay
         public const string SCENE_DUNGEONTEST = "DungeonTest";
         public const string SCENE_AUTUMNROOM = "AutumnRoom";
         public const string SCENE_DUNGEON = "Dungeon";
+        public const string SCENE_TEST = "TestPuzzle";
 
         public const string NAME_PLAYERGAMEOBJECT = "Player";
 
-        public static List<string> SCENES_INGAME = new List<string>() { SCENE_BOSS, SCENE_ELEVATOR, SCENE_MAINLOBBY, SCENE_DUNGEONTEST, SCENE_AUTUMNROOM };
+        public static List<string> SCENES_INGAME = new List<string>() { SCENE_BOSS, SCENE_ELEVATOR, SCENE_MAINLOBBY, SCENE_DUNGEONTEST, SCENE_AUTUMNROOM, SCENE_TEST };
     }
 }

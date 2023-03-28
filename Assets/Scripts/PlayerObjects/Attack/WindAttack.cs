@@ -39,7 +39,7 @@ namespace ABOGGUS.PlayerObjects
             else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
             else if (other.transform.CompareTag("Moveable"))
             {
-                other.GetComponent<Rigidbody>().MovePosition(other.GetComponent<Rigidbody>().position + transform.forward);
+                other.GetComponent<Rigidbody>().MovePosition(other.GetComponent<Rigidbody>().position + transform.forward*2);
                 Destroy();
             }
         }
