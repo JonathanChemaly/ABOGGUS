@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,6 +53,10 @@ namespace ABOGGUS.PlayerObjects
             GameObject hudObj = physicalGameObject.transform.Find("HUD").gameObject;
             playerHUD = hudObj.GetComponent<PlayerHUD>();
             playerHUD.playerInventory = this.inventory;
+            var tempScale = playerHUD.transform.Find("HealthBar").localScale;
+            tempScale.x = UpgradeStats.healthBarSize;
+            playerHUD.transform.Find("HealthBar").localScale = tempScale;
+            playerHUD.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
         }
 
         public void TakeDamage(float damage)
@@ -68,6 +72,7 @@ namespace ABOGGUS.PlayerObjects
         public void updateMana(int value)
         {
             inventory.mana += value;
+            UpgradeStats.mana += value;
             playerHUD.UpdateMana();
         }
         IEnumerator ToCredits()
@@ -83,7 +88,6 @@ namespace ABOGGUS.PlayerObjects
         {
             if (debug) _FixedUpdate();
         }
-
         public void _FixedUpdate()
         {
             if (this.playerController != null) { this.playerController._FixedUpdate(); }
