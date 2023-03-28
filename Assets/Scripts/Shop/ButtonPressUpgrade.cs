@@ -9,6 +9,7 @@ public class ButtonPressUpgrade : MonoBehaviour
 {
     [SerializeField] GameObject healthUpgradeAmount;
     [SerializeField] GameObject swordUpgradeAmount;
+    [SerializeField] GameObject currentManaHolder;
     private void Awake()
     {
         healthUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.healthUpgradeCount;
@@ -22,6 +23,7 @@ public class ButtonPressUpgrade : MonoBehaviour
             UpgradeStats.IncHealth();
             int newVal = Int32.Parse(healthCount.text.Substring(1)) + 1;
             healthCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
         }
     }
 
@@ -33,6 +35,7 @@ public class ButtonPressUpgrade : MonoBehaviour
             UpgradeStats.IncDamageSword();
             int newVal = Int32.Parse(swordCount.text.Substring(1)) + 1;
             swordCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
         }
     }
 }
