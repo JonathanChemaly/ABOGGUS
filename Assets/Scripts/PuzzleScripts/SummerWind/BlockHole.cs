@@ -15,6 +15,7 @@ public class BlockHole : MonoBehaviour
     [SerializeField] GameObject blockPrefab;
     [SerializeField] GameObject lavaPrefab;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject trigger;
 
     public int boardSize = 6;
     public int numHoles = 5;
@@ -38,6 +39,7 @@ public class BlockHole : MonoBehaviour
         generateLevel();
         GameClearText.gameObject.SetActive(false);
         StartCoroutine(BlackOut(false));
+        trigger.GetComponent<MeshRenderer>().enabled = true;
     }
 
     void Update()
@@ -46,12 +48,13 @@ public class BlockHole : MonoBehaviour
         {
             GameClearText.gameObject.SetActive(true);
             cleared = true;
+            trigger.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 
     private void FixedUpdate()
     {
-        if (!cleared && !restarting && lava.transform.position.y < 0)
+        if (!cleared && !restarting && lava.transform.localPosition.y < 0)
         {
             lava.transform.Translate(Vector3.up * speed * Time.deltaTime / 10);
         }
@@ -64,7 +67,7 @@ public class BlockHole : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
 
         restarting = true;
-        lava.transform.position = new Vector3(0, -4, 0);
+        lava.transform.localPosition = new Vector3(0, -4, 0);
 
         for (int i = 0; i < numObjects; i++)
         {
@@ -80,7 +83,7 @@ public class BlockHole : MonoBehaviour
 
         generateLevel();
 
-        player.transform.position = new Vector3(0, 8, 0);
+        player.transform.position = new Vector3(0, 8, 0) + transform.position;
         StartCoroutine(BlackOut(false));
         restarting = false;
         yield return null;
@@ -100,9 +103,9 @@ public class BlockHole : MonoBehaviour
                 {
                     Vector3 pos = new Vector3();
 
-                    pos.x = (i - boardSize / 2) * 4;
-                    pos.z = (j - boardSize / 2) * 4;
-                    pos.y = -2;
+                    pos.x = transform.position.x + (i - boardSize / 2) * 4;
+                    pos.z = transform.position.z + (j - boardSize / 2) * 4;
+                    pos.y = transform.position.y - 2;
 
                     objects[numObjects] = Instantiate(stagePrefab, pos, Quaternion.identity);
                     numObjects++;
@@ -111,9 +114,9 @@ public class BlockHole : MonoBehaviour
                 {
                     Vector3 pos = new Vector3();
 
-                    pos.x = (i - boardSize / 2) * 4;
-                    pos.z = (j - boardSize / 2) * 4;
-                    pos.y = 2;
+                    pos.x = transform.position.x + (i - boardSize / 2) * 4;
+                    pos.z = transform.position.z + (j - boardSize / 2) * 4;
+                    pos.y = transform.position.y + 2;
 
                     objects[numObjects] = Instantiate(blockPrefab, pos, Quaternion.identity);
                     numObjects++;
@@ -166,9 +169,9 @@ public class BlockHole : MonoBehaviour
     {
         Vector3 pos = new Vector3();
 
-        pos.x = 0;
-        pos.z = 0;
-        pos.y = -4;
+        pos.x = transform.position.x;
+        pos.z = transform.position.z;
+        pos.y = transform.position.y - 4;
 
         lava = Instantiate(lavaPrefab, pos, Quaternion.identity);
     }
@@ -209,9 +212,9 @@ public class BlockHole : MonoBehaviour
         {
             Vector3 pos = new Vector3();
 
-            pos.x = (i - boardSize / 2) * 4 - 2;
-            pos.z = (j - boardSize / 2) * 4;
-            pos.y = 2;
+            pos.x = transform.position.x + (i - boardSize / 2) * 4 - 2;
+            pos.z = transform.position.z + (j - boardSize / 2) * 4;
+            pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(0, 180, 90);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
@@ -221,9 +224,9 @@ public class BlockHole : MonoBehaviour
         {
             Vector3 pos = new Vector3();
 
-            pos.x = (i - boardSize / 2) * 4 + 2;
-            pos.z = (j - boardSize / 2) * 4;
-            pos.y = 2;
+            pos.x = transform.position.x + (i - boardSize / 2) * 4 + 2;
+            pos.z = transform.position.z + (j - boardSize / 2) * 4;
+            pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(0, 0, 90);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
@@ -233,9 +236,9 @@ public class BlockHole : MonoBehaviour
         {
             Vector3 pos = new Vector3();
 
-            pos.x = (i - boardSize / 2) * 4;
-            pos.z = (j - boardSize / 2) * 4 - 2;
-            pos.y = 2;
+            pos.x = transform.position.x + (i - boardSize / 2) * 4;
+            pos.z = transform.position.z + (j - boardSize / 2) * 4 - 2;
+            pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(90, 0, 0);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
@@ -245,9 +248,9 @@ public class BlockHole : MonoBehaviour
         {
             Vector3 pos = new Vector3();
 
-            pos.x = (i - boardSize / 2) * 4;
-            pos.z = (j - boardSize / 2) * 4 + 2;
-            pos.y = 2;
+            pos.x = transform.position.x + (i - boardSize / 2) * 4;
+            pos.z = transform.position.z + (j - boardSize / 2) * 4 + 2;
+            pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(90, 180, 0);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
