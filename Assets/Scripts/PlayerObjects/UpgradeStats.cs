@@ -11,8 +11,11 @@ public static class UpgradeStats
     public static int healthUpgradeCount = 0;
     public static int swordUpgradeCount = 0;
     public static float healthBarSize = 1f;
+    public static int mana = 64;
 
-    // Update is called once per frame
+    public static int healthUpCost = -10;
+    public static int swordUpCost = -10;
+
     public static void IncHealth()
     {
         GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth += healthInc;
@@ -21,6 +24,9 @@ public static class UpgradeStats
         tempScale.x += healthBarInc;
         GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
         Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+        healthUpgradeCount += 1;
+        healthBarSize += healthBarInc;
+        GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(healthUpCost);
     }
 
     public static void IncDamageSword()
@@ -28,5 +34,7 @@ public static class UpgradeStats
         GameObject.Find("Sword").GetComponent<SwordAttack>().damage+=swordDamInc;
         WeaponDamageStats.swordDamage += UpgradeStats.swordDamInc;
         Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
+        swordUpgradeCount += 1;
+        GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(swordUpCost);
     }
 }

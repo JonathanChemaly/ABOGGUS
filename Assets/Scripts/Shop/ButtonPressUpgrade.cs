@@ -16,20 +16,23 @@ public class ButtonPressUpgrade : MonoBehaviour
     }
     public void OnClickHealth()
     {
-        Text healthCount = healthUpgradeAmount.GetComponent<Text>();
-        UpgradeStats.IncHealth();
-        int newVal = Int32.Parse(healthCount.text.Substring(1)) + 1;
-        healthCount.text = "+" + newVal;
-        UpgradeStats.healthUpgradeCount += 1;
-        UpgradeStats.healthBarSize += UpgradeStats.healthBarInc;
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.healthUpCost))
+        {
+            Text healthCount = healthUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncHealth();
+            int newVal = Int32.Parse(healthCount.text.Substring(1)) + 1;
+            healthCount.text = "+" + newVal;
+        }
     }
 
     public void OnClickSword()
     {
-        Text swordCount = swordUpgradeAmount.GetComponent<Text>();
-        UpgradeStats.IncDamageSword();
-        int newVal = Int32.Parse(swordCount.text.Substring(1)) + 1;
-        swordCount.text = "+" + newVal;
-        UpgradeStats.swordUpgradeCount += 1;
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.swordUpCost))
+        {
+            Text swordCount = swordUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncDamageSword();
+            int newVal = Int32.Parse(swordCount.text.Substring(1)) + 1;
+            swordCount.text = "+" + newVal;
+        }
     }
 }
