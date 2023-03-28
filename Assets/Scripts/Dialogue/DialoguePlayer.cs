@@ -5,43 +5,35 @@ using UnityEngine.Events;
 
 namespace ABOGGUS.Sound.Dialogue
 {
-    public class Dialogue: MonoBehaviour
+    /**
+     * Class to be created with a dialogue should be played
+     * 
+     * see "PlayDialogueOnInteract.cs" for how to use
+     */
+    public class DialoguePlayer: MonoBehaviour
     {
-        [Tooltip("Holder of the text data for this dialogue")]
-        public List<DialogueLine> subtitleText;
-
-        [Tooltip("")]
-        public string locationOfSoundFile;
-
-        /*
-        [SerializeField]
-        [Tooltip("What action will be taken when item is interacted with")]
-        public UnityAction playAudioAndDisplaySubtitles;
-        */
+        [HideInInspector]
+        public Dialogue dialogue;
 
         /**
          * Creates new dialogue object and plays audio and 
          */
         private void Start()
         {
-            StartCoroutine(playAudioAndDisplaySubtitles());
+            StartCoroutine(PlayAudioAndDisplaySubtitles());
         }
 
-        IEnumerator playAudioAndDisplaySubtitles()
+        IEnumerator PlayAudioAndDisplaySubtitles()
         {
             int lineNumBeingRead = 0;
 
+            AudioSource source = gameObject.AddComponent<AudioSource>();
 
-            AudioClip clip = Resources.Load<AudioClip>(locationOfSoundFile);
-            Debug.Log(clip);
+            source.clip = dialogue.audioClip;
 
-            AudioSource dialogue = gameObject.AddComponent<AudioSource>();
+            source.Play();
 
-            
-            dialogue.clip = clip;
-
-            Debug.Log("Play Audio at: " + locationOfSoundFile);
-            dialogue.Play();
+            List<DialogueLine> subtitleText = dialogue.subtitleText;
 
             float startTime = Time.time;
             float timeTillNextLine = subtitleText[lineNumBeingRead].timeToPlay;
@@ -50,7 +42,8 @@ namespace ABOGGUS.Sound.Dialogue
             {
                 DialogueController.subtitleTMP.text = subtitleText[lineNumBeingRead].line;
             }
-            while (dialogue.isPlaying)
+
+            while (source.isPlaying)
             {
                 yield return null;
                 if(DialogueController.SubtitlesEnabled && lineNumBeingRead != subtitleText.Count - 1 && Time.time >= startTime + timeTillNextLine )
@@ -62,7 +55,7 @@ namespace ABOGGUS.Sound.Dialogue
             }
             if (DialogueController.SubtitlesEnabled)DialogueController.subtitleTMP.text = "";
 
-            Destroy(dialogue);
+            Destroy(source);
             Destroy(this);
         }
 
