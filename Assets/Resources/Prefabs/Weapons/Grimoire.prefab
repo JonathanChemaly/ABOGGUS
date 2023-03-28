@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ca79b82d9ac4f8488285ee249f7ecfa, type: 2}
+  - {fileID: 2100000, guid: ebd290b43d24fe44688aa42438d4f652, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,3 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windAttackPrefab: {fileID: 901498047228852221, guid: f763287a20f9f8b4b897a72aac7798d3, type: 3}
   windAOEPrefab: {fileID: 1537662096674581619, guid: 35b34ee798a104a4395bd86c6d66f986, type: 3}
+  fireAttackPrefab: {fileID: 901498047228852221, guid: 9f1638fb08bd99f4cbb7d138df677480, type: 3}
+  fireAOEPrefab: {fileID: 8344371420061012609, guid: f2cce0d3048079e4592f54ee8fa26c60, type: 3}
+  windMaterial: {fileID: 2100000, guid: ebd290b43d24fe44688aa42438d4f652, type: 2}
+  fireMaterial: {fileID: 2100000, guid: 6ca79b82d9ac4f8488285ee249f7ecfa, type: 2}
+  waterMaterial: {fileID: 2100000, guid: d3519d9ca366b294a9ead94a52254153, type: 2}
+  natureMaterial: {fileID: 2100000, guid: f2424e9f00a325445bed001735ab031f, type: 2}
+  lightningMaterial: {fileID: 2100000, guid: 974e97ebf8818ce4fb439594af5f6387, type: 2}
