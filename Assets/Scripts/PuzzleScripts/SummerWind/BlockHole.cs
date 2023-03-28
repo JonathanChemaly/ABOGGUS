@@ -8,10 +8,12 @@ public class BlockHole : MonoBehaviour
 {
     private List<int> holes = new List<int>();
     private List<int> blocks = new List<int>();
+    private List<int> wallsToDelete = new List<int>();
     private GameObject[] objects = new GameObject[1000];
 
     [SerializeField] GameObject stagePrefab;
     [SerializeField] GameObject wallPrefab;
+    [SerializeField] GameObject wall2Prefab;
     [SerializeField] GameObject blockPrefab;
     [SerializeField] GameObject lavaPrefab;
     [SerializeField] GameObject player;
@@ -44,11 +46,16 @@ public class BlockHole : MonoBehaviour
 
     void Update()
     {
+        //game cleared
         if (blocksLeft == 0)
         {
             GameClearText.gameObject.SetActive(true);
             cleared = true;
             trigger.GetComponent<MeshRenderer>().enabled = false;
+            foreach (int i in wallsToDelete)
+            {
+                objects[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -125,6 +132,7 @@ public class BlockHole : MonoBehaviour
                 tempCellNum++;
             }
         }
+
         placeLava();
     }
 
@@ -215,24 +223,24 @@ public class BlockHole : MonoBehaviour
             pos.x = transform.position.x + (i - boardSize / 2) * 4 - 2;
             pos.z = transform.position.z + (j - boardSize / 2) * 4;
             pos.y = transform.position.y + 2;
-            Quaternion rot = Quaternion.Euler(0, 180, 90);
+            Quaternion rot = Quaternion.Euler(0, 90, 0);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
         }
-        else if (i == boardSize - 1)
+        if (i == boardSize - 1)
         {
             Vector3 pos = new Vector3();
 
             pos.x = transform.position.x + (i - boardSize / 2) * 4 + 2;
             pos.z = transform.position.z + (j - boardSize / 2) * 4;
             pos.y = transform.position.y + 2;
-            Quaternion rot = Quaternion.Euler(0, 0, 90);
+            Quaternion rot = Quaternion.Euler(0, 90, 0);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
         }
-        else if (j == 0)
+        if (j == 0)
         {
             Vector3 pos = new Vector3();
 
@@ -240,18 +248,18 @@ public class BlockHole : MonoBehaviour
             pos.z = transform.position.z + (j - boardSize / 2) * 4 - 2;
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(90, 0, 0);
-
-            objects[numObjects] = Instantiate(wallPrefab, pos, rot);
+            wallsToDelete.Add(numObjects);
+            objects[numObjects] = Instantiate(wall2Prefab, pos, rot);
             numObjects++;
         }
-        else if (j == boardSize - 1)
+        if (j == boardSize - 1)
         {
             Vector3 pos = new Vector3();
 
             pos.x = transform.position.x + (i - boardSize / 2) * 4;
             pos.z = transform.position.z + (j - boardSize / 2) * 4 + 2;
             pos.y = transform.position.y + 2;
-            Quaternion rot = Quaternion.Euler(90, 180, 0);
+            Quaternion rot = Quaternion.Euler(0, 0, 0);
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
