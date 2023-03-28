@@ -4626,7 +4626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4607f4ec459af7d4f96585e5b7b938df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: grimore
+  itemName: Grimoire
   failureText: Missing Required Item
 --- !u!114 &742032753 stripped
 MonoBehaviour:
@@ -5513,7 +5513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4607f4ec459af7d4f96585e5b7b938df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: key
+  itemName: Grimoire
   failureText: Missing Required Item
 --- !u!114 &808148025
 MonoBehaviour:
@@ -8534,6 +8534,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4810365484089822681, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
+      propertyPath: m_TagString
+      value: Grimoire
+      objectReference: {fileID: 0}
     - target: {fileID: 4873069731235711886, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
       propertyPath: interactToWatch
       value: 
@@ -8613,6 +8617,10 @@ PrefabInstance:
     - target: {fileID: 7924722161394119146, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
       propertyPath: itemToLoadInUI
       value: Prefabs/InteractableLock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924722161969611493, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7924722162847526372, guid: 6a7b7e688ec428f4ea82fe36fdbd393c, type: 3}
       propertyPath: m_RootOrder

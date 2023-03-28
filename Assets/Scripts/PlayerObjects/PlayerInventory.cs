@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ABOGGUS.PlayerObjects.Items;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +14,9 @@ namespace ABOGGUS.PlayerObjects
         public float health = PlayerConstants.MAX_HEALTH;
         public int mana = UpgradeStats.mana;
         public bool invulnerable { get; set; } = false;
-        public bool key { get; set; } = false;
-        public bool grimore { get; set; } = false;
-        public bool wheel { get; set; } = false;
-        public bool wrench { get; set; } = false;
-        public bool gas { get; set; } = false;
-        public bool tractorkey { get; set; } = false;
+        public bool key { get; set; } = true;
+
+        private List<IItem> items = new List<IItem>();
 
         public PlayerInventory() { }
 
@@ -33,6 +32,38 @@ namespace ABOGGUS.PlayerObjects
                 invulnerable = true;                
                 Player.PlayerDied();
             }
+        }
+
+        public bool hasItem(string itemName)
+        {
+            foreach(IItem item in items)
+            {
+                if (item.getName().Equals(itemName)) return true;
+            }
+
+            return false;
+        }
+
+        public IItem getItem(string itemName)
+        {
+            foreach (IItem item in items)
+            {
+                if (item.getName().Equals(itemName)) return item;
+            }
+
+            return null;
+        }
+
+        public void addItem(string itemName)
+        {
+            IItem temp = getItem(itemName);
+
+            if (temp != null)
+            {
+                temp.increaseQuantity();
+            }
+
+            else items.Add(ItemFactory.CreateItem(itemName));
         }
     }
 }
