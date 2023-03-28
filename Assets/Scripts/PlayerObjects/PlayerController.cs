@@ -15,6 +15,7 @@ namespace ABOGGUS.PlayerObjects
         //Change to event triggers later
         private Grimoire grimoire;
         private SwordAttack sword;
+        private SpearAttack spear;
         private InputAction moveAction;
 
         public static float speed = PlayerConstants.SPEED_DEFAULT;
@@ -31,7 +32,6 @@ namespace ABOGGUS.PlayerObjects
         private bool isAttacking = false;
         private bool attackInvoked = false;
         private bool sprinting = false;
-        private int count = 0;
         private bool crouching = false;
         private bool casting = false;
         private bool magicInvoked = false;
@@ -88,8 +88,26 @@ namespace ABOGGUS.PlayerObjects
             playerActions.Player.EquipGrimoire.performed += DoEquipGrimoire;
             playerActions.Player.EquipGrimoire.Enable();
 
+            playerActions.Player.EquipSpear.performed += DoEquipSpear;
+            playerActions.Player.EquipSpear.Enable();
+
             playerActions.Player.Dequip.performed += DoDequip;
             playerActions.Player.Dequip.Enable();
+
+            playerActions.Player.EquipWind.performed += DoEquipWind;
+            playerActions.Player.EquipWind.Enable();
+
+            playerActions.Player.EquipFire.performed += DoEquipFire;
+            playerActions.Player.EquipFire.Enable();
+
+            playerActions.Player.EquipWater.performed += DoEquipWater;
+            playerActions.Player.EquipWater.Enable();
+
+            playerActions.Player.EquipNature.performed += DoEquipNature;
+            playerActions.Player.EquipNature.Enable();
+
+            playerActions.Player.EquipLightning.performed += DoEquipLightning;
+            playerActions.Player.EquipLightning.Enable();
         }
 
         public void InitializePlayerState(GameObject physicalGameObject)
@@ -102,6 +120,7 @@ namespace ABOGGUS.PlayerObjects
         {
             this.physicalGameObject = physicalGameObject;
         }
+
         public GameObject GetGameObject()
         {
             return this.physicalGameObject;
@@ -117,6 +136,10 @@ namespace ABOGGUS.PlayerObjects
             {
                 lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
             }
+            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+            }
             weaponEquipped = PlayerConstants.Weapon.Unarmed;
             transitioning = true;
         }
@@ -126,6 +149,10 @@ namespace ABOGGUS.PlayerObjects
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
                 lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+            }
+            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Spear;
             }
             else
             {
@@ -141,12 +168,64 @@ namespace ABOGGUS.PlayerObjects
             {
                 lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
             }
+            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+            }
             else
             {
                 lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
             }
             weaponEquipped = PlayerConstants.Weapon.Sword;
             transitioning = true;
+        }
+
+        private void DoEquipSpear(InputAction.CallbackContext obj)
+        {
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+            }
+            else if (weaponEquipped == PlayerConstants.Weapon.Sword)
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+            }
+            else
+            {
+                lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+            }
+            weaponEquipped = PlayerConstants.Weapon.Spear;
+            transitioning = true;
+        }
+
+        private void DoEquipWind(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Wind;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipFire(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Fire;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipWater(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Water;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipNature(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Nature;
+            grimoire.SetNewMaterial(castType);
+        }
+
+        private void DoEquipLightning(InputAction.CallbackContext obj)
+        {
+            castType = PlayerConstants.Magic.Lightning;
+            grimoire.SetNewMaterial(castType);
         }
 
         private void DoCast(InputAction.CallbackContext obj)
@@ -174,9 +253,11 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoAttack(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Sword && !dodging)
+            if ((weaponEquipped == PlayerConstants.Weapon.Sword || weaponEquipped == PlayerConstants.Weapon.Spear) && !dodging)
             {
                 attack = true;
+                sword.Attacking(attack);
+                spear.Attacking(attack);
             }
         }
 
@@ -230,12 +311,17 @@ namespace ABOGGUS.PlayerObjects
                         if (lastWeaponEquipped == PlayerConstants.Weapon.Sword)
                         {
                             PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DEQUIP_SWORD);
-                            Invoke("EquipWeapon", PlayerConstants.TRANSITION_DELAY);
+                            Invoke(nameof(EquipWeapon), PlayerConstants.TRANSITION_DELAY);
+                        }
+                        else if (lastWeaponEquipped == PlayerConstants.Weapon.Spear)
+                        {
+                            PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DEQUIP_SPEAR);
+                            Invoke(nameof(EquipWeapon), PlayerConstants.TRANSITION_DELAY);
                         }
                         else if (lastWeaponEquipped == PlayerConstants.Weapon.Grimoire)
                         {
                             PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DEQUIP_GRIMOIRE);
-                            Invoke("EquipWeapon", PlayerConstants.TRANSITION_DELAY);
+                            Invoke(nameof(EquipWeapon), PlayerConstants.TRANSITION_DELAY);
                         }
                         else
                         {
@@ -243,11 +329,15 @@ namespace ABOGGUS.PlayerObjects
                             {
                                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SWORD);
                             }
+                            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+                            {
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SPEAR);
+                            }
                             else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
                             {
                                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_GRIMOIRE);
                             }
-                            Invoke("EndTransition", PlayerConstants.TRANSITION_DELAY);
+                            Invoke(nameof(EndTransition), PlayerConstants.TRANSITION_DELAY);
                         }
                         transitionInvoked = true;
                     }
@@ -258,6 +348,9 @@ namespace ABOGGUS.PlayerObjects
                         grimoire = physicalGameObject.GetComponentInChildren<Grimoire>();
                     if (sword == null)
                         sword = physicalGameObject.GetComponentInChildren<SwordAttack>();
+                    if (spear == null)
+                        spear = physicalGameObject.GetComponentInChildren<SpearAttack>();
+
                     MovementHandler(moveAction);
 
                     animationSelectedThisFrame = false;
@@ -338,29 +431,36 @@ namespace ABOGGUS.PlayerObjects
                             dodging = false;
                         }
                     }
+
                     if (attack)
                     {
                         //Jump attack
                         if (jumping)
                         {
                             //Jump attack Anim
-                            PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.JUMP_SWORD_ATTACK);
+                            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.JUMP_SWORD_ATTACK);
+                            else
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.JUMP_SPEAR_ATTACK);
                             isAttacking = true;
                             if (!attackInvoked)
                             {
-                                Invoke("AttackAgain", PlayerConstants.JUMP_ATTACK_DELAY);
+                                Invoke(nameof(AttackAgain), PlayerConstants.JUMP_ATTACK_DELAY);
                                 attackInvoked = true;
                             }
                         }
                         //Run Attack
-                        else if (moveAction.ReadValue<Vector2>().magnitude > 0)
+                        else if (moveAction.ReadValue<Vector2>().magnitude > 0.5)
                         {
                             //Run Attack Anim
-                            PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DASH_SWORD_ATTACK);
+                            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DASH_SWORD_ATTACK);
+                            else
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.DASH_SPEAR_ATTACK);
                             isAttacking = true;
                             if (!attackInvoked)
                             {
-                                Invoke("AttackAgain", PlayerConstants.ATTACK_DELAY);
+                                Invoke(nameof(AttackAgain), PlayerConstants.ATTACK_DELAY);
                                 attackInvoked = true;
                             }
                         }
@@ -369,11 +469,14 @@ namespace ABOGGUS.PlayerObjects
                         {
                             //Attack Anim
                             Debug.Log("Current attack idx: " + attackIdx);
-                            PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SWORD_ATTACKS[attackIdx]);
+                            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SWORD_ATTACKS[attackIdx]);
+                            else
+                                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SPEAR_ATTACKS[attackIdx]);
                             isAttacking = true;
                             if (!attackInvoked)
                             {
-                                Invoke("ChangeAttack", PlayerConstants.ATTACK_DELAY);
+                                Invoke(nameof(ChangeAttack), PlayerConstants.ATTACK_DELAY);
                                 attackInvoked = true;
                             }
                         }
@@ -383,7 +486,12 @@ namespace ABOGGUS.PlayerObjects
                     {
                         animationSelectedThisFrame = true;
                     }
-
+                    else
+                    {
+                        attackIdx = 0;
+                        sword.Attacking(isAttacking);
+                        spear.Attacking(isAttacking);
+                    }
 
                     if (casting)
                     {
@@ -409,12 +517,12 @@ namespace ABOGGUS.PlayerObjects
                         animationSelectedThisFrame = true;
                     }
 
-                    if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0 && sprinting)
+                    if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0.5 && sprinting)
                     {
                         //Sprint
                         PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SPRINT_ANIMATION);
                     }
-                    else if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0)
+                    else if (!animationSelectedThisFrame && moveAction.ReadValue<Vector2>().magnitude > 0.5)
                     {
                         //Run
                         if (weaponEquipped == PlayerConstants.Weapon.Unarmed)
@@ -453,6 +561,7 @@ namespace ABOGGUS.PlayerObjects
                 }
             }
         }
+
         public void MovementHandler(InputAction moveAction)
         {
             Vector2 movement = moveAction.ReadValue<Vector2>();
@@ -554,6 +663,10 @@ namespace ABOGGUS.PlayerObjects
                 playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Wind && !aoe)
                 playerState.CastMagic(grimoire.windAttackPrefab, aoe, castType);
+            else if (castType == PlayerConstants.Magic.Fire && aoe)
+                playerState.CastMagic(grimoire.fireAOEPrefab, aoe, castType);
+            else if (castType == PlayerConstants.Magic.Fire && !aoe)
+                playerState.CastMagic(grimoire.fireAttackPrefab, aoe, castType);
             magicInvoked = false;
             casting = false;
         }
@@ -601,6 +714,10 @@ namespace ABOGGUS.PlayerObjects
             {
                 grimoire.Unequip();
             }
+            else if (lastWeaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                spear.Unequip();
+            }
 
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
@@ -610,7 +727,11 @@ namespace ABOGGUS.PlayerObjects
             {
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_GRIMOIRE);
             }
-            Invoke("EndTransition", PlayerConstants.TRANSITION_DELAY);
+            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SPEAR);
+            }
+            Invoke(nameof(EndTransition), PlayerConstants.TRANSITION_DELAY);
         }
 
         private void EndTransition()
@@ -622,6 +743,10 @@ namespace ABOGGUS.PlayerObjects
             else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
             {
                 grimoire.Equip();
+            }
+            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+            {
+                spear.Equip();
             }
             transitioning = false;
             transitionInvoked = false;

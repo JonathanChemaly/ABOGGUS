@@ -6,9 +6,10 @@ namespace ABOGGUS.PlayerObjects
 {
     public class SwordAttack : MonoBehaviour
     {
-        private int damage = 20;
+        private float damage = 20;
         private float knockback = 0.2f;
         private bool active = true;
+        private bool attacking = false;
 
         private void Awake()
         {
@@ -25,23 +26,29 @@ namespace ABOGGUS.PlayerObjects
             active = true;
         }
 
+        public void Attacking(bool attacking)
+        {
+            this.attacking = attacking;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (active && other.transform.CompareTag("Enemy")) MoveObject(other.GetComponent<Rigidbody>(), true);
+            Debug.Log(other.tag);
+            if (active && attacking && other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
+            else if (active && attacking && other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
-            if (active && collision.transform.CompareTag("Enemy")) MoveObject(collision.rigidbody, true);
-        }
-
-        private void MoveObject(Rigidbody rb, bool enemy)
-        {
-            if (enemy)
+            if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);
             }
-            rb.MovePosition(rb.position + transform.root.forward * knockback);
+            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            {
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Sword);
+                rb.GetComponent<IEnemy>().Push(transform.root.forward * knockback);
+            }
         }
 
         private void FixedUpdate()

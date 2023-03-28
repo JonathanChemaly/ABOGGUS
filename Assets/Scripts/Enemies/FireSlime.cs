@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
-public class FireSlime : MonoBehaviour
+public class FireSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
     private bool inRange = false;
@@ -11,7 +11,10 @@ public class FireSlime : MonoBehaviour
     private float range = 20f;
     private float timer = 3.0f;
     private float deathTimer = 1f;
-    private float health = 3f;
+    private float health = 60f;
+    private bool takingDamage = false;
+    private float invTime = 0.3f;
+    private float damageTimer = 0f;
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource fireballSound;
@@ -27,6 +30,17 @@ public class FireSlime : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Update invisibility timer while taking damage
+        if (takingDamage)
+        {
+            damageTimer += Time.fixedDeltaTime;
+            if (damageTimer > invTime)
+            {
+                takingDamage = false;
+                damageTimer = 0;
+            }
+        }
+
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             inRange = true;
@@ -54,7 +68,7 @@ public class FireSlime : MonoBehaviour
             fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        if (health == 0 && dead == false)
+        if (health <= 0 && dead == false)
         {
             dead = true;
         }
@@ -81,6 +95,8 @@ public class FireSlime : MonoBehaviour
             GameController.player.TakeDamage(damage);
         }
     }
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
@@ -95,10 +111,26 @@ public class FireSlime : MonoBehaviour
         }
 
     }
+    */
+
     private void ShootFireball()
     {
         var fireBallProjectile = Instantiate(fireBallToShoot, transform.position + transform.forward * 2 + transform.up / 2, Quaternion.identity).GetComponent<Rigidbody>();
         fireBallProjectile.GetComponent<Rigidbody>().velocity = transform.forward * fireBallSpeed;
+    }
+
+    public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
+    {
+        if (!takingDamage && damageSource != PlayerConstants.DamageSource.Fire)
+        {
+            health -= damage;
+            takingDamage = true;
+        }
+    }
+
+    public void Push(Vector3 distance)
+    {
+        transform.position = transform.position + distance;
     }
 
 }
