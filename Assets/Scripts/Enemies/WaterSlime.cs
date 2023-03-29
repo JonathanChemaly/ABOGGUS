@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class WaterSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
+    private Animator animator;
     private bool inRange = false;
     private bool pop = false;
     private float range = 15f;
@@ -25,6 +26,8 @@ public class WaterSlime : MonoBehaviour, IEnemy
     {
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
@@ -61,6 +64,10 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (inRange)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + new Vector3(0f, 1f, 0f), speed);
+            if (!pop)
+            {
+                animator.Play("Jump");
+            }
         }
 
         if (health <= 0)
@@ -71,7 +78,7 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (pop)
         {
             timer -= Time.deltaTime;
-            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+            transform.localScale += new Vector3(0.03f, 0.02f, 0.03f);
 
             if (timer < 0)
             {
