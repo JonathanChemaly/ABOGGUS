@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
-public class LightningSlime : MonoBehaviour
+public class LightningSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
     private Animator animator;
@@ -14,7 +14,10 @@ public class LightningSlime : MonoBehaviour
     private float speed = 0.09f;
     private float timer = 2f;
     private float deathTimer = 1f;
-    private float health = 3f;
+    private float health = 60f;
+    private bool takingDamage = false;
+    private float invTime = 0.3f;
+    private float damageTimer = 0f;
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource zapSound;
@@ -29,6 +32,17 @@ public class LightningSlime : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Update invisibility timer while taking damage
+        if (takingDamage)
+        {
+            damageTimer += Time.fixedDeltaTime;
+            if (damageTimer > invTime)
+            {
+                takingDamage = false;
+                damageTimer = 0;
+            }
+        }
+
         if (Vector3.Distance(transform.position, player.transform.position) < 3f)
         {
             if (timer == 2f)
@@ -72,7 +86,7 @@ public class LightningSlime : MonoBehaviour
             animator.Play("Jump");
         }
 
-        if (health == 0)
+        if (health <= 0)
         {
             dead = true;
         }
@@ -100,6 +114,8 @@ public class LightningSlime : MonoBehaviour
             GameController.player.TakeDamage(damage);
         }
     }
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
@@ -112,5 +128,20 @@ public class LightningSlime : MonoBehaviour
 
             }
         }
+    }
+    */
+
+    public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
+    {
+        if (!takingDamage && damageSource != PlayerConstants.DamageSource.Lightning)
+        {
+            health -= damage;
+            takingDamage = true;
+        }
+    }
+
+    public void Push(Vector3 distance)
+    {
+        transform.position = transform.position + distance;
     }
 }

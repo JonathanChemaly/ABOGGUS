@@ -168,9 +168,63 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Equip Spear",
+                    "type": "Button",
+                    "id": "b161e42a-3635-411c-a70a-eef1ec1a3da3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dequip",
                     "type": "Button",
                     "id": "091c4253-085a-4da1-9927-ef49975b6528",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Wind",
+                    "type": "Button",
+                    "id": "eb52c058-625c-4671-8b7e-d342449c35ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Fire",
+                    "type": "Button",
+                    "id": "a788db88-dae5-4eb5-83d1-8397218036f2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Water",
+                    "type": "Button",
+                    "id": "adef43b1-bf09-41aa-8f62-2d727f1444e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Nature",
+                    "type": "Button",
+                    "id": "a00251b6-3c2c-40da-ad83-da464d46b369",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Lightning",
+                    "type": "Button",
+                    "id": "02045046-bf4c-4620-b48d-9c36970998c2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -577,11 +631,77 @@
                 {
                     "name": "",
                     "id": "e3e2b5e5-2bcd-4bd1-8410-69707744d414",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/9",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Dequip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7151d574-eb70-43f3-845d-5709ab93ca32",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Wind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5d1244f-ff58-44ac-a388-c993da8e9cb4",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac1f88c3-4a4e-48f6-8740-5a12d055667b",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b776c00-771e-4f38-90b1-18445f62be6b",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Nature",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa04d096-48b9-4ede-9ecb-7cc3a972b7af",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Lightning",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6de0905-1690-44a5-8e47-abed01594e85",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -56,6 +56,7 @@ public class GenerateDungeon : MonoBehaviour
             {
                 int rand = Random.Range(0, neighborList.Count);
                 (int, int) newNode = neighborList[rand];
+
                 if(!traversed.Contains(newNode))
                 {
                     // create room
@@ -65,8 +66,8 @@ public class GenerateDungeon : MonoBehaviour
                 }
             }
         }
+        RoomArr[width / 2, height-1].SetDoor(RoomNode.DOOR, RoomNode.NORTH);
 
-        
         return RoomArr;
 
     }

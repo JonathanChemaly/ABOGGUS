@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
-public class WaterSlime : MonoBehaviour
+public class WaterSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
     private Animator animator;
@@ -12,7 +12,10 @@ public class WaterSlime : MonoBehaviour
     private float range = 15f;
     private float speed = 0.1f;
     private float timer = 1.2f;
-    private float health = 1f;
+    private float health = 40f;
+    private bool takingDamage = false;
+    private float invTime = 0.3f;
+    private float damageTimer = 0f;
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private GameObject ElementalDrop;
@@ -29,6 +32,17 @@ public class WaterSlime : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Update invisibility timer while taking damage
+        if (takingDamage)
+        {
+            damageTimer += Time.fixedDeltaTime;
+            if (damageTimer > invTime)
+            {
+                takingDamage = false;
+                damageTimer = 0;
+            }
+        }
+
         if (Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
             inRange = false;
@@ -53,7 +67,7 @@ public class WaterSlime : MonoBehaviour
             animator.Play("Jump");
         }
 
-        if (health == 0)
+        if (health <= 0)
         {
             pop = true;
         }
@@ -85,6 +99,8 @@ public class WaterSlime : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
@@ -97,5 +113,20 @@ public class WaterSlime : MonoBehaviour
 
             }
         }
+    }
+    */
+
+    public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
+    {
+        if (!takingDamage && damageSource != PlayerConstants.DamageSource.Water)
+        {
+            health -= damage;
+            takingDamage = true;
+        }
+    }
+
+    public void Push(Vector3 distance)
+    {
+        transform.position = transform.position + distance;
     }
 }

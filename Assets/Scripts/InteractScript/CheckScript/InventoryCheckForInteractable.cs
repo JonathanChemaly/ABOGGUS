@@ -25,7 +25,7 @@ namespace ABOGGUS.Interact.Checks
         public bool DoCheck()
         {
             
-            return (bool)itemInfo.GetValue(playerInv);
+            return playerInv.hasItem(itemName);
         }
 
         public string GetFailureText()
@@ -38,7 +38,7 @@ namespace ABOGGUS.Interact.Checks
         {
             playerInv = GameController.player.inventory;
             
-            itemInfo = playerInv.GetType().GetProperty(itemName);
+            //itemInfo = playerInv.GetType().GetProperty(itemName);
             
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
-public class GrassSlime : MonoBehaviour
+public class GrassSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
     private Animator animator;
@@ -14,7 +14,10 @@ public class GrassSlime : MonoBehaviour
     private float speed = 0.075f;
     private float timer = 1.5f;
     private float deathTimer = 1f;
-    private float health = 3f;
+    private float health = 60f;
+    private bool takingDamage = false;
+    private float invTime = 0.3f;
+    private float damageTimer = 0f;
     public float damage = 10f;
     [SerializeField] private AudioSource deathSound;
     [SerializeField] private AudioSource vineSound;
@@ -34,6 +37,17 @@ public class GrassSlime : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Update invisibility timer while taking damage
+        if (takingDamage)
+        {
+            damageTimer += Time.fixedDeltaTime;
+            if (damageTimer > invTime)
+            {
+                takingDamage = false;
+                damageTimer = 0;
+            }
+        }
+
         if (Vector3.Distance(transform.position, player.transform.position) < 2.5f)
         {
             attacking = true;
@@ -70,7 +84,7 @@ public class GrassSlime : MonoBehaviour
             animator.Play("Jump");
         }
 
-        if (health == 0)
+        if (health <= 0)
         {
             dead = true;
         }
@@ -104,6 +118,7 @@ public class GrassSlime : MonoBehaviour
         }
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Sword" || other.gameObject.tag == "MagicAttack")
@@ -117,12 +132,32 @@ public class GrassSlime : MonoBehaviour
         }
 
     }
-        private void AttackDelay()
+    */
+
+    private void AttackDelay()
     {
         attacking = false;
     }
     private void VineAttack()
     {
         var VineProjectile = Instantiate(vine, transform.position + transform.forward*1.5f, Quaternion.identity).GetComponent<Rigidbody>();
+    }
+
+    public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
+    {
+        if (!takingDamage && damageSource != PlayerConstants.DamageSource.Nature)
+        {
+            health -= damage;
+            takingDamage = true;
+            if (damageSource == PlayerConstants.DamageSource.Fire)
+            {
+                health -= damage;
+            }
+        }
+    }
+
+    public void Push(Vector3 distance)
+    {
+        transform.position = transform.position + distance;
     }
 }
