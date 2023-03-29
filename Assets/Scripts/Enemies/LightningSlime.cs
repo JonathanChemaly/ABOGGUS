@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class LightningSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
+    private Animator animator;
     public GameObject lightningAOE;
     private bool inRange = false;
     private bool dead = false;
@@ -25,6 +26,8 @@ public class LightningSlime : MonoBehaviour, IEnemy
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
@@ -80,6 +83,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
         {
             transform.LookAt(player.transform.position + new Vector3(0, 0.3f, 0f));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+            animator.Play("Jump");
         }
 
         if (health <= 0)
@@ -89,6 +93,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -133,6 +138,10 @@ public class LightningSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (health > 0)
+            {
+                animator.Play("Damage0");
+            }
         }
     }
 

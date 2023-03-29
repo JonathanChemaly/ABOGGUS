@@ -6,6 +6,7 @@ using ABOGGUS.Gameplay;
 public class WindSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
+    private Animator animator;
     private bool inRange = false;
     private bool dead = false;
     private float range = 15f;
@@ -24,6 +25,8 @@ public class WindSlime : MonoBehaviour, IEnemy
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
+        animator.fireEvents = false;
     }
 
     void FixedUpdate()
@@ -73,6 +76,7 @@ public class WindSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -120,6 +124,10 @@ public class WindSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (health > 0)
+            {
+                animator.Play("Damage0");
+            }
         }
     }
 
