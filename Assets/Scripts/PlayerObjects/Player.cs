@@ -56,7 +56,6 @@ namespace ABOGGUS.PlayerObjects
             var tempScale = playerHUD.transform.Find("HealthBar").localScale;
             tempScale.x = UpgradeStats.healthBarSize;
             playerHUD.transform.Find("HealthBar").localScale = tempScale;
-            playerHUD.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
         }
 
         public void TakeDamage(float damage)
