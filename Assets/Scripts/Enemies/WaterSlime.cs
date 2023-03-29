@@ -64,7 +64,10 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (inRange)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + new Vector3(0f, 1f, 0f), speed);
-            animator.Play("Jump");
+            if (!pop)
+            {
+                animator.Play("Jump");
+            }
         }
 
         if (health <= 0)
@@ -75,7 +78,7 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (pop)
         {
             timer -= Time.deltaTime;
-            transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+            transform.localScale += new Vector3(0.03f, 0.02f, 0.03f);
 
             if (timer < 0)
             {

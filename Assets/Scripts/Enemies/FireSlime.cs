@@ -52,7 +52,7 @@ public class FireSlime : MonoBehaviour, IEnemy
         {
             inRange = false;
             timer = 3f;
-            fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
+            fireBall.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
 
         if (inRange)
@@ -67,7 +67,7 @@ public class FireSlime : MonoBehaviour, IEnemy
             ShootFireball();
             fireballSound.Play();
             timer = 3f;
-            fireBall.transform.localScale = new Vector3(1f, 1f, 1f);
+            fireBall.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
 
         if (health <= 0 && dead == false)
@@ -77,6 +77,7 @@ public class FireSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -127,6 +128,10 @@ public class FireSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (health > 0)
+            {
+                animator.Play("Damage0");
+            }
         }
     }
 

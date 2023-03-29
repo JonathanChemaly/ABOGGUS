@@ -67,7 +67,6 @@ public class WindSlime : MonoBehaviour, IEnemy
         {
             transform.LookAt(player.transform.position + new Vector3(0, 1f, 0f));
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), speed);
-            animator.Play("Jump");
         }
 
         if (health <= 0)
@@ -77,6 +76,7 @@ public class WindSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -124,6 +124,10 @@ public class WindSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (health > 0)
+            {
+                animator.Play("Damage0");
+            }
         }
     }
 

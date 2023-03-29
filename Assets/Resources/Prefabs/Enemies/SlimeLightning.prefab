@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 186335569479140701}
   m_Layer: 0
   m_Name: SlimeLightning
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,6 @@ Transform:
   m_Children:
   - {fileID: 6021738969730251511}
   - {fileID: 5925414060475628767}
-  - {fileID: 705142555988906330}
   - {fileID: 5443536497110951786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +52,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!135 &4603352528577235242
 SphereCollider:
@@ -132,13 +131,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2358072168850654727}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalRotation: {x: -0.022265784, y: -0.0020751774, z: 0.105468825, w: 0.99417114}
+  m_LocalPosition: {x: 0.01760564, y: -0.29258853, z: 0.012993724}
+  m_LocalScale: {x: 2.75, y: 2.5000005, z: 2.7500007}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8955322500898459853}
-  m_RootOrder: 2
+  m_Father: {fileID: 3175312543014260292}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4692384018195390589
 MeshFilter:
@@ -328,6 +327,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2670655120731963238}
+  - {fileID: 705142555988906330}
   m_Father: {fileID: 2156295224627675165}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -576,7 +576,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8955322500898459853}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4286502874821232867
 AudioSource:

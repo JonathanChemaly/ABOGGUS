@@ -91,6 +91,7 @@ public class GrassSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -152,6 +153,10 @@ public class GrassSlime : MonoBehaviour, IEnemy
             if (damageSource == PlayerConstants.DamageSource.Fire)
             {
                 health -= damage;
+            }
+            if (health > 0)
+            {
+                animator.Play("Damage0");
             }
         }
     }

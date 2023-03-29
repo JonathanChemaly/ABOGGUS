@@ -93,6 +93,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
 
         if (dead)
         {
+            animator.Play("Damage2");
             if (deathTimer == 1f)
             {
                 deathSound.Play();
@@ -137,6 +138,10 @@ public class LightningSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (health > 0)
+            {
+                animator.Play("Damage0");
+            }
         }
     }
 
