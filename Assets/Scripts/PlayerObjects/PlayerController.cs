@@ -48,8 +48,16 @@ namespace ABOGGUS.PlayerObjects
         enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
+        // disables forward movement if the player is facing a wall
+        private bool canMoveWalls = true;
+        private LayerMask walls;
+        private float checkDistance = 2.0f;
+        //adjusts raycast to start at a different height
+        private Vector3 yWallCheck = new Vector3(0,1,0);
+
         public void InitializeForPlayer()
         {
+            walls = LayerMask.GetMask("Wall");
             GameController.player.SetController(this);
             facingDirection = FacingDirection.Forward;
         }
@@ -303,6 +311,20 @@ namespace ABOGGUS.PlayerObjects
         {
             if (physicalGameObject != null)
             {
+                // create a raycast that detects walls
+                RaycastHit hit;
+                if (Physics.Raycast(physicalGameObject.transform.position, physicalGameObject.transform.forward + yWallCheck, out hit, checkDistance, walls))
+                {
+                    // if a wall is detected, disable forward movement
+                    canMoveWalls = false;
+                    Debug.Log("Wall");
+                }
+                else
+                {
+                    // else enable forward movement
+                    canMoveWalls = true;
+                    Debug.Log("NO");
+                }
                 if (transitioning)
                 {
                     if (!transitionInvoked)
@@ -608,7 +630,7 @@ namespace ABOGGUS.PlayerObjects
            // Debug.Log("Old facing direction: " + facingDirection + ", new facing direction: " + currentFacingDirection);
 
             //Check if the facing direction is the same and not idle to move
-            if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle))
+            if (currentFacingDirection.Equals(facingDirection) && !currentFacingDirection.Equals(FacingDirection.Idle) && canMoveWalls)
             {
                 playerState.Move();
             }
