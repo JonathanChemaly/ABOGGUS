@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using ABOGGUS.Menus;
 using ABOGGUS.Gameplay;
+using ABOGGUS.Interact;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -66,6 +67,8 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
+                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
         if (GameController.player != null)
         {
             player = GameController.player.GetGameObject();
@@ -95,7 +98,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && thirdPerson)
+        else if (lookAround && thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
@@ -111,7 +114,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !thirdPerson)
+        else if (lookAround && !thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
             rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;

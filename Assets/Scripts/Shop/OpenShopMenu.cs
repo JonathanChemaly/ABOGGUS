@@ -26,6 +26,7 @@ namespace ABOGGUS.Interact
         [SerializeField]
         [Tooltip("Camera To disable on open")]
         private ThirdPersonCameraController thirdPersonCamera;
+        public static bool shopOpen = false;
 
         // Start is called before the first frame update
         void Start()
@@ -35,6 +36,7 @@ namespace ABOGGUS.Interact
 
         private void OpenMenu()
         {
+            shopOpen = true;
             SceneManager.LoadScene("Assets/Scenes/Shop/ShopMenu.unity", LoadSceneMode.Additive);
             //Temp Change for input
             inputM.InputScheme.Player.Disable();
@@ -84,6 +86,7 @@ namespace ABOGGUS.Interact
             {
                 canvas.enabled = true;
             }
+            shopOpen = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             //Temp Change for input end
