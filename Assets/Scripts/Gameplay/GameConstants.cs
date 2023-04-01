@@ -28,6 +28,8 @@ namespace ABOGGUS.Gameplay
         public const string SCENE_DUNGEONTEST = "DungeonTest";
         public const string SCENE_AUTUMNROOM = "AutumnRoom";
         public const string SCENE_SUMMERROOM = "SummerTemp";
+        public const string SCENE_WINTERROOM = "WinterRoom";
+        public const string SCENE_SPRINGROOM = "SpringRoom";
         public const string SCENE_DUNGEON = "Dungeon";
         public const string SCENE_TEST = "TestPuzzle";
 
