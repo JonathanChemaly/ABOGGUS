@@ -39,6 +39,8 @@ namespace ABOGGUS.Interact
         [Tooltip("Path of the item to loadInTheUI")]
         private Vector3 scaleToLoadInUI = Vector3.one;
         // Start is called before the first frame update
+
+        public static bool interactOpen = false;
         void Start()
         {
             item.InteractAction += OpenMenu;
@@ -46,6 +48,7 @@ namespace ABOGGUS.Interact
 
         private void OpenMenu()
         {
+            interactOpen = true;
             InteractStatics.pathToLoad = itemToLoadInUI; //set static so we can load the prefabs properly
             InteractStatics.posToLoadAt = posToLoadInUI;
             InteractStatics.scaleToLoadAt = scaleToLoadInUI;
@@ -100,6 +103,7 @@ namespace ABOGGUS.Interact
             //when the menu is unloaded
             //Temp Change for input
             //GameController.ResumeGame();
+            interactOpen = false;
             camera.enabled = true;
             inputM.InputScheme.Player.Enable(); //re-enable player movement
             canvas.enabled = true; //re-enable player movement
