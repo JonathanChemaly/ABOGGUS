@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using ABOGGUS.Menus;
+using ABOGGUS.Gameplay;
+using ABOGGUS.Interact;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -41,6 +43,18 @@ public class ThirdPersonCameraController : MonoBehaviour
     CinemachineFreeLook freeLookCam;
 
     private float freeLookCamSpeed;
+
+    public static float cameraYRot;
+
+    private static bool exists = false;
+    private void Awake()
+    {
+        if (!exists)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        exists = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +67,12 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
+                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
+        if (GameController.player != null)
+        {
+            player = GameController.player.GetGameObject();
+        }
         if (adjustCam)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, tpRotation, 0.03f);
@@ -78,7 +98,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && thirdPerson)
+        else if (lookAround && thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Vector2 lookVector = look.ReadValue<Vector2>();
@@ -90,11 +110,11 @@ public class ThirdPersonCameraController : MonoBehaviour
 
 
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
-            Rotator.cameraYRot = transform.eulerAngles.y;
+            //Debug.Log("tpc: " + cameraYRot);
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
-        else if (lookAround && !PauseMenu.isPaused && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !thirdPerson)
+        else if (lookAround && !thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
             rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
@@ -109,7 +129,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotateCamera, rotationSpeed);
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
-            Rotator.cameraYRot = transform.eulerAngles.y;
+            cameraYRot = transform.eulerAngles.y;
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
@@ -117,6 +137,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
         }
+        cameraYRot = transform.eulerAngles.y;
         if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
         else freeLookCam.m_XAxis.m_MaxSpeed = freeLookCamSpeed;
         Camera.main.fieldOfView = fov;
@@ -166,8 +187,8 @@ public class ThirdPersonCameraController : MonoBehaviour
         else
         {
             GetComponent<CinemachineBrain>().enabled = false;
-            offset = 1f;
-            yOffset = 2.33f;
+            offset = 1.2f;
+            yOffset = 2f;
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             transform.rotation = fpRotation;
         }

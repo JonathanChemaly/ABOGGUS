@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +33,13 @@ namespace ABOGGUS.PlayerObjects
             {
                 GameController.player = this;
                 playerController = this.transform.GetComponent<PlayerController>();
+
+                if (debug)
+                {
+                    GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
+                    SetGameObject(physicalGameObject);
+                }
+
                 playerController.InitializeForPlayer();
                 inventory = new PlayerInventory();
                 SetHUD();
@@ -46,6 +53,10 @@ namespace ABOGGUS.PlayerObjects
             GameObject hudObj = physicalGameObject.transform.Find("HUD").gameObject;
             playerHUD = hudObj.GetComponent<PlayerHUD>();
             playerHUD.playerInventory = this.inventory;
+            var tempScale = playerHUD.transform.Find("HealthBar").localScale;
+            tempScale.x = UpgradeStats.healthBarSize;
+            playerHUD.transform.Find("HealthBar").localScale = tempScale;
+            hudObj.transform.Find("ManaBar").gameObject.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
         }
 
         public void TakeDamage(float damage)
@@ -58,7 +69,12 @@ namespace ABOGGUS.PlayerObjects
 
             playerHUD.UpdateHealthBar();
         }
-
+        public void updateMana(int value)
+        {
+            inventory.mana += value;
+            UpgradeStats.mana += value;
+            playerHUD.UpdateMana();
+        }
         IEnumerator ToCredits()
         {
             //gameOverText.SetActive(true);
@@ -72,13 +88,12 @@ namespace ABOGGUS.PlayerObjects
         {
             if (debug) _FixedUpdate();
         }
-
         public void _FixedUpdate()
         {
             if (this.playerController != null) { this.playerController._FixedUpdate(); }
             if (invulnerabilityFrames > 0) invulnerabilityFrames--;
         }
-
+        
         public void SetController(PlayerController playerController)
         {
             this.playerController = playerController;
@@ -96,6 +111,7 @@ namespace ABOGGUS.PlayerObjects
         {
             return this.playerController.GetGameObject();
         }
+
         private void OnEnable()
         {
             //PlayerDied += GameController.Respawn;

@@ -130,6 +130,105 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cast",
+                    "type": "Button",
+                    "id": "37082a83-3f31-45b7-8656-5fae885b35ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cast AOE",
+                    "type": "Button",
+                    "id": "49c75e60-3d4d-4f3a-9d35-acdc36bd601c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Sword",
+                    "type": "Button",
+                    "id": "797ff3bd-b486-4e3c-a0f9-362e818fc505",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Grimoire",
+                    "type": "Button",
+                    "id": "2c846aab-835b-47b1-be79-a379a17a5943",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Spear",
+                    "type": "Button",
+                    "id": "b161e42a-3635-411c-a70a-eef1ec1a3da3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dequip",
+                    "type": "Button",
+                    "id": "091c4253-085a-4da1-9927-ef49975b6528",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Wind",
+                    "type": "Button",
+                    "id": "eb52c058-625c-4671-8b7e-d342449c35ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Fire",
+                    "type": "Button",
+                    "id": "a788db88-dae5-4eb5-83d1-8397218036f2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Water",
+                    "type": "Button",
+                    "id": "adef43b1-bf09-41aa-8f62-2d727f1444e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Nature",
+                    "type": "Button",
+                    "id": "a00251b6-3c2c-40da-ad83-da464d46b369",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Equip Lightning",
+                    "type": "Button",
+                    "id": "02045046-bf4c-4620-b48d-9c36970998c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -344,6 +443,17 @@
                 },
                 {
                     "name": "",
+                    "id": "191eb167-7525-4f11-a84e-f5a200e31604",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b47f510c-23e3-4439-b052-b75051f687d0",
                     "path": "<Keyboard>/c",
                     "interactions": "",
@@ -443,17 +553,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c39a83bb-e77b-4ec8-8d8d-c4af5ea8b0f8",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b582a799-48d7-4661-a0d2-4732817f6c86",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -482,6 +581,127 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b479a5c-39ec-472e-81a8-f92a6133fd35",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e681e2fc-a6c5-487d-ace0-0425b200ad4a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cast AOE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16957814-e530-47d6-902b-17b023c44a69",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Sword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "021357c3-78ea-4e84-adc8-921b98cfc7ce",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Grimoire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3e2b5e5-2bcd-4bd1-8410-69707744d414",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dequip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7151d574-eb70-43f3-845d-5709ab93ca32",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Wind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5d1244f-ff58-44ac-a388-c993da8e9cb4",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac1f88c3-4a4e-48f6-8740-5a12d055667b",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b776c00-771e-4f38-90b1-18445f62be6b",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Nature",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa04d096-48b9-4ede-9ecb-7cc3a972b7af",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Lightning",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6de0905-1690-44a5-8e47-abed01594e85",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Equip Spear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

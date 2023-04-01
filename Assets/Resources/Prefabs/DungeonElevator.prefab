@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4079988383411806352}
   - component: {fileID: 267629249703226198}
   - component: {fileID: 4067183714201748020}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8704777348450486956}
   - component: {fileID: 911822230516711003}
   - component: {fileID: 4629237141226798950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 1832321436390191529}
   - component: {fileID: 8175869857904071305}
   - component: {fileID: 476935994618150913}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Elevator
   actionName: Fix
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!114 &2034990012830820665
 MonoBehaviour:
@@ -1911,8 +1912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 16.5
-  rotation: 180
-  rotationSpeed: 0.6
 --- !u!1 &1764867867997854748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2352,8 @@ MonoBehaviour:
   player: {fileID: 0}
   elevator: {fileID: 5934891208754244429}
   elevatorShaftFloor: {fileID: 1624770150504161073}
+  elevatorHieght: 15.1
+  startPositiontrueUpFalseDown: 1
 --- !u!1 &2224235256427936138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3393,6 +3394,8 @@ MonoBehaviour:
   botDoorR: {fileID: 650419626668351507}
   botDoorL: {fileID: 9186375899879336867}
   openBottomDoor: 0
+  flipOrientation: 0
+  transition: 0
 --- !u!1 &3159129646514419282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,7 +3929,7 @@ GameObject:
   - component: {fileID: 5641760383462733635}
   - component: {fileID: 2901185703296602775}
   - component: {fileID: 4237696277953129125}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4124,6 +4127,8 @@ MonoBehaviour:
   topDoorR: {fileID: 591358002835890644}
   topDoorL: {fileID: 697204950926695459}
   openTopDoor: 0
+  flipOrientation: 0
+  transition: 0
 --- !u!1 &3878604337988285216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,7 +4335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7286732666506164662}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ElevatorDoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4370,7 +4375,7 @@ GameObject:
   - component: {fileID: 195104900644645887}
   - component: {fileID: 935246020712382155}
   - component: {fileID: 5872971608095602195}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TopFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4570,6 +4575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Elevator
   actionName: Call
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!114 &5733266536689500047
 MonoBehaviour:
@@ -5173,7 +5179,7 @@ GameObject:
   - component: {fileID: 1124831809370580641}
   - component: {fileID: 7471281929758269777}
   - component: {fileID: 5647489083592654050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8133,7 +8139,7 @@ GameObject:
   - component: {fileID: 3047301373764280492}
   - component: {fileID: 41030888442256777}
   - component: {fileID: 5897746424747264375}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8328,7 +8334,7 @@ GameObject:
   - component: {fileID: 6112302349581002034}
   - component: {fileID: 2986117769026355846}
   - component: {fileID: 9098697896942673224}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9194,7 +9200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6685332469189758114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ElevatorDoorTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.PlayerObjects.Items;
 using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact
@@ -12,20 +13,45 @@ namespace ABOGGUS.Interact
         [Tooltip("interact to watch")]
         private Interactable interact;
 
-        private Player player;
+        [SerializeField]
+        [Tooltip("name of bool field in player inventory to check if the player has (case-sensitive)")]
+        private string itemName = "key";
+
+        private PlayerInventory playerInv;
+        private System.Reflection.PropertyInfo itemInfo;
 
         // Start is called before the first frame update
         void Start()
         {
             interact.InteractAction += pickUpObject;
-            player = GameController.player;
+            playerInv = GameController.player.inventory;
+            itemInfo = playerInv.GetType().GetProperty(itemName);
         }
 
         private void pickUpObject()
         {
-            player.inventory.key = true;
+            if (interact.CompareTag(ItemLookup.GrimoreName))
+            {
+                playerInv.addItem(ItemLookup.GrimoreName);
+            }
+            else if (interact.CompareTag(ItemLookup.WheelName))
+            {
+                playerInv.addItem(ItemLookup.WheelName);
+            }
+            else if (interact.CompareTag(ItemLookup.WrenchName))
+            {
+                playerInv.addItem(ItemLookup.WrenchName);
+            }
+            else if (interact.CompareTag(ItemLookup.GasName))
+            {
+                playerInv.addItem(ItemLookup.GasName);
+            }
+            else if (interact.CompareTag(ItemLookup.TractorKeyName))
+            {
+                playerInv.addItem(ItemLookup.TractorKeyName);
+            }
+            itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
         }
     }
 }
-

@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chest
   actionName: Open
-  enableCondition: 1
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!114 &7924722161190111354
 MonoBehaviour:
@@ -228,6 +228,7 @@ MonoBehaviour:
   interact: {fileID: 7924722161190111237}
   aniToPlay: {fileID: 7924722161196796871}
   playMultipleTimes: 0
+  triggerSuccessOnFinishing: 1
 --- !u!114 &7924722161190111355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lock
   actionName: Use
-  enableCondition: 1
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!1001 &9163959690928369184
 PrefabInstance:
@@ -478,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book4
       objectReference: {fileID: 0}
+    - target: {fileID: 4462281228610036729, guid: 14a97e55aaa1cb44baa0d865b75dfdae, type: 3}
+      propertyPath: m_TagString
+      value: grimore
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a97e55aaa1cb44baa0d865b75dfdae, type: 3}
 --- !u!1 &4810365484089822681 stripped
@@ -499,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grimoire
   actionName: Pick Up
-  enableCondition: 1
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!114 &7821782236839053177
 MonoBehaviour:

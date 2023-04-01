@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using ABOGGUS.Input;
 using ABOGGUS;
 using ABOGGUS.Interact.Statics;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact
 {
@@ -28,12 +29,18 @@ namespace ABOGGUS.Interact
 
         [SerializeField]
         [Tooltip("Postion of the item to loadInTheUI")]
+        private ThirdPersonCameraController camera;
+
+        [SerializeField]
+        [Tooltip("Postion of the item to loadInTheUI")]
         private Vector3 posToLoadInUI = Vector3.zero;
 
         [SerializeField]
         [Tooltip("Path of the item to loadInTheUI")]
         private Vector3 scaleToLoadInUI = Vector3.one;
         // Start is called before the first frame update
+
+        public static bool interactOpen = false;
         void Start()
         {
             item.InteractAction += OpenMenu;
@@ -41,6 +48,7 @@ namespace ABOGGUS.Interact
 
         private void OpenMenu()
         {
+            interactOpen = true;
             InteractStatics.pathToLoad = itemToLoadInUI; //set static so we can load the prefabs properly
             InteractStatics.posToLoadAt = posToLoadInUI;
             InteractStatics.scaleToLoadAt = scaleToLoadInUI;
@@ -49,9 +57,13 @@ namespace ABOGGUS.Interact
             inputM.InputScheme.Player.Disable();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            camera.enabled = false;
+            //GameController.PauseGame();
+            Debug.Log("After open menu Game state = " + GameController.gameState);
             //Temp Change for input end
             canvas.enabled = false;
             StartCoroutine(CheckIfUnloaded());
+            
         }
 
         /*
@@ -61,8 +73,6 @@ namespace ABOGGUS.Interact
         {
             //Get interactMenuScene
             Scene interactMenu = SceneManager.GetSceneByName("InteractableMenu");
-            Debug.Log(Cursor.lockState);
-            Debug.Log(Cursor.visible);
 
             //Temp Change for input end
 
@@ -75,6 +85,9 @@ namespace ABOGGUS.Interact
             //Keep spinning while the menu is loaded
             while (interactMenu.isLoaded)
             {
+                Debug.Log("While menu open Game state = " + GameController.gameState);
+                Debug.Log(Cursor.lockState);
+                Debug.Log(Cursor.visible);
                 yield return null;
             }
             
@@ -89,6 +102,9 @@ namespace ABOGGUS.Interact
 
             //when the menu is unloaded
             //Temp Change for input
+            //GameController.ResumeGame();
+            interactOpen = false;
+            camera.enabled = true;
             inputM.InputScheme.Player.Enable(); //re-enable player movement
             canvas.enabled = true; //re-enable player movement
             Cursor.lockState = CursorLockMode.Locked;
