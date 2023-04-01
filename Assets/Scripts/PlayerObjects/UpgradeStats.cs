@@ -10,8 +10,8 @@ public static class UpgradeStats
     public static float healthBarInc = 0.025f;
     public static int healthUpgradeCount = 0;
     public static int swordUpgradeCount = 0;
-    public static float healthBarSize = 1f;
-    public static int mana = 64;
+    public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
+    public static int mana = 100, defaultMana = 100;
 
     public static int healthUpCost = -10;
     public static int swordUpCost = -10;
@@ -36,5 +36,13 @@ public static class UpgradeStats
         Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
         swordUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(swordUpCost);
+    }
+
+    public static void resetPlayerStats()
+    {
+        healthUpgradeCount = 0;
+        swordUpgradeCount = 0;
+        healthBarSize = defaultHealthBarSize;
+        mana = defaultMana;
     }
 }

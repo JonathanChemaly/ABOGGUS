@@ -64,6 +64,8 @@ namespace ABOGGUS.SaveSystem
 
         public static void StartNewData()
         {
+            UpgradeStats.resetPlayerStats();
+            WeaponDamageStats.resetDamageStats();
             currentSaveData = new SaveData();
         }
 
