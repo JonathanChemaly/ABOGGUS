@@ -9,14 +9,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     {
         [SerializeField]
         [Tooltip("Where the generated Sokoban level is held")]
-        private GenerateSokoban sokobanGenerator;
+        private OutputSokoban3D outputedSokoban;
 
         private void UpdateGameObjectPos(GameObject objectBeingMoved, int row, int col)
         {
             objectBeingMoved.transform.localPosition =
-                        new Vector3(row * GenerateSokoban.cellScaleConst - sokobanGenerator.xOffset,
-                                    GenerateSokoban.cellScaleConst / 2,
-                                    col * GenerateSokoban.cellScaleConst - sokobanGenerator.yOffset);
+                        new Vector3(row * OutputSokoban3D.cellScaleConst - outputedSokoban.xOffset,
+                                    OutputSokoban3D.cellScaleConst / 2,
+                                    col * OutputSokoban3D.cellScaleConst - outputedSokoban.yOffset);
         }
 
         private GameObject RemoveBoxAtPos(int row, int col)
@@ -50,7 +50,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             foreach (System.Tuple<int, int, GameObject> boxTup in curBoxPostions)
             {
                 bool boxMatchesWithGoal = false;
-                foreach(System.Tuple <int, int> goalTup in sokobanGenerator.goalLocations)
+                foreach(System.Tuple <int, int> goalTup in outputedSokoban.goalLocations)
                 {
                     if(boxTup.Item1 == goalTup.Item1 && boxTup.Item2 == goalTup.Item2)
                     {
@@ -75,9 +75,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             int rowBeingMovedTo = playerLocationRow + rowOffset;
             int colBeingMovedTo = playerLocationCol + colOffset;
 
-            if (!SokobanHelper.IsOutOfSokobanBounds(rowBeingMovedTo, colBeingMovedTo, sokobanGenerator.sokoban))
+            if (!SokobanHelper.IsOutOfSokobanBounds(rowBeingMovedTo, colBeingMovedTo, outputedSokoban.sokoban))
             {
-                SokobanCell upCell = sokobanGenerator.sokoban[rowBeingMovedTo, colBeingMovedTo];
+                SokobanCell upCell = outputedSokoban.sokoban[rowBeingMovedTo, colBeingMovedTo];
                 GameObject potentialBox = RemoveBoxAtPos(rowBeingMovedTo, colBeingMovedTo);
 
                 //If the up cell is a box we check if we can move the box then move it if we can
@@ -86,9 +86,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     int rowBoxIsPushedTo = rowBeingMovedTo + rowOffset;
                     int colBoxIsPushedTo = colBeingMovedTo + colOffset;
                     //nested if to prevent hitting else if down below
-                    if (!SokobanHelper.IsOutOfSokobanBounds(rowBoxIsPushedTo, colBoxIsPushedTo, sokobanGenerator.sokoban))
+                    if (!SokobanHelper.IsOutOfSokobanBounds(rowBoxIsPushedTo, colBoxIsPushedTo, outputedSokoban.sokoban))
                     {
-                        SokobanCell cellNearBox = sokobanGenerator.sokoban[rowBoxIsPushedTo, colBoxIsPushedTo];
+                        SokobanCell cellNearBox = outputedSokoban.sokoban[rowBoxIsPushedTo, colBoxIsPushedTo];
                         GameObject boxBehindBox = RemoveBoxAtPos(rowBoxIsPushedTo, colBoxIsPushedTo);
                         //checks if the cell we are pushing the box into is a floor and not another box
                         if (cellNearBox.isFloor() && boxBehindBox == null)
@@ -104,7 +104,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                             playerLocationCol += colOffset;
 
                             //udate game object postion to match movement
-                            UpdateGameObjectPos(sokobanGenerator.playerObject, playerLocationRow, playerLocationCol);
+                            UpdateGameObjectPos(outputedSokoban.playerObject, playerLocationRow, playerLocationCol);
 
                             //check if all boxes are on goal
                             DoGoalActions();
@@ -126,7 +126,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     playerLocationCol += colOffset;
 
                     //udate game object postion to match movement
-                    UpdateGameObjectPos(sokobanGenerator.playerObject, playerLocationRow, playerLocationCol);
+                    UpdateGameObjectPos(outputedSokoban.playerObject, playerLocationRow, playerLocationCol);
                 }
             }
         }
@@ -188,17 +188,18 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         IEnumerator getStartingPostions()
         {
-            while(sokobanGenerator.playerObject == null)
+            while(outputedSokoban.playerObject == null)
             {
                 yield return null;
             }
 
             //setup our variables for our object;
 
-            playerLocationRow = sokobanGenerator.startingPlayerPostion.Item1;
-            playerLocationCol = sokobanGenerator.startingPlayerPostion.Item2;
+            playerLocationRow = outputedSokoban.startingPlayerPostion.Item1;
+            playerLocationCol = outputedSokoban.startingPlayerPostion.Item2;
 
-            foreach (System.Tuple<int, int, GameObject> tuple in sokobanGenerator.startingBoxLocations)
+            //add Blocks for checking
+            foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
             {
                 curBoxPostions.Add(new System.Tuple<int, int, GameObject>(tuple.Item1, tuple.Item2, tuple.Item3));
             }

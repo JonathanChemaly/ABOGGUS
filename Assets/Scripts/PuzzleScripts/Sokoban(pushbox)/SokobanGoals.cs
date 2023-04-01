@@ -59,43 +59,35 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //for each pair of floor cells in our list
                 for (int i = 0; i < floorLocations.Count; i++)
                 {
-                    for(int j = i+1; j< floorLocations.Count; j++)
+                    //temp mark each floor as goals
+                    System.Tuple<int, int> floorLoc1 = floorLocations[i];
+
+                    board[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(board[floorLoc1.Item1, floorLoc1.Item2]);
+
+                    //execute search to get a puzzle solution
+                    HashSet<System.Tuple<SokobanCell[,], int>> temp = Search(board);
+                    Debug.Log("GenerateSokobanGoals- temp level count = " + temp.Count);
+                    Debug.Log("GenerateSokobanGoals- temp level Length = " + GetLengthOfSolutions(temp));
+                    //if the length of our solution is greatter then the length of best we change best to our temp solution
+                    if (GetLengthOfSolutions(temp) > GetLengthOfSolutions(best))
                     {
-                        //temp mark each floor as goals
-                        System.Tuple<int, int> floorLoc1 = floorLocations[i];
-                        System.Tuple<int, int> floorLoc2 = floorLocations[i]; //doesn't work with j?
+                        best = temp;
+                        Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
 
-                        board[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(board[floorLoc1.Item1, floorLoc1.Item2]);
-                        board[floorLoc2.Item1, floorLoc2.Item2] = new GoalCell(board[floorLoc2.Item1, floorLoc2.Item2]);
-
-                        //execute search to get a puzzle solution
-                        HashSet<System.Tuple<SokobanCell[,], int>> temp = Search(board);
-                        Debug.Log("GenerateSokobanGoals- temp level count = " + temp.Count);
-                        Debug.Log("GenerateSokobanGoals- temp level Length = " + GetLengthOfSolutions(temp));
-                        //if the length of our solution is greatter then the length of best we change best to our temp solution
-                        if (GetLengthOfSolutions(temp) > GetLengthOfSolutions(best))
+                        //Turn the goal cells back in the solutions
+                        foreach (System.Tuple<SokobanCell[,], int> tup in best)
                         {
-                            best = temp;
-                            Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
-
-                            //Turn the goal cells back in the solutions
-                            foreach (System.Tuple<SokobanCell[,], int> tup in best)
-                            {
-                                tup.Item1[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(tup.Item1[floorLoc1.Item1, floorLoc1.Item2]);
-                                tup.Item1[floorLoc2.Item1, floorLoc2.Item2] = new GoalCell(tup.Item1[floorLoc2.Item1, floorLoc2.Item2]);
-                            }
+                            tup.Item1[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(tup.Item1[floorLoc1.Item1, floorLoc1.Item2]);
                         }
-                        //turn back to floors
-                        board[floorLoc1.Item1, floorLoc1.Item2] = new FloorCell(board[floorLoc1.Item1, floorLoc1.Item2]);
-                        board[floorLoc2.Item1, floorLoc2.Item2] = new FloorCell(board[floorLoc2.Item1, floorLoc2.Item2]);
                     }
+                    //turn back to floors
+                    board[floorLoc1.Item1, floorLoc1.Item2] = new FloorCell(board[floorLoc1.Item1, floorLoc1.Item2]);
+                    
                 }
 
                 Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
 
                 //chose one "level" from best
-                
-                
 
                 SokobanCell[,] level = new SokobanCell[sokobanRows, sokobanCols];
                 int maxDifference = -1;
@@ -110,7 +102,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //set the board equal to the level
                 board = level;
                 //set our count to count plus two because we have added 2 things
-                count += 2;
+                count++;
             }
 
             return board;
@@ -148,10 +140,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 }
             }
 
+            bool playerSpawnCellAdded = false;
             //for each contigous section of floor on board
-            for (int row = 0; row < sokobanRows; row++)
+            for (int row = 0; row < sokobanRows && !playerSpawnCellAdded; row++)
             {
-                for (int col = 0; col < sokobanCols; col++)
+                for (int col = 0; col < sokobanCols && !playerSpawnCellAdded; col++)
                 {
                     SokobanCell sc = board[row, col];
 
@@ -161,6 +154,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         SokobanCell[,] clone = (SokobanCell[,]) board.Clone();
                         clone[row, col] = new PlayerSpawnCell(clone[row, col]);
                         start.Add(new System.Tuple<SokobanCell[,], int>(clone, 0));
+
+                        playerSpawnCellAdded = true;
                     }
                 }
             }

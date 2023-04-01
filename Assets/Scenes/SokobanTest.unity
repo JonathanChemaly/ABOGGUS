@@ -366,6 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1442168333}
   - component: {fileID: 1442168332}
+  - component: {fileID: 1442168334}
   m_Layer: 0
   m_Name: SokobanHolder
   m_TagString: Untagged
@@ -388,15 +389,7 @@ MonoBehaviour:
   gridHeight: 2
   gridWidth: 2
   roomSize: 3
-  boxNumbers: 2
-  floorMaterial: {fileID: 2100000, guid: 589d0651c0c0d2e4bab137028d20072d, type: 2}
-  wallPrefab: {fileID: 3136808831733307999, guid: 2c2346fec67bd864fb1ee4be83a1f3eb, type: 3}
-  goalPrefab: {fileID: 3136808831733307999, guid: f4a96134f97ffee4c90b1a85dc0149e3, type: 3}
-  boxPrefab: {fileID: 3136808831733307999, guid: 6afc5469ed84d0146a22ffeaf881e201, type: 3}
-  playerPrefab: {fileID: 3136808831733307999, guid: 4222557ab2acd1a4ea32d94e02b00e1c, type: 3}
-  xOffset: 0
-  yOffset: 0
-  playerObject: {fileID: 0}
+  boxNumbers: 1
 --- !u!4 &1442168333
 Transform:
   m_ObjectHideFlags: 0
@@ -412,6 +405,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1442168334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442168331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc4b6c9832918f4c964c0cc82a19c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorMaterial: {fileID: 2100000, guid: 589d0651c0c0d2e4bab137028d20072d, type: 2}
+  wallPrefab: {fileID: 3136808831733307999, guid: 2c2346fec67bd864fb1ee4be83a1f3eb, type: 3}
+  goalPrefab: {fileID: 3136808831733307999, guid: f4a96134f97ffee4c90b1a85dc0149e3, type: 3}
+  boxPrefab: {fileID: 3136808831733307999, guid: 6afc5469ed84d0146a22ffeaf881e201, type: 3}
+  playerPrefab: {fileID: 3136808831733307999, guid: 4222557ab2acd1a4ea32d94e02b00e1c, type: 3}
+  xOffset: 0
+  yOffset: 0
+  playerObject: {fileID: 0}
 --- !u!1 &2112925731
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323539b84781c74b872609bd2f42ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sokobanGenerator: {fileID: 1442168332}
+  outputedSokoban: {fileID: 1442168334}
 --- !u!114 &2112925733
 MonoBehaviour:
   m_ObjectHideFlags: 0
