@@ -180,14 +180,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(getStartingPostions());
+            StartCoroutine(GetStartingPostions());
         }
 
         private int playerLocationRow, playerLocationCol;
 
         private List<System.Tuple<int, int, GameObject>> curBoxPostions = new(); 
 
-        IEnumerator getStartingPostions()
+        IEnumerator GetStartingPostions()
         {
             while(outputedSokoban.playerObject == null)
             {

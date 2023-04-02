@@ -8,7 +8,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 {
     public static class SokobanHelper
     {
-        private static int maxFails = 100;
+        private static readonly int maxFails = 100;
 
         /*
          * ~~~~~~~~~~~~~~~~~~~~~~~Helper Methods~~~~~~~~~~~~~~~~~~~~~~~

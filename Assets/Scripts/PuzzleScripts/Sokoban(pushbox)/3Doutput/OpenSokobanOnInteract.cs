@@ -16,6 +16,10 @@ namespace ABOGGUS.Interact
         private Interactable item;
 
         [SerializeField]
+        [Tooltip("Animation associated with opening the interactMenu")]
+        private PlayAnimation openingAnimation;
+
+        [SerializeField]
         [Tooltip("Main input so we can disable player movement")]
         private InputManager inputM;
 
@@ -31,7 +35,12 @@ namespace ABOGGUS.Interact
         // Start is called before the first frame update
         void Start()
         {
-            item.InteractAction += OpenMenu;
+            CheckHowToOpenMenu();
+        }
+
+        private void CheckHowToOpenMenu()
+        {
+            openingAnimation.AnimationFinishAction += OpenMenu;   
         }
 
         private void OpenMenu()
