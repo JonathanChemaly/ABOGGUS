@@ -40,6 +40,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //Check if all our boxes are on goals
             if (CheckGoals())
             {
+                SokobanStatics.SokobanSolved = true;
                 //do goal actions
                 Debug.Log("All Boxes On Goals! Performing Goal Action...");
             }

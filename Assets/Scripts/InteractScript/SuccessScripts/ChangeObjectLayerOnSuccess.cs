@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace ABOGGUS.Interact
 {
-    public class ChangeObjectLayerOnInteract : MonoBehaviour
+    public class ChangeObjectLayerOnSuccess : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("interact to watch")]
@@ -21,7 +21,7 @@ namespace ABOGGUS.Interact
         // Start is called before the first frame update
         void Start()
         {
-            interact.InteractAction += ChangeLayer;
+            interact.SuccessAction += ChangeLayer;
         }
 
         private void ChangeLayer()

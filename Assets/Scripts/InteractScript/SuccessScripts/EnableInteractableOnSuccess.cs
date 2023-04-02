@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ABOGGUS.Interact
 {
-    public class EnableInteractable : MonoBehaviour
+    public class EnableInteractableOnSuccess : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("interact to enable on the succes of the the other interactable")]

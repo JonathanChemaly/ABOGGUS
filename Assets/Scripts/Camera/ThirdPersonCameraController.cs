@@ -68,7 +68,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     private void LateUpdate()
     {
         bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
-                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
+                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen && !OpenSokobanOnInteract.SokobanOpen;
         if (GameController.player != null)
         {
             player = GameController.player.GetGameObject();

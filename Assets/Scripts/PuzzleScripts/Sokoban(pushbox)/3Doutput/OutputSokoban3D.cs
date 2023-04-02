@@ -91,19 +91,23 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //Creates Floor
             Floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
             //float ratioOfRowsToCols = sokobanRows / sokobanCols;
-            curXFloorScale = (float)sokobanRows / 2 * floorScaleConst;
-            curYFloorScale = (float)sokobanCols / 2 * floorScaleConst;
+            Floor.transform.eulerAngles = new Vector3(-90, 0, 0);
+            Floor.transform.localPosition = this.transform.position;
+            Floor.transform.parent = transform;
 
-            Floor.transform.localScale = new Vector3(curXFloorScale, 1, curYFloorScale);
-            Floor.transform.localPosition = new Vector3(0, 0, 0);
+            curXFloorScale = ((float)sokobanRows / 2f) * floorScaleConst;
+            curYFloorScale = ((float)sokobanCols / 2f) * floorScaleConst;
+            
+            Floor.transform.localScale = new Vector3(curYFloorScale, 1, curXFloorScale);
+            
             Floor.isStatic = true;
 
             //Rescale material to tile properly
             Material fm = floorMaterial;
-            fm.mainTextureScale = new Vector2(sokobanRows, sokobanCols);
+            fm.mainTextureScale = new Vector2(sokobanCols, sokobanRows);
             Floor.GetComponent<Renderer>().material = fm;
 
-            Floor.transform.parent = transform;
+            
 
             /*
              * Print Out SokobanCells
@@ -126,6 +130,25 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //Clears the boxes so that we now have floors where to boxes were
             //to allow for pushing through those cells in movement controller
             ClearBoxesFromSokoban(sokobanRows, sokobanCols);
+
+            SetGameLayerRecursive(this.gameObject, UILayerNum);
+        }
+
+        private const int UILayerNum = 5;
+
+        //Code from unity formum to set the layer of
+        private void SetGameLayerRecursive(GameObject gameObject, int layer)
+        {
+            gameObject.layer = layer;
+            foreach (Transform child in gameObject.transform)
+            {
+                child.gameObject.layer = layer;
+
+                Transform _HasChildren = child.GetComponentInChildren<Transform>();
+                if (_HasChildren != null)
+                    SetGameLayerRecursive(child.gameObject, layer);
+
+            }
         }
 
         private void ClearBoxesFromSokoban(int sokobanRows, int sokobanCols)
@@ -174,6 +197,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             wall.transform.localScale = new Vector3(cellScaleConst, cellScaleConst, cellScaleConst);
             wall.transform.localPosition = new Vector3(row * cellScaleConst - xOffset, cellScaleConst / 2, col * cellScaleConst - yOffset);
 
+            wall.layer = UILayerNum;
+            wall.transform.eulerAngles = new Vector3(-90, 0, 0);
+
             wall.isStatic = true;
             BoxCollider bc = wall.AddComponent<BoxCollider>();
             bc.size = new Vector3(cellScaleConst, cellScaleConst, cellScaleConst); ;
@@ -191,6 +217,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             player.transform.localScale = new Vector3(cellScaleConst, cellScaleConst, cellScaleConst);
             player.transform.localPosition = new Vector3(row * cellScaleConst - xOffset, cellScaleConst / 2, col * cellScaleConst - yOffset);
 
+            player.layer = UILayerNum;
+            player.transform.eulerAngles = new Vector3(-90, 0, 0);
+
             startingPlayerPostion = new System.Tuple<int, int>(row, col);
             playerObject = player;
         }
@@ -206,6 +235,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             goal.transform.localScale = new Vector3(cellScaleConst, cellScaleConst, cellScaleConst);
             goal.transform.localPosition = new Vector3(row * cellScaleConst - xOffset, cellScaleConst / 2, col * cellScaleConst - yOffset);
 
+            goal.layer = UILayerNum;
+            goal.transform.eulerAngles = new Vector3(-90, 0, 0);
+
             goal.isStatic = true;
             goalLocations.Add(new System.Tuple<int, int>(row, col));
         }
@@ -219,6 +251,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             box.transform.parent = parent.transform;
             box.transform.localScale = new Vector3(cellScaleConst, cellScaleConst, cellScaleConst);
             box.transform.localPosition = new Vector3(row * cellScaleConst - xOffset, cellScaleConst / 2, col * cellScaleConst - yOffset);
+
+            box.layer = UILayerNum;
+            box.transform.eulerAngles = new Vector3(-90, 0, 0);
 
             startingBoxLocations.Add(new System.Tuple<int, int, GameObject>(row, col, box));
         }
