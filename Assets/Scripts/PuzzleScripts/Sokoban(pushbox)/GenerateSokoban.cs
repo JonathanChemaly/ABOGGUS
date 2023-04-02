@@ -29,16 +29,30 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         private void Start()
         {
             //TO-DO
-            //Generate Walls
-            sokoban = SokobanHelper.GenerateSokoban(gridHeight, gridWidth, roomSize);
-            SokobanHelper.DebugPrintSokoban(sokoban); //output after generation
+            //keep on generating until we have a level with a player spawn
+            do
+            {
+                //Generate Walls
+                sokoban = SokobanHelper.GenerateSokoban(gridHeight, gridWidth, roomSize);
+                SokobanHelper.DebugPrintSokoban(sokoban); //output after generation
 
-            //Generate Goals
-            sokoban = SokobanGoals.GenerateSokobanGoals(sokoban, boxNumbers);
-            SokobanHelper.DebugPrintSokoban(sokoban); //output after goal generation
-            //Output everything
+                //Generate Goals
+                sokoban = SokobanGoals.GenerateSokobanGoals(sokoban, boxNumbers);
+                SokobanHelper.DebugPrintSokoban(sokoban); //output after goal generation
+                                                          //Output everything
 
-            SokobanStatics.generatedSokoban = sokoban;
+                SokobanStatics.generatedSokoban = sokoban;
+            } while (!CheckIfHavePlayerSpawn());
+        }
+
+        private bool CheckIfHavePlayerSpawn()
+        {
+            foreach (SokobanCell cell in sokoban)
+            {
+                if (cell.GetType().Equals(typeof(PlayerSpawnCell))) return true;
+            }
+
+            return false;
         }
     }
 
