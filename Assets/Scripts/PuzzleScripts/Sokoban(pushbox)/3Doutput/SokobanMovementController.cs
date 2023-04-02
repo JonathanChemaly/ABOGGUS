@@ -13,10 +13,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private void UpdateGameObjectPos(GameObject objectBeingMoved, int row, int col)
         {
-            objectBeingMoved.transform.localPosition =
+            if(objectBeingMoved != null)
+            {
+                objectBeingMoved.transform.localPosition =
                         new Vector3(row * OutputSokoban3D.cellScaleConst - outputedSokoban.xOffset,
                                     OutputSokoban3D.cellScaleConst / 2,
                                     col * OutputSokoban3D.cellScaleConst - outputedSokoban.yOffset);
+            }
+            
         }
 
         private GameObject RemoveBoxAtPos(int row, int col)
@@ -119,6 +123,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                             }
                         }
                     }
+                    else
+                    {
+                        //add box back
+                        curBoxPostions.Add(new System.Tuple<int, int, GameObject>(rowBeingMovedTo, colBeingMovedTo, potentialBox));
+                    }
                 }
                 else if (upCell.isFloor()) //if the adjacentcell is a floor we move into that cell;
                 {
@@ -189,7 +198,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         IEnumerator GetStartingPostions()
         {
-            while(outputedSokoban.playerObject == null)
+            while(!outputedSokoban.levelGenerated)
             {
                 yield return null;
             }
@@ -199,11 +208,24 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             playerLocationRow = outputedSokoban.startingPlayerPostion.Item1;
             playerLocationCol = outputedSokoban.startingPlayerPostion.Item2;
 
+            Debug.Log("Starting Player Location = " + playerLocationRow + "," + playerLocationCol);
+
             //add Blocks for checking
             foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
             {
                 curBoxPostions.Add(new System.Tuple<int, int, GameObject>(tuple.Item1, tuple.Item2, tuple.Item3));
             }
+
+            foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
+            {
+                Debug.Log("Box Postions = " + tuple.Item1 + "," + tuple.Item2);
+            }
+           
+        }
+
+        public void RestPostions()
+        {
+            StartCoroutine(GetStartingPostions());
         }
     }
 }

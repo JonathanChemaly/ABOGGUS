@@ -10,6 +10,10 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         [HideInInspector]
         public SokobanCell[,] sokoban;
 
+        [HideInInspector]
+        public bool levelGenerated { get => finishedLevelGeneration; }
+
+        private bool finishedLevelGeneration = false;
         private GameObject Floor;
 
         private const float floorScaleConst = 0.1f;
@@ -62,12 +66,21 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         //Method to rest the level in case the player messed up and got puzzle into un reachable postion
         public void ResetLevel()
         {
+            finishedLevelGeneration = false;
             sokoban = (SokobanCell[,])SokobanStatics.generatedSokoban.Clone();
+            DestroyRecursive(this.gameObject);//destorys all we built on last run
+            //Clear all variables passed to movement controller
+            startingPlayerPostion = null;
+            goalLocations = new();
+            startingBoxLocations = new();
+            playerObject = null;
+
             Out3D();
         }
 
         private void Out3D()
         {
+            
             int sokobanRows = sokoban.GetLength(0);
             int sokobanCols = sokoban.GetLength(1);
 
@@ -132,6 +145,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             ClearBoxesFromSokoban(sokobanRows, sokobanCols);
 
             SetGameLayerRecursive(this.gameObject, UILayerNum);
+
+            finishedLevelGeneration = true;
         }
 
         private const int UILayerNum = 5;
@@ -148,6 +163,19 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 if (_HasChildren != null)
                     SetGameLayerRecursive(child.gameObject, layer);
 
+            }
+        }
+
+        private void DestroyRecursive(GameObject gameObject)
+        {
+            foreach (Transform child in gameObject.transform)
+            {
+                Transform HasChildren = child.GetComponentInChildren<Transform>();
+                if (HasChildren != null) 
+                {
+                    DestroyRecursive(child.gameObject); 
+                }
+                Destroy(child.gameObject);
             }
         }
 
