@@ -28,6 +28,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             else
             {
                 InputScheme = new Input.InputActions();
+                GenerateSokoban[] genSokList = GameObject.FindObjectsOfType<GenerateSokoban>();
+                genSokList[0].enabled = true;
             }
             sokobanMovementController.InitializeInput(InputScheme);
         }
@@ -37,6 +39,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             if (additiveLoaded)
             {
                 InputScheme.Player.Enable();
+                InputScheme.Sokoban.Disable();
             }
         }
 
@@ -45,6 +48,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             if (additiveLoaded)
             {
                 InputScheme.Player.Enable();
+                InputScheme.Sokoban.Disable();
             }
         }
     }
