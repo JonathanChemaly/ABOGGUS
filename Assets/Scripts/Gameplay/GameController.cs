@@ -27,7 +27,6 @@ namespace ABOGGUS.Gameplay
 
         private static bool loadingPlayer = false;
 
-
         // Start is called before the first frame update
         void Awake()
         {
@@ -117,10 +116,7 @@ namespace ABOGGUS.Gameplay
             {
                 LoadingLocation.SceneToLoad = newScene;
                 scene = newScene;
-                if (scene.Equals(GameConstants.SCENE_BOSS))
-                    PlayerController.speed = 0.1f;
-                else
-                    PlayerController.speed = PlayerConstants.SPEED_DEFAULT;
+                ThirdPersonCameraController.animationState = false;
                 SceneManager.LoadScene(sceneName: GameConstants.SCENE_LOADING);
             }
             else
