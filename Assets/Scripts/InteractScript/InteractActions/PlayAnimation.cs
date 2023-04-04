@@ -28,6 +28,10 @@ namespace ABOGGUS.Interact
         [Tooltip("Whether You want to evoke the success actions associated with this after animation is done")]
         private bool triggerSuccessOnFinishing = true;
 
+
+        [SerializeField]
+        [Tooltip("Time to wait before animation plays")]
+        private float delay = 0f;
         // Start is called before the first frame update
         private void Start()
         {
@@ -37,11 +41,16 @@ namespace ABOGGUS.Interact
         //Plays animation on 
         private void PlayAni()
         {
+            StartCoroutine(PlayAnimationAfterDelay());
+        }
+
+        IEnumerator PlayAnimationAfterDelay()
+        {
+            yield return new WaitForSeconds(delay);
             AnimationFinishAction += DebugEvent;
             aniToPlay.Play();
             StartCoroutine(disableWhileAniPlaying());
             interact.enabled = false;
-
         }
 
         private void DebugEvent()

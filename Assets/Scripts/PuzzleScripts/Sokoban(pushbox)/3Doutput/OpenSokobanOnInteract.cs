@@ -28,6 +28,10 @@ namespace ABOGGUS.Interact
         private List<Canvas> canvasList;
 
         [SerializeField]
+        [Tooltip("AudioSourceToPlay when interacted with")]
+        private AudioSource StaticAudio;
+
+        [SerializeField]
         [Tooltip("Camera To disable on open")]
         private ThirdPersonCameraController thirdPersonCamera;
         public static bool SokobanOpen = false;
@@ -36,6 +40,12 @@ namespace ABOGGUS.Interact
         void Start()
         {
             CheckHowToOpenMenu();
+            item.InteractAction += playStatic;
+        }
+
+        private void playStatic()
+        {
+            StaticAudio.Play();
         }
 
         private void CheckHowToOpenMenu()
@@ -111,6 +121,7 @@ namespace ABOGGUS.Interact
             }
 
             inputM.InputScheme.Sokoban.Disable(); //re-enable player movement
+            StaticAudio.Stop(); //stop the static
         }
     }
 }

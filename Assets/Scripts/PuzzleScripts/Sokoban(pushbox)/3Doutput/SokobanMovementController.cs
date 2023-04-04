@@ -11,6 +11,10 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         [Tooltip("Where the generated Sokoban level is held")]
         private OutputSokoban3D outputedSokoban;
 
+        [SerializeField]
+        [Tooltip("Audio to play when we solve the level")]
+        private AudioSource SuccessAudio;
+
         private void UpdateGameObjectPos(GameObject objectBeingMoved, int row, int col)
         {
             if(objectBeingMoved != null)
@@ -45,6 +49,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             if (CheckGoals())
             {
                 SokobanStatics.SokobanSolved = true;
+
+                SuccessAudio.Play();
                 //do goal actions
                 Debug.Log("All Boxes On Goals! Performing Goal Action...");
             }
@@ -198,7 +204,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         IEnumerator GetStartingPostions()
         {
-            while(!outputedSokoban.levelGenerated)
+            while(!outputedSokoban.LevelGenerated)
             {
                 yield return null;
             }

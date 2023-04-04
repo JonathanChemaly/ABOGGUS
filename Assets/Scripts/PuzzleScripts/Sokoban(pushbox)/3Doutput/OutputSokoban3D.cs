@@ -11,7 +11,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         public SokobanCell[,] sokoban;
 
         [HideInInspector]
-        public bool levelGenerated { get => finishedLevelGeneration; }
+        public bool LevelGenerated { get => finishedLevelGeneration; }
 
         private bool finishedLevelGeneration = false;
         private GameObject Floor;
