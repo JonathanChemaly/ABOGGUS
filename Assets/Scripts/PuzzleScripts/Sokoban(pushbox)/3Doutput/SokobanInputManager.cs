@@ -12,11 +12,21 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         private bool additiveLoaded = false;
 
         [SerializeField]
-        [Tooltip("Material to apply to the floor")]
+        [Tooltip("Movement Controller that we intialize")]
         private SokobanMovementController sokobanMovementController;
 
+        //[SerializeField]
+        //[Tooltip("Material to apply to the sky")]
+        //private Material skyBoxMaterial;
+
+        //private Material oldSkyBoxMaterial;
+        
         void Start()
         {
+            //Skybox changes
+            //oldSkyBoxMaterial = RenderSettings.skybox;
+            //RenderSettings.skybox = skyBoxMaterial;
+
             InputManager[] imList = GameObject.FindObjectsOfType<InputManager>();
             if(imList.Length > 0)
             {
@@ -32,6 +42,13 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 genSokList[0].enabled = true;
             }
             sokobanMovementController.InitializeInput(InputScheme);
+
+            
+        }
+
+        private void RevertSkyBox()
+        {
+            //RenderSettings.skybox = oldSkyBoxMaterial;
         }
 
         private void OnDestroy()
@@ -40,6 +57,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             {
                 InputScheme.Player.Enable();
                 InputScheme.Sokoban.Disable();
+                //RevertSkyBox();
             }
         }
 
@@ -49,6 +67,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             {
                 InputScheme.Player.Enable();
                 InputScheme.Sokoban.Disable();
+                //RevertSkyBox();
             }
         }
     }

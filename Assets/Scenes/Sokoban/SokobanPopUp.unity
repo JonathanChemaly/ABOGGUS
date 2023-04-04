@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 151205623}
   - component: {fileID: 151205621}
   - component: {fileID: 151205622}
+  - component: {fileID: 151205624}
   m_Layer: 0
   m_Name: CanvasCamera
   m_TagString: MainCamera
@@ -531,6 +532,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &151205624
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151205620}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: eb624bfe4d7b43c41a2c00855c63e094, type: 2}
 --- !u!1 &250859369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sokobanMovementController: {fileID: 2112925732}
+  skyBoxMaterial: {fileID: 0}
 --- !u!4 &2112925734
 Transform:
   m_ObjectHideFlags: 0
