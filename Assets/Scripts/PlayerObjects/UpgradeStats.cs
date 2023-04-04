@@ -16,6 +16,8 @@ public static class UpgradeStats
     public static int healthUpCost = -10;
     public static int swordUpCost = -10;
 
+    public static int runs = 0;
+
     public static void IncHealth()
     {
         GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth += healthInc;
@@ -40,6 +42,7 @@ public static class UpgradeStats
 
     public static void resetPlayerStats()
     {
+        runs = 0;
         healthUpgradeCount = 0;
         swordUpgradeCount = 0;
         healthBarSize = defaultHealthBarSize;

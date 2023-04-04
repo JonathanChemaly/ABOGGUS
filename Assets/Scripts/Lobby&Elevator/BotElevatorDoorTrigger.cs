@@ -61,7 +61,9 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             }
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
-                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
+                if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+                else GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
+                UpgradeStats.runs++;
             }
             if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
             {
@@ -75,7 +77,6 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             {
                 GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
             }
-
         }
         else if (other.CompareTag("Player"))
         {
