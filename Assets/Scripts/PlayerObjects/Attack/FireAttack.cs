@@ -6,7 +6,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class FireAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = 30f;
+        private float damage = WeaponDamageStats.defaultFireDamage;
         private float speed = 0.18f;
         private float totalTime = 5f;
         private float time = 0f;

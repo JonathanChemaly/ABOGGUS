@@ -9,6 +9,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public static class PlayerConstants
     {
+
         public const string GAMEOBJECT_PLAYERNAME = "Player";
 
         public const int FIXED_UPDATES_PER_SECOND = 50;

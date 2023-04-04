@@ -5,12 +5,14 @@ using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
-    public class FireAOEAttack : MonoBehaviour, IMagicAttack
+    public class NatureAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = WeaponDamageStats.defaultFireAOEDamage;
+        public int healing = WeaponDamageStats.natureAOEHealing;
         private float totalTime = 10f;
         private float activeTime = 1.5f;
+        private float timeBetweenHealing = 3.6f;
         private float time = 0f;
+        private float healTime = 0f;
         private void Start()
         {
             StartCoroutine(ActivateAfterDelay());
@@ -38,20 +40,20 @@ namespace ABOGGUS.PlayerObjects
         private void OnTriggerStay(Collider other)
         {
             Debug.Log(other.tag);
-            if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
-            else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
-            else if (other.transform.CompareTag("Player")) GameController.player.TakeDamage(damage);
+            if (other.CompareTag("Player"))
+                HealPlayer();
         }
 
-        private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
+        private void HealPlayer()
         {
-            if (collidedWith == PlayerConstants.CollidedWith.Boss)
+            if (Time.deltaTime + healTime >= timeBetweenHealing)
             {
-                rb.GetComponent<Boss>().TakeDamage(damage);
+                GameController.player.TakeDamage(-healing);
+                healTime = 0;
             }
-            else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
+            else
             {
-                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Fire);
+                healTime += Time.deltaTime;
             }
         }
     }

@@ -32,6 +32,10 @@ namespace ABOGGUS.PlayerObjects
                 invulnerable = true;                
                 Player.PlayerDied();
             }
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
         public bool hasItem(string itemName)

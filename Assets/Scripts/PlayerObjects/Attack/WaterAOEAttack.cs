@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
-    public class FireAOEAttack : MonoBehaviour, IMagicAttack
+    public class WaterAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = WeaponDamageStats.defaultFireAOEDamage;
-        private float totalTime = 10f;
+        public int damage = WeaponDamageStats.waterAOEDamage;
+        private float totalTime = 2f;
         private float activeTime = 1.5f;
         private float time = 0f;
         private void Start()
@@ -40,7 +39,6 @@ namespace ABOGGUS.PlayerObjects
             Debug.Log(other.tag);
             if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
             else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
-            else if (other.transform.CompareTag("Player")) GameController.player.TakeDamage(damage);
         }
 
         private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
@@ -51,7 +49,8 @@ namespace ABOGGUS.PlayerObjects
             }
             else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
             {
-                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Fire);
+                rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Water);
+                rb.GetComponent<IEnemy>().Push(transform.position - rb.position);
             }
         }
     }

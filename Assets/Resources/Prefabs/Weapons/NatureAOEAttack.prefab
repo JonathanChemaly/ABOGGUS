@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8746392207169923956}
   - component: {fileID: 2777307458729866851}
   - component: {fileID: 5754315122142653849}
-  - component: {fileID: 6723948802004989928}
+  - component: {fileID: 3374845295047127191}
   m_Layer: 0
-  m_Name: WindAOEAttack
+  m_Name: NatureAOEAttack
   m_TagString: MagicAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1537662096674581619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 7, y: 0.1, z: 7}
+  m_LocalScale: {x: 6, y: 0.1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da7124cf9f4c92344bb977aed5e28b65, type: 2}
+  - {fileID: 2100000, guid: 2f6c57e711c4fe74c817cfacaa7af560, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6723948802004989928
+--- !u!114 &3374845295047127191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537662096674581619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd76aed83a6a77846b15ad8262c40c13, type: 3}
+  m_Script: {fileID: 11500000, guid: bdd08eca2c305604c96beff8b3ecf928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  healing: 5
