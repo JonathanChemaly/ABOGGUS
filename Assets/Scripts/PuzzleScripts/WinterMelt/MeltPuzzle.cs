@@ -10,7 +10,15 @@ public class MeltPuzzle : MonoBehaviour
     public void Restart()
     {
         Debug.Log("Restart");
-        GameObject toDestroy = this.transform.GetChild(2).gameObject;
+        GameObject toDestroy = null;
+        if (this.transform.childCount == 3)
+        {
+            toDestroy = this.transform.GetChild(2).gameObject;
+        }
+        else if (this.transform.childCount == 2)
+        {
+            toDestroy = this.transform.GetChild(1).gameObject;
+        }
 
         Vector3 puzzlePos = toDestroy.transform.position;
         Quaternion rot = toDestroy.transform.rotation;
