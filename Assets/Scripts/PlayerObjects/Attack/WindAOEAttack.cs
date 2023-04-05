@@ -8,7 +8,7 @@ namespace ABOGGUS.PlayerObjects
     {
         public int damage = WeaponDamageStats.windAOEDamage;
         private float height = 5f;
-        private float totalTime = 0.3f;
+        private float totalTime = 2f;
         private float activeTime = 1.5f;
         private float time = 0f;
         private void Start()
@@ -35,7 +35,7 @@ namespace ABOGGUS.PlayerObjects
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             Debug.Log(other.tag);
             if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
@@ -51,7 +51,7 @@ namespace ABOGGUS.PlayerObjects
             else if (collidedWith == PlayerConstants.CollidedWith.Enemy)
             {
                 rb.GetComponent<IEnemy>().TakeDamage(damage, PlayerConstants.DamageSource.Wind);
-                rb.GetComponent<IEnemy>().Push(new Vector3(0, height, 0));
+                rb.GetComponent<IEnemy>().Push(new Vector3(0, height - rb.position.y, 0));
             }
         }
     }
