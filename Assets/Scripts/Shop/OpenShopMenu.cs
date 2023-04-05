@@ -37,7 +37,7 @@ namespace ABOGGUS.Interact
         private void OpenMenu()
         {
             shopOpen = true;
-            SceneManager.LoadScene("Assets/Scenes/Shop/ShopMenu.unity", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Assets/Scenes/Scene Resources/Shop/ShopMenu.unity", LoadSceneMode.Additive);
             //Temp Change for input
             inputM.InputScheme.Player.Disable();
             Cursor.lockState = CursorLockMode.None;
