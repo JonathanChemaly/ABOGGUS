@@ -15,6 +15,10 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         [Tooltip("Audio to play when we solve the level")]
         private AudioSource SuccessAudio;
 
+        [SerializeField]
+        [Tooltip("Audio to play when player moves the level")]
+        private AudioSource playerMoveSound;
+
         private void UpdateGameObjectPos(GameObject objectBeingMoved, int row, int col)
         {
             if(objectBeingMoved != null)
@@ -117,6 +121,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                             //udate game object postion to match movement
                             UpdateGameObjectPos(outputedSokoban.playerObject, playerLocationRow, playerLocationCol);
 
+                            //play move sound
+                            playerMoveSound.Play();
+
                             //check if all boxes are on goal
                             DoGoalActions();
                         }
@@ -143,6 +150,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                     //udate game object postion to match movement
                     UpdateGameObjectPos(outputedSokoban.playerObject, playerLocationRow, playerLocationCol);
+
+                    //play sound if we move
+                    playerMoveSound.Play();
                 }
             }
         }
