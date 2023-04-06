@@ -8,10 +8,16 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     {
         public override List<SokobanCell> AdjacentList => adjacencyList;
 
-        public override bool isFloor()
+        public override bool PlayerIsHere { get => playerIsHere; set => playerIsHere = value; }
+
+        private bool playerIsHere = false;
+
+        public override bool IsFloor()
         {
             return true;
         }
+
+        
 
         private List<SokobanCell> adjacencyList;
 
@@ -19,6 +25,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         public GoalCell(SokobanCell fc)
         {
             adjacencyList = fc.AdjacentList;
+        }
+
+        public GoalCell()
+        {
+            
         }
     }
 }

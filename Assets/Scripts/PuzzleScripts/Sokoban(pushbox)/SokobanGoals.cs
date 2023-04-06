@@ -32,6 +32,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 }
 
+                /*
+                 * Code to add player into level
+                 */
+                SetPlayerSpawn(sokobanRows, sokobanCols, board);
+
                 //intialize a list of floors to empty
                 List<System.Tuple<int, int>> floorLocations = new();
                 //for each floor in our puzzle add it to our list
@@ -82,7 +87,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                     //turn back to floors
                     board[floorLoc1.Item1, floorLoc1.Item2] = new FloorCell(board[floorLoc1.Item1, floorLoc1.Item2]);
-                    
+
                 }
 
                 Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
@@ -93,7 +98,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 int maxDifference = -1;
                 foreach (System.Tuple<SokobanCell[,], int> tuple in best)
                 {
-                    if(tuple.Item2 > maxDifference)
+                    if (tuple.Item2 > maxDifference)
                     {
                         level = tuple.Item1;
                         maxDifference = tuple.Item2;
@@ -108,13 +113,101 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             return board;
         }
 
+        /**
+         * Code to add player into level
+         */
+        private static void SetPlayerSpawn(int sokobanRows, int sokobanCols, SokobanCell[,] board)
+        {
+            
+            bool playerSpawnCellAdded = false;
+            //for each contigous section of floor on board
+            for (int row = 0; row < sokobanRows && !playerSpawnCellAdded; row++)
+            {
+                for (int col = 0; col < sokobanCols && !playerSpawnCellAdded; col++)
+                {
+                    SokobanCell sc = board[row, col];
+
+                    if (sc.GetType().Equals(typeof(FloorCell)))
+                    {
+                        //add board with player in section to 
+                        board[row, col] = new PlayerSpawnCell(board[row, col]);
+
+                        playerSpawnCellAdded = true;
+
+                    }
+                }
+            }
+            Debug.Log("Player Spawn Added to board = " + playerSpawnCellAdded);
+        }
+
+        private static System.Tuple<int, int> FindGoal(SokobanCell[,] board, int numRows, int numCols)
+        {
+            for (int row = 0; row < numRows; row++)
+            {
+                for (int col = 0; col < numCols; col++)
+                {
+                    SokobanCell sc = board[row, col];
+
+                    if (sc.GetType().Equals(typeof(GoalCell)))
+                    {
+                        return new System.Tuple<int, int>(row, col);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static SokobanCell[,] TestSearch(SokobanCell[,] board)
+        {
+            int sokobanRows = board.GetLength(0);
+            int sokobanCols = board.GetLength(1);
+
+            System.Tuple<int, int> goalLoc = FindGoal(board, sokobanRows, sokobanCols);
+
+            /*
+             * Code to add player into level
+             */
+            SetPlayerSpawn(sokobanRows, sokobanCols, board);
+
+            HashSet<System.Tuple<SokobanCell[,], int>> temp = Search(board);
+            Debug.Log("TestSearch- temp level count = " + temp.Count);
+            Debug.Log("TestSearch- temp level Length = " + GetLengthOfSolutions(temp));
+
+
+            foreach (System.Tuple<SokobanCell[,], int> tup in temp)
+            {
+                tup.Item1[goalLoc.Item1, goalLoc.Item2] = new GoalCell(tup.Item1[goalLoc.Item1, goalLoc.Item2]);
+            }
+
+            //chose one "level" from best
+
+            SokobanCell[,] level = new SokobanCell[sokobanRows, sokobanCols];
+            int maxDifference = -1;
+            foreach (System.Tuple<SokobanCell[,], int> tuple in temp)
+            {
+                Debug.Log("DistanceFromGoal = " + tuple.Item2);
+                SokobanHelper.DebugPrintSokoban(tuple.Item1);
+                if (tuple.Item2 > maxDifference)
+                {
+                    level = tuple.Item1;
+                    maxDifference = tuple.Item2;
+                }
+            }
+            //set the board equal to the level
+
+            return level;
+        }
+
         private static int GetLengthOfSolutions(HashSet<System.Tuple<SokobanCell[,], int>> set)
         {
-            int solutionLength = 0;
+            int solutionLength = -1;
             foreach (System.Tuple<SokobanCell[,], int> tuple in set)
             {
-                Debug.Log(tuple);
-                solutionLength += tuple.Item2;
+                if(solutionLength < tuple.Item2)
+                {
+                    solutionLength = tuple.Item2;
+                }
             }
             return solutionLength;
         }
@@ -125,6 +218,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             int sokobanCols = board.GetLength(1);
 
             HashSet<System.Tuple<SokobanCell[,], int>> start = new();
+            HashSet<System.Tuple<SokobanCell[,], int>> startClone = new();
 
             //for each goal on board
             for (int row = 0; row < sokobanRows; row++)
@@ -140,25 +234,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 }
             }
 
-            bool playerSpawnCellAdded = false;
-            //for each contigous section of floor on board
-            for (int row = 0; row < sokobanRows && !playerSpawnCellAdded; row++)
-            {
-                for (int col = 0; col < sokobanCols && !playerSpawnCellAdded; col++)
-                {
-                    SokobanCell sc = board[row, col];
+            start.Add(new System.Tuple<SokobanCell[,], int>(Clone(board), 0));
+            startClone.Add(new System.Tuple<SokobanCell[,], int>(Clone(board), 0));
 
-                    if (sc.GetType().Equals(typeof(FloorCell)))
-                    {
-                        //add board with player in section to start
-                        SokobanCell[,] clone = (SokobanCell[,]) board.Clone();
-                        clone[row, col] = new PlayerSpawnCell(clone[row, col]);
-                        start.Add(new System.Tuple<SokobanCell[,], int>(clone, 0));
-
-                        playerSpawnCellAdded = true;
-                    }
-                }
-            }
 
             //
             HashSet<System.Tuple<SokobanCell[,], int>> frontier_main = start;
@@ -172,47 +250,62 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //temp = advance(frontier.main)
                 HashSet<System.Tuple<SokobanCell[,], int>> temp = Advance(frontier_main);
                 //if Advance returns an empty set we found our solution
-                
+
+                Debug.Log("!!!!!!!!!!!!!!ADVANCE");
+                PrintAllSokobanInSet(temp);
+                Debug.Log("!!!!!!!!!!!!!!END ADVANCE");
+
                 Debug.Log("GenerateSokobanGoals-Search - temp count = " + temp.Count);
-                if(temp.Count == 0)
+                if (temp.Count == 0)
                 {
-                    //return temp;
+                    //return temp
                     return frontier_main;
+
                 }
+
 
                 //frontier.main = temp
 
 
-                temp = SetDifference(temp, frontier_second);
+                //temp = SetDifference(temp, frontier_second);
                 //frontier.second = start
-                frontier_second = start;
+                frontier_second = startClone;
                 //frontier.main = frontier.main - frontier.second
                 temp = SetDifference(temp, frontier_second); //does the set difference as intended
 
+                Debug.Log("!!!!!!!!!!!!!!TEMP IN SEARCH");
+                PrintAllSokobanInSet(temp);
+                Debug.Log("!!!!!!!!!!!!!!END TEMP IN SEARCH");
 
                 for (int i = 0; i < layer; i++)
                 {
                     //frontier.second = Advence(frontier.second)
                     frontier_second = Advance(frontier_second);
+
                     //frontier.main = frontier.main - frontier.second
                     temp = SetDifference(temp, frontier_second);
 
-                    if (temp.Count <= 1)
-                    {
-                        //return temp;
-                        return Advance(frontier_main);
-                    }
+                    
+
+                    
+                }
+
+                if (temp.Count < 1)
+                {
+                    //return temp;
+                    temp = Advance(Advance(frontier_main));
+                    return temp;
                 }
 
                 frontier_main = temp;
 
                 layer++;
             }
-            
+
         }
 
         private static HashSet<System.Tuple<SokobanCell[,], int>> SetDifference(HashSet<System.Tuple<SokobanCell[,], int>> set1, HashSet<System.Tuple<SokobanCell[,], int>> set2)
-        { 
+        {
             foreach (System.Tuple<SokobanCell[,], int> set2Tuple in set2)
             {
                 set1.RemoveWhere(t => SokobanTupleEquals(set1, t, set2Tuple));
@@ -223,7 +316,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private static bool SokobanTupleEquals(HashSet<System.Tuple<SokobanCell[,], int>> set1, System.Tuple<SokobanCell[,], int> tuple1, System.Tuple<SokobanCell[,], int> tuple2)
         {
-            return set1.Count > 1 && SokobanBoardEquals(tuple1.Item1, tuple2.Item1);
+            return SokobanBoardEquals(tuple1.Item1, tuple2.Item1);
         }
 
         private static bool SokobanBoardEquals(SokobanCell[,] sb1, SokobanCell[,] sb2)
@@ -241,7 +334,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         return false;
                     }
                 }
-            }        
+            }
             return equals;
         }
 
@@ -250,7 +343,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             HashSet<System.Tuple<SokobanCell[,], int>> results = new();
 
             //for each frontier.state in frontier
-            foreach(System.Tuple<SokobanCell[,], int> tuple in frontier)
+            foreach (System.Tuple<SokobanCell[,], int> tuple in frontier)
             {
                 SokobanCell[,] frontierState = tuple.Item1;
 
@@ -272,103 +365,172 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                             foreach (System.Tuple<SokobanCell[,], int> straightLineState in newStates)
                             {
                                 //if box is not a slippery tile in temp.state -- IGNORE FOR NOW
-                                if(tuple.Item2 <= straightLineState.Item2)
+                                if (tuple.Item2 <= straightLineState.Item2)
                                 {
                                     //add temp.state to results
                                     results.Add(straightLineState);
                                 }
-                                
+
                             }
                         }
                     }
-                }       
+                }
             }
+
             return results;
         }
 
-        private static bool ThereIsSpaceForPlayerToPull(int checkRow, int checkCol, SokobanCell[,] frontierState, int directionX, int directionY)
+        private static System.Tuple<int, int> FindPlayer(SokobanCell[,] frontierState, int frontierRows, int frontierCols)
         {
-            return !SokobanHelper.IsOutOfSokobanBounds(checkRow, checkCol, frontierState) && frontierState[checkRow, checkCol].isFloor()
-                && !SokobanHelper.IsOutOfSokobanBounds(checkRow + directionX, checkCol + directionY, frontierState) && frontierState[checkRow + directionX, checkCol + directionY].isFloor();
+            for (int row = 0; row < frontierRows; row++)
+            {
+                for (int col = 0; col < frontierCols; col++)
+                {
+                    SokobanCell sc = frontierState[row, col];
+
+                    if (sc.PlayerIsHere)
+                    {
+                        return new System.Tuple<int, int>(row, col);
+                    }
+                }
+            }
+
+            return null;
         }
+
+        private static bool IsCellReachable(int checkRow, int checkCol, SokobanCell[,] frontierState, System.Tuple<int, int> playerLoc, List<System.Tuple<int,int>> visted)
+        {
+            visted.Add(new System.Tuple<int, int>(checkRow, checkCol));
+            if (!SokobanHelper.IsOutOfSokobanBounds(checkRow, checkCol, frontierState))
+            {
+                SokobanCell cellToReach = frontierState[checkRow, checkCol];
+
+                if (cellToReach.IsFloor())
+                {
+                    if(checkRow == playerLoc.Item1 && checkCol == playerLoc.Item2)
+                    {
+                        //if the current check row is the location of the player cell can reach it.
+                        return true;
+                    }
+                    else
+                    {
+                        //current cell is reachable if one of the adjacent cells are reachable
+                        bool adjacentCellReachable = false;
+                        if (!visted.Contains(new System.Tuple<int, int>(checkRow + 1, checkCol)))
+                        {
+                            adjacentCellReachable = IsCellReachable(checkRow + 1, checkCol, frontierState, playerLoc, visted);
+                        }
+                        if (!adjacentCellReachable && !visted.Contains(new System.Tuple<int, int>(checkRow - 1, checkCol)))
+                        {
+                            adjacentCellReachable = IsCellReachable(checkRow - 1, checkCol, frontierState, playerLoc, visted);
+                        }
+                        if (!adjacentCellReachable && !visted.Contains(new System.Tuple<int, int>(checkRow, checkCol - 1)))
+                        {
+                            adjacentCellReachable = IsCellReachable(checkRow, checkCol - 1, frontierState, playerLoc, visted);
+                        }
+                        if (!adjacentCellReachable && !visted.Contains(new System.Tuple<int, int>(checkRow, checkCol + 1)))
+                        {
+                            adjacentCellReachable = IsCellReachable(checkRow, checkCol + 1, frontierState, playerLoc, visted);
+                        }
+
+                        return adjacentCellReachable;
+                    }
+                    
+                }
+            }
+
+            return false;
+        }
+
+        private static bool ThereIsSpaceForPlayerToPull(int checkRow, int checkCol, SokobanCell[,] frontierState, int directionX, int directionY, System.Tuple<int, int> playerLoc)
+        {
+            return IsCellReachable(checkRow, checkCol, frontierState, playerLoc, new List<System.Tuple<int, int>>())
+                && !SokobanHelper.IsOutOfSokobanBounds(checkRow + directionX, checkCol + directionY, frontierState) && frontierState[checkRow + directionX, checkCol + directionY].IsFloor();
+        }
+
+        /**
+         * Sets new play postion to put the player where to pull would come from
+         */
+        private static void SetNewPlayerPostion(System.Tuple<int, int> playerLoc, int offsetX, int offsetY, SokobanCell[,] newGameState, int row, int col)
+        {
+            newGameState[playerLoc.Item1, playerLoc.Item2].PlayerIsHere = false;
+            newGameState[row + offsetX, col + offsetY].PlayerIsHere = true;
+
+            Debug.Log("new Player postion = " + (row + offsetX) + ", " + (col + offsetY));
+        }
+
+        /**
+         * Checks the pull in one direction and adds the new gamestate if you can pull in that direction
+         * 
+         * incrementX = -1, incrementY = 0 is north
+         * incrementX = 1, incrementY = 0 is south
+         * incrementX = 0, incrementY = 1 is east
+         * incrementX = 0, incrementY = -1 is west
+         */
+        private static void CheckPullInDirection(int incrementX, int incrementY, int row, int col, int oldOffset, SokobanCell[,] frontierState, HashSet<System.Tuple<SokobanCell[,], int>> reachableStates, System.Tuple<int, int> playerLoc)
+        {
+            int offsetX = incrementX;
+            int offsetY = incrementY;
+            if (ThereIsSpaceForPlayerToPull(row + offsetX, col + offsetY, frontierState, incrementX, incrementY, playerLoc)) //because next cell is -1 in rows
+            {
+                offsetX += incrementX;
+                offsetY += incrementY;
+            }
+
+            //subtract one to get accurate offset
+            offsetX -= incrementX;
+            offsetY -= incrementY;
+            if (offsetX != 0 || offsetY != 0)
+            {
+                SokobanCell[,] newGameState = (SokobanCell[,])Clone(frontierState);
+
+                //set new playerlocation to place of pull
+                SetNewPlayerPostion(playerLoc, offsetX + incrementX, offsetY + incrementY, newGameState, row, col);
+
+                //old cell no longer a box
+                newGameState[row, col] = new FloorCell(newGameState[row, col]);
+                //new box is now at offset location
+                newGameState[row + offsetX, col + offsetY] = new BoxCell(newGameState[row + offsetX, col + offsetY]);
+
+                
+                //add to result set
+                reachableStates.Add(new System.Tuple<SokobanCell[,], int>(newGameState, System.Math.Abs(offsetX + offsetY) + oldOffset));
+            }
+        }
+
 
         private static HashSet<System.Tuple<SokobanCell[,], int>> GetBoxPullingStates(int row, int col, SokobanCell[,] frontierState, int oldOffset)
         {
             HashSet<System.Tuple<SokobanCell[,], int>> reachableStates = new();
+
+            int frontierRows = frontierState.GetLength(0);
+            int frontierCols = frontierState.GetLength(1);
+
+            //find playerCell 
+            System.Tuple<int, int> playerLoc = FindPlayer(frontierState, frontierRows, frontierCols);
+
+
+            Debug.Log("playerloc = " + playerLoc);
+            //if we do not find a player return empty reachability
+            if(playerLoc == null)
+            {
+                return reachableStates;
+            }
+
             /*
-            Debug.Log("GetBoxPullingStates called");
-            Debug.Log("~~~~~Frontier State~~~~~");
+            Debug.Log("~~~~~~~~~~~~~~~GetBoxPullingStates level");
             SokobanHelper.DebugPrintSokoban(frontierState);
-            Debug.Log("Row-"+row + " Col-"+col);
+            Debug.Log("~~~~~~~~~~~~~~~GetBoxPullingStates level");
             */
+
             //north
-            int offset = 1;
-            while (ThereIsSpaceForPlayerToPull(row - offset, col, frontierState, -1, 0)) //because next cell is -1 in rows
-            {
-                offset++;
-            }
-            offset--;//subtract one to get accurate offset
-            if(offset != 0)
-            {
-                SokobanCell[,] newGameState = (SokobanCell[,])frontierState.Clone();
-                //old cell no longer a box
-                newGameState[row, col] = new FloorCell(newGameState[row, col]);
-                //new box is now at offset location
-                newGameState[row - offset, col] = new BoxCell(newGameState[row - offset, col]);
-                //add to result set
-                reachableStates.Add(new System.Tuple<SokobanCell[,], int>(newGameState, offset + oldOffset));
-            }
+            CheckPullInDirection(-1, 0, row, col, oldOffset, frontierState, reachableStates, playerLoc);
             //south
-            offset = 1;
-            while (ThereIsSpaceForPlayerToPull(row + offset, col, frontierState, 1, 0)) //because next cell is +1 in rows
-            {
-                offset++;
-            }
-            offset--;//subtract one to get accurate offset
-            if (offset != 0)
-            {
-                SokobanCell[,] newGameState = (SokobanCell[,])frontierState.Clone();
-                //old cell no longer a box
-                newGameState[row, col] = new FloorCell(newGameState[row, col]);
-                //new box is now at offset location
-                newGameState[row + offset, col] = new BoxCell(newGameState[row + offset, col]);
-                //add to result set
-                reachableStates.Add(new System.Tuple<SokobanCell[,], int>(newGameState, offset + oldOffset));
-            }
+            CheckPullInDirection(1, 0, row, col, oldOffset, frontierState, reachableStates, playerLoc);
             //east
-            offset = 1;
-            while (ThereIsSpaceForPlayerToPull(row, col + offset, frontierState, 0, 1)) //because next cell is +1 in cols
-            {
-                offset++;
-            }
-            offset--;//subtract one to get accurate offset
-            if (offset != 0)
-            {
-                SokobanCell[,] newGameState = (SokobanCell[,])frontierState.Clone();
-                //old cell no longer a box
-                newGameState[row, col] = new FloorCell(newGameState[row, col]);
-                //new box is now at offset location
-                newGameState[row, col + offset] = new BoxCell(newGameState[row, col + offset]);
-                //add to result set
-                reachableStates.Add(new System.Tuple<SokobanCell[,], int>(newGameState, offset + oldOffset));
-            }
+            CheckPullInDirection(0, 1, row, col, oldOffset, frontierState, reachableStates, playerLoc);
             //west
-            offset = 1;
-            while (ThereIsSpaceForPlayerToPull(row, col - offset, frontierState, 0, -1)) //because next cell is +1 in cols
-            {
-                offset++;
-            }
-            offset--;//subtract one to get accurate offset
-            if (offset != 0)
-            {
-                SokobanCell[,] newGameState = (SokobanCell[,])frontierState.Clone();
-                //old cell no longer a box
-                newGameState[row, col] = new FloorCell(newGameState[row, col]);
-                //new box is now at offset location
-                newGameState[row, col - offset] = new BoxCell(newGameState[row, col - offset]);
-                //add to result set
-                reachableStates.Add(new System.Tuple<SokobanCell[,], int>(newGameState, offset + oldOffset));
-            }
+            CheckPullInDirection(0, -1, row, col, oldOffset, frontierState, reachableStates, playerLoc);
             Debug.Log("ReachableStates count-" + reachableStates.Count);
             return reachableStates;
         }
@@ -383,6 +545,43 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 ls[i] = ls[j];
                 ls[j] = temp;
             }
+        }
+
+        private static void PrintAllSokobanInSet(HashSet<System.Tuple<SokobanCell[,], int>> set)
+        {
+            foreach(System.Tuple<SokobanCell[,], int> tup in set)
+            {
+                Debug.Log("Distance to Goal = " + tup.Item2);
+                Debug.Log("cur player postion = " + FindPlayer(tup.Item1, tup.Item1.GetLength(0), tup.Item1.GetLength(1))?.ToString());
+                SokobanHelper.DebugPrintSokoban(tup.Item1);
+                
+            }
+        }
+
+        private static SokobanCell[,] Clone(SokobanCell[,] toClone)
+        {
+            int numRows = toClone.GetLength(0);
+            int numCols = toClone.GetLength(1);
+
+            SokobanCell[,] ret = new SokobanCell[numRows, numCols];
+
+            for (int row = 0; row < numRows; row++)
+            {
+                for (int col = 0; col < numCols; col++)
+                {
+                    SokobanCell sc = toClone[row, col];
+
+                    System.Type cellType = sc.GetType();
+
+                    SokobanCell clonedCell = (SokobanCell)System.Activator.CreateInstance(cellType);
+
+                    clonedCell.PlayerIsHere = sc.PlayerIsHere;
+
+                    ret[row, col] = clonedCell;
+                }
+            }
+
+            return ret;
         }
     }
 }

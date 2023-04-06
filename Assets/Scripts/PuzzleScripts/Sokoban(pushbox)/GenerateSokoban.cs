@@ -28,8 +28,22 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private void Start()
         {
-            //TO-DO
-            //keep on generating until we have a level with a player spawn
+            NormalGeneration();
+            //DebugSokoban();
+        }
+
+        private bool CheckIfHavePlayerSpawn()
+        {
+            foreach (SokobanCell cell in sokoban)
+            {
+                if (cell.GetType().Equals(typeof(PlayerSpawnCell))) return true;
+            }
+
+            return false;
+        }
+
+        private void NormalGeneration()
+        {
             do
             {
                 //Generate Walls
@@ -44,15 +58,24 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 SokobanStatics.generatedSokoban = sokoban;
             } while (!CheckIfHavePlayerSpawn());
         }
-
-        private bool CheckIfHavePlayerSpawn()
+            
+        private void DebugSokoban()
         {
-            foreach (SokobanCell cell in sokoban)
+            do
             {
-                if (cell.GetType().Equals(typeof(PlayerSpawnCell))) return true;
-            }
+                //Generate Walls
+                sokoban = GenerateSokobanTestLevels.TwoByTwoTestLevel1WithGoal;
+                SokobanHelper.DebugPrintSokoban(sokoban); //output after generation
 
-            return false;
+                //Generate Goals
+                sokoban = SokobanGoals.TestSearch(sokoban);
+                SokobanHelper.DebugPrintSokoban(sokoban); //output after goal generation
+                                                          //Output everything
+
+                SokobanStatics.generatedSokoban = sokoban;
+            } while (!CheckIfHavePlayerSpawn());
+            //Test Level if neededd
+            
         }
     }
 

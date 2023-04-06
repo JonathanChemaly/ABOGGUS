@@ -9,7 +9,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     {
         public abstract List<SokobanCell> AdjacentList { get; }
 
-        public abstract bool isFloor();
+        public abstract bool IsFloor();
+
+        public abstract bool PlayerIsHere { get; set; }
 
     }
 }

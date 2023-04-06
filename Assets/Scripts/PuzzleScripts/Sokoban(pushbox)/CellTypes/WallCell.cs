@@ -8,9 +8,18 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     {
         public override List<SokobanCell> AdjacentList => throw new System.NotImplementedException();
 
-        public override bool isFloor()
+        public override bool PlayerIsHere { get => playerIsHere; set => playerIsHere = value; }
+
+        private bool playerIsHere = false;
+
+        public override bool IsFloor()
         {
             return false;
+        }
+
+        public WallCell()
+        {
+
         }
     }
 }

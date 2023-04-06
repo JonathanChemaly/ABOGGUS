@@ -142,7 +142,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         private static int AttemptFloorConnect(SokobanCell cellToConenct, SokobanCell[,] sokoban, int row, int col)
         {
             int connected = 0;
-            if (!IsOutOfSokobanBounds(row, col, sokoban) && sokoban[row , col] != null && sokoban[row , col].isFloor() &&
+            if (!IsOutOfSokobanBounds(row, col, sokoban) && sokoban[row , col] != null && sokoban[row , col].IsFloor() &&
                 !cellToConenct.AdjacentList.Contains(sokoban[row , col]))
             {
                 connected++; //increment Number of floors added
@@ -160,28 +160,28 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //and if our cell we are adding doesn't already contain that cell
 
             //north
-            if (row - 1 > 0 && sokoban[row - 1, col] != null && sokoban[row - 1, col].isFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row - 1, col])) 
+            if (row - 1 > 0 && sokoban[row - 1, col] != null && sokoban[row - 1, col].IsFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row - 1, col])) 
             {
                 numberOfFloorsAdded++; //increment Number of floors added
                 cellToConenct.AdjacentList.Add(sokoban[row - 1, col]); //add adjacent floor cell to our cell
                 sokoban[row - 1, col].AdjacentList.Add(cellToConenct); //add our cell to adjacent cell
             }
             //south
-            if (row + 1 < sokoban.GetLength(0) && sokoban[row + 1, col] != null && sokoban[row + 1, col].isFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row + 1, col]))
+            if (row + 1 < sokoban.GetLength(0) && sokoban[row + 1, col] != null && sokoban[row + 1, col].IsFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row + 1, col]))
             {
                 numberOfFloorsAdded++; //increment Number of floors added
                 cellToConenct.AdjacentList.Add(sokoban[row + 1, col]); //add adjacent floor cell to our cell
                 sokoban[row + 1, col].AdjacentList.Add(cellToConenct); //add our cell to adjacent cell
             }
             //east
-            if (col + 1 < sokoban.GetLength(1) && sokoban[row, col + 1] != null && sokoban[row, col + 1].isFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row, col + 1]))
+            if (col + 1 < sokoban.GetLength(1) && sokoban[row, col + 1] != null && sokoban[row, col + 1].IsFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row, col + 1]))
             {
                 numberOfFloorsAdded++; //increment Number of floors added
                 cellToConenct.AdjacentList.Add(sokoban[row, col + 1]); //add adjacent floor cell to our cell
                 sokoban[row, col + 1].AdjacentList.Add(cellToConenct); //add our cell to adjacent cell
             }
             //west
-            if (col - 1 > 0 && sokoban[row, col - 1] != null && sokoban[row, col - 1].isFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row, col - 1]))
+            if (col - 1 > 0 && sokoban[row, col - 1] != null && sokoban[row, col - 1].IsFloor() && !cellToConenct.AdjacentList.Contains(sokoban[row, col - 1]))
             {
                 numberOfFloorsAdded++; //increment Number of floors added
                 cellToConenct.AdjacentList.Add(sokoban[row, col - 1]); //add adjacent floor cell to our cell
@@ -193,25 +193,25 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private static void DisconnectFloors(SokobanCell cellToDisconenct, SokobanCell[,] sokoban, int row, int col)
         {
-            if (row - 1 > 0 && sokoban[row - 1, col] != null && sokoban[row - 1, col].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row - 1, col])) 
+            if (row - 1 > 0 && sokoban[row - 1, col] != null && sokoban[row - 1, col].IsFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row - 1, col])) 
             {
                 cellToDisconenct.AdjacentList.Remove(sokoban[row - 1, col]); //add adjacent floor cell to our cell
                 sokoban[row - 1, col].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
             }
             //south
-            if (row + 1 < sokoban.GetLength(0) && sokoban[row + 1, col] != null && sokoban[row + 1, col].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row + 1, col]))
+            if (row + 1 < sokoban.GetLength(0) && sokoban[row + 1, col] != null && sokoban[row + 1, col].IsFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row + 1, col]))
             {
                 cellToDisconenct.AdjacentList.Remove(sokoban[row + 1, col]); //add adjacent floor cell to our cell
                 sokoban[row + 1, col].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
             }
             //east
-            if (col + 1 < sokoban.GetLength(1) && sokoban[row, col + 1] != null && sokoban[row, col + 1].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col + 1]))
+            if (col + 1 < sokoban.GetLength(1) && sokoban[row, col + 1] != null && sokoban[row, col + 1].IsFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col + 1]))
             {
                 cellToDisconenct.AdjacentList.Remove(sokoban[row, col + 1]); //add adjacent floor cell to our cell
                 sokoban[row, col + 1].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
             }
             //west
-            if (col - 1 > 0 && sokoban[row, col - 1] != null && sokoban[row, col - 1].isFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col - 1]))
+            if (col - 1 > 0 && sokoban[row, col - 1] != null && sokoban[row, col - 1].IsFloor() && cellToDisconenct.AdjacentList.Contains(sokoban[row, col - 1]))
             {
                 cellToDisconenct.AdjacentList.Remove(sokoban[row, col - 1]); //add adjacent floor cell to our cell
                 sokoban[row, col - 1].AdjacentList.Remove(cellToDisconenct); //add our cell to adjacent cell
@@ -234,7 +234,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1] = roomArray[row, col];
 
                     SokobanCell addedCell = sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1];
-                    if (addedCell.isFloor()) //connect the floors
+                    if (addedCell.IsFloor()) //connect the floors
                     {
                         numberOfFloorsAdded += ConnectFloors(addedCell, sokoban, row + reigion.Item1 - 1, col + reigion.Item2 - 1);
                     }
@@ -271,7 +271,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     {
                         SokobanCell sc = sokoban[row + reigion.Item1 - 1, col + reigion.Item2 - 1];
 
-                        if (sc.isFloor())
+                        if (sc.IsFloor())
                         {
                             DisconnectFloors(sc, sokoban, row + reigion.Item1 - 1, col + reigion.Item2 - 1);
                         }
@@ -312,7 +312,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         {
                             //If either we have not put anything there or the sokoboan is not a floor ...
                             //The space can exist here, so we stop looking
-                            if (sokoban[i + row, j + col] == null || (sokoban[i + row, j + col] != null && !sokoban[i + row, j + col].isFloor()))
+                            if (sokoban[i + row, j + col] == null || (sokoban[i + row, j + col] != null && !sokoban[i + row, j + col].IsFloor()))
                             {
                                 foundSpaceOnThisRun = false;
                                 break;
@@ -355,7 +355,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         {
                             //If either we have not put anything there or the sokoboan is not a floor ...
                             //The space can exist here, so we stop looking
-                            if (sokoban[i + row, j + col] == null || (sokoban[i + row, j + col] != null && !sokoban[i + row, j + col].isFloor()))
+                            if (sokoban[i + row, j + col] == null || (sokoban[i + row, j + col] != null && !sokoban[i + row, j + col].IsFloor()))
                             {
                                 foundSpaceOnThisRun = false;
                                 break;
@@ -439,7 +439,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 {
                     //Only check floor tiles that are in bounds.
                     if (!IsOutOfSokobanBounds(row, col, sokoban) &&
-                        sokoban[row, col] != null && sokoban[row, col].isFloor())
+                        sokoban[row, col] != null && sokoban[row, col].IsFloor())
                     {
 
                         int numberOfBorderWalls = 0;
@@ -575,7 +575,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             int rowNum = toPrint.GetLength(0);
             int colNum = toPrint.GetLength(1);
 
-            Debug.Log("Printing Sokoban:");
+            //Debug.Log("Printing Sokoban:");
+
+            string sokobanWhole = "Printing Sokoban\n";
 
             //goes through all rows
             for (int row = 0; row < rowNum; row++)
@@ -619,8 +621,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                      
                 }
-                Debug.Log(line);
+                sokobanWhole += line + "\n";
             }
+            Debug.Log(sokobanWhole);
         }
     }
 }

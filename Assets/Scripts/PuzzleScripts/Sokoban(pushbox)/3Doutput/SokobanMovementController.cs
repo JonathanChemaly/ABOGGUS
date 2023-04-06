@@ -106,7 +106,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         SokobanCell cellNearBox = outputedSokoban.sokoban[rowBoxIsPushedTo, colBoxIsPushedTo];
                         GameObject boxBehindBox = RemoveBoxAtPos(rowBoxIsPushedTo, colBoxIsPushedTo);
                         //checks if the cell we are pushing the box into is a floor and not another box
-                        if (cellNearBox.isFloor() && boxBehindBox == null)
+                        if (cellNearBox.IsFloor() && boxBehindBox == null)
                         {
                             //move box
                             //update our list to match new box postion
@@ -142,7 +142,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         curBoxPostions.Add(new System.Tuple<int, int, GameObject>(rowBeingMovedTo, colBeingMovedTo, potentialBox));
                     }
                 }
-                else if (upCell.isFloor()) //if the adjacentcell is a floor we move into that cell;
+                else if (upCell.IsFloor()) //if the adjacentcell is a floor we move into that cell;
                 {
                     //update our int postion to match movement
                     playerLocationRow += rowOffset;

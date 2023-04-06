@@ -32,10 +32,10 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
          */
         private static void AddNeighorsToList(SokobanCell[,] room, SokobanCell sc, int row, int col)
         {
-            if (row -1 > 0 && room[row -1, col].isFloor()) sc.AdjacentList.Add(room[row -1, col]); //north
-            if (row + 1 < room.GetLength(0) && room[row +1, col].isFloor()) sc.AdjacentList.Add(room[row+1, col]); //south
-            if (col + 1 < room.GetLength(1) && room[row, col +1].isFloor()) sc.AdjacentList.Add(room[row, col+1]); //east
-            if (col - 1 > 0 && room[row, col -1].isFloor()) sc.AdjacentList.Add(room[row, col-1]); //west
+            if (row -1 > 0 && room[row -1, col].IsFloor()) sc.AdjacentList.Add(room[row -1, col]); //north
+            if (row + 1 < room.GetLength(0) && room[row +1, col].IsFloor()) sc.AdjacentList.Add(room[row+1, col]); //south
+            if (col + 1 < room.GetLength(1) && room[row, col +1].IsFloor()) sc.AdjacentList.Add(room[row, col+1]); //east
+            if (col - 1 > 0 && room[row, col -1].IsFloor()) sc.AdjacentList.Add(room[row, col-1]); //west
         }
 
         //Template Propeties
