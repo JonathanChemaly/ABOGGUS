@@ -50,6 +50,10 @@ namespace ABOGGUS.Interact
             {
                 playerInv.addItem(ItemLookup.TractorKeyName);
             }
+            else if (interact.CompareTag(ItemLookup.HammerName))
+            {
+                playerInv.addItem(ItemLookup.HammerName);
+            }
             itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
         }

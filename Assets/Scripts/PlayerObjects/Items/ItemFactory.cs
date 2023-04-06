@@ -18,6 +18,7 @@ namespace ABOGGUS.PlayerObjects.Items
                 case ItemLookup.WheelName: return new Wheel();
                 case ItemLookup.TractorKeyName: return new TractorKey();
                 case ItemLookup.GrimoreName: return new Grimore();
+                case ItemLookup.HammerName: return new Hammer();
             }
 
             return null;
