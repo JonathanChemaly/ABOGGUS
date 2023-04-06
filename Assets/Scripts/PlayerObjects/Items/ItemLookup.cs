@@ -25,5 +25,8 @@ namespace ABOGGUS.PlayerObjects.Items
         public const string TractorKeyName = "tractorkey";
         public const string TractorKeyDescription = "A somewhat dull key that smells of fresh corn and moldy leaves.";
 
+        //Winter Room Items
+        public const string HammerName = "hammer";
+        public const string HammerDescription = "A huge bulk. What can it do other than break stuff?";
     }
 }
