@@ -47,7 +47,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             do
             {
                 //Generate Walls
-                sokoban = SokobanHelper.GenerateSokoban(gridHeight, gridWidth, roomSize);
+                sokoban = SokobanWallGen.GenerateSokoban(gridHeight, gridWidth, roomSize);
                 SokobanHelper.DebugPrintSokoban(sokoban); //output after generation
 
                 //Generate Goals

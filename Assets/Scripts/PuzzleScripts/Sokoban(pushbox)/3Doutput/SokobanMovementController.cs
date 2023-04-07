@@ -209,6 +209,21 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             inputScheme.Sokoban.Right.Enable();
         }
 
+        public void DeallocateInput(Input.InputActions inputScheme)
+        {
+            inputScheme.Sokoban.Down.performed -= MoveDown;
+            inputScheme.Sokoban.Down.Disable();
+
+            inputScheme.Sokoban.Up.performed -= MoveUp;
+            inputScheme.Sokoban.Up.Disable();
+
+            inputScheme.Sokoban.Left.performed -= MoveLeft;
+            inputScheme.Sokoban.Left.Disable();
+
+            inputScheme.Sokoban.Right.performed -= MoveRight;
+            inputScheme.Sokoban.Right.Disable();
+        }
+
         // Start is called before the first frame update
         void Start()
         {

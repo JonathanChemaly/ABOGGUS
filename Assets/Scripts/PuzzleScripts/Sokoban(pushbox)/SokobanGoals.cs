@@ -234,8 +234,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 }
             }
 
-            start.Add(new System.Tuple<SokobanCell[,], int>(Clone(board), 0));
-            startClone.Add(new System.Tuple<SokobanCell[,], int>(Clone(board), 0));
+            start.Add(new System.Tuple<SokobanCell[,], int>(SokobanHelper.Clone(board), 0));
+            startClone.Add(new System.Tuple<SokobanCell[,], int>(SokobanHelper.Clone(board), 0));
 
 
             //
@@ -481,7 +481,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             offsetY -= incrementY;
             if (offsetX != 0 || offsetY != 0)
             {
-                SokobanCell[,] newGameState = (SokobanCell[,])Clone(frontierState);
+                SokobanCell[,] newGameState = SokobanHelper.Clone(frontierState);
 
                 //set new playerlocation to place of pull
                 SetNewPlayerPostion(playerLoc, offsetX + incrementX, offsetY + incrementY, newGameState, row, col);
@@ -557,31 +557,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             }
         }
 
-        private static SokobanCell[,] Clone(SokobanCell[,] toClone)
-        {
-            int numRows = toClone.GetLength(0);
-            int numCols = toClone.GetLength(1);
-
-            SokobanCell[,] ret = new SokobanCell[numRows, numCols];
-
-            for (int row = 0; row < numRows; row++)
-            {
-                for (int col = 0; col < numCols; col++)
-                {
-                    SokobanCell sc = toClone[row, col];
-
-                    System.Type cellType = sc.GetType();
-
-                    SokobanCell clonedCell = (SokobanCell)System.Activator.CreateInstance(cellType);
-
-                    clonedCell.PlayerIsHere = sc.PlayerIsHere;
-
-                    ret[row, col] = clonedCell;
-                }
-            }
-
-            return ret;
-        }
+        
     }
 }
 

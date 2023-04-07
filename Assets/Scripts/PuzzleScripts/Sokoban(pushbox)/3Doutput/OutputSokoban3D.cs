@@ -59,7 +59,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 yield return null;
             }
             //set our sokoban
-            sokoban = (SokobanCell[,])SokobanStatics.generatedSokoban.Clone();
+            sokoban = SokobanHelper.Clone(SokobanStatics.generatedSokoban);
             Out3D();
         }
 
@@ -67,7 +67,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         public void ResetLevel()
         {
             finishedLevelGeneration = false;
-            sokoban = (SokobanCell[,])SokobanStatics.generatedSokoban.Clone();
+            sokoban = SokobanHelper.Clone(SokobanStatics.generatedSokoban); ;
             DestroyRecursive(this.gameObject);//destorys all we built on last run
             //Clear all variables passed to movement controller
             startingPlayerPostion = null;

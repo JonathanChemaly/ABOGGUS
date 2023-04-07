@@ -8,7 +8,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
     public class SokobanInputManager : MonoBehaviour
     {
         // Start is called before the first frame update
-        private InputActions InputScheme;
+        private static InputActions InputScheme;
         private bool additiveLoaded = false;
 
         [SerializeField]
@@ -46,18 +46,14 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             
         }
 
-        private void RevertSkyBox()
-        {
-            //RenderSettings.skybox = oldSkyBoxMaterial;
-        }
-
         private void OnDestroy()
         {
             if (additiveLoaded)
             {
+                sokobanMovementController.DeallocateInput(InputScheme);
                 InputScheme.Player.Enable();
                 InputScheme.Sokoban.Disable();
-                //RevertSkyBox();
+                
             }
         }
 
@@ -65,9 +61,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         {
             if (additiveLoaded)
             {
+                sokobanMovementController.DeallocateInput(InputScheme);
                 InputScheme.Player.Enable();
                 InputScheme.Sokoban.Disable();
-                //RevertSkyBox();
             }
         }
     }
