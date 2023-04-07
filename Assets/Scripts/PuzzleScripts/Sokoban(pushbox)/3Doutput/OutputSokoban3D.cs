@@ -189,7 +189,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     SokobanCell cell = sokoban[row, col];
                     if (cell.GetType().Equals(typeof(BoxCell)))
                     {
-                        sokoban[row, col] = new FloorCell(cell);
+                        sokoban[row, col] = new FloorCell();
                     }
                 }
             }

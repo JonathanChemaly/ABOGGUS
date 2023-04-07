@@ -27,7 +27,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                         if ((sc.GetType().Equals(typeof(PlayerSpawnCell)) || sc.GetType().Equals(typeof(BoxCell))))
                         {
-                            board[row, col] = new FloorCell(sc);
+                            board[row, col] = new FloorCell();
                         }
                     }
                 }
@@ -67,7 +67,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     //temp mark each floor as goals
                     System.Tuple<int, int> floorLoc1 = floorLocations[i];
 
-                    board[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(board[floorLoc1.Item1, floorLoc1.Item2]);
+                    board[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell();
 
                     //execute search to get a puzzle solution
                     HashSet<System.Tuple<SokobanCell[,], int>> temp = Search(board);
@@ -82,11 +82,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         //Turn the goal cells back in the solutions
                         foreach (System.Tuple<SokobanCell[,], int> tup in best)
                         {
-                            tup.Item1[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell(tup.Item1[floorLoc1.Item1, floorLoc1.Item2]);
+                            tup.Item1[floorLoc1.Item1, floorLoc1.Item2] = new GoalCell();
                         }
                     }
                     //turn back to floors
-                    board[floorLoc1.Item1, floorLoc1.Item2] = new FloorCell(board[floorLoc1.Item1, floorLoc1.Item2]);
+                    board[floorLoc1.Item1, floorLoc1.Item2] = new FloorCell();
 
                 }
 
@@ -130,7 +130,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     if (sc.GetType().Equals(typeof(FloorCell)))
                     {
                         //add board with player in section to 
-                        board[row, col] = new PlayerSpawnCell(board[row, col]);
+                        board[row, col] = new PlayerSpawnCell();
 
                         playerSpawnCellAdded = true;
 
@@ -177,7 +177,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
             foreach (System.Tuple<SokobanCell[,], int> tup in temp)
             {
-                tup.Item1[goalLoc.Item1, goalLoc.Item2] = new GoalCell(tup.Item1[goalLoc.Item1, goalLoc.Item2]);
+                tup.Item1[goalLoc.Item1, goalLoc.Item2] = new GoalCell();
             }
 
             //chose one "level" from best
@@ -229,7 +229,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                     if (sc.GetType().Equals(typeof(GoalCell)))
                     {
-                        board[row, col] = new BoxCell(sc); //place a box on the goal
+                        board[row, col] = new BoxCell(); //place a box on the goal
                     }
                 }
             }
@@ -250,6 +250,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //temp = advance(frontier.main)
                 HashSet<System.Tuple<SokobanCell[,], int>> temp = Advance(frontier_main);
                 //if Advance returns an empty set we found our solution
+                if(layer != 0 ) temp = SetDifference(temp, frontier_second);
 
                 Debug.Log("!!!!!!!!!!!!!!ADVANCE");
                 PrintAllSokobanInSet(temp);
@@ -267,7 +268,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //frontier.main = temp
 
 
-                //temp = SetDifference(temp, frontier_second);
+                temp = SetDifference(temp, frontier_second);
                 //frontier.second = start
                 frontier_second = startClone;
                 //frontier.main = frontier.main - frontier.second
@@ -284,10 +285,6 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                     //frontier.main = frontier.main - frontier.second
                     temp = SetDifference(temp, frontier_second);
-
-                    
-
-                    
                 }
 
                 if (temp.Count < 1)
@@ -324,6 +321,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             bool equals = true;
             int sokobanRows = sb1.GetLength(0);
             int sokobanCols = sb1.GetLength(1);
+
             for (int row = 0; row < sokobanRows; row++)
             {
                 for (int col = 0; col < sokobanCols; col++)
@@ -335,6 +333,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 }
             }
+
             return equals;
         }
 
@@ -361,7 +360,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         {
                             //for each temp.state reachable by pulling box along a straight line
                             HashSet<System.Tuple<SokobanCell[,], int>> newStates = GetBoxPullingStates(row, col, frontierState, tuple.Item2);
-                            Debug.Log("GenerateSokobanGoals-Advance- new state count = " + newStates.Count);
+                            //Debug.Log("GenerateSokobanGoals-Advance- new state count = " + newStates.Count);
                             foreach (System.Tuple<SokobanCell[,], int> straightLineState in newStates)
                             {
                                 //if box is not a slippery tile in temp.state -- IGNORE FOR NOW
@@ -456,7 +455,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             newGameState[playerLoc.Item1, playerLoc.Item2].PlayerIsHere = false;
             newGameState[row + offsetX, col + offsetY].PlayerIsHere = true;
 
-            Debug.Log("new Player postion = " + (row + offsetX) + ", " + (col + offsetY));
+            //Debug.Log("new Player postion = " + (row + offsetX) + ", " + (col + offsetY));
         }
 
         /**
@@ -488,9 +487,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 SetNewPlayerPostion(playerLoc, offsetX + incrementX, offsetY + incrementY, newGameState, row, col);
 
                 //old cell no longer a box
-                newGameState[row, col] = new FloorCell(newGameState[row, col]);
+                newGameState[row, col] = new FloorCell();
                 //new box is now at offset location
-                newGameState[row + offsetX, col + offsetY] = new BoxCell(newGameState[row + offsetX, col + offsetY]);
+                newGameState[row + offsetX, col + offsetY] = new BoxCell();
 
                 
                 //add to result set
@@ -510,7 +509,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             System.Tuple<int, int> playerLoc = FindPlayer(frontierState, frontierRows, frontierCols);
 
 
-            Debug.Log("playerloc = " + playerLoc);
+            //Debug.Log("playerloc = " + playerLoc);
             //if we do not find a player return empty reachability
             if(playerLoc == null)
             {
@@ -531,7 +530,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             CheckPullInDirection(0, 1, row, col, oldOffset, frontierState, reachableStates, playerLoc);
             //west
             CheckPullInDirection(0, -1, row, col, oldOffset, frontierState, reachableStates, playerLoc);
-            Debug.Log("ReachableStates count-" + reachableStates.Count);
+            //Debug.Log("ReachableStates count-" + reachableStates.Count);
             return reachableStates;
         }
 

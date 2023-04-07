@@ -57,6 +57,13 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 SuccessAudio.Play();
                 //do goal actions
                 Debug.Log("All Boxes On Goals! Performing Goal Action...");
+
+                foreach (System.Tuple<int, int, GameObject> boxTup in curBoxPostions)
+                {
+                    GameObject boxObject = boxTup.Item3;
+                    SokobanBoxGameObject sbgo = boxObject.GetComponent<SokobanBoxGameObject>();
+                    sbgo.SuccessAction();
+                }
             }
         }
 
