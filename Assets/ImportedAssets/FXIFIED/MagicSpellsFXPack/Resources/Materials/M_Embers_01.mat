@@ -2,15 +2,20 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Embers_01
-  m_Shader: {fileID: 4800000, guid: 08fb2a0dcff67a243abb87845eb81688, type: 3}
-  m_ShaderKeywords: _ALPHABLEND_ON _COLORADDSUBDIFF_ON _DOUBLEALPHA_ON _SOFTPARTICLES_ON
-    _TRIPLEALPHA_ON
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHABLEND_ON
+  - _COLORADDSUBDIFF_ON
+  - _DOUBLEALPHA_ON
+  - _SOFTPARTICLES_ON
+  - _TRIPLEALPHA_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +25,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,12 +61,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: d1500f72693ad214e95cf1aeab3ac63b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: 5260683fb8b8c5a4394b84412c4eef78, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -104,6 +121,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BlendOp: 0
     - _BumpScale: 1
@@ -132,6 +150,7 @@ Material:
     - _EmissionEnabled: 0
     - _Emissive: 10
     - _EmissivePower: 1
+    - _EnableExternalAlpha: 0
     - _FlipbookMode: 0
     - _Float1: 0.24
     - _GlossMapScale: 1
@@ -149,6 +168,7 @@ Material:
     - _Opacity: 1
     - _Opacity1: 1
     - _Parallax: 0.02
+    - _PowerScale: 1
     - _SmoothnessTextureChannel: 0
     - _SoftParticles: 1
     - _SoftParticlesEnabled: 0
@@ -169,6 +189,7 @@ Material:
     - _Color0: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MaskScrollSpeed: {r: -0.1, g: 0.1, b: 0, a: 0}
     - _MaskTiling: {r: 0.5, g: -0.5, b: 0, a: 0}
     - _NoiseScrollSpeed1: {r: 0.5, g: 1, b: 0, a: 0}
@@ -176,6 +197,7 @@ Material:
     - _NoiseTiling1: {r: 0.7, g: 0.8, b: 0, a: 0}
     - _NoiseTiling2: {r: 0.5, g: 1, b: 0, a: 0}
     - _ParticleColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 1.58698, g: 1.58698, b: 1.58698, a: 1}
     - _Vector0: {r: 1, g: 1, b: 1, a: 1}
