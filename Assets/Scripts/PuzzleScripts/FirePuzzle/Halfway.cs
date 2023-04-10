@@ -15,6 +15,7 @@ public class Halfway : MonoBehaviour
     private void Start()
     {
         Ready += Prepare;
+        FirePuzzle.Reset += ResetPiece;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,5 +31,12 @@ public class Halfway : MonoBehaviour
     {
         ready = true;
         water.SetActive(true);
+    }
+
+
+    private void ResetPiece()
+    {
+        ready = false;
+        this.water.SetActive(true);
     }
 }

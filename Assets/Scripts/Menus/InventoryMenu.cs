@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
+using System.IO;
+using Unity.VisualScripting;
+using ABOGGUS.PlayerObjects.Items;
+using UnityEditor;
+using System.Linq;
 
 namespace ABOGGUS.Menus
 {
@@ -13,22 +18,37 @@ namespace ABOGGUS.Menus
     {
         public GameObject inventoryMenu;
 
-        public Sprite keyImage;
-        public Image keyContainer;
+        //public Sprite keyImage;
+        //public Image keyContainer;
+
+        public List<Image> containers;
+        public HoverTip[] hoverTips;
 
         public static bool isPaused;
         private bool updated = false;
 
+<<<<<<< HEAD
         public const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
         public const string FILE_TYPE = ".png";
+=======
+        private const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
+        private const string FILE_TYPE = ".png";
+>>>>>>> e978d38 (Fixed fire puzzle and inventory issues)
 
         // Start is called before the first frame update
         void Start()
         {
             inventoryMenu.SetActive(false);
-            keyContainer.color = Color.white;
-            keyContainer.sprite = keyImage;
-            keyContainer.enabled = false;
+            Transform parent = transform.GetChild(0).GetChild(0);
+            containers = parent.GetComponentsInChildren<Image>().ToList();
+            containers.RemoveAt(0); //Remove the overall menu image
+            hoverTips = parent.GetComponentsInChildren<HoverTip>();
+
+            for(int i = 0; i < containers.Count; i++)
+            {
+                containers[i].enabled = hoverTips[i].enabled = false;
+            }
+
             isPaused = false;
         }
 
@@ -49,19 +69,14 @@ namespace ABOGGUS.Menus
 
         private void OpenInventory()
         {
+            if(!updated) UpdateInventory();
             inventoryMenu.SetActive(true);
-            if (GameController.player.inventory.key)
-            {
-                keyContainer.enabled = true;
-            } else
-            {
-                keyContainer.enabled = false;
-            }
             GameController.PauseGame();
         }
 
         private void CloseInventory()
         {
+            updated = false;
             inventoryMenu.SetActive(false);
             GameController.ResumeGame();
         }

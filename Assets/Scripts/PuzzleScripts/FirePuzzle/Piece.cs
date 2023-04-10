@@ -14,6 +14,7 @@ public class Piece : MonoBehaviour
     private void Start()
     {
         FirePuzzle.NextHalf += ResetForHalf;
+        FirePuzzle.Reset += ResetPiece;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,5 +59,11 @@ public class Piece : MonoBehaviour
             this.fire.SetActive(true);
             this.activated = false;
         }
+    }
+
+    private void ResetPiece()
+    {
+        this.fire.SetActive(true);
+        this.activated = false;
     }
 }

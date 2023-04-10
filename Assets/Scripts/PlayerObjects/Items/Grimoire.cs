@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace ABOGGUS.PlayerObjects.Items
 {
-    public class Wheel : IItem
+    public class Grimore : IItem
     {
         public const int QUANTITY = 1;
 
         public string GetDescription()
         {
-            return ItemLookup.WheelDescription;
+            return ItemLookup.GrimoireDescription;
         }
 
         public string GetName()
         {
-            return ItemLookup.WheelName;
+            return ItemLookup.GrimoireName;
         }
 
         public int GetQuantity()
@@ -29,9 +29,10 @@ namespace ABOGGUS.PlayerObjects.Items
         {
             throw new NotImplementedException();
         }
+
         public int GetID()
         {
-            return ItemLookup.WheelID;
+            return ItemLookup.GrimoireID;
         }
 
         public int CompareTo(IItem item)

@@ -9,6 +9,11 @@ public class BeginPuzzle : MonoBehaviour
     public GameObject water;
     public Material completedMaterial;
 
+    private void Start()
+    {
+        FirePuzzle.Reset += ResetPiece;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameConstants.NAME_PLAYERGAMEOBJECT))
@@ -16,5 +21,10 @@ public class BeginPuzzle : MonoBehaviour
             water.SetActive(false);
             FirePuzzle.Instance.fireActive = true;
         }
+    }
+
+    private void ResetPiece()
+    {
+        this.water.SetActive(true);
     }
 }

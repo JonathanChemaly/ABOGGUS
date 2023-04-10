@@ -30,25 +30,25 @@ namespace ABOGGUS.Interact
 
         private void pickUpObject()
         {
-            if (interact.CompareTag(ItemLookup.GrimoreName))
+            if (interact.CompareTag(ItemLookup.GrimoireName))
             {
-                playerInv.addItem(ItemLookup.GrimoreName);
+                playerInv.AddItem(ItemLookup.GrimoireName);
             }
             else if (interact.CompareTag(ItemLookup.WheelName))
             {
-                playerInv.addItem(ItemLookup.WheelName);
+                playerInv.AddItem(ItemLookup.WheelName);
             }
             else if (interact.CompareTag(ItemLookup.WrenchName))
             {
-                playerInv.addItem(ItemLookup.WrenchName);
+                playerInv.AddItem(ItemLookup.WrenchName);
             }
             else if (interact.CompareTag(ItemLookup.GasName))
             {
-                playerInv.addItem(ItemLookup.GasName);
+                playerInv.AddItem(ItemLookup.GasName);
             }
             else if (interact.CompareTag(ItemLookup.TractorKeyName))
             {
-                playerInv.addItem(ItemLookup.TractorKeyName);
+                playerInv.AddItem(ItemLookup.TractorKeyName);
             }
             else if (interact.CompareTag(ItemLookup.HammerName))
             {
