@@ -85,7 +85,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             CameraPosition();
             oldTP = thirdPerson;
-            Debug.Log("CameraSwitch");
+            //Debug.Log("CameraSwitch");
         }
         if (GameController.player != null)
         {
