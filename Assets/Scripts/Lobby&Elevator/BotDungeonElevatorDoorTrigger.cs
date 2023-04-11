@@ -56,7 +56,7 @@ public class BotDungeonElevatorDoorTrigger : MonoBehaviour
             openBottomDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
-                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_DUNGEON, false);
+                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_DUNGEON1, false);
             }
         }
     }

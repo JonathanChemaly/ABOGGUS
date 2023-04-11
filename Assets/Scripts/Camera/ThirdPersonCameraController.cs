@@ -73,7 +73,7 @@ public class ThirdPersonCameraController : MonoBehaviour
                 && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
         if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
 
-        if (GameController.scene == GameConstants.SCENE_DUNGEON || GameController.scene == GameConstants.SCENE_BOSS)
+        if (GameController.scene == GameConstants.SCENE_DUNGEON1 || GameController.scene == GameConstants.SCENE_DUNGEON2 || GameController.scene == GameConstants.SCENE_DUNGEON3 || GameController.scene == GameConstants.SCENE_BOSS)
         {
             thirdPerson = true;
         } else
