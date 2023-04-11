@@ -15,6 +15,9 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     public GameObject botDoorR;
     public GameObject botDoorL;
 
+    public TMPro.TextMeshProUGUI NotEnoughMana;
+    public TMPro.TextMeshProUGUI GoToBoss;
+
     public bool openBottomDoor = false;
     public bool flipOrientation = false;
 
@@ -33,6 +36,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
             botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
         }
+        NotEnoughMana.enabled = false;
+        GoToBoss.enabled = false;
     }
 
     // Update is called once per frame
@@ -52,36 +57,52 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (transition && other.CompareTag("Player"))
+        if (transform.parent.name != "BossElevator" && UpgradeStats.runs == 0)
         {
-            openBottomDoor = true;
-            if (GameController.scene == GameConstants.SCENE_DUNGEON)
-            {
-                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
-            }
-            if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
-            {
-                if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
-                else GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
-                UpgradeStats.runs++;
-            }
-            if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
-            {
-                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
-            }
-            if (GameController.scene == GameConstants.SCENE_SUMMERROOM)
-            {
-                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
-            }
-            if (GameController.scene == GameConstants.SCENE_WINTERROOM)
-            {
-                GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
-            }
+            GoToBoss.enabled = true;
         }
-        else if (other.CompareTag("Player"))
+        else if (transform.parent.name == "SummerElevator" && UpgradeStats.totalMana < 150) {
+            NotEnoughMana.enabled = true;
+        }
+        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 200) {
+            NotEnoughMana.enabled = true;
+        }
+        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 250) {
+            NotEnoughMana.enabled = true;
+        }
+        else
         {
-            openBottomDoor = true;
-            Debug.Log("botOpen");
+            if (transition && other.CompareTag("Player"))
+            {
+                openBottomDoor = true;
+                if (GameController.scene == GameConstants.SCENE_DUNGEON)
+                {
+                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+                }
+                if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+                {
+                    if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+                    else GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
+                    UpgradeStats.runs++;
+                }
+                if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
+                {
+                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                }
+                if (GameController.scene == GameConstants.SCENE_SUMMERROOM)
+                {
+                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                }
+                if (GameController.scene == GameConstants.SCENE_WINTERROOM)
+                {
+                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                }
+            }
+            else if (other.CompareTag("Player"))
+            {
+                openBottomDoor = true;
+                Debug.Log("botOpen");
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -89,6 +110,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             openBottomDoor = false;
+            NotEnoughMana.enabled = false;
+            GoToBoss.enabled = false;
         }
     }
 
