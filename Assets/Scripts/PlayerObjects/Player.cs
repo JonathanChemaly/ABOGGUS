@@ -72,7 +72,12 @@ namespace ABOGGUS.PlayerObjects
         public void updateMana(int value)
         {
             inventory.mana += value;
-            UpgradeStats.mana += value;
+            inventory.totalMana += value;
+            if (value > 0)
+            {
+                UpgradeStats.mana += value;
+                UpgradeStats.totalMana += value;
+            }
             playerHUD.UpdateMana();
         }
         IEnumerator ToCredits()
