@@ -43,7 +43,7 @@ namespace ABOGGUS.Interact.Puzzles
         IEnumerator MoveTileOverTime(Vector2 newPos)
         {
             TilePuzzleManager.movingTile = true;
-            Vector3 targetPos = new Vector3(tpm.tileSpace * newPos.x, height, tpm.tileSpace * -1 * newPos.y);
+            Vector3 targetPos = new Vector3(tpm.topLeft.x + tpm.tileSpace * newPos.x, tpm.topLeft.y + height, tpm.topLeft.z + tpm.tileSpace * -1 * newPos.y);
             while (transform.position != targetPos)
             {
                 yield return null;
@@ -56,7 +56,7 @@ namespace ABOGGUS.Interact.Puzzles
         public void SetPosition(Vector2 newPos)
         {
             pos = newPos;
-            this.transform.position = new Vector3(tpm.tileSpace * newPos.x, height, tpm.tileSpace * -1 * newPos.y);
+            this.transform.position = new Vector3(tpm.topLeft.x + tpm.tileSpace * newPos.x, tpm.topLeft.y + height, tpm.topLeft.z + tpm.tileSpace * -1 * newPos.y);
             UpdateIndicator();
         }
 
