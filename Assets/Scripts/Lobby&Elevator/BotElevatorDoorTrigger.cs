@@ -36,8 +36,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
             botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
         }
-        NotEnoughMana.enabled = false;
-        GoToBoss.enabled = false;
+        if (NotEnoughMana != null) NotEnoughMana.enabled = false;
+        if (GoToBoss != null) GoToBoss.enabled = false;
     }
 
     // Update is called once per frame
@@ -118,8 +118,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             openBottomDoor = false;
-            NotEnoughMana.enabled = false;
-            GoToBoss.enabled = false;
+            if (NotEnoughMana != null) NotEnoughMana.enabled = false;
+            if (GoToBoss != null) GoToBoss.enabled = false;
         }
     }
 

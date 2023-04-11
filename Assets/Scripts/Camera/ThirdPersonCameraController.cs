@@ -155,7 +155,10 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            if (player != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            }
         }
         cameraYRot = transform.eulerAngles.y;
         if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
