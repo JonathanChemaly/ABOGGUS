@@ -802,6 +802,11 @@ namespace ABOGGUS.PlayerObjects
             return this.weaponEquipped;
         }
 
+        public PlayerConstants.Magic GetCurrentMagic()
+        {
+            return this.castType;
+        }
+
 
     }
 }

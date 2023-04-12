@@ -27,13 +27,8 @@ namespace ABOGGUS.Menus
         public static bool isPaused;
         private bool updated = false;
 
-<<<<<<< HEAD
         public const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
         public const string FILE_TYPE = ".png";
-=======
-        private const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
-        private const string FILE_TYPE = ".png";
->>>>>>> e978d38 (Fixed fire puzzle and inventory issues)
 
         // Start is called before the first frame update
         void Start()
