@@ -10,24 +10,33 @@ namespace ABOGGUS.PlayerObjects.Items
     {
         public const int QUANTITY = 1;
 
-        public string getDescription()
+        public string GetDescription()
         {
             return ItemLookup.WheelDescription;
         }
 
-        public string getName()
+        public string GetName()
         {
             return ItemLookup.WheelName;
         }
 
-        public int getQuantity()
+        public int GetQuantity()
         {
             return QUANTITY;
         }
 
-        public bool increaseQuantity()
+        public bool IncreaseQuantity()
         {
             throw new NotImplementedException();
+        }
+        public int GetID()
+        {
+            return ItemLookup.WheelID;
+        }
+
+        public int CompareTo(IItem item)
+        {
+            return this.GetID().CompareTo(item.GetID());
         }
     }
 }

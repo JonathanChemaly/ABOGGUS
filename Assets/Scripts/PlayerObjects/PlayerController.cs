@@ -11,6 +11,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class PlayerController : MonoBehaviour
     {
+
         private GameObject physicalGameObject;
         //Change to event triggers later
         private Grimoire grimoire;
@@ -53,7 +54,7 @@ namespace ABOGGUS.PlayerObjects
         private LayerMask walls;
         private float checkDistance = 2.0f;
         //adjusts raycast to start at a different height
-        private Vector3 yWallCheck = new Vector3(0,1,0);
+        private Vector3 yWallCheck = new Vector3(0, 1, 0);
 
         public void InitializeForPlayer()
         {
@@ -681,6 +682,7 @@ namespace ABOGGUS.PlayerObjects
 
         public void CastMagic()
         {
+            Player.WeaponChanged();
             if (castType == PlayerConstants.Magic.Wind && aoe)
                 playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Wind && !aoe)
@@ -689,6 +691,19 @@ namespace ABOGGUS.PlayerObjects
                 playerState.CastMagic(grimoire.fireAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Fire && !aoe)
                 playerState.CastMagic(grimoire.fireAttackPrefab, aoe, castType);
+            else if (castType == PlayerConstants.Magic.Nature && aoe)
+                UnityEngine.Object.Instantiate(grimoire.natureAOEPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation);
+            else if (castType == PlayerConstants.Magic.Nature && !aoe)
+            {
+                //physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.natureArmorMaterial; 
+                UnityEngine.Object.Instantiate(grimoire.natureAttackPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation, physicalGameObject.transform);
+                GameController.player.SetResistance(true);
+                //Invoke(nameof(ChangeMaterial), 10f);
+            }
+            else if (castType == PlayerConstants.Magic.Water && aoe)
+                playerState.CastMagic(grimoire.waterAOEPrefab, aoe, castType);
+            else if (castType == PlayerConstants.Magic.Water && !aoe)
+                playerState.CastMagic(grimoire.waterAttackPrefab, aoe, castType);
             magicInvoked = false;
             casting = false;
         }
@@ -743,14 +758,17 @@ namespace ABOGGUS.PlayerObjects
 
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SWORD);
             }
             else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_GRIMOIRE);
             }
             else if (weaponEquipped == PlayerConstants.Weapon.Spear)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SPEAR);
             }
             Invoke(nameof(EndTransition), PlayerConstants.TRANSITION_DELAY);
@@ -772,6 +790,22 @@ namespace ABOGGUS.PlayerObjects
             }
             transitioning = false;
             transitionInvoked = false;
+        }
+
+        private void ChangeMaterial()
+        {
+            physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.normalMaterial;
+            GameController.player.SetResistance(false);
+        }
+
+        public PlayerConstants.Weapon GetCurrentWeapon()
+        {
+            return this.weaponEquipped;
+        }
+
+        public PlayerConstants.Magic GetCurrentMagic()
+        {
+            return this.castType;
         }
 
 

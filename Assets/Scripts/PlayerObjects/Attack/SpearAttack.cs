@@ -6,7 +6,8 @@ namespace ABOGGUS.PlayerObjects
 {
     public class SpearAttack : MonoBehaviour
     {
-        private float damage = 15;
+        public float damage = WeaponDamageStats.spearDamage;
+
         private float knockback = 0.4f;
         private bool active;
         private bool attacking;

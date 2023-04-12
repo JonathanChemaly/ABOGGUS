@@ -7,7 +7,7 @@ namespace ABOGGUS.PlayerObjects
     public class PlayerAnimationStateController : MonoBehaviour
     {
         static Animator animator;
-        private static string currentState = "";
+        public static string currentState = "";
         private static int attackIdx;
         private static bool animationToFinish, isSprinting, armed;
         // Start is called before the first frame update
@@ -20,10 +20,11 @@ namespace ABOGGUS.PlayerObjects
 
         public static void ChangeAnimationState(string newState)
         {
-            Debug.Log("New State: " + newState);
+            //Debug.Log("New State: " + newState);
             if (!currentState.Equals(newState))
             {
                 animator.Play(newState);
+                currentState = newState;
             }
         }
 

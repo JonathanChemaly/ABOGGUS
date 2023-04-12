@@ -41,6 +41,8 @@ namespace ABOGGUS.Gameplay
             GameObject physicalGameObject = GameObject.Find(PlayerConstants.GAMEOBJECT_PLAYERNAME);
             player.SetGameObject(physicalGameObject);
             player.inventory.invulnerable = false;
+            player.playerHUD.UpdateHealthBar();
+            player.playerHUD.UpdateMana();
 
             if (loadingPlayer)
             {

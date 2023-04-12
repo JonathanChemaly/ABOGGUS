@@ -10,12 +10,14 @@ namespace ABOGGUS.Menus
 {
     public class HoverTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public string textToShow;
+        public int id = -1;
+        private string textToShow = "You forgot to change the description clown";
         private float timeToWait = .5f;
         public void OnPointerEnter(PointerEventData eventData)
         {
             StopAllCoroutines();
             //StartCoroutine(StartTimer());
+            Debug.Log("Hover tip " + id);
             ShowMessage();
         }
 
@@ -35,6 +37,11 @@ namespace ABOGGUS.Menus
             yield return new WaitForSeconds(timeToWait);
 
             ShowMessage();
+        }
+
+        public void setText(string newText)
+        {
+            this.textToShow = newText;
         }
     }
 }

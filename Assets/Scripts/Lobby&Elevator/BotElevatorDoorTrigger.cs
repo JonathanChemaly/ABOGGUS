@@ -36,8 +36,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             botDoorRPO = botDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
             botDoorLPO = botDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
         }
-        NotEnoughMana.enabled = false;
-        GoToBoss.enabled = false;
+        if (NotEnoughMana != null) NotEnoughMana.enabled = false;
+        if (GoToBoss != null) GoToBoss.enabled = false;
     }
 
     // Update is called once per frame
@@ -64,10 +64,10 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         else if (transform.parent.name == "SummerElevator" && UpgradeStats.totalMana < 150) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 200) {
+        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 250) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 250) {
+        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 200) {
             NotEnoughMana.enabled = true;
         }
         else
@@ -75,27 +75,35 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             if (transition && other.CompareTag("Player"))
             {
                 openBottomDoor = true;
-                if (GameController.scene == GameConstants.SCENE_DUNGEON)
+                if (GameController.scene == GameConstants.SCENE_DUNGEON1 && transform.parent.name == "DungeonElevatorToLayer2")
+                {
+                    GameController.ChangeScene("Elevator to Dungeon Layer 2", GameConstants.SCENE_DUNGEON2, false);
+                }
+                if (GameController.scene == GameConstants.SCENE_DUNGEON2 && transform.parent.name == "DungeonElevatorToLayer3")
+                {
+                    GameController.ChangeScene("Elevator to Dungeon Layer 3", GameConstants.SCENE_DUNGEON3, false);
+                }
+                if (GameController.scene == GameConstants.SCENE_DUNGEON3 && transform.parent.name == "DungeonElevatorToBoss")
                 {
                     GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
                 }
                 if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
                 {
                     if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
-                    else GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
+                    else GameController.ChangeScene("Elevator to Dungeon Layer 1", GameConstants.SCENE_DUNGEON1, false);
                     UpgradeStats.runs++;
                 }
                 if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
                 {
-                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                    GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
                 if (GameController.scene == GameConstants.SCENE_SUMMERROOM)
                 {
-                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                    GameController.ChangeScene("Elevator to Summer Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
                 if (GameController.scene == GameConstants.SCENE_WINTERROOM)
                 {
-                    GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_MAINLOBBY, false);
+                    GameController.ChangeScene("Elevator to Winter Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
             }
             else if (other.CompareTag("Player"))
@@ -110,8 +118,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             openBottomDoor = false;
-            NotEnoughMana.enabled = false;
-            GoToBoss.enabled = false;
+            if (NotEnoughMana != null) NotEnoughMana.enabled = false;
+            if (GoToBoss != null) GoToBoss.enabled = false;
         }
     }
 

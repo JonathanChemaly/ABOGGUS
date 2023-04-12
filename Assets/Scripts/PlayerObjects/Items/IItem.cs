@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace ABOGGUS.PlayerObjects.Items
 {
-    public interface IItem
+    public interface IItem : IComparable<IItem>
     {
-        public string getName();
+        public string GetName();
 
-        public string getDescription();
+        public string GetDescription();
 
-        public int getQuantity();
+        public int GetQuantity();
 
-        public bool increaseQuantity();
+        public bool IncreaseQuantity();
+
+        public int GetID();
     }
 }

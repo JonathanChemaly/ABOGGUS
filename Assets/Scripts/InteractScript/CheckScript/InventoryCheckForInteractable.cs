@@ -25,7 +25,7 @@ namespace ABOGGUS.Interact.Checks
         public bool DoCheck()
         {
             
-            return playerInv.hasItem(itemName);
+            return playerInv.HasItem(itemName);
         }
 
         public string GetFailureText()

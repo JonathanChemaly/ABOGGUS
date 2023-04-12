@@ -11,11 +11,17 @@ namespace ABOGGUS.PlayerObjects
         public GameObject windAOEPrefab;
         public GameObject fireAttackPrefab;
         public GameObject fireAOEPrefab;
+        public GameObject waterAttackPrefab;
+        public GameObject waterAOEPrefab;
+        public GameObject natureAttackPrefab;
+        public GameObject natureAOEPrefab;
         public Material windMaterial;
         public Material fireMaterial;
         public Material waterMaterial;
         public Material natureMaterial;
         public Material lightningMaterial;
+        public Material normalMaterial;
+        public Material natureArmorMaterial;
 
         private void Awake()
         {

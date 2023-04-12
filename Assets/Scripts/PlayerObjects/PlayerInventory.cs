@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -33,38 +34,65 @@ namespace ABOGGUS.PlayerObjects
                 invulnerable = true;                
                 Player.PlayerDied();
             }
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
-        public bool hasItem(string itemName)
+        public bool HasMana(int manaCost)
         {
-            foreach(IItem item in items)
+            if (manaCost <= mana)
             {
-                if (item.getName().Equals(itemName)) return true;
+                return true;
             }
 
             return false;
         }
 
-        public IItem getItem(string itemName)
+        public void UseMana(int manaCost)
+        {
+            mana -= manaCost;
+            UpgradeStats.mana -= manaCost;
+            GameController.player.playerHUD.UpdateMana();
+        }
+
+        public bool HasItem(string itemName)
+        {
+            foreach(IItem item in items)
+            {
+                if (item.GetName().Equals(itemName)) return true;
+            }
+
+            return false;
+        }
+
+        public IItem GetItem(string itemName)
         {
             foreach (IItem item in items)
             {
-                if (item.getName().Equals(itemName)) return item;
+                if (item.GetName().Equals(itemName)) return item;
             }
 
             return null;
         }
-
-        public void addItem(string itemName)
+        public List<IItem> GetItems()
         {
-            IItem temp = getItem(itemName);
+            return this.items;
+        }
+
+        public void AddItem(string itemName)
+        {
+            IItem temp = GetItem(itemName);
 
             if (temp != null)
             {
-                temp.increaseQuantity();
+                temp.IncreaseQuantity();
             }
 
             else items.Add(ItemFactory.CreateItem(itemName));
+
+            items.Sort();
         }
     }
 }
