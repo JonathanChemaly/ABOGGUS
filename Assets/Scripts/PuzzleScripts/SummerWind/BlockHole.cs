@@ -24,7 +24,6 @@ public class BlockHole : MonoBehaviour
     public int numBlocks = 4;
     private int boardArea;
     public static int blocksLeft;
-    public TMPro.TextMeshProUGUI GameClearText;
     public GameObject blackout;
     GameObject lava;
     int numObjects = 0;
@@ -36,12 +35,11 @@ public class BlockHole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player.transform.position = new Vector3(0, 8, 0) + transform.position;
         boardArea = boardSize * boardSize;
         blocksLeft = numBlocks;
         generateLevel();
-        GameClearText.gameObject.SetActive(false);
         StartCoroutine(BlackOut(false));
-        trigger.GetComponent<MeshRenderer>().enabled = true;
     }
 
     void Update()
@@ -49,19 +47,21 @@ public class BlockHole : MonoBehaviour
         //game cleared
         if (blocksLeft == 0)
         {
-            GameClearText.gameObject.SetActive(true);
             cleared = true;
-            trigger.GetComponent<MeshRenderer>().enabled = false;
-            foreach (int i in wallsToDelete)
+            foreach (GameObject i in objects)
             {
-                objects[i].gameObject.SetActive(false);
+                Destroy(i);
             }
+            Destroy(lava);
+            player.transform.position = new Vector3(114, 6, -192);
+            player.transform.rotation = new Quaternion(0, 60, 0, 0);
+            this.enabled = false;
         }
     }
 
     private void FixedUpdate()
     {
-        if (!cleared && !restarting && lava.transform.localPosition.y < 0)
+        if (!cleared && !restarting && lava.transform.localPosition.y < 12.5)
         {
             lava.transform.Translate(Vector3.up * speed * Time.deltaTime / 10);
         }
@@ -86,7 +86,6 @@ public class BlockHole : MonoBehaviour
         numObjects = 0;
         blocksLeft = numBlocks;
         cleared = false;
-        GameClearText.gameObject.SetActive(false);
 
         generateLevel();
 
@@ -225,6 +224,11 @@ public class BlockHole : MonoBehaviour
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(0, 90, 0);
 
+            if (i == boardSize / 2)
+            {
+                wallsToDelete.Add(numObjects);
+            }
+
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
         }
@@ -239,7 +243,7 @@ public class BlockHole : MonoBehaviour
 
             objects[numObjects] = Instantiate(wallPrefab, pos, rot);
             numObjects++;
-        }
+        }       
         if (j == 0)
         {
             Vector3 pos = new Vector3();
@@ -248,10 +252,7 @@ public class BlockHole : MonoBehaviour
             pos.z = transform.position.z + (j - boardSize / 2) * 4 - 2;
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(90, 0, 0);
-            if (i == boardSize / 2)
-            {
-                wallsToDelete.Add(numObjects);
-            }
+           
             objects[numObjects] = Instantiate(wall2Prefab, pos, rot);
             numObjects++;
         }
@@ -263,7 +264,7 @@ public class BlockHole : MonoBehaviour
             pos.z = transform.position.z + (j - boardSize / 2) * 4 + 2;
             pos.y = transform.position.y + 2;
             Quaternion rot = Quaternion.Euler(0, 0, 0);
-            if (i == boardSize / 2)
+            if (i == boardSize / 2 - 1)
             {
                 wallsToDelete.Add(numObjects);
             }

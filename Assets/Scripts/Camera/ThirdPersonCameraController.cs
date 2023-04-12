@@ -73,7 +73,7 @@ public class ThirdPersonCameraController : MonoBehaviour
                 && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
         if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
 
-        if (GameController.scene == GameConstants.SCENE_DUNGEON || GameController.scene == GameConstants.SCENE_BOSS)
+        if (GameController.scene == GameConstants.SCENE_DUNGEON1 || GameController.scene == GameConstants.SCENE_DUNGEON2 || GameController.scene == GameConstants.SCENE_DUNGEON3 || GameController.scene == GameConstants.SCENE_BOSS)
         {
             thirdPerson = true;
         } else
@@ -85,7 +85,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             CameraPosition();
             oldTP = thirdPerson;
-            Debug.Log("CameraSwitch");
+            //Debug.Log("CameraSwitch");
         }
         if (GameController.player != null)
         {
@@ -155,7 +155,10 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            if (player != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            }
         }
         cameraYRot = transform.eulerAngles.y;
         if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;

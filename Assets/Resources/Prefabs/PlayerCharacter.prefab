@@ -2917,7 +2917,7 @@ PrefabInstance:
     - target: {fileID: 1792662018535097025, guid: db6f60d9bf7e78d4b979140c8d6e2a86, type: 3}
       propertyPath: natureAttackPrefab
       value: 
-      objectReference: {fileID: 966415069714991413, guid: 360a68fa970920c4ca5656398172f2f4, type: 3}
+      objectReference: {fileID: 7382785099072697329, guid: be22fc606c007ac478c586ed5bf09ff7, type: 3}
     - target: {fileID: 1792662018535097025, guid: db6f60d9bf7e78d4b979140c8d6e2a86, type: 3}
       propertyPath: natureArmorMaterial
       value: 
@@ -3089,6 +3089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c6b9e9083dd154a9db03f61ecadabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
 --- !u!1001 &7756101272488934900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3287,3 +3288,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c6b9e9083dd154a9db03f61ecadabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15

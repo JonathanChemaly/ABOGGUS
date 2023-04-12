@@ -13,9 +13,19 @@ namespace ABOGGUS.PlayerObjects
         private float timeBetweenHealing = 3.6f;
         private float time = 0f;
         private float healTime = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultNatureAOECost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-            StartCoroutine(ActivateAfterDelay());
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+                StartCoroutine(ActivateAfterDelay());
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         IEnumerator ActivateAfterDelay()

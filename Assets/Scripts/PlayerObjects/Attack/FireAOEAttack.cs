@@ -11,9 +11,19 @@ namespace ABOGGUS.PlayerObjects
         private float totalTime = 10f;
         private float activeTime = 1.5f;
         private float time = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultFireAOECost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-            StartCoroutine(ActivateAfterDelay());
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+                StartCoroutine(ActivateAfterDelay());
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         IEnumerator ActivateAfterDelay()

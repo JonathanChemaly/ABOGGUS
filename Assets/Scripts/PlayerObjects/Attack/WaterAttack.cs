@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -10,9 +11,18 @@ namespace ABOGGUS.PlayerObjects
         private float speed = 0.05f;
         private float totalTime = 1f;
         private float time = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultWaterCost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         void FixedUpdate()

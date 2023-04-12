@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -13,6 +14,7 @@ namespace ABOGGUS.PlayerObjects
         public float maxHealth = PlayerConstants.MAX_HEALTH;
         public float health = PlayerConstants.MAX_HEALTH;
         public int mana = UpgradeStats.mana;
+        public int totalMana = UpgradeStats.totalMana;
         public bool invulnerable { get; set; } = false;
         public bool key { get; set; } = true;
 
@@ -36,6 +38,22 @@ namespace ABOGGUS.PlayerObjects
             {
                 health = maxHealth;
             }
+        }
+
+        public bool HasMana(int manaCost)
+        {
+            if (manaCost <= mana)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void UseMana(int manaCost)
+        {
+            mana -= manaCost;
+            GameController.player.playerHUD.UpdateMana();
         }
 
         public bool hasItem(string itemName)

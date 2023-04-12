@@ -694,10 +694,10 @@ namespace ABOGGUS.PlayerObjects
                 UnityEngine.Object.Instantiate(grimoire.natureAOEPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation);
             else if (castType == PlayerConstants.Magic.Nature && !aoe)
             {
-                physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.natureArmorMaterial; 
+                //physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.natureArmorMaterial; 
                 UnityEngine.Object.Instantiate(grimoire.natureAttackPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation, physicalGameObject.transform);
                 GameController.player.SetResistance(true);
-                Invoke(nameof(ChangeMaterial), 10f);
+                //Invoke(nameof(ChangeMaterial), 10f);
             }
             else if (castType == PlayerConstants.Magic.Water && aoe)
                 playerState.CastMagic(grimoire.waterAOEPrefab, aoe, castType);

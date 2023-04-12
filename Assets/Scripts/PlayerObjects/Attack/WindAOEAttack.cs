@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -11,9 +12,19 @@ namespace ABOGGUS.PlayerObjects
         private float totalTime = 2f;
         private float activeTime = 1.5f;
         private float time = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultWindAOECost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-            StartCoroutine(ActivateAfterDelay());
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+                StartCoroutine(ActivateAfterDelay());
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         IEnumerator ActivateAfterDelay()
