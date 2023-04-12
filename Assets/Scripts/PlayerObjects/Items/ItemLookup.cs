@@ -10,11 +10,14 @@ namespace ABOGGUS.PlayerObjects.Items
     public class ItemLookup
     {
         public const int KeyID = 0;
+        public const int SwordID = 3;
+        public const int SpearID = 4;
         public const int GrimoireID = 5;
         public const int WrenchID = 30;
         public const int WheelID = 31;
         public const int GasID = 32;
         public const int TractorKeyID = 33;
+        public const int HammerID = 40;
 
         public const string KeyName = "key";
         public const string KeyDescription = "A shiny key that glimmers on its own, this will surely be useful later.";

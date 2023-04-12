@@ -52,7 +52,7 @@ namespace ABOGGUS.Interact
             }
             else if (interact.CompareTag(ItemLookup.HammerName))
             {
-                playerInv.addItem(ItemLookup.HammerName);
+                playerInv.AddItem(ItemLookup.HammerName);
             }
             itemInfo.SetValue(playerInv, true);
             interact.DoSuccesAction();
