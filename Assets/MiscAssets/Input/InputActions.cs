@@ -1246,6 +1246,169 @@ namespace ABOGGUS.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Sokoban"",
+            ""id"": ""01a52003-94a5-4700-924c-6cd15c74699b"",
+            ""actions"": [
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""c82811c6-8c70-4c02-a93f-27fbe7fa0a75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccc74985-2b71-4350-9d24-84c21c436702"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7b37419-9ce8-4590-b01e-d4a8dcced9b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecc974a2-cbf6-440d-90a3-3389ccbfd86a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e28827e-31e5-48cc-94fc-582d4bd7485b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3fd84824-6686-49d2-b35f-1ba189e13f06"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2eb4f5b-2624-48ff-87fb-ecbd1779dbb2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a833246-121f-4bdc-886d-499afdb520e2"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3593e854-6578-45f6-bd4b-cd6790438ee0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a90c01-988a-4271-a71c-707c9a0a206b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28259a30-2f11-48e0-815e-4003d88676dd"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc2a3a4c-cc6e-4407-9351-0246b10aea64"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21679077-48fe-4dda-82c3-35f33c1b7372"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b55c298-692e-4c35-b02c-cc0530d2be17"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e08c871-c12b-46fd-b06e-48327ed9ced7"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1350,6 +1513,13 @@ namespace ABOGGUS.Input
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            // Sokoban
+            m_Sokoban = asset.FindActionMap("Sokoban", throwIfNotFound: true);
+            m_Sokoban_Quit = m_Sokoban.FindAction("Quit", throwIfNotFound: true);
+            m_Sokoban_Up = m_Sokoban.FindAction("Up", throwIfNotFound: true);
+            m_Sokoban_Down = m_Sokoban.FindAction("Down", throwIfNotFound: true);
+            m_Sokoban_Left = m_Sokoban.FindAction("Left", throwIfNotFound: true);
+            m_Sokoban_Right = m_Sokoban.FindAction("Right", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1735,6 +1905,71 @@ namespace ABOGGUS.Input
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // Sokoban
+        private readonly InputActionMap m_Sokoban;
+        private ISokobanActions m_SokobanActionsCallbackInterface;
+        private readonly InputAction m_Sokoban_Quit;
+        private readonly InputAction m_Sokoban_Up;
+        private readonly InputAction m_Sokoban_Down;
+        private readonly InputAction m_Sokoban_Left;
+        private readonly InputAction m_Sokoban_Right;
+        public struct SokobanActions
+        {
+            private @InputActions m_Wrapper;
+            public SokobanActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Quit => m_Wrapper.m_Sokoban_Quit;
+            public InputAction @Up => m_Wrapper.m_Sokoban_Up;
+            public InputAction @Down => m_Wrapper.m_Sokoban_Down;
+            public InputAction @Left => m_Wrapper.m_Sokoban_Left;
+            public InputAction @Right => m_Wrapper.m_Sokoban_Right;
+            public InputActionMap Get() { return m_Wrapper.m_Sokoban; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(SokobanActions set) { return set.Get(); }
+            public void SetCallbacks(ISokobanActions instance)
+            {
+                if (m_Wrapper.m_SokobanActionsCallbackInterface != null)
+                {
+                    @Quit.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
+                    @Quit.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
+                    @Quit.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
+                    @Up.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
+                    @Up.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
+                    @Up.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
+                    @Down.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnDown;
+                    @Down.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnDown;
+                    @Down.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnDown;
+                    @Left.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnLeft;
+                    @Left.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnLeft;
+                    @Left.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnLeft;
+                    @Right.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnRight;
+                    @Right.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnRight;
+                    @Right.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnRight;
+                }
+                m_Wrapper.m_SokobanActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Quit.started += instance.OnQuit;
+                    @Quit.performed += instance.OnQuit;
+                    @Quit.canceled += instance.OnQuit;
+                    @Up.started += instance.OnUp;
+                    @Up.performed += instance.OnUp;
+                    @Up.canceled += instance.OnUp;
+                    @Down.started += instance.OnDown;
+                    @Down.performed += instance.OnDown;
+                    @Down.canceled += instance.OnDown;
+                    @Left.started += instance.OnLeft;
+                    @Left.performed += instance.OnLeft;
+                    @Left.canceled += instance.OnLeft;
+                    @Right.started += instance.OnRight;
+                    @Right.performed += instance.OnRight;
+                    @Right.canceled += instance.OnRight;
+                }
+            }
+        }
+        public SokobanActions @Sokoban => new SokobanActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1820,6 +2055,14 @@ namespace ABOGGUS.Input
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        }
+        public interface ISokobanActions
+        {
+            void OnQuit(InputAction.CallbackContext context);
+            void OnUp(InputAction.CallbackContext context);
+            void OnDown(InputAction.CallbackContext context);
+            void OnLeft(InputAction.CallbackContext context);
+            void OnRight(InputAction.CallbackContext context);
         }
     }
 }
