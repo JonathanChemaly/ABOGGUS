@@ -25,14 +25,15 @@ public class GenerateDungeon : MonoBehaviour
         CreateLoops();
         BuildFloor();
         AddHallways();
+        Debug.Log("Final Stack: " + System.String.Join(",", FindMainPath((width / 2, 0), (width / 2, height - 1))));
     }
 
     private RoomNode[,] GenerateFloor()
     {
         RoomArr = new RoomNode[width, height];
-        for (int i = 0; i < RoomArr.GetLength(0); i++)
+        for (int i = 0; i < RoomArr.GetLength(1); i++)
         {
-            for (int j = 0; j < RoomArr.GetLength(1); j++)
+            for (int j = 0; j < RoomArr.GetLength(0); j++)
             {
                 RoomArr[i, j] = new RoomNode();
                 nonTraversed.Add((i, j));
@@ -107,9 +108,9 @@ public class GenerateDungeon : MonoBehaviour
     }
 
     private void BuildFloor() {
-        for (int i = 0; i < RoomArr.GetLength(0); i++)
+        for (int i = 0; i < RoomArr.GetLength(1); i++)
         {
-            for (int j = 0; j < RoomArr.GetLength(1); j++)
+            for (int j = 0; j < RoomArr.GetLength(0); j++)
             {
                 GameObject room;
                 Vector3 pos = new Vector3(i * 59f, 0, j * 59f);
@@ -117,7 +118,6 @@ public class GenerateDungeon : MonoBehaviour
                 int rand = Random.Range(0, mainRooms.Length);
 
                 room = GameObject.Instantiate(mainRooms[rand], pos, Quaternion.identity);
-                
                 
 
                 SetDoorType(RoomArr[i, j].GetDoor(RoomNode.NORTH), room.transform.Find("Walls/NorthWall/DungeonLayer1Door"));
@@ -182,6 +182,41 @@ public class GenerateDungeon : MonoBehaviour
         connectedRooms.Add((room1, room2, dir));
     }
 
+    private Stack<(int, int)> FindMainPath((int, int) startNode, (int, int) endNode)
+    {
+        var visited = new List<(int, int)>();
+        var stack = new Stack<(int, int)>();
+        
+        stack.Push(startNode);
+
+        bool exitFound = false;
+
+        while(!exitFound)
+        {
+            bool deadEnd = true;
+            var vertex = stack.Peek();
+            visited.Add(vertex);
+            foreach ((int, int) neighbor in GetConnectedNeightbors(vertex.Item1, vertex.Item2))
+            {
+                //neighbors.Add(neighbor);
+                if (!visited.Contains(neighbor))
+                {
+                    stack.Push(neighbor);
+                    
+                    deadEnd = false;
+                    break;
+                }
+            }
+            if (stack.Peek() == endNode) exitFound = true;
+            if (deadEnd) stack.Pop();
+            
+        }
+        return stack;
+    }
+
+
+
+
     IEnumerable GetNeighbors(int x, int y)
     {
         if (x > 0) yield return (x-1,y);
@@ -195,6 +230,15 @@ public class GenerateDungeon : MonoBehaviour
         if (x < RoomArr.GetLength(0) - 1 && RoomArr[x, y].GetDoor(RoomNode.EAST) == RoomNode.WALL) yield return (x + 1, y);
         if (y > 0 && RoomArr[x, y].GetDoor(RoomNode.SOUTH) == RoomNode.WALL) yield return (x, y - 1);
         if (y < RoomArr.GetLength(1) - 1 && RoomArr[x, y].GetDoor(RoomNode.NORTH) == RoomNode.WALL) yield return (x, y + 1);
+    }
+
+    IEnumerable GetConnectedNeightbors(int x, int y)
+    {
+        if (y < RoomArr.GetLength(1) - 1 && RoomArr[x, y].GetDoor(RoomNode.NORTH) == RoomNode.DOOR) yield return (x, y + 1);
+        if (x > 0 && RoomArr[x, y].GetDoor(RoomNode.WEST) == RoomNode.DOOR) yield return (x - 1, y);
+        if (x < RoomArr.GetLength(0) - 1 && RoomArr[x, y].GetDoor(RoomNode.EAST) == RoomNode.DOOR) yield return (x + 1, y);
+        if (y > 0 && RoomArr[x, y].GetDoor(RoomNode.SOUTH) == RoomNode.DOOR) yield return (x, y - 1);
+        
     }
 
     private void CreateLoops()
@@ -218,7 +262,6 @@ public class GenerateDungeon : MonoBehaviour
                 {
                     int wallNum = Random.Range(0, neighborList.Count);
                     ConnectRooms((x, y), neighborList[wallNum]);
-                    Debug.Log("Connected " + (x, y) + neighborList[wallNum]);
                     loopCreated = true;
                 }
             }
