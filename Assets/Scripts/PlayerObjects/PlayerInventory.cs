@@ -53,6 +53,7 @@ namespace ABOGGUS.PlayerObjects
         public void UseMana(int manaCost)
         {
             mana -= manaCost;
+            UpgradeStats.mana -= manaCost;
             GameController.player.playerHUD.UpdateMana();
         }
 

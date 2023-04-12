@@ -64,10 +64,10 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         else if (transform.parent.name == "SummerElevator" && UpgradeStats.totalMana < 150) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 200) {
+        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 250) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 250) {
+        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 200) {
             NotEnoughMana.enabled = true;
         }
         else

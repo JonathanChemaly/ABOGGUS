@@ -70,6 +70,7 @@ public static class UpgradeStats
         swordUpgradeCount = 0;
         healthBarSize = defaultHealthBarSize;
         mana = defaultMana;
+        totalMana = defaultMana;
         manaEfficiency = 1.0f;
     }
 }
