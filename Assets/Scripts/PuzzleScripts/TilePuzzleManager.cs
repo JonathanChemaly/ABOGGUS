@@ -13,11 +13,12 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] float tileHeight;
         [SerializeField] float tileColliderScale;
         [SerializeField] float rotation;
+        [SerializeField] Material matBorder;
         [SerializeField] GameObject wall;
 
-        public Vector3 center;
-        public Vector3 topLeft;
-        public Vector3 localTopLeft;
+        [System.NonSerialized] public Vector3 center;
+        [System.NonSerialized] public Vector3 topLeft;
+        [System.NonSerialized] public Vector3 localTopLeft;
 
         private TilePuzzle[,] tiles;
         private Vector2 emptyPos;
@@ -44,7 +45,7 @@ namespace ABOGGUS.Interact.Puzzles
             CreatePuzzle();
             CreateBorders();
             CreateInvisFloor();
-            this.transform.rotation = Quaternion.Euler(0, 90, 0);
+            this.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             gameOver = false;
             movingTile = false; 
@@ -88,7 +89,7 @@ namespace ABOGGUS.Interact.Puzzles
                         // create prefab instance
                         GameObject newObj = Instantiate(tilePrefab, Vector3.one, Quaternion.identity);
                         newObj.GetComponent<BoxCollider>().size = new Vector3(1, tileColliderScale, 1);
-                        newObj.transform.RotateAround(center, Vector3.up, rotation);
+                        //newObj.transform.RotateAround(center, Vector3.up, rotation);
                         newObj.transform.parent = this.transform;
                         TilePuzzle newTile = newObj.GetComponent<TilePuzzle>();
 
@@ -209,29 +210,33 @@ namespace ABOGGUS.Interact.Puzzles
             border1.name = "LeftBorder";
             border1.transform.localScale = new Vector3(1, tileColliderScale, puzzleLength + 2*betweenSpace);
             border1.transform.position = center + new Vector3(-1 * puzzleLength / 2 - betweenSpace - 0.5f, tileHeight - 0.6f, 0);
-            border1.transform.RotateAround(center, Vector3.up, rotation);
+            //border1.transform.RotateAround(center, Vector3.up, rotation);
             border1.transform.parent = this.transform;
+            border1.GetComponent<MeshRenderer>().material = matBorder;
 
             GameObject border2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             border2.name = "RightBorder";
             border2.transform.localScale = new Vector3(1, tileColliderScale, puzzleLength + 2*betweenSpace);
             border2.transform.position = center + new Vector3(puzzleLength / 2 + betweenSpace + 0.5f, tileHeight - 0.6f, 0);
-            border2.transform.RotateAround(center, Vector3.up, rotation);
+            //border2.transform.RotateAround(center, Vector3.up, rotation);
             border2.transform.parent = this.transform;
+            border2.GetComponent<MeshRenderer>().material = matBorder;
 
             GameObject border3 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             border3.name = "TopBorder";
             border3.transform.localScale = new Vector3(puzzleLength + 2*betweenSpace + 2, tileColliderScale, 1);
             border3.transform.position = center + new Vector3(0, tileHeight - 0.6f, puzzleLength / 2 + betweenSpace + 0.5f);
-            border3.transform.RotateAround(center, Vector3.up, rotation);
+            //border3.transform.RotateAround(center, Vector3.up, rotation);
             border3.transform.parent = this.transform;
+            border3.GetComponent<MeshRenderer>().material = matBorder;
 
             GameObject border4 = GameObject.CreatePrimitive(PrimitiveType.Cube);
             border4.name = "BottomBorder";
             border4.transform.localScale = new Vector3(puzzleLength + 2*betweenSpace + 2, tileColliderScale, 1);
             border4.transform.position = center + new Vector3(0, tileHeight - 0.6f, -1 * puzzleLength / 2 - betweenSpace - 0.5f);
-            border4.transform.RotateAround(center, Vector3.up, rotation);
+            //border4.transform.RotateAround(center, Vector3.up, rotation);
             border4.transform.parent = this.transform;
+            border4.GetComponent<MeshRenderer>().material = matBorder;
         }
 
         private void CreateInvisFloor()
@@ -240,7 +245,7 @@ namespace ABOGGUS.Interact.Puzzles
             floor.name = "InvisFloor";
             floor.transform.localScale = new Vector3(puzzleLength, tileColliderScale, puzzleLength);
             floor.transform.position = center + new Vector3(0, tileHeight - 0.6f, 0);
-            floor.transform.RotateAround(center, Vector3.up, rotation);
+            //floor.transform.RotateAround(center, Vector3.up, rotation);
             floor.transform.parent = this.transform;
             floor.GetComponent<MeshRenderer>().enabled = false;
         }
