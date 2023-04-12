@@ -9,11 +9,15 @@ public class ButtonPressUpgrade : MonoBehaviour
 {
     [SerializeField] GameObject healthUpgradeAmount;
     [SerializeField] GameObject swordUpgradeAmount;
+    [SerializeField] GameObject spearUpgradeAmount;
+    [SerializeField] GameObject manaEfficiencyUpgradeAmount;
     [SerializeField] GameObject currentManaHolder;
     private void Awake()
     {
         healthUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.healthUpgradeCount;
         swordUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.swordUpgradeCount;
+        spearUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.spearUpgradeCount;
+        manaEfficiencyUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.mEUpgradeCount;
     }
     public void OnClickHealth()
     {
@@ -35,6 +39,30 @@ public class ButtonPressUpgrade : MonoBehaviour
             UpgradeStats.IncDamageSword();
             int newVal = Int32.Parse(swordCount.text.Substring(1)) + 1;
             swordCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
+    public void OnClickSpear()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.spearUpCost))
+        {
+            Text spearCount = spearUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncDamageSpear();
+            int newVal = Int32.Parse(spearCount.text.Substring(1)) + 1;
+            spearCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
+    public void OnClickME()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.mECost) && Int32.Parse(manaEfficiencyUpgradeAmount.GetComponent<Text>().text.Substring(1)) < 5)
+        {
+            Text mECount = manaEfficiencyUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncManaEfficiency();
+            int newVal = Int32.Parse(mECount.text.Substring(1)) + 1;
+            mECount.text = "+" + newVal;
             currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
         }
     }
