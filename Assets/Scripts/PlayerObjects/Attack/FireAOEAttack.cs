@@ -7,13 +7,23 @@ namespace ABOGGUS.PlayerObjects
 {
     public class FireAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = 10f;
+        private float damage = WeaponDamageStats.defaultFireAOEDamage;
         private float totalTime = 10f;
         private float activeTime = 1.5f;
         private float time = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultFireAOECost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-            StartCoroutine(ActivateAfterDelay());
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+                StartCoroutine(ActivateAfterDelay());
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         IEnumerator ActivateAfterDelay()
@@ -35,7 +45,7 @@ namespace ABOGGUS.PlayerObjects
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             Debug.Log(other.tag);
             if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);

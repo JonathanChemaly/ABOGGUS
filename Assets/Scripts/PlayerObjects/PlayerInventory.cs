@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -33,6 +34,26 @@ namespace ABOGGUS.PlayerObjects
                 invulnerable = true;                
                 Player.PlayerDied();
             }
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
+        public bool HasMana(int manaCost)
+        {
+            if (manaCost <= mana)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void UseMana(int manaCost)
+        {
+            mana -= manaCost;
+            GameController.player.playerHUD.UpdateMana();
         }
 
         public bool hasItem(string itemName)

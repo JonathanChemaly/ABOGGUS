@@ -25,12 +25,15 @@ namespace ABOGGUS.PlayerObjects
         }
         public void CastMagic(GameObject magicAttackPrefab, bool aoe, PlayerConstants.Magic castType)
         {
-            if (aoe && castType == PlayerConstants.Magic.Wind)
+            if (aoe && (castType == PlayerConstants.Magic.Wind || castType == PlayerConstants.Magic.Water))
                 Object.Instantiate(magicAttackPrefab, physicalGameObject.transform.position + physicalGameObject.transform.forward * PlayerConstants.WIND_AOE_ATTACK_MAXRANGE + magicAttackPrefab.transform.position, Quaternion.identity);
             else if (aoe && castType == PlayerConstants.Magic.Fire)
                 Object.Instantiate(magicAttackPrefab, physicalGameObject.transform.position + physicalGameObject.transform.forward * (magicAttackPrefab.transform.localScale.z / 2 + 1), physicalGameObject.transform.rotation);
             else if (castType == PlayerConstants.Magic.Wind || castType == PlayerConstants.Magic.Fire)
-                Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, physicalGameObject.transform.position.y + 1.5f, physicalGameObject.transform.position.z), physicalGameObject.transform.rotation);
+                Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, physicalGameObject.transform.position.y + 1.5f, physicalGameObject.transform.position.z) + physicalGameObject.transform.forward, physicalGameObject.transform.rotation);
+            else if (castType == PlayerConstants.Magic.Water)
+                Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, physicalGameObject.transform.position.y + 1.5f + magicAttackPrefab.transform.position.y, physicalGameObject.transform.position.z) + physicalGameObject.transform.forward * (magicAttackPrefab.transform.localScale.z / 2 + 1), physicalGameObject.transform.rotation);
+
         }
     }
 }

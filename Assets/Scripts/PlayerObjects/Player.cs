@@ -26,6 +26,7 @@ namespace ABOGGUS.PlayerObjects
         public float invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
 
         private static bool exists = false;
+        private bool resist = false;
 
         public void Awake()
         {
@@ -61,10 +62,21 @@ namespace ABOGGUS.PlayerObjects
 
         public void TakeDamage(float damage)
         {
-            if (invulnerabilityFrames == 0)
+            if (resist)
+            {
+                damage = damage / 2;
+            }
+            if (damage > 0)
+            {
+                if (invulnerabilityFrames == 0)
+                {
+                    inventory.TakeDamage(damage);
+                    invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
+                }
+            }
+            else
             {
                 inventory.TakeDamage(damage);
-                invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
             }
 
             playerHUD.UpdateHealthBar();
@@ -115,6 +127,11 @@ namespace ABOGGUS.PlayerObjects
         public GameObject GetGameObject()
         {
             return this.playerController.GetGameObject();
+        }
+
+        public void SetResistance(bool resist)
+        {
+            this.resist = resist;
         }
 
         private void OnEnable()
