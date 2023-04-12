@@ -59,7 +59,7 @@ namespace ABOGGUS.PlayerObjects
             tempScale.x = UpgradeStats.healthBarSize;
             playerHUD.transform.Find("HealthBar").localScale = tempScale;
             hudObj.transform.Find("ManaBar").gameObject.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
-            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon());
+            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
 
         public void TakeDamage(float damage)
@@ -97,7 +97,7 @@ namespace ABOGGUS.PlayerObjects
 
         public void UpdateWeapon()
         {
-            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon());
+            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
         IEnumerator ToCredits()
         {

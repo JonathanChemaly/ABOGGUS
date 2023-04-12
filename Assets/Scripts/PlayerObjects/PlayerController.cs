@@ -682,6 +682,7 @@ namespace ABOGGUS.PlayerObjects
 
         public void CastMagic()
         {
+            Player.WeaponChanged();
             if (castType == PlayerConstants.Magic.Wind && aoe)
                 playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Wind && !aoe)
