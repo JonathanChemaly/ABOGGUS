@@ -15,20 +15,23 @@ namespace ABOGGUS.Interact.Puzzles
         private TilePuzzle[,] tiles;
         private Vector2 emptyPos;
 
+        public Vector3 topLeft;
         public static bool gameOver;
         public static bool movingTile;
 
         private GameObject wall;
-        public const float wallMoveSpeed = 0.001f;
-        public const float wallStop = 6.5f;
+        public const float wallMoveSpeed = 0.002f;
+        public const float wallDist = 6f;
 
         // Start is called before the first frame update
         void Awake()
         {
+            topLeft = this.transform.position;
             CreatePuzzle();
+
             gameOver = false;
             movingTile = false;
-            wall = transform.Find("Door").Find("Wall").gameObject;
+            wall = transform.Find("Wall").gameObject;   
         }
 
         private void CreatePuzzle()
@@ -166,7 +169,8 @@ namespace ABOGGUS.Interact.Puzzles
 
         IEnumerator MoveWallUpOverTime()
         {
-            while (wall.transform.position.y < wallStop)
+            float targetY = wall.transform.position.y + wallDist;
+            while (wall.transform.position.y < targetY)
             {
                 yield return null;
                 wall.transform.position = Vector3.MoveTowards(wall.transform.position, wall.transform.position + Vector3.up, wallMoveSpeed);

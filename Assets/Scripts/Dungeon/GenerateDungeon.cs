@@ -6,6 +6,7 @@ public class GenerateDungeon : MonoBehaviour
 {
     public GameObject[] mainRooms;
     public GameObject[] optionalRooms;
+    public GameObject hallway;
     public int height = 5;
     public int width = 5;
     public int loops = 2;
@@ -13,15 +14,17 @@ public class GenerateDungeon : MonoBehaviour
     private RoomNode[,] RoomArr;
     private List<(int, int)> traversed;
     private List<(int, int)> nonTraversed;
+    private List<((int, int), (int, int), int)> connectedRooms;
 
     void Start()
     {
         traversed = new List<(int, int)>();
         nonTraversed = new List<(int, int)>();
+        connectedRooms = new List<((int, int), (int, int), int)>();
         RoomArr = GenerateFloor();
         CreateLoops();
         BuildFloor();
-        
+        AddHallways();
     }
 
     private RoomNode[,] GenerateFloor()
@@ -72,13 +75,44 @@ public class GenerateDungeon : MonoBehaviour
 
     }
 
+    private void AddHallways()
+    {
+        foreach(((int, int), (int, int), int) connection in connectedRooms)
+        {
+            int dir = connection.Item3;
+            bool rotate = false;
+            Vector3 pos = new Vector3(connection.Item1.Item1 * 59f, 0, connection.Item1.Item2 * 59f);
+            switch (dir)
+            {
+                case 0:
+                    pos.z += 29.5f;
+                    rotate = true;
+                    break;
+                case 1:
+                    pos.z -= 29.5f;
+                    rotate = true;
+                    break;
+                case 2:
+                    pos.x += 29.5f;
+                    break;
+                case 3:
+                    pos.x -= 29.5f;
+                    break;
+            }
+            
+            if (rotate) Instantiate(hallway, pos, Quaternion.identity);
+            else Instantiate(hallway, pos, Quaternion.Euler(new Vector3(0, 90, 0)));
+
+        }
+    }
+
     private void BuildFloor() {
         for (int i = 0; i < RoomArr.GetLength(0); i++)
         {
             for (int j = 0; j < RoomArr.GetLength(1); j++)
             {
                 GameObject room;
-                Vector3 pos = new Vector3(i * 29.5f, 0, j * 29.5f);
+                Vector3 pos = new Vector3(i * 59f, 0, j * 59f);
 
                 int rand = Random.Range(0, mainRooms.Length);
 
@@ -115,17 +149,20 @@ public class GenerateDungeon : MonoBehaviour
     }
     private void ConnectRooms((int, int) room1, (int, int)room2)
     {
+        int dir = 0 ;
        if(room1.Item1 == room2.Item1)
        {
             if(room1.Item2 < room2.Item2)
             {
                 RoomArr[room1.Item1, room1.Item2].SetDoor(RoomNode.DOOR, RoomNode.NORTH);
                 RoomArr[room2.Item1, room2.Item2].SetDoor(RoomNode.DOOR, RoomNode.SOUTH);
+                dir = 0;
             }
             else if(room1.Item2 > room2.Item2)
             {
                 RoomArr[room1.Item1, room1.Item2].SetDoor(RoomNode.DOOR, RoomNode.SOUTH);
                 RoomArr[room2.Item1, room2.Item2].SetDoor(RoomNode.DOOR, RoomNode.NORTH);
+                dir = 1;
             }
        } else if(room1.Item2 == room2.Item2)
         {
@@ -133,13 +170,16 @@ public class GenerateDungeon : MonoBehaviour
             {
                 RoomArr[room1.Item1, room1.Item2].SetDoor(RoomNode.DOOR, RoomNode.EAST);
                 RoomArr[room2.Item1, room2.Item2].SetDoor(RoomNode.DOOR, RoomNode.WEST);
+                dir = 2;
             }
             else if (room1.Item1 > room2.Item1)
             {
                 RoomArr[room1.Item1, room1.Item2].SetDoor(RoomNode.DOOR, RoomNode.WEST);
                 RoomArr[room2.Item1, room2.Item2].SetDoor(RoomNode.DOOR, RoomNode.EAST);
+                dir = 3;
             }
         }
+        connectedRooms.Add((room1, room2, dir));
     }
 
     IEnumerable GetNeighbors(int x, int y)

@@ -24,7 +24,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float transitionSpeed = 0.04f;
     public Quaternion fpRotation;
     public Quaternion tpRotation;
-    public bool thirdPerson = false;
+    public bool thirdPerson = true;
+    private bool oldTP = true;
     public static bool animationState = false;
     public static bool adjustCam = false;
     public static bool moveCam = false;
@@ -67,8 +68,25 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        Debug.Log("is paused: " + GameController.gameState);
         bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
                 && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen && !OpenSokobanOnInteract.SokobanOpen;
+        if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
+
+        if (GameController.scene == GameConstants.SCENE_DUNGEON1 || GameController.scene == GameConstants.SCENE_DUNGEON2 || GameController.scene == GameConstants.SCENE_DUNGEON3 || GameController.scene == GameConstants.SCENE_BOSS)
+        {
+            thirdPerson = true;
+        } else
+        {
+            thirdPerson = false;
+            Debug.Log("IN LOBBY");
+        }
+        if (thirdPerson != oldTP)
+        {
+            CameraPosition();
+            oldTP = thirdPerson;
+            //Debug.Log("CameraSwitch");
+        }
         if (GameController.player != null)
         {
             player = GameController.player.GetGameObject();
@@ -101,6 +119,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         else if (lookAround && thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             Vector2 lookVector = look.ReadValue<Vector2>();
             float lRotateSpeed = lookVector.x * Time.deltaTime * rotationSpeed;
             float yRotateSpeed = -lookVector.y * Time.deltaTime * rotationSpeed;
@@ -117,6 +136,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         else if (lookAround && !thirdPerson && cameraChecks)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             rotateDirection = (Vector3)look.ReadValue<Vector2>() * Time.deltaTime * rotationSpeed;
             rotX += rotateDirection.x;
             rotY += rotateDirection.y;
@@ -135,7 +155,10 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            if (player != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            }
         }
         cameraYRot = transform.eulerAngles.y;
         if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;
@@ -194,10 +217,9 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
     }
 
-
     public void Trigger(InputAction.CallbackContext obj)
     {
-        thirdPerson = !thirdPerson;
-        CameraPosition();
+       /* thirdPerson = !thirdPerson;
+        CameraPosition();*/
     }
 }

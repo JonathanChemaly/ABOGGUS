@@ -13,6 +13,7 @@ namespace ABOGGUS.PlayerObjects
         public float maxHealth = PlayerConstants.MAX_HEALTH;
         public float health = PlayerConstants.MAX_HEALTH;
         public int mana = UpgradeStats.mana;
+        public int totalMana = UpgradeStats.totalMana;
         public bool invulnerable { get; set; } = false;
         public bool key { get; set; } = true;
 
