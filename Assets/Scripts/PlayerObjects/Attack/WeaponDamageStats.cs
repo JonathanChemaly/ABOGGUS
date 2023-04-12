@@ -6,6 +6,7 @@ public static class WeaponDamageStats
 {
     public static int swordDamage = 20, defaultSwordDamage = 20;
     public static int spearDamage = 15, defaultSpearDamage = 15;
+
     public static int windDamage = 10, defaultWindDamage = 10;
     public static int windAOEDamage = 5, defaultWindAOEDamage = 5;
     public static int fireDamage = 30, defaultFireDamage = 30;

@@ -34,6 +34,7 @@ namespace ABOGGUS.PlayerObjects
                 Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, physicalGameObject.transform.position.y + 1.5f, physicalGameObject.transform.position.z) + physicalGameObject.transform.forward, physicalGameObject.transform.rotation);
             else if (castType == PlayerConstants.Magic.Water)
                 Object.Instantiate(magicAttackPrefab, new Vector3(physicalGameObject.transform.position.x, physicalGameObject.transform.position.y + 1.5f + magicAttackPrefab.transform.position.y, physicalGameObject.transform.position.z) + physicalGameObject.transform.forward * (magicAttackPrefab.transform.localScale.z / 2 + 1), physicalGameObject.transform.rotation);
+
         }
     }
 }
