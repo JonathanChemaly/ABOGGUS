@@ -12,6 +12,7 @@ namespace ABOGGUS.Menus
     public class PauseMenu : MonoBehaviour
     {
         public GameObject pauseMenu;
+        public GameObject statsBox;
         public static bool isPaused;
 
         // Start is called before the first frame update
@@ -45,6 +46,7 @@ namespace ABOGGUS.Menus
         public void ResumeGame()
         {
             pauseMenu.SetActive(false);
+            statsBox.SetActive(false);
             GameController.ResumeGame();
         }
 
@@ -56,6 +58,12 @@ namespace ABOGGUS.Menus
         public void QuitGame()
         {
             GameController.QuitGame("Quit from pause menu.");
+        }
+
+        public void SeeStats()
+        {
+            pauseMenu.SetActive(false);
+            statsBox.SetActive(true);
         }
     }
 }
