@@ -12,8 +12,12 @@ namespace ABOGGUS.PlayerObjects.Items
         public const string KeyName = "key";
         public const string KeyDescription = "A shiny key that glimmers on its own, this will surely be useful later.";
 
-        public const string GrimoreName = "Grimoire";
-        public const string GrimoreDescription = "A shiny key that glimmers on its own, this will surely be useful later.";
+        public const string SwordName = "Sword";
+        public const string SwordDescription = "A sharp sword that seemingly appeared from nowhere?";
+        public const string SpearName = "Spear";
+        public const string SpearDescription = "Ouch! That's pointy!";
+        public const string GrimoireName = "Grimoire";
+        public const string GrimoireDescription = "A magical book left behind by someone...";
 
         //Autumn Room Items
         public const string WrenchName = "wrench";

@@ -757,14 +757,17 @@ namespace ABOGGUS.PlayerObjects
 
             if (weaponEquipped == PlayerConstants.Weapon.Sword)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SWORD);
             }
             else if (weaponEquipped == PlayerConstants.Weapon.Grimoire)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_GRIMOIRE);
             }
             else if (weaponEquipped == PlayerConstants.Weapon.Spear)
             {
+                Player.WeaponChanged();
                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.EQUIP_SPEAR);
             }
             Invoke(nameof(EndTransition), PlayerConstants.TRANSITION_DELAY);
@@ -792,6 +795,11 @@ namespace ABOGGUS.PlayerObjects
         {
             physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.normalMaterial;
             GameController.player.SetResistance(false);
+        }
+
+        public PlayerConstants.Weapon GetCurrentWeapon()
+        {
+            return this.weaponEquipped;
         }
 
 

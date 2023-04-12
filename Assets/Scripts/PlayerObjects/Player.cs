@@ -20,6 +20,7 @@ namespace ABOGGUS.PlayerObjects
         public bool debug = false;
 
         public static Action PlayerDied;
+        public static Action WeaponChanged;
 
         public PlayerInventory inventory;
         public PlayerHUD playerHUD;
@@ -58,6 +59,7 @@ namespace ABOGGUS.PlayerObjects
             tempScale.x = UpgradeStats.healthBarSize;
             playerHUD.transform.Find("HealthBar").localScale = tempScale;
             hudObj.transform.Find("ManaBar").gameObject.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
+            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon());
         }
 
         public void TakeDamage(float damage)
@@ -91,6 +93,11 @@ namespace ABOGGUS.PlayerObjects
                 UpgradeStats.totalMana += value;
             }
             playerHUD.UpdateMana();
+        }
+
+        public void UpdateWeapon()
+        {
+            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon());
         }
         IEnumerator ToCredits()
         {
@@ -138,11 +145,13 @@ namespace ABOGGUS.PlayerObjects
         {
             //PlayerDied += GameController.Respawn;
             PlayerDied += GameOverMenu.ActivateGameOver;
+            WeaponChanged += this.UpdateWeapon;
         }
         private void OnDisable()
         {
             //PlayerDied -= GameController.Respawn;
             PlayerDied -= GameOverMenu.ActivateGameOver;
+            WeaponChanged -= this.UpdateWeapon;
         }
     }
 }
