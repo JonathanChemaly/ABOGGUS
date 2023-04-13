@@ -80,7 +80,7 @@ public class FirePuzzle : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
 
         currentLine = new Stack<int>(firstLine);
-        player.transform.position = new Vector3(0, 8, 10) + this.transform.position;
+        player.transform.position = new Vector3(-15, 4, 0) + this.transform.position;
 
         StartCoroutine(this.BlackOut(false));
     }

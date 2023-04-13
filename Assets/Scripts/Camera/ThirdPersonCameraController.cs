@@ -70,7 +70,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         Debug.Log("is paused: " + GameController.gameState);
         bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
-                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
+                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen && !OpenSokobanOnInteract.SokobanOpen;
         if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
 
         if (GameController.scene == GameConstants.SCENE_DUNGEON1 || GameController.scene == GameConstants.SCENE_DUNGEON2 || GameController.scene == GameConstants.SCENE_DUNGEON3 || GameController.scene == GameConstants.SCENE_BOSS)
