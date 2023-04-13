@@ -1249,21 +1249,12 @@ namespace ABOGGUS.Input
         },
         {
             ""name"": ""Sokoban"",
-            ""id"": ""01a52003-94a5-4700-924c-6cd15c74699b"",
+            ""id"": ""7c02a9e1-1f04-47de-92ac-fa85faa97618"",
             ""actions"": [
-                {
-                    ""name"": ""Quit"",
-                    ""type"": ""Button"",
-                    ""id"": ""c82811c6-8c70-4c02-a93f-27fbe7fa0a75"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""Up"",
                     ""type"": ""Button"",
-                    ""id"": ""ccc74985-2b71-4350-9d24-84c21c436702"",
+                    ""id"": ""fe1b9393-a578-4137-8792-935e68146160"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1272,7 +1263,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Down"",
                     ""type"": ""Button"",
-                    ""id"": ""e7b37419-9ce8-4590-b01e-d4a8dcced9b4"",
+                    ""id"": ""f685ec50-5a26-44ba-8ef7-88802a741bb5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1281,7 +1272,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Left"",
                     ""type"": ""Button"",
-                    ""id"": ""ecc974a2-cbf6-440d-90a3-3389ccbfd86a"",
+                    ""id"": ""d5c49cb1-905d-49f3-bb38-244ebd326011"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1290,7 +1281,7 @@ namespace ABOGGUS.Input
                 {
                     ""name"": ""Right"",
                     ""type"": ""Button"",
-                    ""id"": ""6e28827e-31e5-48cc-94fc-582d4bd7485b"",
+                    ""id"": ""9b5f3697-4191-4645-8c76-5d1ece2ab434"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1300,29 +1291,7 @@ namespace ABOGGUS.Input
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""3fd84824-6686-49d2-b35f-1ba189e13f06"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b2eb4f5b-2624-48ff-87fb-ecbd1779dbb2"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7a833246-121f-4bdc-886d-499afdb520e2"",
+                    ""id"": ""53c00bf6-594b-433c-a087-e221c94e7bf4"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1333,7 +1302,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3593e854-6578-45f6-bd4b-cd6790438ee0"",
+                    ""id"": ""77124823-a660-4ed9-9310-71884a222eda"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1344,7 +1313,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""94a90c01-988a-4271-a71c-707c9a0a206b"",
+                    ""id"": ""50b8b30c-851c-48c0-9a2a-803b7dde89ce"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1355,7 +1324,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""28259a30-2f11-48e0-815e-4003d88676dd"",
+                    ""id"": ""1433ea7d-84c0-45f3-82d2-e3f667435c51"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1366,7 +1335,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cc2a3a4c-cc6e-4407-9351-0246b10aea64"",
+                    ""id"": ""6b328bbd-fc05-4cca-8d34-e4fd0fcf920b"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1377,7 +1346,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""21679077-48fe-4dda-82c3-35f33c1b7372"",
+                    ""id"": ""c35e4966-8d43-4287-ad59-19eb24fabef7"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1388,7 +1357,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6b55c298-692e-4c35-b02c-cc0530d2be17"",
+                    ""id"": ""80247616-4665-4eaf-907a-1aa78e9fab31"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1399,7 +1368,7 @@ namespace ABOGGUS.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e08c871-c12b-46fd-b06e-48327ed9ced7"",
+                    ""id"": ""3d852959-d59f-44e1-b79d-681a17795fa4"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1515,7 +1484,6 @@ namespace ABOGGUS.Input
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
             // Sokoban
             m_Sokoban = asset.FindActionMap("Sokoban", throwIfNotFound: true);
-            m_Sokoban_Quit = m_Sokoban.FindAction("Quit", throwIfNotFound: true);
             m_Sokoban_Up = m_Sokoban.FindAction("Up", throwIfNotFound: true);
             m_Sokoban_Down = m_Sokoban.FindAction("Down", throwIfNotFound: true);
             m_Sokoban_Left = m_Sokoban.FindAction("Left", throwIfNotFound: true);
@@ -1909,7 +1877,6 @@ namespace ABOGGUS.Input
         // Sokoban
         private readonly InputActionMap m_Sokoban;
         private ISokobanActions m_SokobanActionsCallbackInterface;
-        private readonly InputAction m_Sokoban_Quit;
         private readonly InputAction m_Sokoban_Up;
         private readonly InputAction m_Sokoban_Down;
         private readonly InputAction m_Sokoban_Left;
@@ -1918,7 +1885,6 @@ namespace ABOGGUS.Input
         {
             private @InputActions m_Wrapper;
             public SokobanActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Quit => m_Wrapper.m_Sokoban_Quit;
             public InputAction @Up => m_Wrapper.m_Sokoban_Up;
             public InputAction @Down => m_Wrapper.m_Sokoban_Down;
             public InputAction @Left => m_Wrapper.m_Sokoban_Left;
@@ -1932,9 +1898,6 @@ namespace ABOGGUS.Input
             {
                 if (m_Wrapper.m_SokobanActionsCallbackInterface != null)
                 {
-                    @Quit.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
-                    @Quit.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
-                    @Quit.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnQuit;
                     @Up.started -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
                     @Up.performed -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
                     @Up.canceled -= m_Wrapper.m_SokobanActionsCallbackInterface.OnUp;
@@ -1951,9 +1914,6 @@ namespace ABOGGUS.Input
                 m_Wrapper.m_SokobanActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Quit.started += instance.OnQuit;
-                    @Quit.performed += instance.OnQuit;
-                    @Quit.canceled += instance.OnQuit;
                     @Up.started += instance.OnUp;
                     @Up.performed += instance.OnUp;
                     @Up.canceled += instance.OnUp;
@@ -2058,7 +2018,6 @@ namespace ABOGGUS.Input
         }
         public interface ISokobanActions
         {
-            void OnQuit(InputAction.CallbackContext context);
             void OnUp(InputAction.CallbackContext context);
             void OnDown(InputAction.CallbackContext context);
             void OnLeft(InputAction.CallbackContext context);

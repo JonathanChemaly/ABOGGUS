@@ -71,6 +71,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+
         if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
             timer = 2.0f;
