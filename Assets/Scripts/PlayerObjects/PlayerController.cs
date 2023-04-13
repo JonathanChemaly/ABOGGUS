@@ -209,30 +209,35 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoEquipWind(InputAction.CallbackContext obj)
         {
+            Player.WeaponChanged();
             castType = PlayerConstants.Magic.Wind;
             grimoire.SetNewMaterial(castType);
         }
 
         private void DoEquipFire(InputAction.CallbackContext obj)
         {
+            Player.WeaponChanged();
             castType = PlayerConstants.Magic.Fire;
             grimoire.SetNewMaterial(castType);
         }
 
         private void DoEquipWater(InputAction.CallbackContext obj)
         {
+            Player.WeaponChanged();
             castType = PlayerConstants.Magic.Water;
             grimoire.SetNewMaterial(castType);
         }
 
         private void DoEquipNature(InputAction.CallbackContext obj)
         {
+            Player.WeaponChanged();
             castType = PlayerConstants.Magic.Nature;
             grimoire.SetNewMaterial(castType);
         }
 
         private void DoEquipLightning(InputAction.CallbackContext obj)
         {
+            Player.WeaponChanged();
             castType = PlayerConstants.Magic.Lightning;
             grimoire.SetNewMaterial(castType);
         }
@@ -682,7 +687,6 @@ namespace ABOGGUS.PlayerObjects
 
         public void CastMagic()
         {
-            Player.WeaponChanged();
             if (castType == PlayerConstants.Magic.Wind && aoe)
                 playerState.CastMagic(grimoire.windAOEPrefab, aoe, castType);
             else if (castType == PlayerConstants.Magic.Wind && !aoe)
