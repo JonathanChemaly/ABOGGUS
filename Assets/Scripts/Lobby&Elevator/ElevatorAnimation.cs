@@ -26,6 +26,7 @@ public class ElevatorAnimation : MonoBehaviour
     }
 
     // Update is called once per frame
+ 
     void FixedUpdate()
     {
         if (animationState)
@@ -54,6 +55,7 @@ public class ElevatorAnimation : MonoBehaviour
         }
         //ThirdPersonCameraController.cameraYRot = ThirdPersonCameraController.transform.eulerAngles.y;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
