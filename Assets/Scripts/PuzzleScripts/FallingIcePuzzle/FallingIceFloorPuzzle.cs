@@ -11,6 +11,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
     [SerializeField] public int rows;
     [SerializeField] public int columns;
     private static GameObject[] iceFloors;
+    private static GameObject[] iceExits;
     public static Vector3 startPoint;
     private static GameObject fall;
     private static GameObject wall;
@@ -18,6 +19,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
     private static int row;
     private static int col;
     private static int times = 0;
+    private static int num = 0;
     private static bool puzzleStart = false;
     private static float timer = 10f;
     private static bool once = true;
@@ -57,7 +59,13 @@ public class FallingIceFloorPuzzle : MonoBehaviour
             if (iceFloors.Length == 0)
             {
                 Debug.Log("puzzlecomplete");
-                Destroy(GameObject.Find("iceExit"));
+                iceExits = GameObject.FindGameObjectsWithTag("IceExit");
+                num = iceExits.Length-1;
+                for (int i = num; i >= 0; i--)
+                {
+                    Destroy(iceExits[i]);
+                }
+
                 puzzleStart = false;
             }
             if (timer < 0f)
@@ -72,6 +80,16 @@ public class FallingIceFloorPuzzle : MonoBehaviour
     {
         if (once)
         {
+            if(times > 0)
+            {
+                iceExits = GameObject.FindGameObjectsWithTag("IceExit");
+                num = iceExits.Length;
+                for (int i = num-1; i >= 0; i--)
+                {
+                    Destroy(iceExits[i]);
+                }
+            }
+            
             times++;
             Debug.Log(times);
             Instantiate(exit, startPoint + new Vector3((col / 2) * 4f, 0f, -4f), Quaternion.identity);
@@ -89,7 +107,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
                     }
                     else if (Random.Range(0, 4) == 0)
                     {
-                        Instantiate(wall, startPoint + new Vector3(c * 4f, 0f, r * 4f), Quaternion.identity);
+                        Instantiate(exit, startPoint + new Vector3(c * 4f, 0f, r * 4f), Quaternion.identity);
                     }
                     else
                     {
