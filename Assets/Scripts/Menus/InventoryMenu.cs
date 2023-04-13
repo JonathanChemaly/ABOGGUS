@@ -21,11 +21,13 @@ namespace ABOGGUS.Menus
         //public Sprite keyImage;
         //public Image keyContainer;
 
-        public List<Image> containers;
-        public HoverTip[] hoverTips;
+        private List<Image> containers;
+        private HoverTip[] hoverTips;
 
         public static bool isPaused;
         private bool updated = false;
+
+        private const string TAG = "ItemContainer";
 
         public const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
         public const string FILE_TYPE = ".png";
@@ -36,7 +38,15 @@ namespace ABOGGUS.Menus
             inventoryMenu.SetActive(false);
             Transform parent = transform.GetChild(0).GetChild(0);
             containers = parent.GetComponentsInChildren<Image>().ToList();
-            containers.RemoveAt(0); //Remove the overall menu image
+            for(int i = 0; i < containers.Count; i++)
+            {
+                if (containers[i].tag != TAG)
+                {
+                    containers.Remove(containers[i]);
+                    i--;
+                }
+            }
+
             hoverTips = parent.GetComponentsInChildren<HoverTip>();
 
             for(int i = 0; i < containers.Count; i++)
