@@ -105,6 +105,10 @@ public class BotElevatorDoorTrigger : MonoBehaviour
                 {
                     GameController.ChangeScene("Elevator to Winter Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
+                if (GameController.scene == GameConstants.SCENE_SPRINGROOM)
+                {
+                    GameController.ChangeScene("Elevator to Spring Room", GameConstants.SCENE_MAINLOBBY, false);
+                }
             }
             else if (other.CompareTag("Player"))
             {
