@@ -39,6 +39,13 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateWeapon(PlayerConstants.Weapon weapon, PlayerConstants.Magic magic)
     {
+        
+        if (swordSprite == null || spearSprite == null || grimoireSprite == null)
+        {
+            swordSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SwordName + InventoryMenu.FILE_TYPE);
+            spearSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SpearName + InventoryMenu.FILE_TYPE);
+            grimoireSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.GrimoireName + InventoryMenu.FILE_TYPE);
+        }
         currentWeapon.color = Color.white;
         switch (weapon)
         {
@@ -65,5 +72,6 @@ public class PlayerHUD : MonoBehaviour
                 currentWeapon.enabled = false;
                 break;
         }
+        
     }
 }
