@@ -6721,7 +6721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772878946548182670, guid: 49cd1791eb471c041b20329e2c321d16, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4772878946548182670, guid: 49cd1791eb471c041b20329e2c321d16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7388,6 +7388,7 @@ MonoBehaviour:
   aniToPlay: {fileID: 78311077}
   playMultipleTimes: 0
   triggerSuccessOnFinishing: 1
+  delay: 0
 --- !u!114 &343838429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12154,7 +12155,7 @@ Transform:
   - {fileID: 639820820}
   - {fileID: 1680231250}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &587561035
 PrefabInstance:
@@ -13186,21 +13187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: gas
   failureText: Missing Gas
---- !u!114 &612686233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612686229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5ac0220f069df4c9a38a364d89c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact: {fileID: 612686230}
-  gObject: {fileID: 612686229}
-  layerName: Default
 --- !u!114 &612686238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13229,6 +13215,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactToWatch: {fileID: 612686230}
   activation: {fileID: 1657803085}
+--- !u!114 &612686244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612686229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d76978f5d64a6ab2c43e5470a058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 612686230}
+  gObject: {fileID: 612686229}
+  layerName: Default
 --- !u!1001 &612892930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13415,7 +13416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293556108600507863, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4293556108600507863, guid: 0e8f39014ed744049bb9eb8847d4ca3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13936,7 +13937,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &636703619
 PrefabInstance:
@@ -23431,7 +23432,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8614269286436277530, guid: 143b32ec949bdbb4099e21def97de4e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27440,21 +27441,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1018580832300568, guid: c30f6ae2f51f28749b062a9278ea6d0d, type: 3}
   m_PrefabInstance: {fileID: 1218264392}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1218264395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218264394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5ac0220f069df4c9a38a364d89c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact: {fileID: 1218264398}
-  gObject: {fileID: 1218264394}
-  layerName: Default
 --- !u!114 &1218264396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27526,6 +27512,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactToWatch: {fileID: 1218264398}
   activation: {fileID: 612686229}
+--- !u!114 &1218264409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218264394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d76978f5d64a6ab2c43e5470a058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 1218264398}
+  gObject: {fileID: 1218264394}
+  layerName: Default
 --- !u!1001 &1222371668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35906,21 +35907,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: tractorkey
   failureText: Missing Key
---- !u!114 &1657803089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657803085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5ac0220f069df4c9a38a364d89c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact: {fileID: 1657803086}
-  gObject: {fileID: 1657803085}
-  layerName: Default
 --- !u!114 &1657803090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35978,6 +35964,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 3.7487817, z: 4}
   m_Center: {x: -0.04403628, y: 1.953948, z: 0}
+--- !u!114 &1657803104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657803085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d76978f5d64a6ab2c43e5470a058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 1657803086}
+  gObject: {fileID: 1657803085}
+  layerName: Default
 --- !u!1001 &1659880960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36756,21 +36757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: wheel
   failureText: Missing Wheels
---- !u!114 &1688098333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688098311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5ac0220f069df4c9a38a364d89c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact: {fileID: 1688098317}
-  gObject: {fileID: 1688098311}
-  layerName: Default
 --- !u!114 &1688098338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36799,6 +36785,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactToWatch: {fileID: 1688098317}
   activation: {fileID: 1218264394}
+--- !u!114 &1688098344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688098311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726d76978f5d64a6ab2c43e5470a058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 1688098317}
+  gObject: {fileID: 1688098311}
+  layerName: Default
 --- !u!1 &1692676052
 GameObject:
   m_ObjectHideFlags: 0
@@ -45515,7 +45516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3876586229076092336, guid: db438846c495c6e459e2d2abefb6f8c6, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3876586229076092336, guid: db438846c495c6e459e2d2abefb6f8c6, type: 3}
       propertyPath: m_LocalPosition.x
