@@ -38,5 +38,18 @@ namespace ABOGGUS.Gameplay
         public const string NAME_PLAYERGAMEOBJECT = "Player";
 
         public static List<string> SCENES_INGAME = new List<string>() { SCENE_BOSS, SCENE_DUNGEON1, SCENE_DUNGEON2, SCENE_DUNGEON3, SCENE_ELEVATOR, SCENE_MAINLOBBY, SCENE_DUNGEONTEST, SCENE_AUTUMNROOM, SCENE_SPRINGROOM, SCENE_WINTERROOM, SCENE_SUMMERROOM, SCENE_TEST };
+        public static Dictionary<string, bool> puzzleStatus= new Dictionary<string, bool>() { { "FirePuzzle", false }, { "WindPushPuzzle", false }, { "TileSlidePuzzle", false }, { "TractorPuzzle", false }, { "MazePuzzle", false }, { "MeltIcePuzzle", false }, { "FallingIcePuzzle", false }, { "GrowPuzzle", false }};
+        /*foreach (KeyValuePair<string, bool> entry in puzzles)
+        {
+            if (entry.Value)
+            {
+                Debug.Log(entry.Key + ": Complete");
+            }
+            else
+            {
+                Debug.Log(entry.Key + ": Incomplete");
+            }
+        }*/
+    
     }
 }
