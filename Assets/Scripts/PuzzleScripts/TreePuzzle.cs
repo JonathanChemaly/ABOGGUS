@@ -12,6 +12,7 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] private Interactable sprout;
         [SerializeField] private Interactable sapling;
         [SerializeField] private Interactable tree;
+        private ParticleSystem particles;
 
         public static int latestRun = -1;
 
@@ -22,31 +23,40 @@ namespace ABOGGUS.Interact.Puzzles
             sprout.InteractAction += InteractSprout;
             sapling.InteractAction += InteractSapling;
             tree.InteractAction += InteractTree;
+            particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
         }
 
         private void UpdateRun()
         {
-            //latestRun = UpgradeStats.runs;
+            latestRun = UpgradeStats.runs;
+        }
+        private void PlayParticles()
+        {
+            particles.Play();
         }
 
         private void InteractDirt()
         {
             UpdateRun();
+            PlayParticles();
             dirt.DoSuccesAction();
         }
         private void InteractSprout()
         {
             UpdateRun();
+            PlayParticles();
             sprout.DoSuccesAction();
         }
         private void InteractSapling()
         {
             UpdateRun();
+            PlayParticles();
             sapling.DoSuccesAction();
         }
         private void InteractTree()
         {
             UpdateRun();
+            PlayParticles();
             tree.DoSuccesAction();
         }
     }
