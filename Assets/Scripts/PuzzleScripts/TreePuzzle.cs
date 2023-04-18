@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using ABOGGUS.Interact;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact.Puzzles
 {
@@ -58,6 +59,8 @@ namespace ABOGGUS.Interact.Puzzles
             UpdateRun();
             PlayParticles();
             tree.DoSuccesAction();
+
+            GameConstants.puzzleStatus["TreeGrowPuzzle"] = true;    // puzzle is complete
         }
     }
 }
