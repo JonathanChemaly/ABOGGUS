@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 public class FallingIceFloorPuzzle : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
             iceFloors = GameObject.FindGameObjectsWithTag("iceFloor");
             if (iceFloors.Length == 0)
             {
-                Debug.Log("puzzlecomplete");
+                GameConstants.puzzleStatus["FallingIcePuzzle"] = true;
                 iceExits = GameObject.FindGameObjectsWithTag("IceExit");
                 num = iceExits.Length-1;
                 for (int i = num; i >= 0; i--)
@@ -78,15 +79,22 @@ public class FallingIceFloorPuzzle : MonoBehaviour
 
     public static void CreateFloor()
     {
+        int numFloors = 0;
         if (once)
         {
             if(times > 0)
             {
                 iceExits = GameObject.FindGameObjectsWithTag("IceExit");
-                num = iceExits.Length;
-                for (int i = num-1; i >= 0; i--)
+                num = iceExits.Length-1;
+                for (int i = num; i >= 0; i--)
                 {
+                    Debug.Log("IceWall destroyed - " + i);
                     Destroy(iceExits[i]);
+                }
+                iceFloors = GameObject.FindGameObjectsWithTag("iceFloor");
+                numFloors = iceFloors.Length - 1;
+                for (int j = numFloors; j >= 0; j--) {
+                    Destroy(iceFloors[j]);
                 }
             }
             

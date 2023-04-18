@@ -97,7 +97,8 @@ namespace ABOGGUS.PlayerObjects
 
         public void UpdateWeapon()
         {
-            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
+            if (playerHUD != null)
+                playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
         IEnumerator ToCredits()
         {
