@@ -18,6 +18,7 @@ namespace ABOGGUS.PlayerObjects.Items
         public const int GasID = 32;
         public const int TractorKeyID = 33;
         public const int HammerID = 40;
+        public const int BucketID = 50;
 
         public const string KeyName = "key";
         public const string KeyDescription = "A shiny key that glimmers on its own, this will surely be useful later.";
@@ -42,5 +43,9 @@ namespace ABOGGUS.PlayerObjects.Items
         //Winter Room Items
         public const string HammerName = "hammer";
         public const string HammerDescription = "A huge bulk. What can it do other than break stuff?";
+
+        //Spring Room Items
+        public const string BucketName = "bucket";
+        public const string BucketDescription = "Bucket";
     }
 }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Gameplay;
+using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.Interact.Checks
 {
-    public class InventoryCheckForInteractable : MonoBehaviour, InteractCheck
+    public class InteractCheckTreePuzzle : MonoBehaviour, InteractCheck
     {
 
         [SerializeField]
@@ -18,17 +19,20 @@ namespace ABOGGUS.Interact.Checks
         [Tooltip("what to display in the case item is missing from player inventory")]
         private string failureText = "Missing Required Item";
 
-        private PlayerInventory playerInv;
+        [SerializeField]
+        [Tooltip("what to display when player has already interacted with puzzle")]
+        private string failureText2 = "Already Watered this Run";
 
-        private System.Reflection.PropertyInfo itemInfo;
+        private PlayerInventory playerInv;
 
         public bool DoCheck()
         {
-            return playerInv.HasItem(itemName);
+            return UpgradeStats.runs > TreePuzzle.latestRun && playerInv.HasItem(itemName);
         }
 
         public string GetFailureText()
         {
+            if (UpgradeStats.runs <= TreePuzzle.latestRun) return failureText2;
             return failureText;
         }
 
@@ -36,9 +40,6 @@ namespace ABOGGUS.Interact.Checks
         void Start()
         {
             playerInv = GameController.player.inventory;
-            
-            //itemInfo = playerInv.GetType().GetProperty(itemName);
-            
         }
     }
 }
