@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
+using ABOGGUS.Gameplay;
 
 public class BlockHole : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class BlockHole : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.transform.position = new Vector3(0, 8, 0) + transform.position;
+        player.transform.position = new Vector3(0, 4, 0) + transform.position;
         boardArea = boardSize * boardSize;
         blocksLeft = numBlocks;
         generateLevel();
@@ -48,20 +49,22 @@ public class BlockHole : MonoBehaviour
         if (blocksLeft == 0)
         {
             cleared = true;
+            Debug.Log("wind block puzzle complete");
+            GameConstants.puzzleStatus["WindPushPuzzle"] = true;
             foreach (GameObject i in objects)
             {
                 Destroy(i);
             }
             Destroy(lava);
-            player.transform.position = new Vector3(114, 6, -192);
-            player.transform.rotation = new Quaternion(0, 60, 0, 0);
+            //player.transform.position = new Vector3(114, 6, -192);
+            //player.transform.rotation = new Quaternion(0, 60, 0, 0);
             this.enabled = false;
         }
     }
 
     private void FixedUpdate()
     {
-        if (!cleared && !restarting && lava.transform.localPosition.y < 12.5)
+        if (!cleared && !restarting && lava.transform.localPosition.y < 14)
         {
             lava.transform.Translate(Vector3.up * speed * Time.deltaTime / 10);
         }
@@ -251,7 +254,7 @@ public class BlockHole : MonoBehaviour
             pos.x = transform.position.x + (i - boardSize / 2) * 4;
             pos.z = transform.position.z + (j - boardSize / 2) * 4 - 2;
             pos.y = transform.position.y + 2;
-            Quaternion rot = Quaternion.Euler(90, 0, 0);
+            Quaternion rot = Quaternion.Euler(0, 0, 0);
            
             objects[numObjects] = Instantiate(wall2Prefab, pos, rot);
             numObjects++;
