@@ -7,7 +7,6 @@ public class GrassSlime : MonoBehaviour, IEnemy
 {
     private GameObject player;
     private Animator animator;
-    public GameObject vine;
     private bool inRange = false;
     private bool dead = false;
     private float range = 15f;
@@ -26,6 +25,7 @@ public class GrassSlime : MonoBehaviour, IEnemy
     private Transform target;
     private bool attacking = false;
     private float attackDelay = 1.0f;
+    private float knockback = 1.0f;
 
     void Start()
     {
@@ -50,10 +50,11 @@ public class GrassSlime : MonoBehaviour, IEnemy
 
         if (Vector3.Distance(transform.position, player.transform.position) < 2.5f)
         {
+            transform.LookAt(player.transform);
             attacking = true;
             if (timer == 1.5f)
             {
-                VineAttack();
+                Attack();
                 vineSound.Play();
             }
             inRange = false;
@@ -110,7 +111,7 @@ public class GrassSlime : MonoBehaviour, IEnemy
         if (collision.gameObject.name == "Player")
         {
             GameController.player.TakeDamage(damage);
-            
+            Debug.Log("Nature attack");
         }
         if (collision.gameObject.tag == "Sword" || collision.gameObject.tag == "MagicAttack")
         {
@@ -139,9 +140,13 @@ public class GrassSlime : MonoBehaviour, IEnemy
     {
         attacking = false;
     }
-    private void VineAttack()
+    private void Attack()
     {
-        var VineProjectile = Instantiate(vine, transform.position + transform.forward*1.5f, Quaternion.identity).GetComponent<Rigidbody>();
+        //transform.LookAt(player.transform);
+        animator.Play("Attack");
+        GameController.player.TakeDamage(damage);
+        player.transform.position = player.transform.position - player.transform.root.forward * knockback;
+        Debug.Log("Damage by nature slime");
     }
 
     public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
