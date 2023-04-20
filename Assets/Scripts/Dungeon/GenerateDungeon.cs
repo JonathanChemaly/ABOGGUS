@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateDungeon : MonoBehaviour
 {
     public GameObject[] mainRooms;
-    public GameObject[] optionalRooms;
+    public GameObject[] optionalHallways;
     public GameObject hallway;
     public int height = 5;
     public int width = 5;
@@ -23,9 +23,11 @@ public class GenerateDungeon : MonoBehaviour
         connectedRooms = new List<((int, int), (int, int), int)>();
         RoomArr = GenerateFloor();
         CreateLoops();
+        Stack<(int, int)> path = FindMainPath((width / 2, 0), (width / 2, height - 1));
+        Debug.Log(string.Join(",", path));
+        SetMainRooms(path);
         BuildFloor();
         AddHallways();
-        Debug.Log("Final Stack: " + System.String.Join(",", FindMainPath((width / 2, 0), (width / 2, height - 1))));
     }
 
     private RoomNode[,] GenerateFloor()
@@ -80,6 +82,13 @@ public class GenerateDungeon : MonoBehaviour
     {
         foreach(((int, int), (int, int), int) connection in connectedRooms)
         {
+            GameObject hallway = new GameObject();
+            if(System.Convert.ToBoolean(RoomArr[connection.Item1.Item1, connection.Item1.Item2].GetRoomType()) ^ System.Convert.ToBoolean(RoomArr[connection.Item2.Item1, connection.Item2.Item2].GetRoomType()))
+            {
+
+                hallway = optionalHallways[Random.Range(0, optionalHallways.Length)];
+            }
+            else hallway = this.hallway;
             int dir = connection.Item3;
             bool rotate = false;
             Vector3 pos = new Vector3(connection.Item1.Item1 * 59f, 0, connection.Item1.Item2 * 59f);
@@ -114,7 +123,6 @@ public class GenerateDungeon : MonoBehaviour
             {
                 GameObject room;
                 Vector3 pos = new Vector3(i * 59f, 0, j * 59f);
-
                 int rand = Random.Range(0, mainRooms.Length);
 
                 room = GameObject.Instantiate(mainRooms[rand], pos, Quaternion.identity);
@@ -214,6 +222,22 @@ public class GenerateDungeon : MonoBehaviour
         return stack;
     }
 
+    private void SetMainRooms(Stack<(int, int)> stack)
+    {
+        /*
+        while(stack.Count > 0)
+        {
+            var room = stack.Pop();
+            RoomArr[room.Item1, room.Item2].SetRoomType(RoomNode.MAIN_ROOM);
+        }
+        */
+
+        foreach((int, int) room in stack)
+        {
+            RoomArr[room.Item1, room.Item2].SetRoomType(RoomNode.MAIN_ROOM);
+        }
+    }
+
 
 
 
@@ -268,6 +292,7 @@ public class GenerateDungeon : MonoBehaviour
 
         }
     }
+
 
     
 
