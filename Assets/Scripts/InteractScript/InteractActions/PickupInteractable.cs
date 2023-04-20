@@ -18,14 +18,16 @@ namespace ABOGGUS.Interact
         private string itemName = "key";
 
         private PlayerInventory playerInv;
-        private System.Reflection.PropertyInfo itemInfo;
+        private bool itemInfo;
+        //private System.Reflection.PropertyInfo itemInfo;
 
         // Start is called before the first frame update
         void Start()
         {
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
-            itemInfo = playerInv.GetType().GetProperty(itemName);
+            itemInfo = playerInv.HasItem(itemName);
+            //itemInfo = playerInv.GetType().GetProperty(itemName);
         }
 
         private void pickUpObject()
@@ -54,7 +56,13 @@ namespace ABOGGUS.Interact
             {
                 playerInv.AddItem(ItemLookup.HammerName);
             }
-            itemInfo.SetValue(playerInv, true);
+            else if (interact.CompareTag(ItemLookup.BucketName))
+            {
+                Debug.Log("Bucket item picked up");
+                playerInv.AddItem(ItemLookup.BucketName);
+            }
+            //itemInfo.SetValue(playerInv, true);
+            itemInfo = true;
             interact.DoSuccesAction();
         }
     }

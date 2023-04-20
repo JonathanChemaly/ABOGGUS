@@ -19,6 +19,7 @@ namespace ABOGGUS.PlayerObjects.Items
                 case ItemLookup.TractorKeyName: return new TractorKey();
                 case ItemLookup.GrimoireName: return new Grimore();
                 case ItemLookup.HammerName: return new Hammer();
+                case ItemLookup.BucketName: return new Bucket();
             }
 
             return null;

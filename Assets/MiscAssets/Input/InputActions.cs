@@ -253,6 +253,15 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Next Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""550b1a5b-532e-448f-8b30-23d6e7d807a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -726,6 +735,17 @@ namespace ABOGGUS.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Equip Spear"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ec1c2db-d249-45f6-a319-06df29d8c22a"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Next Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1470,6 +1490,7 @@ namespace ABOGGUS.Input
             m_Player_EquipWater = m_Player.FindAction("Equip Water", throwIfNotFound: true);
             m_Player_EquipNature = m_Player.FindAction("Equip Nature", throwIfNotFound: true);
             m_Player_EquipLightning = m_Player.FindAction("Equip Lightning", throwIfNotFound: true);
+            m_Player_NextRun = m_Player.FindAction("Next Run", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1572,6 +1593,7 @@ namespace ABOGGUS.Input
         private readonly InputAction m_Player_EquipWater;
         private readonly InputAction m_Player_EquipNature;
         private readonly InputAction m_Player_EquipLightning;
+        private readonly InputAction m_Player_NextRun;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -1601,6 +1623,7 @@ namespace ABOGGUS.Input
             public InputAction @EquipWater => m_Wrapper.m_Player_EquipWater;
             public InputAction @EquipNature => m_Wrapper.m_Player_EquipNature;
             public InputAction @EquipLightning => m_Wrapper.m_Player_EquipLightning;
+            public InputAction @NextRun => m_Wrapper.m_Player_NextRun;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1685,6 +1708,9 @@ namespace ABOGGUS.Input
                     @EquipLightning.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipLightning;
                     @EquipLightning.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipLightning;
                     @EquipLightning.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipLightning;
+                    @NextRun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRun;
+                    @NextRun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRun;
+                    @NextRun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextRun;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1764,6 +1790,9 @@ namespace ABOGGUS.Input
                     @EquipLightning.started += instance.OnEquipLightning;
                     @EquipLightning.performed += instance.OnEquipLightning;
                     @EquipLightning.canceled += instance.OnEquipLightning;
+                    @NextRun.started += instance.OnNextRun;
+                    @NextRun.performed += instance.OnNextRun;
+                    @NextRun.canceled += instance.OnNextRun;
                 }
             }
         }
@@ -2002,6 +2031,7 @@ namespace ABOGGUS.Input
             void OnEquipWater(InputAction.CallbackContext context);
             void OnEquipNature(InputAction.CallbackContext context);
             void OnEquipLightning(InputAction.CallbackContext context);
+            void OnNextRun(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
