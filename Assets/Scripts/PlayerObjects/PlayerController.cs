@@ -6,6 +6,7 @@ using ABOGGUS.Input;
 using System;
 using UnityEngine.Playables;
 using ABOGGUS.Gameplay;
+using ABOGGUS.PlayerObjects.Items;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -158,20 +159,23 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoEquipGrimoire(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+            if (GameController.player.inventory.HasItem(ItemLookup.GrimoireName))
             {
-                lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                if (weaponEquipped == PlayerConstants.Weapon.Sword)
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                weaponEquipped = PlayerConstants.Weapon.Grimoire;
+                transitioning = true;
             }
-            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
-            {
-                lastWeaponEquipped = PlayerConstants.Weapon.Spear;
-            }
-            else
-            {
-                lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
-            }
-            weaponEquipped = PlayerConstants.Weapon.Grimoire;
-            transitioning = true;
         }
 
         private void DoEquipSword(InputAction.CallbackContext obj)
@@ -247,7 +251,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoCast(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && !casting)
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && !casting && SpellUnlocked())
             {
                 casting = true;
                 aoe = false;
@@ -256,7 +260,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoCastAOE(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging)
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && AOESpellUnlocked())
             {
                 casting = true;
                 aoe = true;
@@ -818,6 +822,50 @@ namespace ABOGGUS.PlayerObjects
         public PlayerConstants.Magic GetCurrentMagic()
         {
             return this.castType;
+        }
+
+        private bool AOESpellUnlocked()
+        {
+            bool unlocked = false;
+            if (castType == PlayerConstants.Magic.Wind && GameConstants.windAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Water && GameConstants.waterAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Nature && GameConstants.natureAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if  (castType == PlayerConstants.Magic.Fire && GameConstants.fireAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            return unlocked;
+        }
+
+        private bool SpellUnlocked()
+        {
+            bool unlocked = false;
+            if (castType == PlayerConstants.Magic.Wind && GameConstants.windUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Water && GameConstants.waterUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Nature && GameConstants.natureUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Fire && GameConstants.fireUnlocked)
+            {
+                unlocked = true;
+            }
+            return unlocked;
         }
 
 

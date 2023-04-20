@@ -128,6 +128,10 @@ public class FireSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (damageSource == PlayerConstants.DamageSource.Water)
+            {
+                health -= damage;
+            }
             if (health > 0)
             {
                 animator.Play("Damage0");
