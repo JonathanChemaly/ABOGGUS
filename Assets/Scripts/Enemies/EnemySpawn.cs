@@ -6,7 +6,7 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] public List<GameObject> enemyTypes;
     [SerializeField] public GameObject enemyToSpawn;
-    private float range = 40f;
+    private float range = 70f;
     private GameObject player;
     private bool enemySpawned;
     public bool crateSpawn;
