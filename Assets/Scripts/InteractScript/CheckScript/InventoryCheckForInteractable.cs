@@ -24,7 +24,6 @@ namespace ABOGGUS.Interact.Checks
 
         public bool DoCheck()
         {
-            
             return playerInv.HasItem(itemName);
         }
 

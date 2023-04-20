@@ -117,6 +117,9 @@ namespace ABOGGUS.PlayerObjects
 
             playerActions.Player.EquipLightning.performed += DoEquipLightning;
             playerActions.Player.EquipLightning.Enable();
+
+            playerActions.Player.NextRun.performed += DoNextRun;
+            playerActions.Player.NextRun.Enable();
         }
 
         public void InitializePlayerState(GameObject physicalGameObject)
@@ -306,6 +309,11 @@ namespace ABOGGUS.PlayerObjects
             {
                 dodging = true;
             }
+        }
+
+        private void DoNextRun(InputAction.CallbackContext obj)
+        {
+            UpgradeStats.runs++;
         }
 
         private void OnDisable()
