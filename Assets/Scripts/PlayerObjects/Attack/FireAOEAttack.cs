@@ -16,6 +16,10 @@ namespace ABOGGUS.PlayerObjects
         private void Start()
         {
             damage = WeaponDamageStats.fireAOEDamage;
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = damage * UpgradeStats.bonusDamMultiplier;
+            }
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);

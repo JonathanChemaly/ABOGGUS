@@ -20,9 +20,10 @@ public static class UpgradeStats
     public static int mEUpgradeCount = 0;
     public static int oSDUpgradeCount = 0;
     public static int hFMUpgradeCount = 0;
+    public static int bonusDamUpgradeCount = 0;
 
     public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
-    public static int mana = 200, defaultMana = 200, totalMana = 200;
+    public static int mana = 10000, defaultMana = 10000, totalMana = 10000;
     public static float manaEfficiency = 1.0f;
 
     public static int healthUpCost = -10;
@@ -31,10 +32,13 @@ public static class UpgradeStats
     public static int mECost = -20;
     public static int oSDCost = -30;
     public static int hFMCost = -50;
+    public static int bonusDamCost = -50;
 
     public static int runs = 0;
 
     public static bool canHealFromMana = false;
+    public static bool canDealBonusDamAtMaxHealth = false;
+    public static float bonusDamMultiplier = 1.0f;
 
     public static void IncHealth()
     {
@@ -114,6 +118,21 @@ public static class UpgradeStats
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(hFMCost);
     }
 
+    public static void IncBonusDam()
+    {
+        canDealBonusDamAtMaxHealth = true;
+        bonusDamMultiplier += 0.1f;
+        bonusDamUpgradeCount += 1;
+        GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(bonusDamCost);
+    }
+
+    public static bool CanDealBonusDamAtMaxHealth()
+    {
+        return UpgradeStats.canDealBonusDamAtMaxHealth &&
+                (GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health ==
+                GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
+    }
+
     public static void resetPlayerStats()
     {
         runs = 0;
@@ -128,5 +147,8 @@ public static class UpgradeStats
         hFMUpgradeCount = 0;
         canHealFromMana = false;
         healFromManaVal = 0;
+        bonusDamMultiplier = 1.0f;
+        bonusDamUpgradeCount = 0;
+        canDealBonusDamAtMaxHealth = false;
     }
 }

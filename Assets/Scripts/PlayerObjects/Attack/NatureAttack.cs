@@ -18,6 +18,10 @@ namespace ABOGGUS.PlayerObjects
             animator = GetComponent<Animator>();
             animator.fireEvents = false;
             damage = WeaponDamageStats.natureDamage;
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = (int)(damage * UpgradeStats.bonusDamMultiplier);
+            }
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);

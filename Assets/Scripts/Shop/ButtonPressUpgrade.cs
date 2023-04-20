@@ -13,6 +13,7 @@ public class ButtonPressUpgrade : MonoBehaviour
     [SerializeField] GameObject manaEfficiencyUpgradeAmount;
     [SerializeField] GameObject spellDamageUpgradeAmount;
     [SerializeField] GameObject healFromManaUpgradeAmount;
+    [SerializeField] GameObject bonusDamageUpgradeAmount;
     [SerializeField] GameObject currentManaHolder;
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class ButtonPressUpgrade : MonoBehaviour
         manaEfficiencyUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.mEUpgradeCount;
         spellDamageUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.oSDUpgradeCount;
         healFromManaUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.hFMUpgradeCount;
+        bonusDamageUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.bonusDamUpgradeCount;
     }
     public void OnClickHealth()
     {
@@ -91,6 +93,18 @@ public class ButtonPressUpgrade : MonoBehaviour
             UpgradeStats.HealFromMana();
             int newVal = Int32.Parse(hFMCount.text.Substring(1)) + 1;
             hFMCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
+    public void OnClickBonusDamage()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.bonusDamCost))
+        {
+            Text bonusDamCount = bonusDamageUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncBonusDam();
+            int newVal = Int32.Parse(bonusDamCount.text.Substring(1)) + 1;
+            bonusDamCount.text = "+" + newVal;
             currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
         }
     }
