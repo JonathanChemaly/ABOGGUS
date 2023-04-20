@@ -101,6 +101,7 @@ public class Boss : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        Debug.Log("Boss took " + damage + " damage.");
         healthBar.UpdateHealthBar();
         if (health <= 0)
         {

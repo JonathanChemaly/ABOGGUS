@@ -17,6 +17,7 @@ namespace ABOGGUS.PlayerObjects
         {
             animator = GetComponent<Animator>();
             animator.fireEvents = false;
+            damage = WeaponDamageStats.natureDamage;
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);

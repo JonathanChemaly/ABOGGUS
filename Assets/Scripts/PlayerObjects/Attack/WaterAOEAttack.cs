@@ -15,6 +15,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void Start()
         {
+            damage = WeaponDamageStats.waterAOEDamage;
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);

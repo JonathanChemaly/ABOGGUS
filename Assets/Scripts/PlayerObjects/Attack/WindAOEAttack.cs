@@ -16,6 +16,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void Start()
         {
+            damage = WeaponDamageStats.windAOEDamage;
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);
