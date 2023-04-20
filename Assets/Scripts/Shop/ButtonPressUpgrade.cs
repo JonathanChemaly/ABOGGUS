@@ -85,7 +85,7 @@ public class ButtonPressUpgrade : MonoBehaviour
 
     public void OnClickHFM()
     {
-        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.hFMCost))
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.hFMCost) && Int32.Parse(healFromManaUpgradeAmount.GetComponent<Text>().text.Substring(1)) < 4)
         {
             Text hFMCount = healFromManaUpgradeAmount.GetComponent<Text>();
             UpgradeStats.HealFromMana();
