@@ -11,6 +11,9 @@ public class ButtonPressUpgrade : MonoBehaviour
     [SerializeField] GameObject swordUpgradeAmount;
     [SerializeField] GameObject spearUpgradeAmount;
     [SerializeField] GameObject manaEfficiencyUpgradeAmount;
+    [SerializeField] GameObject spellDamageUpgradeAmount;
+    [SerializeField] GameObject healFromManaUpgradeAmount;
+    [SerializeField] GameObject bonusDamageUpgradeAmount;
     [SerializeField] GameObject currentManaHolder;
     private void Awake()
     {
@@ -18,6 +21,9 @@ public class ButtonPressUpgrade : MonoBehaviour
         swordUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.swordUpgradeCount;
         spearUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.spearUpgradeCount;
         manaEfficiencyUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.mEUpgradeCount;
+        spellDamageUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.oSDUpgradeCount;
+        healFromManaUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.hFMUpgradeCount;
+        bonusDamageUpgradeAmount.GetComponent<Text>().text = "+" + UpgradeStats.bonusDamUpgradeCount;
     }
     public void OnClickHealth()
     {
@@ -66,4 +72,41 @@ public class ButtonPressUpgrade : MonoBehaviour
             currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
         }
     }
+
+    public void OnClickOSD()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.oSDCost))
+        {
+            Text oSDCount = spellDamageUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncSpellDamage();
+            int newVal = Int32.Parse(oSDCount.text.Substring(1)) + 1;
+            oSDCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
+    public void OnClickHFM()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.hFMCost) && Int32.Parse(healFromManaUpgradeAmount.GetComponent<Text>().text.Substring(1)) < 4)
+        {
+            Text hFMCount = healFromManaUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.HealFromMana();
+            int newVal = Int32.Parse(hFMCount.text.Substring(1)) + 1;
+            hFMCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
+    public void OnClickBonusDamage()
+    {
+        if (UpgradeStats.mana >= Math.Abs(UpgradeStats.bonusDamCost))
+        {
+            Text bonusDamCount = bonusDamageUpgradeAmount.GetComponent<Text>();
+            UpgradeStats.IncBonusDam();
+            int newVal = Int32.Parse(bonusDamCount.text.Substring(1)) + 1;
+            bonusDamCount.text = "+" + newVal;
+            currentManaHolder.GetComponent<Text>().text = UpgradeStats.mana.ToString();
+        }
+    }
+
 }

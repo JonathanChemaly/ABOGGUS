@@ -16,6 +16,9 @@ namespace ABBOGGUS.Menus {
         private Text currentMana;
         private Text dungeonRuns;
         private Text manaEfficiency;
+        private Text bonusHealthFromMana;
+        private Text bonusDamAtMaxHealth;
+        private Text spellDam;
         // Start is called before the first frame update
         void Start()
         {
@@ -27,6 +30,9 @@ namespace ABBOGGUS.Menus {
             currentMana = transform.Find("Current Mana").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
             dungeonRuns = transform.Find("Dungeon Runs").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
             manaEfficiency = transform.Find("Mana Efficiency").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
+            spellDam = transform.Find("Overall Spell Damage").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
+            bonusHealthFromMana = transform.Find("Bonus Health From Mana").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
+            bonusDamAtMaxHealth = transform.Find("Bonus Damage At Max Health Multiplier").Find("LineHolder").Find("CurAmount").gameObject.GetComponent<Text>();
         }
 
         // Update is called once per frame
@@ -40,6 +46,9 @@ namespace ABBOGGUS.Menus {
             currentMana.text = UpgradeStats.mana.ToString();
             dungeonRuns.text = UpgradeStats.runs.ToString();
             manaEfficiency.text = UpgradeStats.manaEfficiency.ToString("0.0");
+            spellDam.text = UpgradeStats.overallSpellDamBonus.ToString();
+            bonusHealthFromMana.text = UpgradeStats.healFromManaVal.ToString();
+            bonusDamAtMaxHealth.text = UpgradeStats.bonusDamMultiplier.ToString("0.0");
         }
 
         public void ExitStatsMenu()

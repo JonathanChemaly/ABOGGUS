@@ -7,7 +7,7 @@ namespace ABOGGUS.PlayerObjects
 {
     public class FireAOEAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = WeaponDamageStats.defaultFireAOEDamage;
+        public float damage = WeaponDamageStats.defaultFireAOEDamage;
         private float totalTime = 10f;
         private float activeTime = 1.5f;
         private float time = 0f;
@@ -15,6 +15,11 @@ namespace ABOGGUS.PlayerObjects
 
         private void Start()
         {
+            damage = WeaponDamageStats.fireAOEDamage;
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = damage * UpgradeStats.bonusDamMultiplier;
+            }
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);
