@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.Gameplay;
+using ABOGGUS.PlayerObjects;
 public class ElementalDrop : MonoBehaviour
 {
     private GameObject player;
@@ -44,6 +45,29 @@ public class ElementalDrop : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             GameController.player.updateMana(1);
+            if (UpgradeStats.canHealFromMana)
+            {
+                Debug.Log("Player Health was: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+                if (GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health
+                    <= GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth - UpgradeStats.healFromManaVal)
+                {
+                    GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health += UpgradeStats.healFromManaVal;
+                    GameController.player.playerHUD.UpdateHealthBar();
+                }
+                else if (GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health <
+                    GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth &&
+                    GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health >
+                    GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth - UpgradeStats.healFromManaVal)
+                {
+                    GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health = GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth;
+                    GameController.player.playerHUD.UpdateHealthBar();
+                }
+                else
+                {
+                    Debug.Log("Player already at max health value of: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
+                }
+                Debug.Log("Player Health is now: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+            }
             deathSound.Play();
             Destroy(gameObject);
         }

@@ -8,6 +8,8 @@ public static class UpgradeStats
     public static int swordDamInc = 5;
     public static int spearDamInc = 5;
     public static float healthInc = 5f;
+    public static float healFromManaInc = 5f;
+    public static float healFromManaVal = 0f;
     public static int spellDamInc = 2;
     public static int overallSpellDamBonus = 0;
     public static float healthBarInc = 0.025f;
@@ -17,6 +19,8 @@ public static class UpgradeStats
     public static int spearUpgradeCount = 0;
     public static int mEUpgradeCount = 0;
     public static int oSDUpgradeCount = 0;
+    public static int hFMUpgradeCount = 0;
+
     public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
     public static int mana = 200, defaultMana = 200, totalMana = 200;
     public static float manaEfficiency = 1.0f;
@@ -26,8 +30,11 @@ public static class UpgradeStats
     public static int spearUpCost = -15;
     public static int mECost = -20;
     public static int oSDCost = -30;
+    public static int hFMCost = -50;
 
     public static int runs = 0;
+
+    public static bool canHealFromMana = false;
 
     public static void IncHealth()
     {
@@ -98,6 +105,15 @@ public static class UpgradeStats
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(oSDCost);
     }
 
+    public static void HealFromMana()
+    {
+        canHealFromMana = true;
+        healFromManaVal += healFromManaInc;
+        Debug.Log("Health gained from mana: " + healFromManaVal);
+        hFMUpgradeCount += 1;
+        GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(hFMCost);
+    }
+
     public static void resetPlayerStats()
     {
         runs = 0;
@@ -109,5 +125,8 @@ public static class UpgradeStats
         manaEfficiency = 1.0f;
         oSDUpgradeCount = 0;
         overallSpellDamBonus = 0;
+        hFMUpgradeCount = 0;
+        canHealFromMana = false;
+        healFromManaVal = 0;
     }
 }
