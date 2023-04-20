@@ -83,6 +83,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
                 {
                     if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
                     else GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_DUNGEON, false);
+                    BuffManager.Instance.StoreStatsBeforeRun();
                     UpgradeStats.runs++;
                 }
                 if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)

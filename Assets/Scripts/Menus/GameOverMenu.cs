@@ -52,6 +52,7 @@ namespace ABOGGUS.Menus
             GameController.PauseGame();
             ogVolume = AudioListener.volume;
             AudioListener.volume = 0;
+            BuffManager.Instance.RemoveBuffs();
             //GameController.player.debug = false;
         }
 
