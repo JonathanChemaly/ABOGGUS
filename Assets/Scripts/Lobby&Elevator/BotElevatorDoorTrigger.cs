@@ -93,7 +93,6 @@ public class BotElevatorDoorTrigger : MonoBehaviour
 
                     else GameController.ChangeScene("Elevator to Dungeon Layer 1", GameConstants.SCENE_DUNGEON1, false);
                     UpgradeStats.runs++;
-                    BuffManager.Instance.StoreStatsBeforeRun();
                 }
                 if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
                 {
