@@ -70,10 +70,10 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         Debug.Log("is paused: " + GameController.gameState);
         bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
-                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen;
+                && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen && !OpenSokobanOnInteract.SokobanOpen;
         if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
 
-        if (GameController.scene == GameConstants.SCENE_DUNGEON || GameController.scene == GameConstants.SCENE_BOSS)
+        if (GameController.scene == GameConstants.SCENE_DUNGEON1 || GameController.scene == GameConstants.SCENE_DUNGEON2 || GameController.scene == GameConstants.SCENE_DUNGEON3 || GameController.scene == GameConstants.SCENE_BOSS)
         {
             thirdPerson = true;
         } else
@@ -155,7 +155,10 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            if (player != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position + camOffset, camSpeed);
+            }
         }
         cameraYRot = transform.eulerAngles.y;
         if (PauseMenu.isPaused || InventoryMenu.isPaused || GameOverMenu.isPaused) freeLookCam.m_XAxis.m_MaxSpeed = 0.0f;

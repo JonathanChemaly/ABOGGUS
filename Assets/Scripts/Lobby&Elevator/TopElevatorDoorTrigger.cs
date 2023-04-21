@@ -71,16 +71,16 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        openTopDoor = false;
+        if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
             timer = 2.0f;
-            openTopDoor = false;
             ThirdPersonCameraController.preAnimCam = false;
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
             ThirdPersonCameraController.preAnimCam = true;
         }

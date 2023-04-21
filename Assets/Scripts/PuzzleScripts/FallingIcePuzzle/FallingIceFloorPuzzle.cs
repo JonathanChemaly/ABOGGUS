@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 public class FallingIceFloorPuzzle : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
     [SerializeField] public int rows;
     [SerializeField] public int columns;
     private static GameObject[] iceFloors;
+    private static GameObject[] iceExits;
     public static Vector3 startPoint;
     private static GameObject fall;
     private static GameObject wall;
@@ -18,6 +20,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
     private static int row;
     private static int col;
     private static int times = 0;
+    private static int num = 0;
     private static bool puzzleStart = false;
     private static float timer = 10f;
     private static bool once = true;
@@ -56,8 +59,14 @@ public class FallingIceFloorPuzzle : MonoBehaviour
             iceFloors = GameObject.FindGameObjectsWithTag("iceFloor");
             if (iceFloors.Length == 0)
             {
-                Debug.Log("puzzlecomplete");
-                Destroy(GameObject.Find("iceExit"));
+                GameConstants.puzzleStatus["FallingIcePuzzle"] = true;
+                iceExits = GameObject.FindGameObjectsWithTag("IceExit");
+                num = iceExits.Length-1;
+                for (int i = num; i >= 0; i--)
+                {
+                    Destroy(iceExits[i]);
+                }
+
                 puzzleStart = false;
             }
             if (timer < 0f)
@@ -70,8 +79,25 @@ public class FallingIceFloorPuzzle : MonoBehaviour
 
     public static void CreateFloor()
     {
+        int numFloors = 0;
         if (once)
         {
+            if(times > 0)
+            {
+                iceExits = GameObject.FindGameObjectsWithTag("IceExit");
+                num = iceExits.Length-1;
+                for (int i = num; i >= 0; i--)
+                {
+                    Debug.Log("IceWall destroyed - " + i);
+                    Destroy(iceExits[i]);
+                }
+                iceFloors = GameObject.FindGameObjectsWithTag("iceFloor");
+                numFloors = iceFloors.Length - 1;
+                for (int j = numFloors; j >= 0; j--) {
+                    Destroy(iceFloors[j]);
+                }
+            }
+            
             times++;
             Debug.Log(times);
             Instantiate(exit, startPoint + new Vector3((col / 2) * 4f, 0f, -4f), Quaternion.identity);
@@ -89,7 +115,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
                     }
                     else if (Random.Range(0, 4) == 0)
                     {
-                        Instantiate(wall, startPoint + new Vector3(c * 4f, 0f, r * 4f), Quaternion.identity);
+                        Instantiate(exit, startPoint + new Vector3(c * 4f, 0f, r * 4f), Quaternion.identity);
                     }
                     else
                     {

@@ -2,18 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.PlayerObjects
 {
     public class FireAttack : MonoBehaviour, IMagicAttack
     {
-        private float damage = 30f;
+        public float damage = WeaponDamageStats.defaultFireDamage;
         private float speed = 0.18f;
         private float totalTime = 5f;
         private float time = 0f;
+        private int manaCost = (int)(WeaponDamageStats.defaultFireCost * UpgradeStats.manaEfficiency);
+
         private void Start()
         {
-
+            damage = WeaponDamageStats.fireDamage;
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = damage * UpgradeStats.bonusDamMultiplier;
+            }
+            if (GameController.player.inventory.HasMana(manaCost))
+            {
+                GameController.player.inventory.UseMana(manaCost);
+            }
+            else
+            {
+                Destroy();
+            }
         }
 
         void FixedUpdate()

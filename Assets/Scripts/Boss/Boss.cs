@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using ABOGGUS.Gameplay;
 
 public class Boss : MonoBehaviour
 {
@@ -100,6 +101,7 @@ public class Boss : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        Debug.Log("Boss took " + damage + " damage.");
         healthBar.UpdateHealthBar();
         if (health <= 0)
         {
@@ -111,6 +113,7 @@ public class Boss : MonoBehaviour
                 Destroy(minion);
             }
             Invoke(nameof(DestroyEnemy), 0.5f);
+            GameController.ChangeScene("Beat game!", GameConstants.SCENE_CREDITS, false);
         }
     }
 
@@ -118,6 +121,7 @@ public class Boss : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {

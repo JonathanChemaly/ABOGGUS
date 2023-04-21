@@ -20,12 +20,14 @@ namespace ABOGGUS.PlayerObjects
         public bool debug = false;
 
         public static Action PlayerDied;
+        public static Action WeaponChanged;
 
         public PlayerInventory inventory;
         public PlayerHUD playerHUD;
         public float invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
 
         private static bool exists = false;
+        private bool resist = false;
 
         public void Awake()
         {
@@ -57,14 +59,26 @@ namespace ABOGGUS.PlayerObjects
             tempScale.x = UpgradeStats.healthBarSize;
             playerHUD.transform.Find("HealthBar").localScale = tempScale;
             hudObj.transform.Find("ManaBar").gameObject.transform.Find("ManaValue").GetComponent<TextMeshProUGUI>().text = UpgradeStats.mana.ToString();
+            playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
 
         public void TakeDamage(float damage)
         {
-            if (invulnerabilityFrames == 0)
+            if (resist)
+            {
+                damage = damage / 2;
+            }
+            if (damage > 0)
+            {
+                if (invulnerabilityFrames == 0)
+                {
+                    inventory.TakeDamage(damage);
+                    invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
+                }
+            }
+            else
             {
                 inventory.TakeDamage(damage);
-                invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
             }
 
             playerHUD.UpdateHealthBar();
@@ -72,13 +86,19 @@ namespace ABOGGUS.PlayerObjects
         public void updateMana(int value)
         {
             inventory.mana += value;
-            inventory.totalMana += value;
+            UpgradeStats.mana += value;
             if (value > 0)
             {
-                UpgradeStats.mana += value;
+                inventory.totalMana += value;
                 UpgradeStats.totalMana += value;
             }
             playerHUD.UpdateMana();
+        }
+
+        public void UpdateWeapon()
+        {
+            if (playerHUD != null)
+                playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
         IEnumerator ToCredits()
         {
@@ -117,15 +137,22 @@ namespace ABOGGUS.PlayerObjects
             return this.playerController.GetGameObject();
         }
 
+        public void SetResistance(bool resist)
+        {
+            this.resist = resist;
+        }
+
         private void OnEnable()
         {
             //PlayerDied += GameController.Respawn;
             PlayerDied += GameOverMenu.ActivateGameOver;
+            WeaponChanged += this.UpdateWeapon;
         }
         private void OnDisable()
         {
             //PlayerDied -= GameController.Respawn;
             PlayerDied -= GameOverMenu.ActivateGameOver;
+            WeaponChanged -= this.UpdateWeapon;
         }
     }
 }

@@ -28,7 +28,6 @@ namespace ABOGGUS.Interact
         {
             int LayerNumber = LayerMask.NameToLayer(layerName);
             gObject.layer = LayerNumber;
-            interact.DoSuccesAction();
         }
     }
 }

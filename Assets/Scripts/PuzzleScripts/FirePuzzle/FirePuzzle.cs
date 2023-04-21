@@ -1,9 +1,11 @@
+using ABOGGUS.PlayerObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FirePuzzle : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class FirePuzzle : MonoBehaviour
     [SerializeField] public GameObject Fire;
     [SerializeField] public Material FireMaterial;
     [SerializeField] public Material CompletedMaterial;
+    [SerializeField] GameObject player;
+    [SerializeField] public GameObject blackout;
 
     public bool puzzleActive = true;
     public bool fireActive = false;
@@ -53,7 +57,7 @@ public class FirePuzzle : MonoBehaviour
             FirePuzzle.Reset();
         }
 
-        if (currentLine.Count == 0) Halfway.Ready();
+        if (currentLine.Count == 0 && firstHalf) Halfway.Ready();
     }
 
     public void SecondHalf()
@@ -66,6 +70,48 @@ public class FirePuzzle : MonoBehaviour
 
     private void ResetPuzzle()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(this.ResetRoutine());
+    }
+
+    public IEnumerator ResetRoutine()
+    {
+
+        StartCoroutine(this.BlackOut());
+        yield return new WaitForSecondsRealtime(1f);
+
+        currentLine = new Stack<int>(firstLine);
+        player.transform.position = new Vector3(-15, 4, 0) + this.transform.position;
+
+        StartCoroutine(this.BlackOut(false));
+    }
+
+    //blackout animation taken from https://turbofuture.com/graphic-design-video/How-to-Fade-to-Black-in-Unity
+    public IEnumerator BlackOut(bool fadeToBlack = true, int fadeSpeed = 1)
+    {
+        UnityEngine.Color objectColor = blackout.GetComponent<RawImage>().color;
+        float fadeAmount;
+
+        if (fadeToBlack)
+        {
+            while (blackout.GetComponent<RawImage>().color.a < 1)
+            {
+                fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
+
+                objectColor = new UnityEngine.Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackout.GetComponent<RawImage>().color = objectColor;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (blackout.GetComponent<RawImage>().color.a > 0)
+            {
+                fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+
+                objectColor = new UnityEngine.Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackout.GetComponent<RawImage>().color = objectColor;
+                yield return null;
+            }
+        }
     }
 }

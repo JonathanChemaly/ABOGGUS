@@ -18,43 +18,51 @@ namespace ABOGGUS.Interact
         private string itemName = "key";
 
         private PlayerInventory playerInv;
-        private System.Reflection.PropertyInfo itemInfo;
+        private bool itemInfo;
+        //private System.Reflection.PropertyInfo itemInfo;
 
         // Start is called before the first frame update
         void Start()
         {
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
-            itemInfo = playerInv.GetType().GetProperty(itemName);
+            itemInfo = playerInv.HasItem(itemName);
+            //itemInfo = playerInv.GetType().GetProperty(itemName);
         }
 
         private void pickUpObject()
         {
-            if (interact.CompareTag(ItemLookup.GrimoreName))
+            if (interact.CompareTag(ItemLookup.GrimoireName))
             {
-                playerInv.addItem(ItemLookup.GrimoreName);
+                playerInv.AddItem(ItemLookup.GrimoireName);
             }
             else if (interact.CompareTag(ItemLookup.WheelName))
             {
-                playerInv.addItem(ItemLookup.WheelName);
+                playerInv.AddItem(ItemLookup.WheelName);
             }
             else if (interact.CompareTag(ItemLookup.WrenchName))
             {
-                playerInv.addItem(ItemLookup.WrenchName);
+                playerInv.AddItem(ItemLookup.WrenchName);
             }
             else if (interact.CompareTag(ItemLookup.GasName))
             {
-                playerInv.addItem(ItemLookup.GasName);
+                playerInv.AddItem(ItemLookup.GasName);
             }
             else if (interact.CompareTag(ItemLookup.TractorKeyName))
             {
-                playerInv.addItem(ItemLookup.TractorKeyName);
+                playerInv.AddItem(ItemLookup.TractorKeyName);
             }
             else if (interact.CompareTag(ItemLookup.HammerName))
             {
-                playerInv.addItem(ItemLookup.HammerName);
+                playerInv.AddItem(ItemLookup.HammerName);
             }
-            itemInfo.SetValue(playerInv, true);
+            else if (interact.CompareTag(ItemLookup.BucketName))
+            {
+                Debug.Log("Bucket item picked up");
+                playerInv.AddItem(ItemLookup.BucketName);
+            }
+            //itemInfo.SetValue(playerInv, true);
+            itemInfo = true;
             interact.DoSuccesAction();
         }
     }
