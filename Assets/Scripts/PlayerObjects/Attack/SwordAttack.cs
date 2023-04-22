@@ -40,6 +40,14 @@ namespace ABOGGUS.PlayerObjects
 
         private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)
         {
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = (int) (WeaponDamageStats.swordDamage * UpgradeStats.bonusDamMultiplier);
+            }
+            else
+            {
+                damage = WeaponDamageStats.swordDamage;
+            }
             if (collidedWith == PlayerConstants.CollidedWith.Boss)
             {
                 rb.GetComponent<Boss>().TakeDamage(damage);

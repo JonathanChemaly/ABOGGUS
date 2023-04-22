@@ -17,6 +17,7 @@ namespace ABOGGUS.PlayerObjects
         public int totalMana = UpgradeStats.totalMana;
         public bool invulnerable { get; set; } = false;
         public bool key { get; set; } = true;
+        //public bool bucket { get; set; } = false;
 
         private List<IItem> items = new List<IItem>();
 

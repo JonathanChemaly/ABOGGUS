@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.Interact.Puzzles
 {
@@ -177,7 +178,8 @@ namespace ABOGGUS.Interact.Puzzles
             }
 
             gameOver = true;
-            Debug.Log("Player has solved the puzzle!");
+            Debug.Log("Player has solved the slide puzzle!");
+            GameConstants.puzzleStatus["TileSlidePuzzle"] = true;
             MoveWall();
         }
 

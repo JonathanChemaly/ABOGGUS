@@ -14,6 +14,11 @@ namespace ABOGGUS.PlayerObjects
         private int manaCost = (int)(WeaponDamageStats.defaultWindCost * UpgradeStats.manaEfficiency);
         private void Start()
         {
+            damage = WeaponDamageStats.windDamage;
+            if (UpgradeStats.CanDealBonusDamAtMaxHealth())
+            {
+                damage = (int)(damage * UpgradeStats.bonusDamMultiplier);
+            }
             if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);
