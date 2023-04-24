@@ -15,6 +15,10 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] private Interactable tree;
         private ParticleSystem particles;
 
+        public enum Status {DIRT, SPROUT, SAPLING, TREE, FINAL};
+        public static Status status = Status.DIRT;
+        private Status oldStatus = Status.DIRT;
+
         public static int latestRun = -1;
 
         // Start is called before the first frame update
@@ -25,6 +29,17 @@ namespace ABOGGUS.Interact.Puzzles
             sapling.InteractAction += InteractSapling;
             tree.InteractAction += InteractTree;
             particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
+        }
+
+        public void LoadPuzzle(Status newStatus)
+        {
+            int temp = (int)newStatus;
+            if (temp == 1) InteractDirt();
+            if (temp == 2) InteractSprout();
+            if (temp == 3) InteractSapling();
+            if (temp == 4) InteractTree();
+
+            status = newStatus;
         }
 
         private void UpdateRun()
