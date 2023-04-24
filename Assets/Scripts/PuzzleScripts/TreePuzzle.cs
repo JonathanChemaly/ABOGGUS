@@ -35,6 +35,7 @@ namespace ABOGGUS.Interact.Puzzles
         {
             if (oldStatus != status)
             {
+                int temp = (int)status;
                 if (temp == 1) InteractDirt();
                 if (temp == 2) InteractSprout();
                 if (temp == 3) InteractSapling();
