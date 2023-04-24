@@ -31,18 +31,15 @@ namespace ABOGGUS.Interact.Puzzles
             particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
         }
 
-        private void Update()
+        public void LoadPuzzle(Status newStatus)
         {
-            if (oldStatus != status)
-            {
-                int temp = (int)status;
-                if (temp == 1) InteractDirt();
-                if (temp == 2) InteractSprout();
-                if (temp == 3) InteractSapling();
-                if (temp == 4) InteractTree();
+            int temp = (int)newStatus;
+            if (temp == 1) InteractDirt();
+            if (temp == 2) InteractSprout();
+            if (temp == 3) InteractSapling();
+            if (temp == 4) InteractTree();
 
-                oldStatus = status;
-            }
+            status = newStatus;
         }
 
         private void UpdateRun()
