@@ -101,5 +101,15 @@ namespace ABOGGUS.SaveSystem
             player.inventory.mana = currentSaveData.playerMana;
             Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
+
+        public static void SaveSpringPuzzleStatus(List<bool> activeRunesList)
+        {
+            
+        }
+
+        public static void LoadSpringPuzzleStatus(List<bool> activeRunesList)
+        {
+
+        }
     }
 }

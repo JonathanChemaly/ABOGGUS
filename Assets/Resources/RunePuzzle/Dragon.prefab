@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5518947409622143572}
   - component: {fileID: 4731307666377287681}
   - component: {fileID: 1771467309603372729}
+  - component: {fileID: 6487413486213743005}
   m_Layer: 8
   m_Name: Dragon
   m_TagString: Untagged
@@ -260,6 +261,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   component: {fileID: 3120176276333432537}
   interactToWatch: {fileID: 4694459807999490381}
+--- !u!114 &6487413486213743005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858391237738011027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec11e64c78e030a4492deb6985d9ffd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: {fileID: 4694459807999490381}
+  puzzleName: RunePuzzle
 --- !u!1001 &4564020791052016235
 PrefabInstance:
   m_ObjectHideFlags: 0

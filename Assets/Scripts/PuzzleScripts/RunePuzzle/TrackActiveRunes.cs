@@ -11,10 +11,47 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
         private List<Interactable> runeInteractables;
 
         [SerializeField]
+        [Tooltip("Rays associated with each rune")]
+        private List<PlayAudioOnInteract> audioToDisableIfLoad;
+
+        [SerializeField]
         [Tooltip("Interactables to enable when all other interacts are sucessful")]
         private Interactable toEnable;
 
-        private List<bool> successList; 
+        [SerializeField]
+        [Tooltip("")]
+        private EnableGameObject dragonRayEnable;
+
+        private List<bool> successList;
+
+        public void LoadFromList(List<bool> activeRunesList, bool complete)
+        {
+            for (int i = 0; i < activeRunesList.Count; i++)
+            {
+                bool currentStatus = activeRunesList[i];
+                successList[i] = currentStatus;
+                audioToDisableIfLoad[i].enabled = currentStatus;
+                Interactable curInteractable = runeInteractables[i];
+                if (currentStatus) curInteractable.DoAction();
+                curInteractable.enabled = currentStatus;
+
+            }
+
+            if(complete)
+            {
+                toEnable.enabled = false;
+                dragonRayEnable.enabled = false;
+            }
+        }
+
+        /**
+         * replaces list with our current rune status on which our active
+         */
+        public void SaveFromList(List<bool> activeRunesList)
+        {
+            activeRunesList.Clear();
+            activeRunesList.AddRange(successList);
+        }
 
         private void Start()
         {
@@ -32,13 +69,13 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
             toEnable.enabled = false;
         }
 
-        public void SetRuneActive(int runeNum)
+        private void SetRuneActive(int runeNum)
         {
             successList[runeNum] = true;
             CheckSucess();
         }
 
-        public void CheckSucess()
+        private void CheckSucess()
         {
             if (AreAllRunesActive())
             {
@@ -46,7 +83,7 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
             }
         }
 
-        public bool AreAllRunesActive()
+        private bool AreAllRunesActive()
         {
             foreach (bool b in successList)
             {
