@@ -61,7 +61,7 @@ public class TopSummerElevatorDoorTrigger : MonoBehaviour
             openTopDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
-                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_SUMMERROOM, false);
+                GameController.ChangeScene("Elevator to Summer Room", GameConstants.SCENE_SUMMERROOM, false);
             }
         }
     }
@@ -71,14 +71,6 @@ public class TopSummerElevatorDoorTrigger : MonoBehaviour
         {
             timer = 2.0f;
             openTopDoor = false;
-            ThirdPersonCameraController.preAnimCam = false;
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            ThirdPersonCameraController.preAnimCam = true;
         }
     }
 

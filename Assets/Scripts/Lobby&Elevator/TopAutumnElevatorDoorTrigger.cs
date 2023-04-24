@@ -71,14 +71,6 @@ public class TopAutumnElevatorDoorTrigger : MonoBehaviour
         {
             timer = 2.0f;
             openTopDoor = false;
-            ThirdPersonCameraController.preAnimCam = false;
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            ThirdPersonCameraController.preAnimCam = true;
         }
     }
 
