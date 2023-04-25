@@ -71,10 +71,15 @@ namespace ABOGGUS.Menus
             if (newColor.a + alphaInc*t > 1)
             {
                 newColor.a = 1;
-                openMenu = true;
+                Invoke("Delay", 1.0f);
             }
             else newColor.a += alphaInc*t;
             gameOverImage.color = newColor;
+        }
+
+        private void Delay()
+        {
+            openMenu = true;
         }
 
         public void GoToLobby()
