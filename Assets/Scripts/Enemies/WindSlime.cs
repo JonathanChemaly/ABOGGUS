@@ -124,6 +124,10 @@ public class WindSlime : MonoBehaviour, IEnemy
         {
             health -= damage;
             takingDamage = true;
+            if (damageSource == PlayerConstants.DamageSource.Nature)
+            {
+                health -= damage;
+            }
             if (health > 0)
             {
                 animator.Play("Damage0");

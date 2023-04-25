@@ -17,7 +17,11 @@ namespace ABOGGUS.PlayerObjects
 
         private void Start()
         {
-            if (GameController.player.inventory.HasMana(manaCost))
+            if (GameController.PuzzleScene())
+            {
+                //Do nothing
+            }
+            else if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);
                 StartCoroutine(ActivateAfterDelay());
