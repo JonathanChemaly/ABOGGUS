@@ -4,6 +4,7 @@ using UnityEngine;
 
 using ABOGGUS.Gameplay;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.SaveSystem
 {
@@ -25,5 +26,12 @@ namespace ABOGGUS.SaveSystem
         public bool playerHasKey = false;
         public int playerMana = 0;
         //public Vector3 lastPosition = Vector3.zero;
+
+
+        //Spring Puzzle Data
+
+        public TreePuzzle.Status treeStatus = TreePuzzle.Status.DIRT;
+        public int treeRunNumber = 0;
+        public List<bool> activeRunesList = new();
     }
 }

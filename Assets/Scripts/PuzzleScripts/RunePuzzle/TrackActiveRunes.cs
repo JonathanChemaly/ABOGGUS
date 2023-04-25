@@ -26,17 +26,18 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
 
         public void LoadFromList(List<bool> activeRunesList, bool complete)
         {
+            string debugString = "";
             for (int i = 0; i < activeRunesList.Count; i++)
             {
                 bool currentStatus = activeRunesList[i];
-                successList[i] = currentStatus;
                 audioToDisableIfLoad[i].enabled = currentStatus;
                 Interactable curInteractable = runeInteractables[i];
                 if (currentStatus) curInteractable.DoAction();
                 curInteractable.enabled = currentStatus;
-
+                debugString += currentStatus.ToString();
             }
-
+            successList = activeRunesList;
+            Debug.Log(debugString);
             if(complete)
             {
                 toEnable.enabled = false;

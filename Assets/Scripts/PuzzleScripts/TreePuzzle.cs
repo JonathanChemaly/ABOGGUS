@@ -31,15 +31,17 @@ namespace ABOGGUS.Interact.Puzzles
             particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
         }
 
-        public void LoadPuzzle(Status newStatus)
+        public void LoadPuzzle(Status newStatus, int newRuns)
         {
             int temp = (int)newStatus;
-            if (temp == 1) InteractDirt();
-            if (temp == 2) InteractSprout();
-            if (temp == 3) InteractSapling();
-            if (temp == 4) InteractTree();
+            if (temp >= 1) InteractDirt();
+            if (temp >= 2) InteractSprout();
+            if (temp >= 3) InteractSapling();
+            if (temp >= 4) InteractTree();
 
             status = newStatus;
+
+            latestRun = newRuns;
         }
 
         private void UpdateRun()
@@ -48,7 +50,7 @@ namespace ABOGGUS.Interact.Puzzles
         }
         private void PlayParticles()
         {
-            particles.Play();
+            particles?.Play();
         }
 
         private void InteractDirt()
@@ -56,24 +58,28 @@ namespace ABOGGUS.Interact.Puzzles
             UpdateRun();
             PlayParticles();
             dirt.DoSuccesAction();
+            status = Status.SPROUT;
         }
         private void InteractSprout()
         {
             UpdateRun();
             PlayParticles();
             sprout.DoSuccesAction();
+            status = Status.SAPLING;
         }
         private void InteractSapling()
         {
             UpdateRun();
             PlayParticles();
             sapling.DoSuccesAction();
+            status = Status.TREE;
         }
         private void InteractTree()
         {
             UpdateRun();
             PlayParticles();
             tree.DoSuccesAction();
+            status = Status.FINAL;
 
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = true;    // puzzle is complete
         }
