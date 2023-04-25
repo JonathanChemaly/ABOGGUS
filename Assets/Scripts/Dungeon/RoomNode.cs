@@ -37,7 +37,7 @@ public class RoomNode : MonoBehaviour
         southDoor = WALL;
         eastDoor = WALL;
         westDoor = WALL;
-        roomType = MAIN_ROOM;
+        roomType = OPT_ROOM;
     }
 
     public int GetDoor(int dir)
@@ -82,6 +82,11 @@ public class RoomNode : MonoBehaviour
     public int GetRoomType()
     {
         return roomType;
+    }
+
+    public void SetRoomType(int type)
+    {
+        roomType = type;
     }
 
     public IEnumerable GetWalls()
