@@ -24,8 +24,7 @@ namespace ABOGGUS.SaveSystem
 
         private void OnDestroy()
         {
-            List<bool> activeRunesList = new();
-            runePuzzle.SaveFromList(activeRunesList);
+            List<bool> activeRunesList = runePuzzle.SaveFromList();
 
             SaveGameManager.SaveSpringPuzzleStatus(activeRunesList, TreePuzzle.status, TreePuzzle.latestRun);
             //set dictionary value of puzzles to their status
