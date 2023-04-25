@@ -60,6 +60,15 @@ namespace ABOGGUS.Gameplay
                 Debug.Log(entry.Key + ": Incomplete");
             }
         }*/
-    
+
+        public static bool windAOEUnlocked = false;
+        public static bool natureAOEUnlocked = false;
+        public static bool waterAOEUnlocked = false;
+        public static bool fireAOEUnlocked = false;
+        public static bool windUnlocked = true;
+        public static bool natureUnlocked = false;
+        public static bool waterUnlocked = false;
+        public static bool fireUnlocked = false;
+
     }
 }

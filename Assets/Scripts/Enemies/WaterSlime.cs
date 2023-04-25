@@ -124,6 +124,10 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (!takingDamage && damageSource != PlayerConstants.DamageSource.Water)
         {
             health -= damage;
+            if (damageSource == PlayerConstants.DamageSource.Wind)
+            {
+                health -= damage;
+            }
             takingDamage = true;
         }
     }
