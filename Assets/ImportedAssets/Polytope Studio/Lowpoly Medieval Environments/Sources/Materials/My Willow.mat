@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PT_Willow_Tree_Leaves_mat
+  m_Name: My Willow
   m_Shader: {fileID: 4800000, guid: 5f1a71d7bb3221f4885984574896fc3f, type: 3}
   m_ValidKeywords:
   - _CUSTOMWIND_ON
@@ -15,6 +15,7 @@ Material:
   - _WINDMASKONOFF_ON
   m_InvalidKeywords:
   - _ALPHAPREMULTIPLY_ON
+  - _CUSTOMCOLORSTINTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -72,7 +73,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
-    - _CUSTOMCOLORSTINTING: 0
+    - _CUSTOMCOLORSTINTING: 1
     - _CUSTOMWIND: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -115,6 +116,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.37603852, g: 0.4245283, b: 0.11414204, a: 1}
-    - _TopColor: {r: 0.14369577, g: 0.49056602, b: 0.13189746, a: 1}
+    - _GroundColor: {r: 0.42352942, g: 0.11372548, b: 0.26812932, a: 1}
+    - _TopColor: {r: 0.49019608, g: 0.13333334, b: 0.2734501, a: 1}
   m_BuildTextureStacks: []
