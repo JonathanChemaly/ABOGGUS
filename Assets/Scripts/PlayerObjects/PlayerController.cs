@@ -6,6 +6,7 @@ using ABOGGUS.Input;
 using System;
 using UnityEngine.Playables;
 using ABOGGUS.Gameplay;
+using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -314,6 +315,7 @@ namespace ABOGGUS.PlayerObjects
         private void DoNextRun(InputAction.CallbackContext obj)
         {
             UpgradeStats.runs++;
+            //TreePuzzle.test++;
         }
 
         private void OnDisable()

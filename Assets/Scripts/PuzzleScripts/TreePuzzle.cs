@@ -17,7 +17,6 @@ namespace ABOGGUS.Interact.Puzzles
 
         public enum Status {DIRT, SPROUT, SAPLING, TREE, FINAL};
         public static Status status = Status.DIRT;
-        private Status oldStatus = Status.DIRT;
 
         public static int latestRun = -1;
 
@@ -33,14 +32,19 @@ namespace ABOGGUS.Interact.Puzzles
 
         public void LoadPuzzle(Status newStatus, int newRuns)
         {
-            int temp = (int)newStatus;
-            if (temp >= 1) InteractDirt();
-            if (temp >= 2) InteractSprout();
-            if (temp >= 3) InteractSapling();
-            if (temp >= 4) InteractTree();
+            StartCoroutine(WaitToLoad(newStatus, newRuns));
+        }
 
-            status = newStatus;
-
+        IEnumerator WaitToLoad(Status newStatus, int newRuns)
+        {
+            yield return new WaitForSeconds(1.0f);
+            if (newStatus > Status.DIRT && status == Status.DIRT) InteractDirt();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.SPROUT && status == Status.SPROUT) InteractSprout();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.SAPLING && status == Status.SAPLING) InteractSapling();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.TREE && status == Status.TREE) InteractTree();
             latestRun = newRuns;
         }
 
@@ -59,6 +63,7 @@ namespace ABOGGUS.Interact.Puzzles
             PlayParticles();
             dirt.DoSuccesAction();
             status = Status.SPROUT;
+            //Debug.Log("dirt interaction, updated status: " + status);
         }
         private void InteractSprout()
         {
@@ -66,6 +71,7 @@ namespace ABOGGUS.Interact.Puzzles
             PlayParticles();
             sprout.DoSuccesAction();
             status = Status.SAPLING;
+            //Debug.Log("sprout interaction, updated status: " + status);
         }
         private void InteractSapling()
         {
@@ -73,6 +79,7 @@ namespace ABOGGUS.Interact.Puzzles
             PlayParticles();
             sapling.DoSuccesAction();
             status = Status.TREE;
+            //Debug.Log("sapling interaction, updated status: " + status);
         }
         private void InteractTree()
         {
@@ -80,6 +87,7 @@ namespace ABOGGUS.Interact.Puzzles
             PlayParticles();
             tree.DoSuccesAction();
             status = Status.FINAL;
+            //Debug.Log("tree interaction, updated status: " + status);
 
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = true;    // puzzle is complete
         }
