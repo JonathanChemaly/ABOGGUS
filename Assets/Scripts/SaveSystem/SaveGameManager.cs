@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 
 using ABOGGUS.PlayerObjects;
-
+using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.SaveSystem
 {
@@ -100,6 +100,22 @@ namespace ABOGGUS.SaveSystem
             player.inventory.key = currentSaveData.playerHasKey;
             player.inventory.mana = currentSaveData.playerMana;
             Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+        }
+
+        public static void SaveSpringPuzzleStatus(List<bool> activeRunesList, TreePuzzle.Status tStatus, int runNum)
+        {
+            currentSaveData.treeStatus = tStatus;
+            currentSaveData.treeRunNumber = runNum;
+
+            currentSaveData.activeRunesList = activeRunesList;
+        }
+
+        public static void LoadSpringPuzzleStatus(out List<bool> activeRunesList, out TreePuzzle.Status tStatus, out int runNum)
+        {
+            tStatus = currentSaveData.treeStatus;
+            runNum = currentSaveData.treeRunNumber;
+
+            activeRunesList = currentSaveData.activeRunesList;
         }
     }
 }
