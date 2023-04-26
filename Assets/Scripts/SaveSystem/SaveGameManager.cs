@@ -5,6 +5,7 @@ using System.IO;
 
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.Interact.Puzzles;
+using ABOGGUS.Gameplay;
 
 namespace ABOGGUS.SaveSystem
 {
@@ -73,12 +74,16 @@ namespace ABOGGUS.SaveSystem
         {
             SaveScene(sceneName);
             SavePlayerProgress(player);
+            SaveGameConstants();
+            SaveUpgradeStats();
             SaveDataToFile(fileName);
         }
 
         public static void LoadProgressFromFile(string fileName)
         {
             LoadDataFromFile(fileName);
+            LoadGameConstants();
+            LoadUpgradeStats();
         }
 
         public static void SaveScene(string sceneName)
@@ -102,6 +107,8 @@ namespace ABOGGUS.SaveSystem
             Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
 
+        // Puzzle rooms
+
         public static void SaveSpringPuzzleStatus(List<bool> activeRunesList, TreePuzzle.Status tStatus, int runNum)
         {
             currentSaveData.treeStatus = tStatus;
@@ -109,13 +116,74 @@ namespace ABOGGUS.SaveSystem
 
             currentSaveData.activeRunesList = activeRunesList;
         }
-
         public static void LoadSpringPuzzleStatus(out List<bool> activeRunesList, out TreePuzzle.Status tStatus, out int runNum)
         {
             tStatus = currentSaveData.treeStatus;
             runNum = currentSaveData.treeRunNumber;
 
             activeRunesList = currentSaveData.activeRunesList;
+        }
+
+        // game stats and upgrades and misc stuff
+        public static void SaveGameConstants()
+        {
+            currentSaveData.puzzleStatus = GameConstants.puzzleStatus;
+            currentSaveData.windAOEUnlocked = GameConstants.windAOEUnlocked;
+            currentSaveData.natureAOEUnlocked = GameConstants.natureAOEUnlocked;
+            currentSaveData.waterAOEUnlocked = GameConstants.waterAOEUnlocked;
+            currentSaveData.fireAOEUnlocked = GameConstants.fireAOEUnlocked;
+            currentSaveData.windUnlocked = GameConstants.windUnlocked;
+            currentSaveData.natureUnlocked = GameConstants.natureUnlocked;
+            currentSaveData.waterUnlocked = GameConstants.waterUnlocked;
+            currentSaveData.fireUnlocked = GameConstants.fireUnlocked;
+        }
+        public static void LoadGameConstants()
+        {
+            GameConstants.puzzleStatus = currentSaveData.puzzleStatus;
+            GameConstants.windAOEUnlocked = currentSaveData.windAOEUnlocked;
+            GameConstants.natureAOEUnlocked = currentSaveData.natureAOEUnlocked;
+            GameConstants.waterAOEUnlocked = currentSaveData.waterAOEUnlocked;
+            GameConstants.fireAOEUnlocked = currentSaveData.fireAOEUnlocked;
+            GameConstants.windUnlocked = currentSaveData.windUnlocked;
+            GameConstants.natureUnlocked = currentSaveData.natureUnlocked;
+            GameConstants.waterUnlocked = currentSaveData.waterUnlocked;
+            GameConstants.fireUnlocked = currentSaveData.fireUnlocked;
+        }
+        public static void SaveUpgradeStats()
+        {
+            currentSaveData.runs = UpgradeStats.runs;
+            currentSaveData.healthUpgradeCount = UpgradeStats.healthUpgradeCount;
+            currentSaveData.swordUpgradeCount = UpgradeStats.swordUpgradeCount;
+            currentSaveData.healthBarSize = UpgradeStats.healthBarSize;
+            currentSaveData.mana = UpgradeStats.mana;
+            currentSaveData.totalMana = UpgradeStats.totalMana;
+            currentSaveData.manaEfficiency = UpgradeStats.manaEfficiency;
+            currentSaveData.oSDUpgradeCount = UpgradeStats.oSDUpgradeCount;
+            currentSaveData.overallSpellDamBonus = UpgradeStats.overallSpellDamBonus;
+            currentSaveData.hFMUpgradeCount = UpgradeStats.hFMUpgradeCount;
+            currentSaveData.canHealFromMana = UpgradeStats.canHealFromMana;
+            currentSaveData.healFromManaVal = UpgradeStats.healFromManaVal;
+            currentSaveData.bonusDamMultiplier = UpgradeStats.bonusDamMultiplier;
+            currentSaveData.bonusDamUpgradeCount = UpgradeStats.bonusDamUpgradeCount;
+            currentSaveData.canDealBonusDamAtMaxHealth = UpgradeStats.canDealBonusDamAtMaxHealth;
+        }
+        public static void LoadUpgradeStats()
+        {
+            UpgradeStats.runs = currentSaveData.runs;
+            UpgradeStats.healthUpgradeCount = currentSaveData.healthUpgradeCount;
+            UpgradeStats.swordUpgradeCount = currentSaveData.swordUpgradeCount;
+            UpgradeStats.healthBarSize = currentSaveData.healthBarSize;
+            UpgradeStats.mana = currentSaveData.mana;
+            UpgradeStats.totalMana = currentSaveData.totalMana;
+            UpgradeStats.manaEfficiency = currentSaveData.manaEfficiency;
+            UpgradeStats.oSDUpgradeCount = currentSaveData.oSDUpgradeCount;
+            UpgradeStats.overallSpellDamBonus = currentSaveData.overallSpellDamBonus;
+            UpgradeStats.hFMUpgradeCount = currentSaveData.hFMUpgradeCount;
+            UpgradeStats.canHealFromMana = currentSaveData.canHealFromMana;
+            UpgradeStats.healFromManaVal = currentSaveData.healFromManaVal;
+            UpgradeStats.bonusDamMultiplier = currentSaveData.bonusDamMultiplier;
+            UpgradeStats.bonusDamUpgradeCount = currentSaveData.bonusDamUpgradeCount;
+            UpgradeStats.canDealBonusDamAtMaxHealth = currentSaveData.canDealBonusDamAtMaxHealth;
         }
     }
 }
