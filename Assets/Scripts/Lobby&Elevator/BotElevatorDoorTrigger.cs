@@ -90,6 +90,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
                 if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
                 {
                     if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+
                     else GameController.ChangeScene("Elevator to Dungeon Layer 1", GameConstants.SCENE_DUNGEON1, false);
                     UpgradeStats.runs++;
                 }

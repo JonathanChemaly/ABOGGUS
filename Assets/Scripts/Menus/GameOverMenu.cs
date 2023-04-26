@@ -52,6 +52,7 @@ namespace ABOGGUS.Menus
             GameController.PauseGame();
             ogVolume = AudioListener.volume;
             AudioListener.volume = 0;
+            BuffManager.Instance.RemoveBuffs();
             //GameController.player.debug = false;
         }
 
@@ -70,10 +71,15 @@ namespace ABOGGUS.Menus
             if (newColor.a + alphaInc*t > 1)
             {
                 newColor.a = 1;
-                openMenu = true;
+                Invoke("Delay", 1.0f);
             }
             else newColor.a += alphaInc*t;
             gameOverImage.color = newColor;
+        }
+
+        private void Delay()
+        {
+            openMenu = true;
         }
 
         public void GoToLobby()
