@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class LargeEEDrop : MonoBehaviour
     [SerializeField] private GameObject pickupAnim;
     private float timer = 0.5f;
     private bool once = false;
+
+    public event Action eventOnPickup;
     void FixedUpdate()
     {
         if (touched)
@@ -34,6 +37,8 @@ public class LargeEEDrop : MonoBehaviour
             GameController.player.updateMana(50);
             touched = true;
             once = true;
+
+            eventOnPickup?.Invoke();
         }
     }
 }

@@ -95,5 +95,10 @@ namespace ABOGGUS.PlayerObjects
 
             items.Sort();
         }
+
+        public void SetItems(List<IItem> itemList)
+        {
+            items = itemList;
+        }
     }
 }
