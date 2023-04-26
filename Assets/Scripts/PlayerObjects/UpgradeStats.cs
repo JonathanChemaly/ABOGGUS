@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 
+[System.Serializable]
 public static class UpgradeStats
 {
     public static int swordDamInc = 5;

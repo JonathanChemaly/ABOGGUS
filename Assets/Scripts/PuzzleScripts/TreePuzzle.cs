@@ -13,6 +13,7 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] private Interactable sprout;
         [SerializeField] private Interactable sapling;
         [SerializeField] private Interactable tree;
+        [SerializeField] private LargeEEDrop manaDrop;
         private ParticleSystem particles;
 
         public enum Status {DIRT, SPROUT, SAPLING, TREE, FINAL};
@@ -28,6 +29,7 @@ namespace ABOGGUS.Interact.Puzzles
             sapling.InteractAction += InteractSapling;
             tree.InteractAction += InteractTree;
             particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
+            manaDrop.eventOnPickup += PuzzleComplete;
         }
 
         public void LoadPuzzle(Status newStatus, int newRuns)
@@ -89,6 +91,14 @@ namespace ABOGGUS.Interact.Puzzles
             status = Status.FINAL;
             //Debug.Log("tree interaction, updated status: " + status);
 
+            if (GameConstants.puzzleStatus["TreeGrowPuzzle"] == true)
+            {
+                Destroy(manaDrop.transform.parent.gameObject);
+            }
+        }
+
+        public void PuzzleComplete()
+        {
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = true;    // puzzle is complete
         }
     }

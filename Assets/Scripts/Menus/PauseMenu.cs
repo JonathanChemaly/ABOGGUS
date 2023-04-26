@@ -61,6 +61,7 @@ namespace ABOGGUS.Menus
 
         public void QuitGame()
         {
+            SaveGameManager.SaveProgressToFile(null, GameController.player, GameController.scene);
             GameController.QuitGame("Quit from pause menu.");
         }
 
