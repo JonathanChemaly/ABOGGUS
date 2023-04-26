@@ -4,6 +4,7 @@ using UnityEngine;
 
 using ABOGGUS.Gameplay;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.PlayerObjects.Items;
 using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.SaveSystem
@@ -18,6 +19,7 @@ namespace ABOGGUS.SaveSystem
         public float playerHealth = PlayerConstants.MAX_HEALTH;
         public bool playerHasKey = false;
         public int playerMana = 0;
+        public List<IItem> playerItems = new();
 
         // spring puzzle data
         public TreePuzzle.Status treeStatus = TreePuzzle.Status.DIRT;
@@ -25,17 +27,15 @@ namespace ABOGGUS.SaveSystem
         public List<bool> activeRunesList = new();
 
         // game constants
-        public Dictionary<string, bool> puzzleStatus = new Dictionary<string, bool>() {
-            { "FirePuzzle", false },
-            { "WindPushPuzzle", false },
-            { "TileSlidePuzzle", false },
-            { "TractorPuzzle", false },
-            { "MazePuzzle", false },
-            { "MeltIcePuzzle", false },
-            { "FallingIcePuzzle", false },
-            { "RunePuzzle", false },
-            { "TreeGrowPuzzle", false }
-        };
+        public bool firePuzzleComplete = false;
+        public bool windPushPuzzleComplete = false;
+        public bool tileSlidePuzzleComplete = false;
+        public bool tractorPuzzleComplete = false;
+        public bool mazePuzzleComplete = false;
+        public bool meltIcePuzzleComplete = false;
+        public bool fallingIcePuzzleComplete = false;
+        public bool runePuzzleComplete = false;
+        public bool treeGrowPuzzleComplete = false;
         public bool windAOEUnlocked = false;
         public bool natureAOEUnlocked = false;
         public bool waterAOEUnlocked = false;

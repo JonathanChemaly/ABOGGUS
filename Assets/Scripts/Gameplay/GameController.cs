@@ -50,6 +50,8 @@ namespace ABOGGUS.Gameplay
                 StartCoroutine(UpdatePlayerNotNull());
             }
 
+            SaveGameManager.LoadGameConstants();
+
             DontDestroyOnLoad(gameObject);
         }
 

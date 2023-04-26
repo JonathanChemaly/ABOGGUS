@@ -96,6 +96,7 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.playerHealth = player.inventory.health;
             currentSaveData.playerHasKey = player.inventory.key;
             currentSaveData.playerMana = player.inventory.mana;
+            currentSaveData.playerItems = player.inventory.GetItems();
             Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
         }
 
@@ -104,6 +105,7 @@ namespace ABOGGUS.SaveSystem
             player.inventory.health = currentSaveData.playerHealth;
             player.inventory.key = currentSaveData.playerHasKey;
             player.inventory.mana = currentSaveData.playerMana;
+            player.inventory.SetItems(currentSaveData.playerItems);
             Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
         }
 
@@ -127,7 +129,15 @@ namespace ABOGGUS.SaveSystem
         // game stats and upgrades and misc stuff
         public static void SaveGameConstants()
         {
-            currentSaveData.puzzleStatus = GameConstants.puzzleStatus;
+            currentSaveData.firePuzzleComplete = GameConstants.puzzleStatus["FirePuzzle"];
+            currentSaveData.windPushPuzzleComplete = GameConstants.puzzleStatus["WindPushPuzzle"];
+            currentSaveData.tileSlidePuzzleComplete = GameConstants.puzzleStatus["TileSlidePuzzle"];
+            currentSaveData.tractorPuzzleComplete = GameConstants.puzzleStatus["TractorPuzzle"];
+            currentSaveData.mazePuzzleComplete = GameConstants.puzzleStatus["MazePuzzle"];
+            currentSaveData.meltIcePuzzleComplete = GameConstants.puzzleStatus["MeltIcePuzzle"];
+            currentSaveData.fallingIcePuzzleComplete = GameConstants.puzzleStatus["FallingIcePuzzle"];
+            currentSaveData.runePuzzleComplete = GameConstants.puzzleStatus["RunePuzzle"];
+            currentSaveData.treeGrowPuzzleComplete = GameConstants.puzzleStatus["TreeGrowPuzzle"];
             currentSaveData.windAOEUnlocked = GameConstants.windAOEUnlocked;
             currentSaveData.natureAOEUnlocked = GameConstants.natureAOEUnlocked;
             currentSaveData.waterAOEUnlocked = GameConstants.waterAOEUnlocked;
@@ -139,7 +149,15 @@ namespace ABOGGUS.SaveSystem
         }
         public static void LoadGameConstants()
         {
-            GameConstants.puzzleStatus = currentSaveData.puzzleStatus;
+            GameConstants.puzzleStatus["FirePuzzle"] = currentSaveData.firePuzzleComplete;
+            GameConstants.puzzleStatus["WindPushPuzzle"] = currentSaveData.windPushPuzzleComplete;
+            GameConstants.puzzleStatus["TileSlidePuzzle"] = currentSaveData.tileSlidePuzzleComplete;
+            GameConstants.puzzleStatus["TractorPuzzle"] = currentSaveData.tractorPuzzleComplete;
+            GameConstants.puzzleStatus["MazePuzzle"] = currentSaveData.mazePuzzleComplete;
+            GameConstants.puzzleStatus["MeltIcePuzzle"] = currentSaveData.meltIcePuzzleComplete;
+            GameConstants.puzzleStatus["FallingIcePuzzle"] = currentSaveData.fallingIcePuzzleComplete;
+            GameConstants.puzzleStatus["RunePuzzle"] = currentSaveData.runePuzzleComplete;
+            GameConstants.puzzleStatus["TreeGrowPuzzle"] = currentSaveData.treeGrowPuzzleComplete;
             GameConstants.windAOEUnlocked = currentSaveData.windAOEUnlocked;
             GameConstants.natureAOEUnlocked = currentSaveData.natureAOEUnlocked;
             GameConstants.waterAOEUnlocked = currentSaveData.waterAOEUnlocked;
