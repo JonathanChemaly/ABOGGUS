@@ -16338,7 +16338,7 @@ PrefabInstance:
       objectReference: {fileID: 1746068474}
     - target: {fileID: 3193256414137945734, guid: 039409c92d04b334db62bd0ee9b51c6f, type: 3}
       propertyPath: m_VersionIndex
-      value: 189
+      value: 204
       objectReference: {fileID: 0}
     - target: {fileID: 3925578221806481091, guid: 039409c92d04b334db62bd0ee9b51c6f, type: 3}
       propertyPath: m_Mesh
@@ -48164,6 +48164,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5768103420492747541, guid: 84d1941ccb5a9d949af4bb2a1533bead, type: 3}
   m_PrefabInstance: {fileID: 1070658542}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1072657173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6542165262223477624, guid: 07cd31d3cc7dda641aa1e06df982befb, type: 3}
+  m_PrefabInstance: {fileID: 1674913178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0515e17ea70f14c948c10543113f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1081984497 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6040409004361762853, guid: 5fd32549f6aecb24d9d9431390a014b5, type: 3}
@@ -53674,7 +53685,7 @@ MonoBehaviour:
   sprout: {fileID: 545102454}
   sapling: {fileID: 456590229}
   tree: {fileID: 240455698}
-  manaDrop: {fileID: 0}
+  manaDrop: {fileID: 1072657173}
 --- !u!1 &1471994197
 GameObject:
   m_ObjectHideFlags: 0
