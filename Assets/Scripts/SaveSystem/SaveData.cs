@@ -21,6 +21,9 @@ namespace ABOGGUS.SaveSystem
         public int playerMana = 0;
         public List<IItem> playerItems = new();
 
+        // autumn puzzle data
+        public int tractorState = 0;
+
         // summer puzzle data
         public int tileSlideDifficulty = 3;
 

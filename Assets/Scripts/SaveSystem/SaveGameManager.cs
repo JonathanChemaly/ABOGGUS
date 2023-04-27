@@ -111,6 +111,15 @@ namespace ABOGGUS.SaveSystem
 
         // Puzzle rooms
 
+        public static void SaveAutumnPuzzleStatus(int tractorState)
+        {
+            currentSaveData.tractorState = tractorState;
+        }
+        public static void LoadAutumnPuzzleStatus(out int tractorState)
+        {
+            tractorState = currentSaveData.tractorState;
+        }
+
         public static void SaveSummerPuzzleStatus(int tileSlideDifficulty)
         {
             currentSaveData.tileSlideDifficulty = tileSlideDifficulty;
