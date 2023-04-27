@@ -74,6 +74,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         openTopDoor = false;
         if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
+            Debug.Log("HAPPENS EXIT");
             timer = 2.0f;
             ThirdPersonCameraController.preAnimCam = false;
         }
@@ -82,6 +83,8 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     {
         if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
+            Debug.Log("HAPPENS STAY");
+
             ThirdPersonCameraController.preAnimCam = true;
         }
     }

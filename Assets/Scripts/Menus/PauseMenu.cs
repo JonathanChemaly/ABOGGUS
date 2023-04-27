@@ -13,12 +13,15 @@ namespace ABOGGUS.Menus
     {
         public GameObject pauseMenu;
         public GameObject statsBox;
+        public GameObject controlsBox;
         public static bool isPaused;
 
         // Start is called before the first frame update
         void Start()
         {
             pauseMenu.SetActive(false);
+            statsBox.SetActive(false);
+            controlsBox.SetActive(false);
             isPaused = false;
         }
 
@@ -47,6 +50,7 @@ namespace ABOGGUS.Menus
         {
             pauseMenu.SetActive(false);
             statsBox.SetActive(false);
+            controlsBox.SetActive(false);
             GameController.ResumeGame();
         }
 
@@ -57,6 +61,7 @@ namespace ABOGGUS.Menus
 
         public void QuitGame()
         {
+            SaveGameManager.SaveProgressToFile(null, GameController.player, GameController.scene);
             GameController.QuitGame("Quit from pause menu.");
         }
 
@@ -64,6 +69,12 @@ namespace ABOGGUS.Menus
         {
             pauseMenu.SetActive(false);
             statsBox.SetActive(true);
+        }
+
+        public void SeeControls()
+        {
+            pauseMenu.SetActive(false);
+            controlsBox.SetActive(true);
         }
     }
 }

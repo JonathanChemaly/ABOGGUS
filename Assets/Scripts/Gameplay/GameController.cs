@@ -50,6 +50,8 @@ namespace ABOGGUS.Gameplay
                 StartCoroutine(UpdatePlayerNotNull());
             }
 
+            SaveGameManager.LoadGameConstants();
+
             DontDestroyOnLoad(gameObject);
         }
 
@@ -202,6 +204,17 @@ namespace ABOGGUS.Gameplay
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
             #endif
+        }
+
+        public static bool PuzzleScene()
+        {
+            bool puzzleScene = false;
+            if (scene == GameConstants.SCENE_WINTERROOM || scene == GameConstants.SCENE_SUMMERROOM || scene == GameConstants.SCENE_SPRINGROOM || scene == GameConstants.SCENE_AUTUMNROOM || scene == GameConstants.SCENE_MAINLOBBY)
+            {
+                puzzleScene = true;
+            }
+
+            return puzzleScene;
         }
     }
 }

@@ -64,10 +64,10 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         else if (transform.parent.name == "SummerElevator" && UpgradeStats.totalMana < 150) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 250) {
+        else if (transform.parent.name == "SpringElevator" && UpgradeStats.totalMana < 350) {
             NotEnoughMana.enabled = true;
         }
-        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 200) {
+        else if (transform.parent.name == "WinterElevator" && UpgradeStats.totalMana < 500) {
             NotEnoughMana.enabled = true;
         }
         else
@@ -90,6 +90,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
                 if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
                 {
                     if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
+
                     else GameController.ChangeScene("Elevator to Dungeon Layer 1", GameConstants.SCENE_DUNGEON1, false);
                     UpgradeStats.runs++;
                 }
@@ -122,8 +123,8 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             openBottomDoor = false;
-            if (NotEnoughMana != null) NotEnoughMana.enabled = false;
-            if (GoToBoss != null) GoToBoss.enabled = false;
+            NotEnoughMana.enabled = false;
+            GoToBoss.enabled = false;
         }
     }
 
