@@ -12,6 +12,7 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] private Interactable tractor1;
         [SerializeField] private Interactable tractor2;
         [SerializeField] private Interactable tractor3;
+        [SerializeField] private GameObject mana;
 
         // Start is called before the first frame update
         public void LoadPuzzle(int newState)
@@ -29,7 +30,12 @@ namespace ABOGGUS.Interact.Puzzles
             yield return new WaitForSeconds(0.5f);
             if (newState > 2) tractor2.DoSuccesAction();
             yield return new WaitForSeconds(0.5f);
-            if (newState > 3) tractor3.DoSuccesAction();
+            if (newState > 3)
+            {
+                tractor3.DoSuccesAction();
+                Destroy(mana);
+            }
+
         }
 
         public int SavePuzzle()
