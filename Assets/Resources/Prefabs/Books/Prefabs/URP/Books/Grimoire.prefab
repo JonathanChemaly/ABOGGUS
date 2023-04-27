@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grimoire
   actionName: Pick Up
-  enableCondition: 1
+  interactCheck: {fileID: 0}
   InteractSuccessful: 0
 --- !u!114 &1868442409159657613
 MonoBehaviour:
@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interact: {fileID: 180938213457995670}
+  itemName: Grimoire
 --- !u!114 &4362989490596996526
 MonoBehaviour:
   m_ObjectHideFlags: 0

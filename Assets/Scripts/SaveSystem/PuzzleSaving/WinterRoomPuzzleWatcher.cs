@@ -31,16 +31,15 @@ namespace ABOGGUS.SaveSystem
 
 
             SaveGameManager.SaveWinterPuzzleStatus();
+
             // temp for testing
-            SaveGameManager.SaveDataToFile(null);
+            SaveGameManager.SaveDebug();
         }
 
         private void Awake()
         {
             //Temp loads For Testing Purposes
-            SaveGameManager.LoadDataFromFile(null);
-            while (GameController.player is null) ;
-            SaveGameManager.LoadPlayerProgress(GameController.player);
+            SaveGameManager.LoadDebug();
 
             SaveGameManager.LoadWinterPuzzleStatus();
 

@@ -17,6 +17,8 @@ namespace ABOGGUS.SaveSystem
         public const string defaultFileName = "DefaultSave.sav";  // currently only one save file at a time
 
         public static bool finishedLoadingPlayer = false;
+
+        private static bool debug = true;
         
         public static bool SaveDataToFile(string fileName)
         {
@@ -104,13 +106,34 @@ namespace ABOGGUS.SaveSystem
 
         public static void LoadPlayerProgress(Player player)
         {
-            player.inventory.health = currentSaveData.playerHealth;
-            player.inventory.key = currentSaveData.playerHasKey;
-            player.inventory.mana = currentSaveData.playerMana;
-            player.inventory.SetItemsString(currentSaveData.playerItems);
-            Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+            if (!finishedLoadingPlayer)
+            {
+                player.inventory.health = currentSaveData.playerHealth;
+                player.inventory.key = currentSaveData.playerHasKey;
+                player.inventory.mana = currentSaveData.playerMana;
+                player.inventory.SetItemsString(currentSaveData.playerItems);
+                Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+                finishedLoadingPlayer = true;
+            }
+        }
 
-            finishedLoadingPlayer = true;
+        // debug
+
+        public static void SaveDebug()
+        {
+            if (debug)
+            {
+                SaveDataToFile(null);
+            }
+        }
+        public static void LoadDebug()
+        {
+            if (debug)
+            {
+                LoadDataFromFile(null);
+                while (GameController.player is null) ;
+                LoadPlayerProgress(GameController.player);
+            }
         }
 
         // Puzzle rooms

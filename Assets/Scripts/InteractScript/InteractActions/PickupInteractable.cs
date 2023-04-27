@@ -27,11 +27,19 @@ namespace ABOGGUS.Interact
         {
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
-            //while (!SaveGameManager.finishedLoadingPlayer) ;
-            itemInfo = playerInv.HasItem(itemName);
             //itemInfo = playerInv.GetType().GetProperty(itemName);
+            StartCoroutine(DestroyIfInPlayerInv());
+        }
 
+        IEnumerator DestroyIfInPlayerInv()
+        {
+            while (!SaveGameManager.finishedLoadingPlayer)
+            {
+                yield return null;
+            }
+            itemInfo = playerInv.HasItem(itemName);
             if (itemInfo) Destroy(gameObject);
+
         }
 
         private void pickUpObject()

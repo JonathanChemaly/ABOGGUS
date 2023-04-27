@@ -29,15 +29,13 @@ namespace ABOGGUS.SaveSystem
             //set dictionary value of puzzles to their status
 
             //Temp Save For Testing Purposes
-            SaveGameManager.SaveDataToFile(null);
+            SaveGameManager.SaveDebug();
         }
 
         private void Awake()
         {
             //Temp loads For Testing Purposes
-            SaveGameManager.LoadDataFromFile(null);
-            while (GameController.player is null) ;
-            SaveGameManager.LoadPlayerProgress(GameController.player);
+            SaveGameManager.LoadDebug();
 
             //Grab values from dictionary puzzles to their status
             bool runeCompleteness = GameConstants.puzzleStatus["RunePuzzle"];
