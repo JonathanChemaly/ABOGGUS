@@ -31,14 +31,15 @@ namespace ABOGGUS.SaveSystem
 
 
             SaveGameManager.SaveAutumnPuzzleStatus(state);
+
             // temp for testing
-            SaveGameManager.SaveDataToFile(null);
+            SaveGameManager.SaveDebug();
         }
 
         private void Awake()
         {
             //Temp loads For Testing Purposes
-            SaveGameManager.LoadDataFromFile(null);
+            SaveGameManager.LoadDebug();
 
             SaveGameManager.LoadAutumnPuzzleStatus(out int state);
 
@@ -46,6 +47,8 @@ namespace ABOGGUS.SaveSystem
             tractorPuzzle.LoadPuzzle(state);
 
             // load maze
+            // ???
+
 
         }
     }

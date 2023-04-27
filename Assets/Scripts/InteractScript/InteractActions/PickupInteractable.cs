@@ -4,6 +4,7 @@ using UnityEngine;
 using ABOGGUS.PlayerObjects;
 using ABOGGUS.PlayerObjects.Items;
 using ABOGGUS.Gameplay;
+using ABOGGUS.SaveSystem;
 
 namespace ABOGGUS.Interact
 {
@@ -26,8 +27,19 @@ namespace ABOGGUS.Interact
         {
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
-            itemInfo = playerInv.HasItem(itemName);
             //itemInfo = playerInv.GetType().GetProperty(itemName);
+            StartCoroutine(DestroyIfInPlayerInv());
+        }
+
+        IEnumerator DestroyIfInPlayerInv()
+        {
+            while (!SaveGameManager.finishedLoadingPlayer)
+            {
+                yield return null;
+            }
+            itemInfo = playerInv.HasItem(itemName);
+            if (itemInfo) Destroy(gameObject);
+
         }
 
         private void pickUpObject()

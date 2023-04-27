@@ -6076,6 +6076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4fd1786f78c41428c054df1a24a62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meltIcePuzzle: {fileID: 0}
+  fallingIcePuzzle: {fileID: 0}
 --- !u!4 &630746422
 Transform:
   m_ObjectHideFlags: 0
@@ -15662,7 +15664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interact: {fileID: 1880461880}
-  itemName: key
+  itemName: hammer
 --- !u!114 &1880461879
 MonoBehaviour:
   m_ObjectHideFlags: 0
