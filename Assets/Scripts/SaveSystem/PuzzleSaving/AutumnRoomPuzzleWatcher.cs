@@ -39,6 +39,8 @@ namespace ABOGGUS.SaveSystem
         {
             //Temp loads For Testing Purposes
             SaveGameManager.LoadDataFromFile(null);
+            while (GameController.player is null) ;
+            SaveGameManager.LoadPlayerProgress(GameController.player);
 
             SaveGameManager.LoadAutumnPuzzleStatus(out int state);
 
@@ -46,6 +48,8 @@ namespace ABOGGUS.SaveSystem
             tractorPuzzle.LoadPuzzle(state);
 
             // load maze
+            // ???
+
 
         }
     }

@@ -19,7 +19,7 @@ namespace ABOGGUS.SaveSystem
         public float playerHealth = PlayerConstants.MAX_HEALTH;
         public bool playerHasKey = false;
         public int playerMana = 0;
-        public List<IItem> playerItems = new();
+        public List<string> playerItems = new();
 
         // autumn puzzle data
         public int tractorState = 0;

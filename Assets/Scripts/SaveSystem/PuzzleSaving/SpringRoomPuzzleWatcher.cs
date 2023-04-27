@@ -36,7 +36,8 @@ namespace ABOGGUS.SaveSystem
         {
             //Temp loads For Testing Purposes
             SaveGameManager.LoadDataFromFile(null);
-
+            while (GameController.player is null) ;
+            SaveGameManager.LoadPlayerProgress(GameController.player);
 
             //Grab values from dictionary puzzles to their status
             bool runeCompleteness = GameConstants.puzzleStatus["RunePuzzle"];

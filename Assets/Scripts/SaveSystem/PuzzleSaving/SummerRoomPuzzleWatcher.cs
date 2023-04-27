@@ -46,6 +46,8 @@ namespace ABOGGUS.SaveSystem
         {
             //Temp loads For Testing Purposes
             SaveGameManager.LoadDataFromFile(null);
+            while (GameController.player is null) ;
+            SaveGameManager.LoadPlayerProgress(GameController.player);
 
             SaveGameManager.LoadSummerPuzzleStatus(out int difficulty);
 
