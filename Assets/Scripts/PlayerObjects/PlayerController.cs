@@ -510,7 +510,6 @@ namespace ABOGGUS.PlayerObjects
                         else
                         {
                             //Attack Anim
-                            Debug.Log("Current attack idx: " + attackIdx);
                             if (weaponEquipped == PlayerConstants.Weapon.Sword)
                                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SWORD_ATTACKS[attackIdx]);
                             else

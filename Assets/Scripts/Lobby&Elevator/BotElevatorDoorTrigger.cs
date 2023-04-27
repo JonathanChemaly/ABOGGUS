@@ -22,6 +22,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     public bool flipOrientation = false;
 
     [SerializeField] private bool transition = false;
+    private bool triggered = false;
     void Start()
     {
         botDoorRP = botDoorR.transform.position;
@@ -72,44 +73,46 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         }
         else
         {
-            if (transition && other.CompareTag("Player"))
+            if (transition && other.CompareTag("Player") && !triggered)
             {
                 openBottomDoor = true;
                 if (GameController.scene == GameConstants.SCENE_DUNGEON1 && transform.parent.name == "DungeonElevatorToLayer2")
                 {
                     GameController.ChangeScene("Elevator to Dungeon Layer 2", GameConstants.SCENE_DUNGEON2, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_DUNGEON2 && transform.parent.name == "DungeonElevatorToLayer3")
+                else if (GameController.scene == GameConstants.SCENE_DUNGEON2 && transform.parent.name == "DungeonElevatorToLayer3")
                 {
                     GameController.ChangeScene("Elevator to Dungeon Layer 3", GameConstants.SCENE_DUNGEON3, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_DUNGEON3 && transform.parent.name == "DungeonElevatorToBoss")
+                else if (GameController.scene == GameConstants.SCENE_DUNGEON3 && transform.parent.name == "DungeonElevatorToBoss")
                 {
                     GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+                else if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
                 {
                     if (UpgradeStats.runs == 0) GameController.ChangeScene("Elevator to Boss", GameConstants.SCENE_BOSS, false);
 
                     else GameController.ChangeScene("Elevator to Dungeon Layer 1", GameConstants.SCENE_DUNGEON1, false);
                     UpgradeStats.runs++;
                 }
-                if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
+                else if (GameController.scene == GameConstants.SCENE_AUTUMNROOM)
                 {
                     GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_SUMMERROOM)
+                else if (GameController.scene == GameConstants.SCENE_SUMMERROOM)
                 {
                     GameController.ChangeScene("Elevator to Summer Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_WINTERROOM)
+                else if (GameController.scene == GameConstants.SCENE_WINTERROOM)
                 {
                     GameController.ChangeScene("Elevator to Winter Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
-                if (GameController.scene == GameConstants.SCENE_SPRINGROOM)
+                else if (GameController.scene == GameConstants.SCENE_SPRINGROOM)
                 {
                     GameController.ChangeScene("Elevator to Spring Room", GameConstants.SCENE_MAINLOBBY, false);
                 }
+                triggered = true;
+                Invoke(nameof(ResetTrigger), 5f);
             }
             else if (other.CompareTag("Player"))
             {
@@ -126,6 +129,11 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             NotEnoughMana.enabled = false;
             GoToBoss.enabled = false;
         }
+    }
+
+    private void ResetTrigger()
+    {
+        triggered = false;
     }
 
 }
