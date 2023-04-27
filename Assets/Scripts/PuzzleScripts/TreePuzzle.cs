@@ -91,7 +91,7 @@ namespace ABOGGUS.Interact.Puzzles
             status = Status.FINAL;
             //Debug.Log("tree interaction, updated status: " + status);
 
-            if (GameConstants.puzzleStatus["TreeGrowPuzzle"] == true)
+            if (GameConstants.puzzleStatus["TreeGrowPuzzle"])
             {
                 Destroy(manaDrop.transform.parent.gameObject);
             }

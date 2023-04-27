@@ -111,6 +111,15 @@ namespace ABOGGUS.SaveSystem
 
         // Puzzle rooms
 
+        public static void SaveSummerPuzzleStatus(int tileSlideDifficulty)
+        {
+            currentSaveData.tileSlideDifficulty = tileSlideDifficulty;
+        }
+        public static void LoadSummerPuzzleStatus(out int tileSlideDifficulty)
+        {
+            tileSlideDifficulty = currentSaveData.tileSlideDifficulty;
+        }
+
         public static void SaveSpringPuzzleStatus(List<bool> activeRunesList, TreePuzzle.Status tStatus, int runNum)
         {
             currentSaveData.treeStatus = tStatus;
