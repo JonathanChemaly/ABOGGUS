@@ -6,6 +6,7 @@ using Cinemachine;
 using ABOGGUS.Menus;
 using ABOGGUS.Gameplay;
 using ABOGGUS.Interact;
+using ABOGGUS.PlayerObjects;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -145,8 +146,8 @@ public class ThirdPersonCameraController : MonoBehaviour
             if (rotY > 90.0f) rotY = 90.0f;
             rotateCamera = Quaternion.Euler(-rotY, rotX, 0.0f);
             rotateTarget = Quaternion.Euler(0.0f, rotX, 0.0f);
-
-            player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
+            if (GameController.player.GetController().GetFacingDirection() == PlayerController.FacingDirection.Idle)
+                player.transform.localRotation = Quaternion.RotateTowards(player.transform.localRotation, rotateTarget, rotationSpeed);
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, rotateCamera, rotationSpeed);
             camOffset = new Vector3(offset * Mathf.Sin(transform.eulerAngles.y * Mathf.PI / 180), yOffset, offset * Mathf.Cos(transform.eulerAngles.y * Mathf.PI / 180));
             cameraYRot = transform.eulerAngles.y;

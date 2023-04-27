@@ -48,7 +48,7 @@ namespace ABOGGUS.PlayerObjects
         private PlayerConstants.Weapon lastWeaponEquipped;
 
         private IPlayerState playerState;
-        enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
+        public enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
         // disables forward movement if the player is facing a wall
@@ -713,10 +713,8 @@ namespace ABOGGUS.PlayerObjects
                 UnityEngine.Object.Instantiate(grimoire.natureAOEPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation);
             else if (castType == PlayerConstants.Magic.Nature && !aoe)
             {
-                //physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.natureArmorMaterial; 
                 UnityEngine.Object.Instantiate(grimoire.natureAttackPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation, physicalGameObject.transform);
                 GameController.player.SetResistance(true);
-                //Invoke(nameof(ChangeMaterial), 10f);
             }
             else if (castType == PlayerConstants.Magic.Water && aoe)
                 playerState.CastMagic(grimoire.waterAOEPrefab, aoe, castType);
@@ -868,6 +866,11 @@ namespace ABOGGUS.PlayerObjects
                 unlocked = true;
             }
             return unlocked;
+        }
+
+        public FacingDirection GetFacingDirection()
+        {
+            return facingDirection;
         }
 
 
