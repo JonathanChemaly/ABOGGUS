@@ -36,6 +36,7 @@ namespace ABOGGUS.Interact
             dialPlayer = gameObject.AddComponent<DialoguePlayer>();
             dialPlayer.dialogue = dialogue; //giving the player what to play
 
+            // logic for obtaining the basic versions of the spells
             if (GameController.scene == GameConstants.SCENE_AUTUMNROOM && !GameConstants.windUnlocked)
             {
                 Debug.Log("Wind Spell Unlocked!");
@@ -55,6 +56,32 @@ namespace ABOGGUS.Interact
             {
                 Debug.Log("Nature Spell Unlocked!");
                 GameConstants.natureUnlocked = true;
+            }
+
+            // logic for obtaining the aoe spells
+            if (GameController.scene == GameConstants.SCENE_AUTUMNROOM && GameConstants.puzzleStatus["TractorPuzzle"] 
+                && GameConstants.puzzleStatus["MazePuzzle"] && !GameConstants.windAOEUnlocked)
+            {
+                Debug.Log("Wind AOE Spell Unlocked!");
+                GameConstants.windAOEUnlocked = true;
+            }
+            if (GameController.scene == GameConstants.SCENE_SUMMERROOM && GameConstants.puzzleStatus["TileSlidePuzzle"]
+                && GameConstants.puzzleStatus["WindPushPuzzle"] && GameConstants.puzzleStatus["FirePuzzle"] && !GameConstants.fireAOEUnlocked)
+            {
+                Debug.Log("Fire AOE Spell Unlocked!");
+                GameConstants.fireAOEUnlocked = true;
+            }
+            if (GameController.scene == GameConstants.SCENE_WINTERROOM && GameConstants.puzzleStatus["MeltIcePuzzle"]
+                && GameConstants.puzzleStatus["FallingIcePuzzle"] && !GameConstants.waterAOEUnlocked)
+            {
+                Debug.Log("Water AOE Spell Unlocked!");
+                GameConstants.waterAOEUnlocked = true;
+            }
+            if (GameController.scene == GameConstants.SCENE_SPRINGROOM && GameConstants.puzzleStatus["RunePuzzle"]
+                && GameConstants.puzzleStatus["TreeGrowPuzzle"] && !GameConstants.natureAOEUnlocked)
+            {
+                Debug.Log("Nature AOE Spell Unlocked!");
+                GameConstants.natureAOEUnlocked = true;
             }
 
             //we then in this case what to disable the interactable while this is playing
