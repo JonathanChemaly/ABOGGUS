@@ -14,7 +14,7 @@ namespace ABOGGUS.SaveSystem
         //Completion bool, A state idenitifier
         [SerializeField]
         [Tooltip("TractorPuzzle Loader")]
-        private TractorMovement tractorPuzzle;
+        private TractorLoader tractorPuzzle;
 
         //For maze puzzle
         //completion bool, A state number or enum, Last run
@@ -25,9 +25,12 @@ namespace ABOGGUS.SaveSystem
         private void OnDestroy()
         {
             // save tractor
+            int state = tractorPuzzle.SavePuzzle();
 
             // save maze
 
+
+            SaveGameManager.SaveAutumnPuzzleStatus(state);
             // temp for testing
             SaveGameManager.SaveDataToFile(null);
         }
@@ -37,7 +40,10 @@ namespace ABOGGUS.SaveSystem
             //Temp loads For Testing Purposes
             SaveGameManager.LoadDataFromFile(null);
 
+            SaveGameManager.LoadAutumnPuzzleStatus(out int state);
+
             // load tractor
+            tractorPuzzle.LoadPuzzle(state);
 
             // load maze
 
