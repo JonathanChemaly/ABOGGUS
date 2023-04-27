@@ -27,7 +27,7 @@ namespace ABOGGUS.Interact
         {
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
-            while (!SaveGameManager.finishedLoadingPlayer) ;
+            //while (!SaveGameManager.finishedLoadingPlayer) ;
             itemInfo = playerInv.HasItem(itemName);
             //itemInfo = playerInv.GetType().GetProperty(itemName);
 
