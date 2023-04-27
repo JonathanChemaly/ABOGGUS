@@ -15,12 +15,11 @@ namespace ABOGGUS.SaveSystem
         [Tooltip("RunePuzzle Loader")]
         private TrackActiveRunes runePuzzle;
 
+        //For tree puzzle
+        //completion bool, A state number or enum, Last run
         [SerializeField]
         [Tooltip("TreePuzzle Loader")]
         private TreePuzzle treePuzzle;
-
-        //For watering Puzzles
-        //completion bool, A state number or enum, Last run
 
         private void OnDestroy()
         {
