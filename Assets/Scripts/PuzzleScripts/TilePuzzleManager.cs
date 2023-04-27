@@ -7,7 +7,7 @@ namespace ABOGGUS.Interact.Puzzles
 {
     public class TilePuzzleManager : MonoBehaviour
     {
-        public int size = 4;
+        public int size = 3;
         public float tileSpace = 2.5f;
         [SerializeField] GameObject tilePrefab;
         [SerializeField] Texture2D fullTexture;
@@ -16,6 +16,7 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] float rotation;
         [SerializeField] Material matBorder;
         [SerializeField] GameObject wall;
+        [SerializeField] LargeEEDrop manaDrop;
 
         [System.NonSerialized] public Vector3 center;
         [System.NonSerialized] public Vector3 topLeft;
@@ -29,11 +30,11 @@ namespace ABOGGUS.Interact.Puzzles
         public static bool gameOver;
         public static bool movingTile;
 
-        public const float wallMoveSpeed = 0.002f;
+        public const float wallMoveSpeed = 0.4f;
         public const float wallDist = 6f;
 
         // Start is called before the first frame update
-        void Awake()
+        public void LoadPuzzle()
         {
             puzzleLength = size * tileSpace;
             betweenSpace = tileSpace - 2.0f;
@@ -49,7 +50,8 @@ namespace ABOGGUS.Interact.Puzzles
             this.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             gameOver = false;
-            movingTile = false; 
+            movingTile = false;
+            manaDrop.eventOnPickup += PuzzleComplete;
         }
 
         private void CreatePuzzle()
@@ -179,6 +181,10 @@ namespace ABOGGUS.Interact.Puzzles
 
             gameOver = true;
             Debug.Log("Player has solved the slide puzzle!");
+            if (!GameConstants.puzzleStatus["TileSlidePuzzle"])
+            {
+                manaDrop.transform.parent.gameObject.SetActive(true);
+            }
             GameConstants.puzzleStatus["TileSlidePuzzle"] = true;
             MoveWall();
         }
@@ -194,8 +200,14 @@ namespace ABOGGUS.Interact.Puzzles
             while (wall.transform.position.y < targetY)
             {
                 yield return null;
-                wall.transform.position = Vector3.MoveTowards(wall.transform.position, wall.transform.position + Vector3.up, wallMoveSpeed);
+                wall.transform.position = Vector3.MoveTowards(wall.transform.position, wall.transform.position + Vector3.up, Time.deltaTime*wallMoveSpeed);
             }
+        }
+
+        public void PuzzleComplete()
+        {
+            GameConstants.puzzleStatus["TileSlidePuzzle"] = true;
+            size++;
         }
 
         private string ListToString(List<int> list)

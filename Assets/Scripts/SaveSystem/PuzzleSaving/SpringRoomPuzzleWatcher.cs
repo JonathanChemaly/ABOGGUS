@@ -61,7 +61,6 @@ namespace ABOGGUS.SaveSystem
             Debug.Log(debugString);
 
             runePuzzle.LoadFromList(activeRunesList, runeCompleteness);
-
             
         }
     }

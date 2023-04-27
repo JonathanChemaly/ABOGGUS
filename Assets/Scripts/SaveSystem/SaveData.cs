@@ -21,6 +21,9 @@ namespace ABOGGUS.SaveSystem
         public int playerMana = 0;
         public List<IItem> playerItems = new();
 
+        // summer puzzle data
+        public int tileSlideDifficulty = 3;
+
         // spring puzzle data
         public TreePuzzle.Status treeStatus = TreePuzzle.Status.DIRT;
         public int treeRunNumber = 0;

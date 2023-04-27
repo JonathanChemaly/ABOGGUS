@@ -18,7 +18,7 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] Material correct;
         private MeshRenderer mr;
 
-        public const float moveSpeed = 0.05f;
+        public const float moveSpeed = 8.0f;
 
         // Start is called before the first frame update
         void Awake()
@@ -47,7 +47,7 @@ namespace ABOGGUS.Interact.Puzzles
             while (transform.localPosition != targetPos)
             {
                 yield return null;
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, moveSpeed);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, Time.deltaTime*moveSpeed);
             }
             SetPosition(newPos);
             TilePuzzleManager.movingTile = false;

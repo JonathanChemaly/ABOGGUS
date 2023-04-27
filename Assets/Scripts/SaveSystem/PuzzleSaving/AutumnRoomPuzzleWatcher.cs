@@ -28,6 +28,7 @@ namespace ABOGGUS.SaveSystem
 
             // save maze
 
+            // temp for testing
             SaveGameManager.SaveDataToFile(null);
         }
 
