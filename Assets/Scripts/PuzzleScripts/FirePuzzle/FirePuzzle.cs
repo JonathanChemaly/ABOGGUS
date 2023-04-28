@@ -1,3 +1,4 @@
+using ABOGGUS.Gameplay;
 using ABOGGUS.PlayerObjects;
 using System;
 using System.Collections;
@@ -19,6 +20,7 @@ public class FirePuzzle : MonoBehaviour
     [SerializeField] public Material CompletedMaterial;
     [SerializeField] GameObject player;
     [SerializeField] public GameObject blackout;
+    [SerializeField] public GameObject manaDrop;
 
     public bool puzzleActive = true;
     public bool fireActive = false;
@@ -43,10 +45,25 @@ public class FirePuzzle : MonoBehaviour
         NextHalf += SecondHalf;
 
         currentLine = new Stack<int>(firstLine);
+        manaDrop.SetActive(false);
 
         for(int i = 0; i < FireBlocks.Length; i++)
         {
             FireBlocks[i] = Fire.transform.GetChild(i).GameObject();
+        }
+
+        if (GameConstants.puzzleStatus["FirePuzzle"])
+        {
+            Destroy(manaDrop.transform.parent.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (!firstHalf && currentLine.Count == 0)
+        {
+            manaDrop.SetActive(true);
+            GameConstants.puzzleStatus["FirePuzzle"] = true;
         }
     }
 
@@ -65,6 +82,7 @@ public class FirePuzzle : MonoBehaviour
         if (currentLine.Count == 0 && firstHalf)
         {
             currentLine = new Stack<int>(secondLine);
+            firstHalf = false;
         }
     }
 

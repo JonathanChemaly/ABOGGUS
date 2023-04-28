@@ -27,6 +27,11 @@ namespace ABOGGUS.PlayerObjects
             active = true;
         }
 
+        public bool GetStatus()
+        {
+            return active;
+        }
+
         public void Attacking(bool attacking)
         {
             this.attacking = attacking;
