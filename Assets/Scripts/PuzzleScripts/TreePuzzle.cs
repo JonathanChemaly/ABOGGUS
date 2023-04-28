@@ -13,7 +13,11 @@ namespace ABOGGUS.Interact.Puzzles
         [SerializeField] private Interactable sprout;
         [SerializeField] private Interactable sapling;
         [SerializeField] private Interactable tree;
+        [SerializeField] private LargeEEDrop manaDrop;
         private ParticleSystem particles;
+
+        public enum Status {DIRT, SPROUT, SAPLING, TREE, FINAL};
+        public static Status status = Status.DIRT;
 
         public static int latestRun = -1;
 
@@ -25,6 +29,25 @@ namespace ABOGGUS.Interact.Puzzles
             sapling.InteractAction += InteractSapling;
             tree.InteractAction += InteractTree;
             particles = this.transform.Find("Particles").GetComponent<ParticleSystem>();
+            manaDrop.eventOnPickup += PuzzleComplete;
+        }
+
+        public void LoadPuzzle(Status newStatus, int newRuns)
+        {
+            StartCoroutine(WaitToLoad(newStatus, newRuns));
+        }
+
+        IEnumerator WaitToLoad(Status newStatus, int newRuns)
+        {
+            yield return new WaitForSeconds(1.0f);
+            if (newStatus > Status.DIRT && status == Status.DIRT) InteractDirt();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.SPROUT && status == Status.SPROUT) InteractSprout();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.SAPLING && status == Status.SAPLING) InteractSapling();
+            yield return new WaitForSeconds(0.5f);
+            if (newStatus > Status.TREE && status == Status.TREE) InteractTree();
+            latestRun = newRuns;
         }
 
         private void UpdateRun()
@@ -33,7 +56,7 @@ namespace ABOGGUS.Interact.Puzzles
         }
         private void PlayParticles()
         {
-            particles.Play();
+            particles?.Play();
         }
 
         private void InteractDirt()
@@ -41,25 +64,41 @@ namespace ABOGGUS.Interact.Puzzles
             UpdateRun();
             PlayParticles();
             dirt.DoSuccesAction();
+            status = Status.SPROUT;
+            //Debug.Log("dirt interaction, updated status: " + status);
         }
         private void InteractSprout()
         {
             UpdateRun();
             PlayParticles();
             sprout.DoSuccesAction();
+            status = Status.SAPLING;
+            //Debug.Log("sprout interaction, updated status: " + status);
         }
         private void InteractSapling()
         {
             UpdateRun();
             PlayParticles();
             sapling.DoSuccesAction();
+            status = Status.TREE;
+            //Debug.Log("sapling interaction, updated status: " + status);
         }
         private void InteractTree()
         {
             UpdateRun();
             PlayParticles();
             tree.DoSuccesAction();
+            status = Status.FINAL;
+            //Debug.Log("tree interaction, updated status: " + status);
 
+            if (GameConstants.puzzleStatus["TreeGrowPuzzle"])
+            {
+                Destroy(manaDrop.transform.parent.gameObject);
+            }
+        }
+
+        public void PuzzleComplete()
+        {
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = true;    // puzzle is complete
         }
     }

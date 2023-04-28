@@ -82,6 +82,16 @@ namespace ABOGGUS.PlayerObjects
             return this.items;
         }
 
+        public List<string> GetItemsString()
+        {
+            List<string> strItems = new();
+            foreach (IItem item in items)
+            {
+                strItems.Add(item.GetName());
+            }
+            return strItems;
+        }
+
         public void AddItem(string itemName)
         {
             IItem temp = GetItem(itemName);
@@ -94,6 +104,19 @@ namespace ABOGGUS.PlayerObjects
             else items.Add(ItemFactory.CreateItem(itemName));
 
             items.Sort();
+        }
+
+        public void SetItems(List<IItem> itemList)
+        {
+            items = itemList;
+        }
+
+        public void SetItemsString(List<string> strItems)
+        {
+            foreach (string item in strItems)
+            {
+                AddItem(item);
+            }
         }
     }
 }

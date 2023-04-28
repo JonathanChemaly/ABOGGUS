@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
 
+[System.Serializable]
 public static class UpgradeStats
 {
     public static int swordDamInc = 5;
@@ -23,7 +24,7 @@ public static class UpgradeStats
     public static int bonusDamUpgradeCount = 0;
 
     public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
-    public static int mana = 10000, defaultMana = 10000, totalMana = 10000;
+    public static int mana = 100, defaultMana = 100, totalMana = 100;
     public static float manaEfficiency = 1.0f;
 
     public static int healthUpCost = -10;

@@ -124,6 +124,11 @@ namespace ABOGGUS.PlayerObjects
             this.playerController = playerController;
         }
 
+        public PlayerController GetController()
+        {
+            return playerController;
+        }
+
         public void SetGameObject(GameObject physicalGameObject)
         {
             this.physicalGameObject = physicalGameObject;

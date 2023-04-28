@@ -22,7 +22,12 @@ namespace ABOGGUS.PlayerObjects
             {
                 damage = damage * UpgradeStats.bonusDamMultiplier;
             }
-            if (GameController.player.inventory.HasMana(manaCost))
+
+            if (GameController.PuzzleScene())
+            {
+                //Do nothing
+            }
+            else if (GameController.player.inventory.HasMana(manaCost))
             {
                 GameController.player.inventory.UseMana(manaCost);
             }

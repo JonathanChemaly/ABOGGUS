@@ -3052,13 +3052,18 @@ MonoBehaviour:
   - {fileID: 6990530385794824001, guid: 9fd10877ac1d15248b9420d996d8454b, type: 3}
   - {fileID: 444519314796307330, guid: 201212c462d3781479b2ff47c2d6c249, type: 3}
   - {fileID: 444519314796307330, guid: 8fbc05472620308419057fe88fcb75a8, type: 3}
-  optionalRooms:
-  - {fileID: 1206036843693720248, guid: 6d205fd2c21d72c4395462489249c386, type: 3}
-  - {fileID: 822862973520147444, guid: 63b942696374a5748941d79ff5ee47c0, type: 3}
-  hallway: {fileID: 822862973520147444, guid: 63b942696374a5748941d79ff5ee47c0, type: 3}
+  optionalHallways:
+  - {fileID: 506202981761331299, guid: e0f458cd4fe5f1e41b142b83471b3e31, type: 3}
+  - {fileID: 506202981761331299, guid: 1d3e89dd199022446b8b0869f376ca7f, type: 3}
+  - {fileID: 822862973520147444, guid: ea6cda99ec29c214aba16f8deff7ba19, type: 3}
+  buffs:
+  - {fileID: 100002, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
+  - {fileID: 100008, guid: 879451a5e2214f143a7edf5dd3e32020, type: 3}
+  hallway: {fileID: 506202981761331299, guid: 1d3e89dd199022446b8b0869f376ca7f, type: 3}
   height: 7
   width: 7
   loops: 2
+  numOfBuffs: 2
 --- !u!4 &1260668593
 Transform:
   m_ObjectHideFlags: 0

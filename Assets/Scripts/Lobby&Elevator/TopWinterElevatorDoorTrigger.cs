@@ -61,7 +61,7 @@ public class TopWinterElevatorDoorTrigger : MonoBehaviour
             openTopDoor = true;
             if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
             {
-                GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_WINTERROOM, false);
+                GameController.ChangeScene("Elevator to Winter Room", GameConstants.SCENE_WINTERROOM, false);
             }
         }
     }
@@ -71,14 +71,6 @@ public class TopWinterElevatorDoorTrigger : MonoBehaviour
         {
             timer = 2.0f;
             openTopDoor = false;
-            ThirdPersonCameraController.preAnimCam = false;
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            ThirdPersonCameraController.preAnimCam = true;
         }
     }
 

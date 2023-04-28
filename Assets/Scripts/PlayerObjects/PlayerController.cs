@@ -6,6 +6,8 @@ using ABOGGUS.Input;
 using System;
 using UnityEngine.Playables;
 using ABOGGUS.Gameplay;
+using ABOGGUS.PlayerObjects.Items;
+using ABOGGUS.Interact.Puzzles;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -40,13 +42,14 @@ namespace ABOGGUS.PlayerObjects
         private bool transitioning = false;
         private bool transitionInvoked = false;
         private bool animationSelectedThisFrame = false;
+        private bool firstTransition = true;
         private int attackIdx = 0;
         private PlayerConstants.Magic castType = PlayerConstants.Magic.Wind;
         private PlayerConstants.Weapon weaponEquipped = PlayerConstants.Weapon.Sword;
         private PlayerConstants.Weapon lastWeaponEquipped;
 
         private IPlayerState playerState;
-        enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
+        public enum FacingDirection { Forward, Backward, Left, Right, FrontRight, FrontLeft, BackRight, BackLeft, Idle };
         private FacingDirection facingDirection;
 
         // disables forward movement if the player is facing a wall
@@ -158,20 +161,23 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoEquipGrimoire(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Sword)
+            if (GameController.player.inventory.HasItem(ItemLookup.GrimoireName))
             {
-                lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                if (weaponEquipped == PlayerConstants.Weapon.Sword)
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (weaponEquipped == PlayerConstants.Weapon.Spear)
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                weaponEquipped = PlayerConstants.Weapon.Grimoire;
+                transitioning = true;
             }
-            else if (weaponEquipped == PlayerConstants.Weapon.Spear)
-            {
-                lastWeaponEquipped = PlayerConstants.Weapon.Spear;
-            }
-            else
-            {
-                lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
-            }
-            weaponEquipped = PlayerConstants.Weapon.Grimoire;
-            transitioning = true;
         }
 
         private void DoEquipSword(InputAction.CallbackContext obj)
@@ -247,7 +253,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoCast(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && !casting)
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && !casting && SpellUnlocked())
             {
                 casting = true;
                 aoe = false;
@@ -256,7 +262,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void DoCastAOE(InputAction.CallbackContext obj)
         {
-            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging)
+            if (weaponEquipped == PlayerConstants.Weapon.Grimoire && !jumping && !dodging && AOESpellUnlocked())
             {
                 casting = true;
                 aoe = true;
@@ -314,6 +320,7 @@ namespace ABOGGUS.PlayerObjects
         private void DoNextRun(InputAction.CallbackContext obj)
         {
             UpgradeStats.runs++;
+            //TreePuzzle.test++;
         }
 
         private void OnDisable()
@@ -325,6 +332,17 @@ namespace ABOGGUS.PlayerObjects
         {
             if (physicalGameObject != null)
             {
+                if (!transitioning)
+                    CheckIfProperWeaponEquipped();
+                if (GameController.scene.Equals(GameConstants.SCENE_BOSS) && firstTransition)
+                {
+                    playerState = new PlayerFacingBackward(this);
+                    firstTransition = false;
+                }
+                else if (!GameController.scene.Equals(GameConstants.SCENE_BOSS))
+                {
+                    firstTransition = true;
+                }
                 // create a raycast that detects walls
                 RaycastHit hit;
                 if (Physics.Raycast(physicalGameObject.transform.position, physicalGameObject.transform.forward + yWallCheck, out hit, checkDistance, walls))
@@ -504,7 +522,6 @@ namespace ABOGGUS.PlayerObjects
                         else
                         {
                             //Attack Anim
-                            Debug.Log("Current attack idx: " + attackIdx);
                             if (weaponEquipped == PlayerConstants.Weapon.Sword)
                                 PlayerAnimationStateController.ChangeAnimationState(PlayerConstants.SWORD_ATTACKS[attackIdx]);
                             else
@@ -707,10 +724,8 @@ namespace ABOGGUS.PlayerObjects
                 UnityEngine.Object.Instantiate(grimoire.natureAOEPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation);
             else if (castType == PlayerConstants.Magic.Nature && !aoe)
             {
-                //physicalGameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = grimoire.natureArmorMaterial; 
                 UnityEngine.Object.Instantiate(grimoire.natureAttackPrefab, physicalGameObject.transform.position, physicalGameObject.transform.rotation, physicalGameObject.transform);
                 GameController.player.SetResistance(true);
-                //Invoke(nameof(ChangeMaterial), 10f);
             }
             else if (castType == PlayerConstants.Magic.Water && aoe)
                 playerState.CastMagic(grimoire.waterAOEPrefab, aoe, castType);
@@ -818,6 +833,123 @@ namespace ABOGGUS.PlayerObjects
         public PlayerConstants.Magic GetCurrentMagic()
         {
             return this.castType;
+        }
+
+        private bool AOESpellUnlocked()
+        {
+            bool unlocked = false;
+            if (castType == PlayerConstants.Magic.Wind && GameConstants.windAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Water && GameConstants.waterAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Nature && GameConstants.natureAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            else if  (castType == PlayerConstants.Magic.Fire && GameConstants.fireAOEUnlocked)
+            {
+                unlocked = true;
+            }
+            return unlocked;
+        }
+
+        private bool SpellUnlocked()
+        {
+            bool unlocked = false;
+            if (castType == PlayerConstants.Magic.Wind && GameConstants.windUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Water && GameConstants.waterUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Nature && GameConstants.natureUnlocked)
+            {
+                unlocked = true;
+            }
+            else if (castType == PlayerConstants.Magic.Fire && GameConstants.fireUnlocked)
+            {
+                unlocked = true;
+            }
+            return unlocked;
+        }
+
+        public FacingDirection GetFacingDirection()
+        {
+            return facingDirection;
+        }
+
+        private void CheckIfProperWeaponEquipped()
+        {
+            if (grimoire != null && weaponEquipped == PlayerConstants.Weapon.Grimoire && !grimoire.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (sword.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (spear.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Equip();
+                grimoire.SetNewMaterial(castType);
+                sword.Unequip();
+                spear.Unequip();
+            }
+            else if (sword != null && weaponEquipped == PlayerConstants.Weapon.Sword && !sword.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (grimoire.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+                }
+                else if (spear.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Unequip();
+                sword.Equip();
+                spear.Unequip();
+            }
+            else if (spear != null && weaponEquipped == PlayerConstants.Weapon.Spear && !spear.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (sword.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (grimoire.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Unequip();
+                sword.Unequip();
+                spear.Equip();
+            }
         }
 
 
