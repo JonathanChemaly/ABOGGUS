@@ -18,7 +18,7 @@ namespace ABOGGUS.SaveSystem
 
         public static bool finishedLoadingPlayer = false;
 
-        private static bool debug = true;
+        private static bool debug = false;
         
         public static bool SaveDataToFile(string fileName)
         {

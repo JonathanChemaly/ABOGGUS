@@ -25,13 +25,13 @@ namespace ABOGGUS.SaveSystem
             SaveGameManager.SaveLobbyPuzzleStatus(player);
 
             //temp save
-            SaveGameManager.SaveDataToFile(null);
+            SaveGameManager.SaveDebug();
         }
 
         private void Awake()
         {
             //temp load
-            SaveGameManager.LoadDataFromFile(null);
+            SaveGameManager.LoadDebug();
 
 
             SaveGameManager.LoadLobbyPuzzleStatus(player, out bool grimAquired, out bool lockUnlocked);
