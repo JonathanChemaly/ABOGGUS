@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.Gameplay;
+using ABOGGUS.BossObjects;
 
 namespace ABOGGUS.PlayerObjects
 {
