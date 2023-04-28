@@ -19,6 +19,7 @@ namespace ABOGGUS.SaveSystem
         public float playerHealth = PlayerConstants.MAX_HEALTH;
         public bool playerHasKey = false;
         public int playerMana = 0;
+
         public List<string> playerItems = new();
 
         // autumn puzzle data
@@ -42,11 +43,16 @@ namespace ABOGGUS.SaveSystem
         public bool fallingIcePuzzleComplete = false;
         public bool runePuzzleComplete = false;
         public bool treeGrowPuzzleComplete = false;
+
+        public bool introPuzzleComplete = false;
+
         public bool windAOEUnlocked = false;
         public bool natureAOEUnlocked = false;
         public bool waterAOEUnlocked = false;
         public bool fireAOEUnlocked = false;
-        public bool windUnlocked = true;
+
+        public bool windUnlocked = false;
+
         public bool natureUnlocked = false;
         public bool waterUnlocked = false;
         public bool fireUnlocked = false;
