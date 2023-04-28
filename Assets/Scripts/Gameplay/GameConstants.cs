@@ -47,7 +47,8 @@ namespace ABOGGUS.Gameplay
             { "MeltIcePuzzle", false }, 
             { "FallingIcePuzzle", false },
             { "RunePuzzle", false },
-            { "TreeGrowPuzzle", false }
+            { "TreeGrowPuzzle", false },
+            { "IntroPuzzle", false }
         };
         /*foreach (KeyValuePair<string, bool> entry in puzzles)
         {
@@ -65,7 +66,7 @@ namespace ABOGGUS.Gameplay
         public static bool natureAOEUnlocked = false;
         public static bool waterAOEUnlocked = false;
         public static bool fireAOEUnlocked = false;
-        public static bool windUnlocked = true;
+        public static bool windUnlocked = false;
         public static bool natureUnlocked = false;
         public static bool waterUnlocked = false;
         public static bool fireUnlocked = false;

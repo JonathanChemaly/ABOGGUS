@@ -23,13 +23,45 @@ namespace ABOGGUS.Interact
         [Tooltip("interact to watch for success interact the other")]
         private Interactable interactToWatch;
 
+        [SerializeField]
+        [Tooltip("whether to flip direction or not")]
+        private bool flipOrientation = false;
+
+        [SerializeField]
+        [Tooltip("If we are moving bottom or top door")]
+        private bool isTopDoor = true;
+
         void Start()
         {
             topDoorRP = topDoorR.transform.position;
             topDoorLP = topDoorL.transform.position;
 
-            topDoorRPO = topDoorRP + new Vector3(1.7f, 0.0f, 0.0f);
-            topDoorLPO = topDoorLP - new Vector3(1.7f, 0.0f, 0.0f);
+            if(!isTopDoor) //bottom door
+            {
+                if (flipOrientation)
+                {
+                    topDoorRPO = topDoorRP - new Vector3(1.7f, 0.0f, 0.0f);
+                    topDoorLPO = topDoorLP + new Vector3(1.7f, 0.0f, 0.0f);
+
+                    //topDoorRPO = topDoorRP - new Vector3(10.4f, 0.0f, 0.0f);
+                    //topDoorLPO = topDoorLP + new Vector3(10.4f, 0.0f, 0.0f);
+                }
+                else
+                {
+                    topDoorRPO = topDoorRP + new Vector3(1.7f, 0.0f, 0.0f);
+                    topDoorLPO = topDoorLP - new Vector3(1.7f, 0.0f, 0.0f);
+
+                    //topDoorRPO = topDoorRP + new Vector3(10.4f, 0.0f, 0.0f);
+                    //topDoorLPO = topDoorLP - new Vector3(10.4f, 0.0f, 0.0f);
+                }
+            } 
+            else
+            {
+                topDoorRPO = topDoorRP + new Vector3(1.7f, 0.0f, 0.0f);
+                topDoorLPO = topDoorLP - new Vector3(1.7f, 0.0f, 0.0f);
+            }
+
+            
 
             interactToWatch.InteractAction += OpenDoor;
         }
