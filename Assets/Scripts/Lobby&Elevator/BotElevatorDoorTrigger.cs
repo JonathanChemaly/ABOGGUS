@@ -58,7 +58,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (transform.parent.name != "BossElevator" && transform.parent.name != "SpawnElevator" && UpgradeStats.runs == 0)
+        if (transform.parent.name != "BossElevator" && transform.parent.name != "SpawnElevator" && UpgradeStats.runs == 0 && GameController.scene == GameConstants.SCENE_MAINLOBBY)
         {
             GoToBoss.enabled = true;
         }

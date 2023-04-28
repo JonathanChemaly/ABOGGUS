@@ -57,13 +57,13 @@ public class Spark : MonoBehaviour
         sparkCount--;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.LookAt(player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (playerInAttackRange) AttackPlayer();
-        else transform.position = Vector3.MoveTowards(transform.position, player.position+ new Vector3(0,1,0), speed * Time.deltaTime);
+        else transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
 
     private void OnDrawGizmosSelected()

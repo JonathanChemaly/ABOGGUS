@@ -117,6 +117,7 @@ namespace ABOGGUS.PlayerObjects
         {
             if (this.playerController != null) { this.playerController._FixedUpdate(); }
             if (invulnerabilityFrames > 0) invulnerabilityFrames--;
+            if (invulnerabilityFrames < 0) invulnerabilityFrames = 0;
         }
         
         public void SetController(PlayerController playerController)
