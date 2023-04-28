@@ -29,7 +29,7 @@ namespace ABOGGUS.PlayerObjects
         public enum CollidedWith {  Enemy, Boss, Interactable, Wall };
         public enum DamageSource {  Sword, Spear, Wind, Fire, Water, Nature, Lightning };
 
-        public const float INVULNERABILITY_FRAMES = 2 * FIXED_UPDATES_PER_SECOND;
+        public const float INVULNERABILITY_FRAMES = .25f * FIXED_UPDATES_PER_SECOND;
 
         public const string UNARMED_IDLE = "Unarmed-Idle";
         public const string ARMED_IDLE = "Armed-Idle";

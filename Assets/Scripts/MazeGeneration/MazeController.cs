@@ -1,3 +1,4 @@
+using ABOGGUS.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,11 @@ namespace ABOGGUS.MazeGeneration
 {
     public class MazeController : MonoBehaviour
     {
+        public static bool Red = false;
+        public static bool Green = false;
+        public static bool Blue = false;
+        public static bool Black = false;
+
         public const int DEFAULT_SCALE = 3;
         public const int DEFAULT_POSITION = 15 * DEFAULT_SCALE;
         public const float DEFAULT_HEIGHT_WALLS = 0.25f;
@@ -36,10 +42,13 @@ namespace ABOGGUS.MazeGeneration
         //[SerializeField] public GameObject floorPrefab;
         [SerializeField] public GameObject wallPrefab;
 
+        [SerializeField] public GameObject manaDrop;
+
         private int seed1;
         private int seed2;
         private int seed3;
         private int seed4;
+
 
         private System.Random random;
         // Start is called before the first frame update
@@ -56,6 +65,20 @@ namespace ABOGGUS.MazeGeneration
             InitializeMazes();
             InitializeCollectables();
             //ApplyOffset();
+
+            if (GameConstants.puzzleStatus["MazePuzzle"])
+            {
+                Destroy(manaDrop);
+            }
+        }
+
+        private void Update()
+        {
+            if(Red && Green && Blue && Black)
+            {
+                manaDrop.SetActive(true);
+                GameConstants.puzzleStatus["MazePuzzle"] = true;
+            }
         }
 
         private void AssignVariables()

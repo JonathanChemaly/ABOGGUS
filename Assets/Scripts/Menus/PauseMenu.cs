@@ -43,12 +43,14 @@ namespace ABOGGUS.Menus
         private void PauseGame()
         {
             pauseMenu.SetActive(true);
+            Time.timeScale = 0;
             GameController.PauseGame();
         }
 
         public void ResumeGame()
         {
             pauseMenu.SetActive(false);
+            Time.timeScale = 1;
             statsBox.SetActive(false);
             controlsBox.SetActive(false);
             GameController.ResumeGame();

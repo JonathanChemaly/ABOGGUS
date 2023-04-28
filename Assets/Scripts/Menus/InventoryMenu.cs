@@ -76,6 +76,7 @@ namespace ABOGGUS.Menus
         {
             if(!updated) UpdateInventory();
             inventoryMenu.SetActive(true);
+            Time.timeScale = 0;
             GameController.PauseGame();
         }
 
@@ -83,6 +84,7 @@ namespace ABOGGUS.Menus
         {
             updated = false;
             inventoryMenu.SetActive(false);
+            Time.timeScale = 1;
             GameController.ResumeGame();
         }
 
