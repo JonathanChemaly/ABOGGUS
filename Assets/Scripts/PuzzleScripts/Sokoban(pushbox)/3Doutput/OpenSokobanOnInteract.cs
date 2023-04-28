@@ -32,6 +32,10 @@ namespace ABOGGUS.Interact
         private AudioSource StaticAudio;
 
         [SerializeField]
+        [Tooltip("Sokoban Generator")]
+        private ABOGGUS.Interact.Puzzles.Sokoban.GenerateSokoban sokobanGen;
+
+        [SerializeField]
         [Tooltip("Camera To disable on open")]
         private ThirdPersonCameraController thirdPersonCamera;
         public static bool SokobanOpen = false;
@@ -56,7 +60,8 @@ namespace ABOGGUS.Interact
         private void OpenMenu()
         {
             Puzzles.Sokoban.SokobanStatics.SokobanSolved = false; //Set the puzzle we are loading's solve state to false
-            
+            Puzzles.Sokoban.SokobanStatics.generatedSokoban = sokobanGen.sokoban; //set the level to load
+
             SokobanOpen = true;
             SceneManager.LoadScene("Assets/Scenes/Sokoban/SokobanPopUp.unity", LoadSceneMode.Additive);
             //Temp Change for input

@@ -47,7 +47,8 @@ namespace ABOGGUS.Gameplay
             { "MeltIcePuzzle", false }, 
             { "FallingIcePuzzle", false },
             { "RunePuzzle", false },
-            { "TreeGrowPuzzle", false }
+            { "TreeGrowPuzzle", false },
+            { "IntroPuzzle", false }
         };
         /*foreach (KeyValuePair<string, bool> entry in puzzles)
         {

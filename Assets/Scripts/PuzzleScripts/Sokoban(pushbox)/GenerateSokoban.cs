@@ -55,7 +55,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 SokobanHelper.DebugPrintSokoban(sokoban); //output after goal generation
                                                           //Output everything
 
-                SokobanStatics.generatedSokoban = sokoban;
+                //SokobanStatics.generatedSokoban = sokoban;
             } while (!CheckIfHavePlayerSpawn());
         }
             
@@ -72,7 +72,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 SokobanHelper.DebugPrintSokoban(sokoban); //output after goal generation
                                                           //Output everything
 
-                SokobanStatics.generatedSokoban = sokoban;
+                //SokobanStatics.generatedSokoban = sokoban;
             } while (!CheckIfHavePlayerSpawn());
             //Test Level if neededd
             

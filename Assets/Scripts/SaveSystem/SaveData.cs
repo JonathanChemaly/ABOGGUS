@@ -36,6 +36,7 @@ namespace ABOGGUS.SaveSystem
         public bool fallingIcePuzzleComplete = false;
         public bool runePuzzleComplete = false;
         public bool treeGrowPuzzleComplete = false;
+        public bool introPuzzleComplete = false;
         public bool windAOEUnlocked = false;
         public bool natureAOEUnlocked = false;
         public bool waterAOEUnlocked = false;

@@ -126,6 +126,18 @@ namespace ABOGGUS.SaveSystem
             activeRunesList = currentSaveData.activeRunesList;
         }
 
+        public static void SaveLobbyPuzzleStatus(Player player)
+        {
+            SavePlayerProgress(player);
+            SaveGameConstants();
+        }
+
+        public static void LoadLobbyPuzzleStatus(out bool grimAquired, out bool lockUnlocked)
+        {
+            grimAquired = currentSaveData.playerItems.Contains(new ABOGGUS.PlayerObjects.Items.Grimore());
+            lockUnlocked = currentSaveData.introPuzzleComplete; 
+        }
+
         // game stats and upgrades and misc stuff
         public static void SaveGameConstants()
         {
@@ -138,6 +150,7 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.fallingIcePuzzleComplete = GameConstants.puzzleStatus["FallingIcePuzzle"];
             currentSaveData.runePuzzleComplete = GameConstants.puzzleStatus["RunePuzzle"];
             currentSaveData.treeGrowPuzzleComplete = GameConstants.puzzleStatus["TreeGrowPuzzle"];
+            currentSaveData.introPuzzleComplete = GameConstants.puzzleStatus["IntroPuzzle"];
             currentSaveData.windAOEUnlocked = GameConstants.windAOEUnlocked;
             currentSaveData.natureAOEUnlocked = GameConstants.natureAOEUnlocked;
             currentSaveData.waterAOEUnlocked = GameConstants.waterAOEUnlocked;
@@ -158,6 +171,7 @@ namespace ABOGGUS.SaveSystem
             GameConstants.puzzleStatus["FallingIcePuzzle"] = currentSaveData.fallingIcePuzzleComplete;
             GameConstants.puzzleStatus["RunePuzzle"] = currentSaveData.runePuzzleComplete;
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = currentSaveData.treeGrowPuzzleComplete;
+            GameConstants.puzzleStatus["IntroPuzzle"] = currentSaveData.introPuzzleComplete;
             GameConstants.windAOEUnlocked = currentSaveData.windAOEUnlocked;
             GameConstants.natureAOEUnlocked = currentSaveData.natureAOEUnlocked;
             GameConstants.waterAOEUnlocked = currentSaveData.waterAOEUnlocked;
