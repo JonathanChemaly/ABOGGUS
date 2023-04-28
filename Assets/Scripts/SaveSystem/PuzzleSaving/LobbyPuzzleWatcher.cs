@@ -34,7 +34,7 @@ namespace ABOGGUS.SaveSystem
             SaveGameManager.LoadDataFromFile(null);
 
 
-            SaveGameManager.LoadLobbyPuzzleStatus(out bool grimAquired, out bool lockUnlocked);
+            SaveGameManager.LoadLobbyPuzzleStatus(player, out bool grimAquired, out bool lockUnlocked);
 
             Debug.Log("From Save we see GrimAquired = " + grimAquired + " and lockUnlocked = " + lockUnlocked);
             if (grimAquired)

@@ -156,6 +156,19 @@ namespace ABOGGUS.SaveSystem
             tileSlideDifficulty = currentSaveData.tileSlideDifficulty;
         }
 
+        public static void SaveLobbyPuzzleStatus(Player player)
+        {
+            SavePlayerProgress(player);
+            SaveGameConstants();
+        }
+
+        public static void LoadLobbyPuzzleStatus(Player player, out bool grimAquired, out bool lockUnlocked)
+        {
+            LoadPlayerProgress(player);
+            grimAquired = currentSaveData.playerItems.Contains("Grimoire");
+            lockUnlocked = currentSaveData.introPuzzleComplete;
+        }
+
         public static void SaveWinterPuzzleStatus()
         {
             // do we need these?
@@ -192,6 +205,8 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.fallingIcePuzzleComplete = GameConstants.puzzleStatus["FallingIcePuzzle"];
             currentSaveData.runePuzzleComplete = GameConstants.puzzleStatus["RunePuzzle"];
             currentSaveData.treeGrowPuzzleComplete = GameConstants.puzzleStatus["TreeGrowPuzzle"];
+            currentSaveData.introPuzzleComplete = GameConstants.puzzleStatus["IntroPuzzle"];
+
             currentSaveData.windAOEUnlocked = GameConstants.windAOEUnlocked;
             currentSaveData.natureAOEUnlocked = GameConstants.natureAOEUnlocked;
             currentSaveData.waterAOEUnlocked = GameConstants.waterAOEUnlocked;
@@ -212,6 +227,8 @@ namespace ABOGGUS.SaveSystem
             GameConstants.puzzleStatus["FallingIcePuzzle"] = currentSaveData.fallingIcePuzzleComplete;
             GameConstants.puzzleStatus["RunePuzzle"] = currentSaveData.runePuzzleComplete;
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = currentSaveData.treeGrowPuzzleComplete;
+            GameConstants.puzzleStatus["IntroPuzzle"] = currentSaveData.introPuzzleComplete;
+
             GameConstants.windAOEUnlocked = currentSaveData.windAOEUnlocked;
             GameConstants.natureAOEUnlocked = currentSaveData.natureAOEUnlocked;
             GameConstants.waterAOEUnlocked = currentSaveData.waterAOEUnlocked;
@@ -257,5 +274,8 @@ namespace ABOGGUS.SaveSystem
             UpgradeStats.bonusDamUpgradeCount = currentSaveData.bonusDamUpgradeCount;
             UpgradeStats.canDealBonusDamAtMaxHealth = currentSaveData.canDealBonusDamAtMaxHealth;
         }
+
+        
+
     }
 }
