@@ -4483,7 +4483,11 @@ PrefabInstance:
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: sokobanGen
       value: 
-      objectReference: {fileID: 1795974402}
+      objectReference: {fileID: 1795974407}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: levelToLoad
+      value: SpringLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 
@@ -12184,7 +12188,11 @@ PrefabInstance:
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: sokobanGen
       value: 
-      objectReference: {fileID: 1795974402}
+      objectReference: {fileID: 1795974407}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: levelToLoad
+      value: WinterLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 
@@ -14702,6 +14710,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1795974403}
   - component: {fileID: 1795974402}
+  - component: {fileID: 1795974407}
+  - component: {fileID: 1795974406}
+  - component: {fileID: 1795974405}
+  - component: {fileID: 1795974404}
   m_Layer: 0
   m_Name: SokobanGenerator
   m_TagString: Untagged
@@ -14740,6 +14752,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795974404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795974401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f4236c8880724a9e8846c5984c1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridHeight: 2
+  gridWidth: 2
+  roomSize: 3
+  boxNumbers: 1
+--- !u!114 &1795974405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795974401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f4236c8880724a9e8846c5984c1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridHeight: 2
+  gridWidth: 2
+  roomSize: 3
+  boxNumbers: 1
+--- !u!114 &1795974406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795974401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584f4236c8880724a9e8846c5984c1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridHeight: 2
+  gridWidth: 2
+  roomSize: 3
+  boxNumbers: 1
+--- !u!114 &1795974407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795974401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b00c38689e06a8409fc9c42148432b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonLevel: {fileID: 1795974402}
+  summerLevel: {fileID: 1795974406}
+  winterLevel: {fileID: 1795974405}
+  springLevel: {fileID: 1795974404}
 --- !u!43 &1796852510
 Mesh:
   m_ObjectHideFlags: 0
@@ -25689,7 +25765,11 @@ PrefabInstance:
     - target: {fileID: 6977367186661091228, guid: d8b62e775d3a573449f4d72a3337e7d9, type: 3}
       propertyPath: sokobanGen
       value: 
-      objectReference: {fileID: 1795974402}
+      objectReference: {fileID: 1795974407}
+    - target: {fileID: 6977367186661091228, guid: d8b62e775d3a573449f4d72a3337e7d9, type: 3}
+      propertyPath: levelToLoad
+      value: Default
+      objectReference: {fileID: 0}
     - target: {fileID: 6977367186661091228, guid: d8b62e775d3a573449f4d72a3337e7d9, type: 3}
       propertyPath: thirdPersonCamera
       value: 
@@ -26821,7 +26901,11 @@ PrefabInstance:
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: sokobanGen
       value: 
-      objectReference: {fileID: 1795974402}
+      objectReference: {fileID: 1795974407}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: levelToLoad
+      value: SummerLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 

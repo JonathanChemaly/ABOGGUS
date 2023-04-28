@@ -33,7 +33,11 @@ namespace ABOGGUS.Interact
 
         [SerializeField]
         [Tooltip("Sokoban Generator")]
-        private ABOGGUS.Interact.Puzzles.Sokoban.GenerateSokoban sokobanGen;
+        private ABOGGUS.Interact.Puzzles.Sokoban.SokobanWatcher sokobanGen;
+
+        [SerializeField]
+        [Tooltip("String to load the level")]
+        private string levelToLoad = "default";
 
         [SerializeField]
         [Tooltip("Camera To disable on open")]
@@ -60,7 +64,7 @@ namespace ABOGGUS.Interact
         private void OpenMenu()
         {
             Puzzles.Sokoban.SokobanStatics.SokobanSolved = false; //Set the puzzle we are loading's solve state to false
-            Puzzles.Sokoban.SokobanStatics.generatedSokoban = sokobanGen.sokoban; //set the level to load
+            Puzzles.Sokoban.SokobanStatics.generatedSokoban = sokobanGen.GetLevel(levelToLoad); //set the level to load
 
             SokobanOpen = true;
             SceneManager.LoadScene("Assets/Scenes/Sokoban/SokobanPopUp.unity", LoadSceneMode.Additive);

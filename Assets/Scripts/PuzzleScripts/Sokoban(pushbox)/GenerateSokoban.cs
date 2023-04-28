@@ -26,7 +26,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         [HideInInspector]
         public SokobanCell[,] sokoban;
 
-        private void Start()
+        private void OnEnable()
         {
             NormalGeneration();
             //DebugSokoban();
