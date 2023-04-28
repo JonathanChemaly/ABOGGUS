@@ -38,6 +38,11 @@ namespace ABOGGUS.PlayerObjects
             active = true;
         }
 
+        public bool GetStatus()
+        {
+            return active;
+        }
+
         public void SetNewMaterial(PlayerConstants.Magic magic)
         {
             if (magic == PlayerConstants.Magic.Wind)

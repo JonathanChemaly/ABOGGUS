@@ -42,6 +42,7 @@ namespace ABOGGUS.PlayerObjects
         private bool transitioning = false;
         private bool transitionInvoked = false;
         private bool animationSelectedThisFrame = false;
+        private bool firstTransition = true;
         private int attackIdx = 0;
         private PlayerConstants.Magic castType = PlayerConstants.Magic.Wind;
         private PlayerConstants.Weapon weaponEquipped = PlayerConstants.Weapon.Sword;
@@ -331,6 +332,17 @@ namespace ABOGGUS.PlayerObjects
         {
             if (physicalGameObject != null)
             {
+                if (!transitioning)
+                    CheckIfProperWeaponEquipped();
+                if (GameController.scene.Equals(GameConstants.SCENE_BOSS) && firstTransition)
+                {
+                    playerState = new PlayerFacingBackward(this);
+                    firstTransition = false;
+                }
+                else if (!GameController.scene.Equals(GameConstants.SCENE_BOSS))
+                {
+                    firstTransition = true;
+                }
                 // create a raycast that detects walls
                 RaycastHit hit;
                 if (Physics.Raycast(physicalGameObject.transform.position, physicalGameObject.transform.forward + yWallCheck, out hit, checkDistance, walls))
@@ -870,6 +882,74 @@ namespace ABOGGUS.PlayerObjects
         public FacingDirection GetFacingDirection()
         {
             return facingDirection;
+        }
+
+        private void CheckIfProperWeaponEquipped()
+        {
+            if (grimoire != null && weaponEquipped == PlayerConstants.Weapon.Grimoire && !grimoire.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (sword.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (spear.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Equip();
+                grimoire.SetNewMaterial(castType);
+                sword.Unequip();
+                spear.Unequip();
+            }
+            else if (sword != null && weaponEquipped == PlayerConstants.Weapon.Sword && !sword.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (grimoire.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+                }
+                else if (spear.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Spear;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Unequip();
+                sword.Equip();
+                spear.Unequip();
+            }
+            else if (spear != null && weaponEquipped == PlayerConstants.Weapon.Spear && !spear.GetStatus())
+            {
+                /*
+                transitioning = true;
+                if (sword.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Sword;
+                }
+                else if (grimoire.GetStatus())
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Grimoire;
+                }
+                else
+                {
+                    lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
+                }
+                */
+                grimoire.Unequip();
+                sword.Unequip();
+                spear.Equip();
+            }
         }
 
 
