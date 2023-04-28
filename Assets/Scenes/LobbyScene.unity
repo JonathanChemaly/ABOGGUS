@@ -4481,6 +4481,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2009062316}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: sokobanGen
+      value: 
+      objectReference: {fileID: 1795974402}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 
       objectReference: {fileID: 1452490000}
@@ -12110,20 +12114,6 @@ MonoBehaviour:
   speed: 0.001
   yPostionToStop: 2
   xPostionToStop: 0
---- !u!114 &1446603073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446603068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66738d5197139bc4fa84ea09893354d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactToEnable: {fileID: 1446603067}
-  interactToWatch: {fileID: 1446603069}
 --- !u!1001 &1448736440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12191,6 +12181,10 @@ PrefabInstance:
       propertyPath: inputM
       value: 
       objectReference: {fileID: 2009062316}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: sokobanGen
+      value: 
+      objectReference: {fileID: 1795974402}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 
@@ -14407,6 +14401,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleName: IntroPuzzle
+  interactToWatch: {fileID: 1446603069}
+--- !u!114 &1775348745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775348739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66738d5197139bc4fa84ea09893354d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactToEnable: {fileID: 1446603067}
   interactToWatch: {fileID: 1446603069}
 --- !u!1 &1778891767
 GameObject:
@@ -25679,6 +25687,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2009062316}
     - target: {fileID: 6977367186661091228, guid: d8b62e775d3a573449f4d72a3337e7d9, type: 3}
+      propertyPath: sokobanGen
+      value: 
+      objectReference: {fileID: 1795974402}
+    - target: {fileID: 6977367186661091228, guid: d8b62e775d3a573449f4d72a3337e7d9, type: 3}
       propertyPath: thirdPersonCamera
       value: 
       objectReference: {fileID: 1452490000}
@@ -26806,6 +26818,10 @@ PrefabInstance:
       propertyPath: inputM
       value: 
       objectReference: {fileID: 2009062316}
+    - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
+      propertyPath: sokobanGen
+      value: 
+      objectReference: {fileID: 1795974402}
     - target: {fileID: 999470444014853974, guid: 98a3cb3e4d0d21e4eb13b817b411cae4, type: 3}
       propertyPath: thirdPersonCamera
       value: 

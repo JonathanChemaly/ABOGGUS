@@ -15,6 +15,10 @@ namespace ABOGGUS.SaveSystem
 
         public const string saveFolder = "/Saves/";
         public const string defaultFileName = "DefaultSave.sav";  // currently only one save file at a time
+
+        public static bool finishedLoadingPlayer = false;
+
+        private static bool debug = true;
         
         public static bool SaveDataToFile(string fileName)
         {
@@ -96,20 +100,70 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.playerHealth = player.inventory.health;
             currentSaveData.playerHasKey = player.inventory.key;
             currentSaveData.playerMana = player.inventory.mana;
-            currentSaveData.playerItems = player.inventory.GetItems();
+            currentSaveData.playerItems = player.inventory.GetItemsString();
             Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
         }
 
         public static void LoadPlayerProgress(Player player)
         {
-            player.inventory.health = currentSaveData.playerHealth;
-            player.inventory.key = currentSaveData.playerHasKey;
-            player.inventory.mana = currentSaveData.playerMana;
-            player.inventory.SetItems(currentSaveData.playerItems);
-            Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+            if (!finishedLoadingPlayer)
+            {
+                player.inventory.health = currentSaveData.playerHealth;
+                player.inventory.key = currentSaveData.playerHasKey;
+                player.inventory.mana = currentSaveData.playerMana;
+                player.inventory.SetItemsString(currentSaveData.playerItems);
+                Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+                finishedLoadingPlayer = true;
+            }
+        }
+
+        // debug
+
+        public static void SaveDebug()
+        {
+            if (debug)
+            {
+                SaveDataToFile(null);
+            }
+        }
+        public static void LoadDebug()
+        {
+            if (debug)
+            {
+                LoadDataFromFile(null);
+                while (GameController.player is null) ;
+                LoadPlayerProgress(GameController.player);
+            }
         }
 
         // Puzzle rooms
+
+        public static void SaveAutumnPuzzleStatus(int tractorState)
+        {
+            currentSaveData.tractorState = tractorState;
+        }
+        public static void LoadAutumnPuzzleStatus(out int tractorState)
+        {
+            tractorState = currentSaveData.tractorState;
+        }
+
+        public static void SaveSummerPuzzleStatus(int tileSlideDifficulty)
+        {
+            currentSaveData.tileSlideDifficulty = tileSlideDifficulty;
+        }
+        public static void LoadSummerPuzzleStatus(out int tileSlideDifficulty)
+        {
+            tileSlideDifficulty = currentSaveData.tileSlideDifficulty;
+        }
+
+        public static void SaveWinterPuzzleStatus()
+        {
+            // do we need these?
+        }
+        public static void LoadWinterPuzzleStatus()
+        {
+            // do we need these?
+        }
 
         public static void SaveSpringPuzzleStatus(List<bool> activeRunesList, TreePuzzle.Status tStatus, int runNum)
         {
@@ -126,18 +180,6 @@ namespace ABOGGUS.SaveSystem
             activeRunesList = currentSaveData.activeRunesList;
         }
 
-        public static void SaveLobbyPuzzleStatus(Player player)
-        {
-            SavePlayerProgress(player);
-            SaveGameConstants();
-        }
-
-        public static void LoadLobbyPuzzleStatus(out bool grimAquired, out bool lockUnlocked)
-        {
-            grimAquired = currentSaveData.playerItems.Contains(new ABOGGUS.PlayerObjects.Items.Grimore());
-            lockUnlocked = currentSaveData.introPuzzleComplete; 
-        }
-
         // game stats and upgrades and misc stuff
         public static void SaveGameConstants()
         {
@@ -150,7 +192,6 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.fallingIcePuzzleComplete = GameConstants.puzzleStatus["FallingIcePuzzle"];
             currentSaveData.runePuzzleComplete = GameConstants.puzzleStatus["RunePuzzle"];
             currentSaveData.treeGrowPuzzleComplete = GameConstants.puzzleStatus["TreeGrowPuzzle"];
-            currentSaveData.introPuzzleComplete = GameConstants.puzzleStatus["IntroPuzzle"];
             currentSaveData.windAOEUnlocked = GameConstants.windAOEUnlocked;
             currentSaveData.natureAOEUnlocked = GameConstants.natureAOEUnlocked;
             currentSaveData.waterAOEUnlocked = GameConstants.waterAOEUnlocked;
@@ -171,7 +212,6 @@ namespace ABOGGUS.SaveSystem
             GameConstants.puzzleStatus["FallingIcePuzzle"] = currentSaveData.fallingIcePuzzleComplete;
             GameConstants.puzzleStatus["RunePuzzle"] = currentSaveData.runePuzzleComplete;
             GameConstants.puzzleStatus["TreeGrowPuzzle"] = currentSaveData.treeGrowPuzzleComplete;
-            GameConstants.puzzleStatus["IntroPuzzle"] = currentSaveData.introPuzzleComplete;
             GameConstants.windAOEUnlocked = currentSaveData.windAOEUnlocked;
             GameConstants.natureAOEUnlocked = currentSaveData.natureAOEUnlocked;
             GameConstants.waterAOEUnlocked = currentSaveData.waterAOEUnlocked;
