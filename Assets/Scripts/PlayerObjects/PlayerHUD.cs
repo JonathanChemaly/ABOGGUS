@@ -15,15 +15,15 @@ public class PlayerHUD : MonoBehaviour
     public PlayerInventory playerInventory;
     public Image currentWeapon;
 
-    private Sprite swordSprite;
-    private Sprite spearSprite;
-    private Sprite grimoireSprite;
+    public Sprite swordSprite;
+    public Sprite spearSprite;
+    public Sprite grimoireSprite;
 
     public void Awake()
     {
-        swordSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SwordName + InventoryMenu.FILE_TYPE);
-        spearSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SpearName + InventoryMenu.FILE_TYPE);
-        grimoireSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.GrimoireName + InventoryMenu.FILE_TYPE);
+        //swordSprite = null;//InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SwordName + InventoryMenu.FILE_TYPE);
+        //spearSprite = null;//InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SpearName + InventoryMenu.FILE_TYPE);
+        //grimoireSprite = null;//InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.GrimoireName + InventoryMenu.FILE_TYPE);
     }
 
     public void UpdateHealthBar()
@@ -39,13 +39,6 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateWeapon(PlayerConstants.Weapon weapon, PlayerConstants.Magic magic)
     {
-        
-        if (swordSprite == null || spearSprite == null || grimoireSprite == null)
-        {
-            swordSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SwordName + InventoryMenu.FILE_TYPE);
-            spearSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.SpearName + InventoryMenu.FILE_TYPE);
-            grimoireSprite = InventoryMenu.LoadNewSprite(InventoryMenu.FILE_PATH + ItemLookup.GrimoireName + InventoryMenu.FILE_TYPE);
-        }
         currentWeapon.color = Color.white;
         switch (weapon)
         {
