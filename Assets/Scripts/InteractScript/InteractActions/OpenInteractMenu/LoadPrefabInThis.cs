@@ -10,9 +10,9 @@ namespace ABOGGUS.Interact
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log(InteractStatics.pathToLoad);
+            //Debug.Log(InteractStatics.pathToLoad);
             GameObject prefab = Resources.Load<GameObject>(InteractStatics.pathToLoad);
-            Debug.Log(prefab);
+            //Debug.Log(prefab);
             GameObject item = Instantiate(prefab);
             item.layer = 5; //set Layer to UI
 

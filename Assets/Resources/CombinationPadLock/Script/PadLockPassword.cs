@@ -19,7 +19,7 @@ public class PadLockPassword : MonoBehaviour
         if (_moveRull._numberArray.SequenceEqual(_numberPassword))
         {
             // Here enter the event for the correct combination
-            Debug.Log("Password correct");
+            //Debug.Log("Password correct");
 
             // Es. Below the for loop to disable Blinking Material after the correct password
             for (int i = 0; i < _moveRull._rullers.Count; i++)

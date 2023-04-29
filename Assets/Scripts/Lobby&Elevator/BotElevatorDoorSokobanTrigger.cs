@@ -62,7 +62,7 @@ public class BotElevatorDoorSokobanTrigger : MonoBehaviour
             else if (other.CompareTag("Player"))
             {
                 openBottomDoor = true;
-                Debug.Log("botOpen");
+                //Debug.Log("botOpen");
             }
         }
     }

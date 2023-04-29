@@ -9,7 +9,7 @@ public class MeltPuzzle : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("Restart");
+        //Debug.Log("Restart");
         GameObject toDestroy = null;
         if (this.transform.childCount == 3)
         {

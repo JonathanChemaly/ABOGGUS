@@ -41,8 +41,8 @@ namespace ABOGGUS.Interact.Puzzles
             center = this.transform.position;
             topLeft = center + new Vector3(-1 * (size - 1) * tileSpace / 2, 0, (size - 1) * tileSpace / 2);
             localTopLeft = this.transform.InverseTransformPoint(topLeft);
-            Debug.Log("Top Left: " + topLeft);
-            Debug.Log("Local Top Left: " + localTopLeft);
+            //Debug.Log("Top Left: " + topLeft);
+            //Debug.Log("Local Top Left: " + localTopLeft);
 
             CreatePuzzle();
             CreateBorders();
@@ -180,7 +180,7 @@ namespace ABOGGUS.Interact.Puzzles
             }
 
             gameOver = true;
-            Debug.Log("Player has solved the slide puzzle!");
+            //Debug.Log("Player has solved the slide puzzle!");
             if (!GameConstants.puzzleStatus["TileSlidePuzzle"])
             {
                 manaDrop.transform.parent.gameObject.SetActive(true);

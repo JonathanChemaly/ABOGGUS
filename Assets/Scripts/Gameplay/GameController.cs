@@ -89,6 +89,7 @@ namespace ABOGGUS.Gameplay
 
         public static void NewGame()
         {
+            //Debug.Log("Starting new game");
             GameController.ChangeScene("Main menu to hotel lobby.", GameConstants.SCENE_MAINLOBBY, false);
         }
 

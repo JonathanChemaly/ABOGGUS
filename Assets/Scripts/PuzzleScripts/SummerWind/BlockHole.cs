@@ -49,7 +49,7 @@ public class BlockHole : MonoBehaviour
         if (blocksLeft == 0)
         {
             cleared = true;
-            Debug.Log("wind block puzzle complete");
+            //Debug.Log("wind block puzzle complete");
             GameConstants.puzzleStatus["WindPushPuzzle"] = true;
             foreach (GameObject i in objects)
             {

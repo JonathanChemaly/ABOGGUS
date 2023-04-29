@@ -349,13 +349,13 @@ namespace ABOGGUS.PlayerObjects
                 {
                     // if a wall is detected, disable forward movement
                     canMoveWalls = false;
-                    Debug.Log("Wall");
+                    //Debug.Log("Wall");
                 }
                 else
                 {
                     // else enable forward movement
                     canMoveWalls = true;
-                    Debug.Log("NO");
+                    //Debug.Log("NO");
                 }
                 if (transitioning)
                 {
@@ -549,7 +549,7 @@ namespace ABOGGUS.PlayerObjects
                     if (casting)
                     {
                         float delay;
-                        Debug.Log("Entered");
+                        //Debug.Log("Entered");
                         if (aoe)
                         {
                             //AOE Animation
@@ -744,7 +744,7 @@ namespace ABOGGUS.PlayerObjects
         {
             if (attack)
             {
-                Debug.Log("Entering new attack");
+                //Debug.Log("Entering new attack");
                 attackIdx = (attackIdx + 1) % PlayerConstants.SWORD_ATTACKS.Length;
             }
             else

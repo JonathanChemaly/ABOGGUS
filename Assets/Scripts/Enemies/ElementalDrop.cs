@@ -47,7 +47,7 @@ public class ElementalDrop : MonoBehaviour
             GameController.player.updateMana(1);
             if (UpgradeStats.canHealFromMana)
             {
-                Debug.Log("Player Health was: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+                //Debug.Log("Player Health was: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
                 if (GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health
                     <= GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth - UpgradeStats.healFromManaVal)
                 {
@@ -64,9 +64,9 @@ public class ElementalDrop : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Player already at max health value of: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
+                    //Debug.Log("Player already at max health value of: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
                 }
-                Debug.Log("Player Health is now: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+                //Debug.Log("Player Health is now: " + GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
             }
             deathSound.Play();
             Destroy(gameObject);

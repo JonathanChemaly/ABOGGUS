@@ -85,7 +85,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 default:
                     {
-                        Debug.LogError("Sokoban Room size " + roomSize + " not avaiable");
+                        //Debug.LogError("Sokoban Room size " + roomSize + " not avaiable");
                         break;
                     }
             }
@@ -134,7 +134,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 default:
                     {
-                        Debug.LogError("Reflect Random int failed");
+                        //Debug.LogError("Reflect Random int failed");
                         break;
                     }
             }

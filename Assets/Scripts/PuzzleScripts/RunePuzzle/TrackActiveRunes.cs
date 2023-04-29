@@ -36,7 +36,7 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
                 debugString += currentStatus.ToString();
             }
             if(activeRunesList.Count == runeInteractables.Count)successList = activeRunesList;
-            Debug.Log(debugString);
+            //Debug.Log(debugString);
             if (complete)
             {
                 toEnable.enabled = false;
@@ -45,7 +45,7 @@ namespace ABOGGUS.Interact.Puzzles.RunePuzzle
             else
             {
                 toEnable.enabled = false;
-                Debug.Log("Checking Success!");
+                //Debug.Log("Checking Success!");
                 CheckSucess();
             }
         }

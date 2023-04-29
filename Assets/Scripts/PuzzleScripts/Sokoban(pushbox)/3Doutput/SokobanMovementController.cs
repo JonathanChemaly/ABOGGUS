@@ -56,7 +56,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                 SuccessAudio.Play();
                 //do goal actions
-                Debug.Log("All Boxes On Goals! Performing Goal Action...");
+                //Debug.Log("All Boxes On Goals! Performing Goal Action...");
 
                 foreach (System.Tuple<int, int, GameObject> boxTup in curBoxPostions)
                 {
@@ -168,28 +168,28 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
         private void MoveUp(InputAction.CallbackContext obj)
         {
-            Debug.Log("Moving Sokoban Player Up");
+            //Debug.Log("Moving Sokoban Player Up");
             //decreasing row by one to move up
             MoveHere(-1, 0);
         }
 
         private void MoveDown(InputAction.CallbackContext obj)
         {
-            Debug.Log("Moving Sokoban Player Down");
+            //Debug.Log("Moving Sokoban Player Down");
             //increasing row by one to move down
             MoveHere(1, 0);
         }
 
         private void MoveLeft(InputAction.CallbackContext obj)
         {
-            Debug.Log("Moving Sokoban Player Left");
+            //Debug.Log("Moving Sokoban Player Left");
             //decreasing col by one to move left
             MoveHere(0, -1);
         }
 
         private void MoveRight(InputAction.CallbackContext obj)
         {
-            Debug.Log("Moving Sokoban Player Right");
+            //Debug.Log("Moving Sokoban Player Right");
             //increasing col by one to move right
             MoveHere(0, 1);
         }
@@ -246,7 +246,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             playerLocationRow = outputedSokoban.startingPlayerPostion.Item1;
             playerLocationCol = outputedSokoban.startingPlayerPostion.Item2;
 
-            Debug.Log("Starting Player Location = " + playerLocationRow + "," + playerLocationCol);
+            //Debug.Log("Starting Player Location = " + playerLocationRow + "," + playerLocationCol);
 
             //add Blocks for checking
             foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
@@ -254,10 +254,10 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 curBoxPostions.Add(new System.Tuple<int, int, GameObject>(tuple.Item1, tuple.Item2, tuple.Item3));
             }
 
-            foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
+            /*foreach (System.Tuple<int, int, GameObject> tuple in outputedSokoban.startingBoxLocations)
             {
                 Debug.Log("Box Postions = " + tuple.Item1 + "," + tuple.Item2);
-            }
+            }*/
            
         }
 

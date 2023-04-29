@@ -78,7 +78,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 }
                 sokobanWhole += line + "\n";
             }
-            Debug.Log(sokobanWhole);
+            //Debug.Log(sokobanWhole);
         }
 
         public static SokobanCell[,] Clone(SokobanCell[,] toClone)

@@ -28,7 +28,7 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        Debug.Log("Debug from PlayerHealthBar: " + playerInventory.health / playerInventory.maxHealth);
+        //Debug.Log("Debug from PlayerHealthBar: " + playerInventory.health / playerInventory.maxHealth);
         bar.fillAmount = Mathf.Clamp(playerInventory.health / playerInventory.maxHealth, 0, 1f);
     }
 
