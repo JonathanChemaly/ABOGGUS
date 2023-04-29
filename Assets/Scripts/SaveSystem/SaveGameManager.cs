@@ -22,9 +22,9 @@ namespace ABOGGUS.SaveSystem
         
         public static bool SaveDataToFile(string fileName)
         {
-            //var dir = Application.persistentDataPath + saveFolder;  // find default directory to store our save
+            var dir = Application.persistentDataPath + saveFolder;  // find default directory to store our save
 
-            var dir = Application.dataPath + saveFolder;
+            //var dir = Application.dataPath + saveFolder;
 
             // create "Saves" directory if it doesn't exist yet
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
