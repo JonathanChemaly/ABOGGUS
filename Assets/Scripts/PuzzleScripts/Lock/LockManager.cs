@@ -64,7 +64,7 @@ namespace ABOGGUS.Interact.Puzzles
             //if password is correct do this.
             if (passwordIsCorrect)
             {
-                Debug.Log("Password Correct!");
+                //Debug.Log("Password Correct!");
                 /*
                 * When we get the correct password stop registering further clicks
                 */

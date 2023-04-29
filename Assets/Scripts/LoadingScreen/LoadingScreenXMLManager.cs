@@ -19,7 +19,7 @@ public class LoadingScreenXMLManager : MonoBehaviour
     {
         //creates an xml object that we can a use base on the xml path
         lsXML = XMLUtil.ImportXml<LoadingScreenXML>(XMLpath);
-        Debug.Log("length of xml: " + lsXML.imageArray.Length);
+        //Debug.Log("length of xml: " + lsXML.imageArray.Length);
 
         //Set starting picture number to a random number for randomness of how we cycle through loading screen
         pictureNum = Random.Range(0, lsXML.imageArray.Length);

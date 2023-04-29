@@ -50,7 +50,7 @@ public static class UpgradeStats
         var tempScale = GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale;
         tempScale.x += healthBarInc;
         GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
-        Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+        //Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
         healthUpgradeCount += 1;
         healthBarSize += healthBarInc;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(healthUpCost);
@@ -60,7 +60,7 @@ public static class UpgradeStats
     {
         GameObject.Find("Sword").GetComponent<SwordAttack>().damage+=swordDamInc;
         WeaponDamageStats.swordDamage += swordDamInc;
-        Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
+        //Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
         swordUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(swordUpCost);
     }
@@ -69,7 +69,7 @@ public static class UpgradeStats
     {
         GameObject.Find("Spear").GetComponent<SpearAttack>().damage += spearDamInc;
         WeaponDamageStats.spearDamage += spearDamInc;
-        Debug.Log(GameObject.Find("Spear").GetComponent<SpearAttack>().damage);
+        //Debug.Log(GameObject.Find("Spear").GetComponent<SpearAttack>().damage);
         spearUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(spearUpCost);
     }
@@ -77,7 +77,7 @@ public static class UpgradeStats
     public static void IncManaEfficiency()
     {
         manaEfficiency -= 0.1f;
-        Debug.Log(manaEfficiency);
+        //Debug.Log(manaEfficiency);
         mEUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(mECost);
     }
@@ -98,13 +98,13 @@ public static class UpgradeStats
 
         WeaponDamageStats.natureDamage += spellDamInc;
 
-        Debug.Log("New Wind Damage: " + WeaponDamageStats.windDamage);
-        Debug.Log("New Wind AOE Damage: " + WeaponDamageStats.windAOEDamage);
-        Debug.Log("New Fire Damage: " + WeaponDamageStats.fireDamage);
-        Debug.Log("New Fire AOE Damage: " + WeaponDamageStats.fireAOEDamage);
-        Debug.Log("New Water Damage: " + WeaponDamageStats.waterDamage);
-        Debug.Log("New Water AOE Damage: " + WeaponDamageStats.waterAOEDamage);
-        Debug.Log("New Nature Damage: " + WeaponDamageStats.natureDamage);
+        //Debug.Log("New Wind Damage: " + WeaponDamageStats.windDamage);
+        //Debug.Log("New Wind AOE Damage: " + WeaponDamageStats.windAOEDamage);
+        //Debug.Log("New Fire Damage: " + WeaponDamageStats.fireDamage);
+        //Debug.Log("New Fire AOE Damage: " + WeaponDamageStats.fireAOEDamage);
+        //Debug.Log("New Water Damage: " + WeaponDamageStats.waterDamage);
+        //Debug.Log("New Water AOE Damage: " + WeaponDamageStats.waterAOEDamage);
+        //Debug.Log("New Nature Damage: " + WeaponDamageStats.natureDamage);
 
 
         oSDUpgradeCount += 1;
@@ -116,7 +116,7 @@ public static class UpgradeStats
     {
         canHealFromMana = true;
         healFromManaVal += healFromManaInc;
-        Debug.Log("Health gained from mana: " + healFromManaVal);
+        //Debug.Log("Health gained from mana: " + healFromManaVal);
         hFMUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(hFMCost);
     }

@@ -42,7 +42,7 @@ namespace ABOGGUS.Interact
         {
             yield return new WaitForSeconds(delaySec);
             if (IM != null) IM.InputScheme.Player.Disable();//if given IM disable player actions
-            Debug.Log("playing audio for " + this.gameObject.name);
+            //Debug.Log("playing audio for " + this.gameObject.name);
             audioToPlay.Play();
             StartCoroutine(disableWhileAudioPlaying());
         }

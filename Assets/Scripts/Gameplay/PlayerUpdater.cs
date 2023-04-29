@@ -50,7 +50,7 @@ namespace ABOGGUS.Gameplay
             }
             SaveGameManager.SavePlayerProgress(GameController.player);  // autosave for going between different play scenes
 
-            Debug.Log("Successfully updated player game object");
+            //Debug.Log("Successfully updated player game object");
         }
     }
 }

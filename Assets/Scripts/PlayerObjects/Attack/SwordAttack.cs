@@ -39,7 +39,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.tag);
+            //Debug.Log(other.tag);
             if (active && attacking && other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
             else if (active && attacking && other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }

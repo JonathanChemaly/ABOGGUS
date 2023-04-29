@@ -14,12 +14,12 @@ public static class XMLUtil
         {
             XmlSerializer serializer = new(typeof(T));
             using var stream = new FileStream(path, FileMode.Open);
-            Debug.Log("Successfully imported: " + path);
+            //Debug.Log("Successfully imported: " + path);
             return (T)serializer.Deserialize(stream);
         }
         catch (Exception e)
         {
-            Debug.LogError("Exception importing xml file: " + e);
+            //Debug.LogError("Exception importing xml file: " + e);
             return default;
         }
     }

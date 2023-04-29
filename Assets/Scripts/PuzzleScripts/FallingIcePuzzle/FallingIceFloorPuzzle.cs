@@ -88,7 +88,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
                 num = iceExits.Length-1;
                 for (int i = num; i >= 0; i--)
                 {
-                    Debug.Log("IceWall destroyed - " + i);
+                    //Debug.Log("IceWall destroyed - " + i);
                     Destroy(iceExits[i]);
                 }
                 iceFloors = GameObject.FindGameObjectsWithTag("iceFloor");
@@ -99,7 +99,7 @@ public class FallingIceFloorPuzzle : MonoBehaviour
             }
             
             times++;
-            Debug.Log(times);
+            //Debug.Log(times);
             Instantiate(exit, startPoint + new Vector3((col / 2) * 4f, 0f, -4f), Quaternion.identity);
             for (int c = 1; c < col - 1; c++)
             {

@@ -54,7 +54,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerStay(Collider other)
         {
-            Debug.Log(other.tag);
+            //Debug.Log(other.tag);
             if (other.CompareTag("Player"))
                 HealPlayer();
         }

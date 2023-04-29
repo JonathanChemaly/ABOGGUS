@@ -62,7 +62,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     } else
                     {
                         canAdd = cellInSokoban.GetType().Equals(roomCell.GetType());
-                        Debug.Log(cellInSokoban.GetType() + " check succeeded with " + roomCell);
+                        //Debug.Log(cellInSokoban.GetType() + " check succeeded with " + roomCell);
                     }
                      
                 }
@@ -96,7 +96,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     else
                     {
                         canAdd = cellInSokoban.GetType().Equals(roomCell.GetType());
-                        Debug.Log(cellInSokoban.GetType()+ " check succeeded with " + roomCell);
+                        //Debug.Log(cellInSokoban.GetType()+ " check succeeded with " + roomCell);
                     }
                 }
 
@@ -233,7 +233,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 }
             }
 
-            Debug.Log("Number of floor connections made = " + numberOfFloorsAdded);
+            //Debug.Log("Number of floor connections made = " + numberOfFloorsAdded);
             //checks below
 
             //Floor spaces form one contiguous room
@@ -388,7 +388,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
             if (largeOpenSpaceExists)
             {
-                Debug.Log("3x4 or 4x3 area found");
+                //Debug.Log("3x4 or 4x3 area found");
             }
 
             return largeOpenSpaceExists;
@@ -526,7 +526,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         fails += 1;
                         if (fails > maxFails)
                         {
-                            Debug.Log("Sokoban: Hit Max fails");
+                            //Debug.Log("Sokoban: Hit Max fails");
                             fails = 0;
                             count = 0;
                             sokoban = new SokobanCell[height * roomSize, width * roomSize];
@@ -540,7 +540,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     fails += 1;
                     if (fails > maxFails)
                     {
-                        Debug.Log("Sokoban: Hit Max fails");
+                        //Debug.Log("Sokoban: Hit Max fails");
                         fails = 0;
                         count = 0;
                         sokoban = new SokobanCell[height * roomSize, width * roomSize];
@@ -552,7 +552,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             //If final Checks fail regerenate sokoban
             if (!DoFinalChecks(sokoban))
             {
-                Debug.Log("Final Checks Failed Regenerating");
+                //Debug.Log("Final Checks Failed Regenerating");
                 sokoban = GenerateSokoban(height, width, roomSize);
                 
             }

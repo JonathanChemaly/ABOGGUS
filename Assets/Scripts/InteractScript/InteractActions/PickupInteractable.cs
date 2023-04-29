@@ -25,7 +25,7 @@ namespace ABOGGUS.Interact
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("Item " + itemName + " has awoken");
+            //Debug.Log("Item " + itemName + " has awoken");
             interact.InteractAction += pickUpObject;
             playerInv = GameController.player.inventory;
             //itemInfo = playerInv.GetType().GetProperty(itemName);
@@ -39,7 +39,7 @@ namespace ABOGGUS.Interact
                 yield return null;
             }
             itemInfo = playerInv.HasItem(itemName);
-            Debug.Log("Item " + itemName + " is in player inventory: " + itemInfo);
+            //Debug.Log("Item " + itemName + " is in player inventory: " + itemInfo);
             if (itemInfo) Destroy(gameObject);
 
         }
@@ -72,7 +72,7 @@ namespace ABOGGUS.Interact
             }
             else if (interact.CompareTag(ItemLookup.BucketName))
             {
-                Debug.Log("Bucket item picked up");
+                //Debug.Log("Bucket item picked up");
                 playerInv.AddItem(ItemLookup.BucketName);
             }
             //itemInfo.SetValue(playerInv, true);

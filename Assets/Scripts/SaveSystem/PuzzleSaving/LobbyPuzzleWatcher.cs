@@ -46,7 +46,7 @@ namespace ABOGGUS.SaveSystem
 
             SaveGameManager.LoadLobbyPuzzleStatus(player, out bool grimAquired, out bool lockUnlocked);
 
-            Debug.Log("From Save we see GrimAquired = " + grimAquired + " and lockUnlocked = " + lockUnlocked);
+            //Debug.Log("From Save we see GrimAquired = " + grimAquired + " and lockUnlocked = " + lockUnlocked);
             if (grimAquired)
             {
                 grimBook.SetActive(false);

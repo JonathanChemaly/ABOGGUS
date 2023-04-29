@@ -31,7 +31,7 @@ public class ExplodeBarrel : MonoBehaviour
 		if(Random.Range(0, 2) == 0)
         {
 			Instantiate(ElementalDrop, transform.position, Quaternion.identity);
-			Debug.Log("Drop");
+			//Debug.Log("Drop");
 		}
 		foreach (Transform child in transform) 
 		{

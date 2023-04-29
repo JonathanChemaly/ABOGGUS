@@ -84,7 +84,7 @@ namespace ABOGGUS.Interact
          */
         private void InteractPress(InputAction.CallbackContext obj)
         {
-            Debug.Log("interactPress");
+            //Debug.Log("interactPress");
             if (LookingAtInteractable()) //if we are looking at something ...
             {
                 //if we have no condition or the condition to active is satisfied

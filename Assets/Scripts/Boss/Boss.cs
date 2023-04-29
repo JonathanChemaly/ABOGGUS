@@ -126,7 +126,7 @@ namespace ABOGGUS.BossObjects
             {
                 health -= damage;
                 takingDamage = true;
-                Debug.Log("Boss took " + damage + " damage.");
+                //Debug.Log("Boss took " + damage + " damage.");
                 healthBar.UpdateHealthBar();
                 if (health <= 0)
                 {
