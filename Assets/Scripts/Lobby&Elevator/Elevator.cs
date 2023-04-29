@@ -17,7 +17,7 @@ public class Elevator : MonoBehaviour
     public GameObject elevatorShaftFloor;
 
     private float elevatorSpeed = 0.05f;
-    private float timer = 8.0f;
+    private float timer = 2.0f;
     [SerializeField] private float elevatorHieght = 15.1f;
 
     private bool elevatorMoving = false;
@@ -88,7 +88,7 @@ public class Elevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            timer = 4.0f;
+            timer = 2.0f;
             elevatorMoving = false;
         }
     }
