@@ -10,7 +10,7 @@ public class GrassSlime : MonoBehaviour, IEnemy
     private bool inRange = false;
     private bool dead = false;
     private float range = 15f;
-    private float speed = 0.075f;
+    private float speed = 0.07f;
     private float timer = 1.5f;
     private float deathTimer = 1f;
     private float health = 60f;
