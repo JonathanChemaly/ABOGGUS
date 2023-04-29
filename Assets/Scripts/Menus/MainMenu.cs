@@ -47,7 +47,8 @@ namespace ABOGGUS.Menus
         IEnumerator PlayLoadGameEnum()
         {
             SaveGameManager.LoadProgressFromFile(null);
-            string sceneName = SaveGameManager.currentSaveData.lastScene;
+            //string sceneName = SaveGameManager.currentSaveData.lastScene;
+            string sceneName = GameConstants.SCENE_MAINLOBBY;
             yield return new WaitForSeconds(0.3f);
             GameController.LoadGame(sceneName);
         }
