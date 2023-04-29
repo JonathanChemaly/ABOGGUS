@@ -59,6 +59,10 @@ namespace ABOGGUS.BossObjects
         public const int ATTACK_B = 1;
         public const int ATTACK_R = 2;
 
+        private bool takingDamage = false;
+        private float invTime = 0.3f;
+        private float damageTimer = 0f;
+
         void Awake()
         {
             player = GameObject.Find("Player").transform;
@@ -118,20 +122,24 @@ namespace ABOGGUS.BossObjects
 
         public void TakeDamage(float damage)
         {
-            health -= damage;
-            Debug.Log("Boss took " + damage + " damage.");
-            healthBar.UpdateHealthBar();
-            if (health <= 0)
+            if (!takingDamage)
             {
-                healthBar.OnDeath();
-                bossMusic.AudioFadeOut();
-                GameObject[] sparkArr = GameObject.FindGameObjectsWithTag("Spark");
-                foreach (GameObject minion in sparkArr)
+                health -= damage;
+                takingDamage = true;
+                Debug.Log("Boss took " + damage + " damage.");
+                healthBar.UpdateHealthBar();
+                if (health <= 0)
                 {
-                    Destroy(minion);
+                    healthBar.OnDeath();
+                    bossMusic.AudioFadeOut();
+                    GameObject[] sparkArr = GameObject.FindGameObjectsWithTag("Spark");
+                    foreach (GameObject minion in sparkArr)
+                    {
+                        Destroy(minion);
+                    }
+                    Invoke(nameof(DestroyEnemy), 0.5f);
+                    GameController.ChangeScene("Beat game!", GameConstants.SCENE_CREDITS, false);
                 }
-                Invoke(nameof(DestroyEnemy), 0.5f);
-                GameController.ChangeScene("Beat game!", GameConstants.SCENE_CREDITS, false);
             }
         }
 
@@ -143,6 +151,16 @@ namespace ABOGGUS.BossObjects
         // Update is called once per frame
         void FixedUpdate()
         {
+            if (takingDamage)
+            {
+                damageTimer += Time.fixedDeltaTime;
+                if (damageTimer > invTime)
+                {
+                    takingDamage = false;
+                    damageTimer = 0;
+                }
+            }
+
             if (wait > 0) wait--;
             else
             {
