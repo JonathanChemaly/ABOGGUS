@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.PlayerObjects.Items;
+using ABOGGUS.Gameplay;
 
 [System.Serializable]
 public static class UpgradeStats
@@ -159,8 +161,28 @@ public static class UpgradeStats
             GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health = PlayerConstants.MAX_HEALTH;
             GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.mana = PlayerConstants.DEFAULT_MANA;
             GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.totalMana = PlayerConstants.DEFAULT_MANA;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.items = new List<IItem>();
             GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateHealthBar();
             GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateMana();
         }
+        GameConstants.windAOEUnlocked = false;
+        GameConstants.natureAOEUnlocked = false;
+        GameConstants.waterAOEUnlocked = false;
+        GameConstants.fireAOEUnlocked = false;
+        GameConstants.windUnlocked = false;
+        GameConstants.natureUnlocked = false;
+        GameConstants.waterUnlocked = false;
+        GameConstants.fireUnlocked = false;
+
+        GameConstants.puzzleStatus["FirePuzzle"] = false;
+        GameConstants.puzzleStatus["WindPushPuzzle"] = false;
+        GameConstants.puzzleStatus["TileSlidePuzzle"] = false;
+        GameConstants.puzzleStatus["TractorPuzzle"] = false;
+        GameConstants.puzzleStatus["MazePuzzle"] = false;
+        GameConstants.puzzleStatus["MeltIcePuzzle"] = false;
+        GameConstants.puzzleStatus["FallingIcePuzzle"] = false;
+        GameConstants.puzzleStatus["RunePuzzle"] = false;
+        GameConstants.puzzleStatus["TreeGrowPuzzle"] = false;
+        GameConstants.puzzleStatus["IntroPuzzle"] = false;
     }
 }

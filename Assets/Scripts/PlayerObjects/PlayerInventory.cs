@@ -19,7 +19,7 @@ namespace ABOGGUS.PlayerObjects
         public bool key { get; set; } = true;
         //public bool bucket { get; set; } = false;
 
-        private List<IItem> items = new List<IItem>();
+        public List<IItem> items = new List<IItem>();
 
         public PlayerInventory() { }
 

@@ -1455,6 +1455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1452490000}
     - target: {fileID: 5375510760601521271, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: GoToBoss
+      value: 
+      objectReference: {fileID: 537726274}
+    - target: {fileID: 5375510760601521271, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: transition
       value: 1
       objectReference: {fileID: 0}
@@ -18605,8 +18609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   botDoorR: {fileID: 8162040205348505108}
   botDoorL: {fileID: 3636771011676161162}
-  NotEnoughMana: {fileID: 0}
-  GoToBoss: {fileID: 0}
+  NotEnoughMana: {fileID: 317758329}
+  GoToBoss: {fileID: 537726274}
   openBottomDoor: 0
   flipOrientation: 1
   transition: 0
