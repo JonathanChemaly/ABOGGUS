@@ -62,8 +62,8 @@ namespace ABOGGUS.SaveSystem
         public int healthUpgradeCount = 0;
         public int swordUpgradeCount = 0;
         public float healthBarSize = UpgradeStats.defaultHealthBarSize;
-        public int mana = UpgradeStats.defaultMana;
-        public int totalMana = UpgradeStats.defaultMana;
+        public int mana = PlayerConstants.DEFAULT_MANA;
+        public int totalMana = PlayerConstants.DEFAULT_MANA;
         public float manaEfficiency = 1.0f;
         public int oSDUpgradeCount = 0;
         public int overallSpellDamBonus = 0;

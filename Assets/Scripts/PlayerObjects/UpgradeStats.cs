@@ -25,7 +25,7 @@ public static class UpgradeStats
 
     public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
 
-    public static int mana = 100, defaultMana = 100, totalMana = 100;
+    public static int mana = 100, totalMana = 100;
 
     public static float manaEfficiency = 1.0f;
 
@@ -136,14 +136,14 @@ public static class UpgradeStats
                 GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
     }
 
-    public static void resetPlayerStats()
+    public static void ResetPlayerStats()
     {
         runs = 0;
         healthUpgradeCount = 0;
         swordUpgradeCount = 0;
         healthBarSize = defaultHealthBarSize;
-        mana = defaultMana;
-        totalMana = defaultMana;
+        mana = PlayerConstants.DEFAULT_MANA;
+        totalMana = PlayerConstants.DEFAULT_MANA;
         manaEfficiency = 1.0f;
         oSDUpgradeCount = 0;
         overallSpellDamBonus = 0;
@@ -153,5 +153,14 @@ public static class UpgradeStats
         bonusDamMultiplier = 1.0f;
         bonusDamUpgradeCount = 0;
         canDealBonusDamAtMaxHealth = false;
+        if (GameObject.Find("PlayerScripts") != null)
+        {
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth = PlayerConstants.MAX_HEALTH;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health = PlayerConstants.MAX_HEALTH;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.mana = PlayerConstants.DEFAULT_MANA;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.totalMana = PlayerConstants.DEFAULT_MANA;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateHealthBar();
+            GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateMana();
+        }
     }
 }

@@ -31,7 +31,7 @@ public static class WeaponDamageStats
     public static int waterCost = 4, defaultWaterCost = 4;
     public static int waterAOECost = 4, defaultWaterAOECost = 4;
 
-    public static void resetDamageStats()
+    public static void ResetDamageStats()
     {
         swordDamage = defaultSwordDamage;
         spearDamage = defaultSpearDamage;
