@@ -23,7 +23,7 @@ namespace ABOGGUS.Interact
         //private System.Reflection.PropertyInfo itemInfo;
 
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             Debug.Log("Item " + itemName + " has awoken");
             interact.InteractAction += pickUpObject;

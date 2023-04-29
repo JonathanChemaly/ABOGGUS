@@ -1418,6 +1418,10 @@ PrefabInstance:
       propertyPath: interactCheck
       value: 
       objectReference: {fileID: 742032751}
+    - target: {fileID: 2126155699980852796, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2901185703296602775, guid: 82b6e1b8bfcd14e4cbe92991d455ef72, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -13296,7 +13300,6 @@ MonoBehaviour:
   chest: {fileID: 1446603068}
   comboLock: {fileID: 1775348739}
   grimBook: {fileID: 1446603066}
-  player: {fileID: 1778891769}
 --- !u!4 &1562640783
 Transform:
   m_ObjectHideFlags: 0
