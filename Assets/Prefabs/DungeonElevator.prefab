@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 2037992368847858888}
   - component: {fileID: 3598817614947381393}
   - component: {fileID: 8175836964594081516}
-  - component: {fileID: 1995371975469263805}
+  - component: {fileID: 3152253073929586303}
   m_Layer: 0
   m_Name: ElevatorTrigger
   m_TagString: Untagged
@@ -2337,7 +2337,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1995371975469263805
+--- !u!114 &3152253073929586303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2126155699980852796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4267fe3991fb0104db3d44c28b64c334, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3176c5f3247f845a55fd69ac30bcbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
@@ -3393,6 +3393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   botDoorR: {fileID: 650419626668351507}
   botDoorL: {fileID: 9186375899879336867}
+  NotEnoughMana: {fileID: 0}
+  GoToBoss: {fileID: 0}
   openBottomDoor: 0
   flipOrientation: 0
   transition: 0

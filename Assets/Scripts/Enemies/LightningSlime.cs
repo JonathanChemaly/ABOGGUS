@@ -11,7 +11,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
     private bool inRange = false;
     private bool dead = false;
     private float range = 15f;
-    private float speed = 0.09f;
+    private float speed = 0.11f;
     private float timer = 2f;
     private float deathTimer = 1f;
     private float health = 60f;
