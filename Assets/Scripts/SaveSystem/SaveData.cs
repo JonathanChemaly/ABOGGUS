@@ -30,7 +30,7 @@ namespace ABOGGUS.SaveSystem
 
         // spring puzzle data
         public TreePuzzle.Status treeStatus = TreePuzzle.Status.DIRT;
-        public int treeRunNumber = 0;
+        public int treeRunNumber = -1;
         public List<bool> activeRunesList = new();
 
         // game constants
