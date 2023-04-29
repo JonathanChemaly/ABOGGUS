@@ -51,11 +51,6 @@ public class ThirdPersonCameraController : MonoBehaviour
     private static bool exists = false;
     private void Awake()
     {
-        if (!exists)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        exists = true;
     }
     // Start is called before the first frame update
     void Start()
