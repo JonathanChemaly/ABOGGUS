@@ -18,6 +18,15 @@ namespace ABOGGUS.Menus
     {
         public GameObject inventoryMenu;
 
+        [SerializeField] public Sprite gas;
+        [SerializeField] public Sprite grimoire;
+        [SerializeField] public Sprite spear;
+        [SerializeField] public Sprite sword;
+        [SerializeField] public Sprite tractorkey;
+        [SerializeField] public Sprite wheel;
+        [SerializeField] public Sprite wrench;
+        [SerializeField] public Sprite empty;
+
         //public Sprite keyImage;
         //public Image keyContainer;
 
@@ -29,8 +38,8 @@ namespace ABOGGUS.Menus
 
         private const string TAG = "ItemContainer";
 
-        public const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
-        public const string FILE_TYPE = ".png";
+        //public const string FILE_PATH = "Assets/Resources/Images/InventoryIcons/";
+        //public const string FILE_TYPE = ".png";
 
         // Start is called before the first frame update
         void Start()
@@ -93,7 +102,7 @@ namespace ABOGGUS.Menus
             List<IItem> items = GameController.player.inventory.GetItems();
             for(int i = 0; i < items.Count; i++)
             {
-                Sprite sprite = InventoryMenu.LoadNewSprite(FILE_PATH + items[i].GetName() + FILE_TYPE);
+                Sprite sprite = GetSprite(items[i]); // InventoryMenu.LoadNewSprite(FILE_PATH + items[i].GetName() + FILE_TYPE);
                 containers[i].color = Color.white;
                 containers[i].sprite = sprite;
                 containers[i].enabled = true;
@@ -104,7 +113,23 @@ namespace ABOGGUS.Menus
             updated = true;
         }
 
+        private Sprite GetSprite(IItem item)
+        {
+            switch (item.GetName())
+            {
+                case ItemLookup.GasName: return gas;
+                case ItemLookup.GrimoireName: return grimoire;
+                case ItemLookup.SpearName: return spear;
+                case ItemLookup.SwordName: return sword;
+                case ItemLookup.TractorKeyName: return tractorkey;
+                case ItemLookup.WheelName: return wheel;
+                case ItemLookup.WrenchName: return wrench;
+                    default: return empty;
+            }
+        }
+
         //Sprite loading is taken from https://forum.unity.com/threads/generating-sprites-dynamically-from-png-or-jpeg-files-in-c.343735/
+        /*
         public static Sprite LoadNewSprite(string FilePath, float PixelsPerUnit = 100.0f)
         {
 
@@ -134,6 +159,6 @@ namespace ABOGGUS.Menus
                     return Tex2D;                 // If data = readable -> return texture
             }
             return null;                     // Return null if load failed
-        }
+        }*/
     }
 }

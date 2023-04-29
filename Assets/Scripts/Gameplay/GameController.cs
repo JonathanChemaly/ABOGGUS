@@ -132,10 +132,12 @@ namespace ABOGGUS.Gameplay
                 case GameConstants.SCENE_MAINMENU:
                     ChangeState(GameConstants.GameState.StartMenu);
                     SaveGameManager.SaveProgressToFile(null, player, oldScene);
+                    SaveGameManager.finishedLoadingPlayer = false;
                     break;
                 case GameConstants.SCENE_CREDITS:
                     ChangeState(GameConstants.GameState.EndGame);
                     SaveGameManager.SaveProgressToFile(null, player, oldScene);
+                    SaveGameManager.finishedLoadingPlayer = false;
                     break;
                 default:
                     if (GameConstants.SCENES_INGAME.Contains(newScene))
