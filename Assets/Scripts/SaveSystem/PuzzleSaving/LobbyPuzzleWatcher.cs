@@ -16,13 +16,11 @@ namespace ABOGGUS.SaveSystem
         [Tooltip("Game Objects for unlock Grimoire Puzzle")]
         private GameObject chest, comboLock, grimBook;
 
-        [SerializeField]
-        [Tooltip("Player to save inventory status")]
-        private ABOGGUS.PlayerObjects.Player player; 
+        private ABOGGUS.PlayerObjects.Player player = GameController.player; 
 
         private void OnDestroy()
         {
-            SaveGameManager.SaveLobbyPuzzleStatus(player);
+            //SaveGameManager.SaveLobbyPuzzleStatus(player);
 
             //temp save
             SaveGameManager.SaveDebug();
@@ -33,6 +31,18 @@ namespace ABOGGUS.SaveSystem
             //temp load
             SaveGameManager.LoadDebug();
 
+
+            StartCoroutine(WaitToLoad());
+           
+
+        }
+
+        IEnumerator WaitToLoad()
+        {
+            while (!SaveGameManager.finishedLoadingPlayer)
+            {
+                yield return null;
+            }
 
             SaveGameManager.LoadLobbyPuzzleStatus(player, out bool grimAquired, out bool lockUnlocked);
 
@@ -46,7 +56,6 @@ namespace ABOGGUS.SaveSystem
             {
                 comboLock.SetActive(false);
             }
-
         }
     }
 }

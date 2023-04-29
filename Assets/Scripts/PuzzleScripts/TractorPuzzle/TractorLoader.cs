@@ -24,7 +24,7 @@ namespace ABOGGUS.Interact.Puzzles
         IEnumerator WaitToLoad(int newState)
         {
             yield return new WaitForSeconds(1.0f);
-            if (newState > 0) tractor0.GetComponent<Interactable>().DoSuccesAction();
+            if (newState > 0) tractor0.DoSuccesAction();
             yield return new WaitForSeconds(0.5f);
             if (newState > 1) tractor1.DoSuccesAction();
             yield return new WaitForSeconds(0.5f);

@@ -10,7 +10,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
     private Vector3 topDoorLPO;
 
     private float doorSpeed = 0.02f;
-    private float timer = 2.0f;
+    private float timer = 1.0f;
 
     public GameObject topDoorR;
     public GameObject topDoorL;
@@ -63,11 +63,8 @@ public class TopElevatorDoorTrigger : MonoBehaviour
                 GameController.ChangeScene("Elevator to Autumn Room", GameConstants.SCENE_AUTUMNROOM, false);
             }
         }
-        if (other.CompareTag("Player"))
-        {
-            timer = 2.0f;
-            openTopDoor = true;
-        }
+        timer = 1.0f;
+        openTopDoor = true;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -75,7 +72,7 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
             Debug.Log("HAPPENS EXIT");
-            timer = 2.0f;
+            timer = 1.0f;
             ThirdPersonCameraController.preAnimCam = false;
         }
     }
@@ -84,7 +81,6 @@ public class TopElevatorDoorTrigger : MonoBehaviour
         if (GameController.scene == GameConstants.SCENE_MAINLOBBY && other.CompareTag("Player"))
         {
             Debug.Log("HAPPENS STAY");
-
             ThirdPersonCameraController.preAnimCam = true;
         }
     }

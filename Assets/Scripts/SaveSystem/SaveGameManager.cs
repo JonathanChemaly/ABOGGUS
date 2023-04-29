@@ -72,6 +72,7 @@ namespace ABOGGUS.SaveSystem
             UpgradeStats.resetPlayerStats();
             WeaponDamageStats.resetDamageStats();
             currentSaveData = new SaveData();
+            finishedLoadingPlayer = true;
         }
 
         public static void SaveProgressToFile(string fileName, Player player, string sceneName)
@@ -164,7 +165,7 @@ namespace ABOGGUS.SaveSystem
 
         public static void LoadLobbyPuzzleStatus(Player player, out bool grimAquired, out bool lockUnlocked)
         {
-            LoadPlayerProgress(player);
+            //LoadPlayerProgress(player);
             grimAquired = currentSaveData.playerItems.Contains("Grimoire");
             lockUnlocked = currentSaveData.introPuzzleComplete;
         }

@@ -14,6 +14,8 @@ namespace ABOGGUS.Input
 
         private void Awake()
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             inputScheme = new InputActions();
             gameOptionsManager.Initialize(inputScheme.Player.Quit, inputScheme.Player.ReturnToMainMenu);
         }
