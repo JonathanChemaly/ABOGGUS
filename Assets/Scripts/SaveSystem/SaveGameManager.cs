@@ -167,7 +167,7 @@ namespace ABOGGUS.SaveSystem
         {
             //LoadPlayerProgress(player);
             grimAquired = currentSaveData.playerItems.Contains("Grimoire");
-            lockUnlocked = currentSaveData.introPuzzleComplete;
+            lockUnlocked = currentSaveData.introPuzzleComplete || GameConstants.puzzleStatus["IntroPuzzle"];
         }
 
         public static void SaveWinterPuzzleStatus()
