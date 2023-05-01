@@ -52,7 +52,6 @@ namespace ABOGGUS.SaveSystem
         public bool fireAOEUnlocked = false;
 
         public bool windUnlocked = false;
-
         public bool natureUnlocked = false;
         public bool waterUnlocked = false;
         public bool fireUnlocked = false;

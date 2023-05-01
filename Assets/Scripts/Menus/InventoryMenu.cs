@@ -25,6 +25,8 @@ namespace ABOGGUS.Menus
         [SerializeField] public Sprite tractorkey;
         [SerializeField] public Sprite wheel;
         [SerializeField] public Sprite wrench;
+        [SerializeField] public Sprite bucket;
+        [SerializeField] public Sprite hammer;
         [SerializeField] public Sprite empty;
 
         //public Sprite keyImage;
@@ -124,6 +126,8 @@ namespace ABOGGUS.Menus
                 case ItemLookup.TractorKeyName: return tractorkey;
                 case ItemLookup.WheelName: return wheel;
                 case ItemLookup.WrenchName: return wrench;
+                case ItemLookup.BucketName: return bucket;
+                case ItemLookup.HammerName: return hammer;
                     default: return empty;
             }
         }
