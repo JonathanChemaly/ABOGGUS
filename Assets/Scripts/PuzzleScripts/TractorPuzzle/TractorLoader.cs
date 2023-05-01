@@ -18,10 +18,10 @@ namespace ABOGGUS.Interact.Puzzles
         public void LoadPuzzle(int newState)
         {
             if (newState > 0)
-            StartCoroutine(WaitToLoad(newState));
+            StartCoroutine(WaitToLoadTractor(newState));
         }
 
-        IEnumerator WaitToLoad(int newState)
+        IEnumerator WaitToLoadTractor(int newState)
         {
             yield return new WaitForSeconds(1.0f);
             if (newState > 0) tractor0.DoSuccesAction();

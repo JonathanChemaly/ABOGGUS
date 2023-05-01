@@ -34,12 +34,19 @@ namespace ABOGGUS.Interact.Puzzles
 
         public void LoadPuzzle(Status newStatus, int newRuns)
         {
-            StartCoroutine(WaitToLoad(newStatus, newRuns));
+            status = Status.DIRT;
+            if (GameConstants.puzzleStatus["TreeGrowPuzzle"])
+            {
+                Destroy(manaDrop.transform.parent.gameObject);
+            }
+            StartCoroutine(WaitToLoadTree(newStatus, newRuns));
         }
 
-        IEnumerator WaitToLoad(Status newStatus, int newRuns)
+        IEnumerator WaitToLoadTree(Status newStatus, int newRuns)
         {
+            Debug.Log("test1");
             yield return new WaitForSeconds(1.0f);
+            Debug.Log("test2");
             if (newStatus > Status.DIRT && status == Status.DIRT) InteractDirt();
             yield return new WaitForSeconds(0.5f);
             if (newStatus > Status.SPROUT && status == Status.SPROUT) InteractSprout();

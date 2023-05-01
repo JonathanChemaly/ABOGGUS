@@ -29,7 +29,7 @@ namespace ABOGGUS.SaveSystem
             //set dictionary value of puzzles to their status
 
             //Temp Save For Testing Purposes
-            SaveGameManager.SaveDebug();
+            SaveGameManager.SavePuzzle();
         }
 
         private void Awake()
