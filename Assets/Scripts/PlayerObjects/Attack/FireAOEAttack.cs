@@ -61,7 +61,7 @@ namespace ABOGGUS.PlayerObjects
             //Debug.Log(other.tag);
             if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
             else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
-            else if (other.transform.CompareTag("Player")) GameController.player.TakeDamage(damage);
+            else if (other.transform.CompareTag("Player")) GameController.player.TakeDamage(damage, true);
         }
 
         private void DamageObject(Rigidbody rb, PlayerConstants.CollidedWith collidedWith)

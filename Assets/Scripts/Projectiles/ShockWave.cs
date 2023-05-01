@@ -34,7 +34,7 @@ public class ShockWave : MonoBehaviour
             if (active)
             {
                 //player[i].GetComponent<Player>().TakeDamage(explosionDamage);
-                GameController.player.TakeDamage(explosionDamage);
+                GameController.player.TakeDamage(explosionDamage, true);
                 active = false;
             }
         }

@@ -95,7 +95,7 @@ public class WaterSlime : MonoBehaviour, IEnemy
         if (collision.gameObject.name == "Player")
         {
             //slow the player
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
             //Debug.Log("pop");
         }
         if (collision.gameObject.tag == "Slime" && pop){
