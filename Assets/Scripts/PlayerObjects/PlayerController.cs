@@ -903,10 +903,21 @@ namespace ABOGGUS.PlayerObjects
                     lastWeaponEquipped = PlayerConstants.Weapon.Unarmed;
                 }
                 */
-                grimoire.Equip();
-                grimoire.SetNewMaterial(castType);
-                sword.Unequip();
-                spear.Unequip();
+                if (GameController.player.inventory.HasItem(ItemLookup.GrimoireName))
+                {
+                    grimoire.Equip();
+                    grimoire.SetNewMaterial(castType);
+                    sword.Unequip();
+                    spear.Unequip();
+                }
+                else
+                {
+                    grimoire.Unequip();
+                    sword.Equip();
+                    spear.Unequip();
+                    weaponEquipped = PlayerConstants.Weapon.Sword;
+                    Player.WeaponChanged();
+                }
             }
             else if (sword != null && weaponEquipped == PlayerConstants.Weapon.Sword && !sword.GetStatus())
             {
