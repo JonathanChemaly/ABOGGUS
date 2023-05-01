@@ -23,7 +23,7 @@ namespace ABOGGUS.SaveSystem
             //SaveGameManager.SaveLobbyPuzzleStatus(player);
 
             //temp save
-            SaveGameManager.SaveDebug();
+            SaveGameManager.SavePuzzle();
         }
 
         private void Awake()
@@ -32,12 +32,12 @@ namespace ABOGGUS.SaveSystem
             SaveGameManager.LoadDebug();
 
 
-            StartCoroutine(WaitToLoad());
+            StartCoroutine(WaitToLoadLobby());
            
 
         }
 
-        IEnumerator WaitToLoad()
+        IEnumerator WaitToLoadLobby()
         {
             while (!SaveGameManager.finishedLoadingPlayer)
             {

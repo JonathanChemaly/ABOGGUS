@@ -120,12 +120,9 @@ namespace ABOGGUS.SaveSystem
 
         // debug
 
-        public static void SaveDebug()
+        public static void SavePuzzle()
         {
-            if (debug)
-            {
-                SaveDataToFile(null);
-            }
+            SaveDataToFile(null);
         }
         public static void LoadDebug()
         {

@@ -39,7 +39,7 @@ namespace ABOGGUS.SaveSystem
             SaveGameManager.SaveSummerPuzzleStatus(difficulty);
 
             // temp for testing
-            SaveGameManager.SaveDebug();
+            SaveGameManager.SavePuzzle();
         }
 
         private void Awake()
