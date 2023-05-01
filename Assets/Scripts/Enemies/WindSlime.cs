@@ -50,7 +50,7 @@ public class WindSlime : MonoBehaviour, IEnemy
         {
             inRange = false;
             player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, pull);
-            GameController.player.TakeDamage(1);
+            GameController.player.TakeDamage(1, true);
         }
         else if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
@@ -97,7 +97,7 @@ public class WindSlime : MonoBehaviour, IEnemy
         if (collision.gameObject.name == "Player")
         {
             pull = 0f;
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
         }
     }
 

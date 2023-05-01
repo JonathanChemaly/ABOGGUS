@@ -13,7 +13,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
             Destroy(gameObject);
         }
         else

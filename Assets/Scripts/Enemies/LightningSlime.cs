@@ -48,7 +48,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
             if (timer == 2f)
             {
                 zapSound.Play();
-                GameController.player.TakeDamage(damage);
+                GameController.player.TakeDamage(damage, true);
             }
             
             timer -= Time.deltaTime;
@@ -112,7 +112,7 @@ public class LightningSlime : MonoBehaviour, IEnemy
     {
         if (collision.gameObject.name == "Player")
         {
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
         }
     }
 

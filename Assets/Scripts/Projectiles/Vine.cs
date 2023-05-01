@@ -24,7 +24,7 @@ public class Vine : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
             Invoke("Delay", destroyDelay);
         }
         else

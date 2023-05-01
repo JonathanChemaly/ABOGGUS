@@ -8,6 +8,7 @@ using ABOGGUS.Input;
 using ABOGGUS.Gameplay;
 using ABOGGUS.Menus;
 using System;
+using UnityEngine.Windows.Speech;
 
 namespace ABOGGUS.PlayerObjects
 {
@@ -62,7 +63,7 @@ namespace ABOGGUS.PlayerObjects
             playerHUD.UpdateWeapon(playerController.GetCurrentWeapon(), playerController.GetCurrentMagic());
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, bool causeInvincibility)
         {
             if (resist)
             {
@@ -70,10 +71,14 @@ namespace ABOGGUS.PlayerObjects
             }
             if (damage > 0)
             {
-                if (invulnerabilityFrames == 0)
+                if (!causeInvincibility)
                 {
                     inventory.TakeDamage(damage);
-                    invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES;
+                }
+                else if (invulnerabilityFrames == 0)
+                {
+                    inventory.TakeDamage(damage);
+                    if (causeInvincibility) { invulnerabilityFrames = PlayerConstants.INVULNERABILITY_FRAMES; }
                 }
             }
             else

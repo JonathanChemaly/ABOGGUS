@@ -63,7 +63,7 @@ namespace ABOGGUS.PlayerObjects
         {
             if (Time.deltaTime + healTime >= timeBetweenHealing)
             {
-                GameController.player.TakeDamage(-healing);
+                GameController.player.TakeDamage(-healing, true);
                 healTime = 0;
             }
             else
