@@ -19,17 +19,17 @@ public static class WeaponDamageStats
     public static int waterDamage = 15, defaultWaterDamage = 15;
     public static int waterAOEDamage = 10, defaultWaterAOEDamage = 10;
 
-    public static int windCost = 50, defaultWindCost = 4;
-    public static int windAOECost = 4, defaultWindAOECost = 4;
+    public static int windCost = 4, defaultWindCost = 2;
+    public static int windAOECost = 4, defaultWindAOECost = 5;
 
-    public static int fireCost = 4, defaultFireCost = 4;
-    public static int fireAOECost = 4, defaultFireAOECost = 4;
+    public static int fireCost = 4, defaultFireCost = 5;
+    public static int fireAOECost = 4, defaultFireAOECost = 10;
 
-    public static int natureCost = 4, defaultNatureCost = 4;
-    public static int natureAOECost = 4, defaultNatureAOECost = 4;
+    public static int natureCost = 4, defaultNatureCost = 5;
+    public static int natureAOECost = 4, defaultNatureAOECost = 10;
 
-    public static int waterCost = 4, defaultWaterCost = 4;
-    public static int waterAOECost = 4, defaultWaterAOECost = 4;
+    public static int waterCost = 4, defaultWaterCost = 5;
+    public static int waterAOECost = 4, defaultWaterAOECost = 5;
 
     public static void ResetDamageStats()
     {
