@@ -201,12 +201,14 @@ namespace ABOGGUS.Interact.Puzzles
 
         IEnumerator MoveWallUpOverTime()
         {
+            wall.GetComponent<AudioSource>().Play();
             float targetY = wall.transform.position.y + wallDist;
             while (wall.transform.position.y < targetY)
             {
                 yield return null;
                 wall.transform.position = Vector3.MoveTowards(wall.transform.position, wall.transform.position + Vector3.up, Time.deltaTime*wallMoveSpeed);
             }
+            wall.GetComponent<AudioSource>().Stop();
         }
 
         public void PuzzleComplete()

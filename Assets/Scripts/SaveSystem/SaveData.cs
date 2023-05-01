@@ -18,7 +18,7 @@ namespace ABOGGUS.SaveSystem
         // player inventory data
         public float playerHealth = PlayerConstants.MAX_HEALTH;
         public bool playerHasKey = false;
-        public int playerMana = 0;
+        public int playerMana = PlayerConstants.DEFAULT_MANA;
 
         public List<string> playerItems = new();
 
