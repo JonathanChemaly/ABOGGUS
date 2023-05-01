@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
             if (active)
             {
                 //player[i].GetComponent<Player>().TakeDamage(explosionDamage);
-                GameController.player.TakeDamage(explosionDamage);
+                GameController.player.TakeDamage(explosionDamage, false);
                 active = false;
             }
         }

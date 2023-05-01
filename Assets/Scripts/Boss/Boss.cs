@@ -242,7 +242,7 @@ namespace ABOGGUS.BossObjects
         {
             if(Physics.CheckSphere(transform.position, meleeHitRange, whatIsPlayer))
             {
-                GameController.player.TakeDamage(CLAW_DAMAGE);
+                GameController.player.TakeDamage(CLAW_DAMAGE, true);
             }
         }
 

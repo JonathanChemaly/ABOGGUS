@@ -95,7 +95,7 @@ public class FireSlime : MonoBehaviour, IEnemy
     {
         if (collision.gameObject.name == "Player")
         {
-            GameController.player.TakeDamage(damage);
+            GameController.player.TakeDamage(damage, true);
         }
     }
 
