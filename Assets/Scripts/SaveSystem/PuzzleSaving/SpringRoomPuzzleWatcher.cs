@@ -43,13 +43,13 @@ namespace ABOGGUS.SaveSystem
 
             SaveGameManager.LoadSpringPuzzleStatus(out List<bool> activeRunesList, out TreePuzzle.Status tStatus, out int currentRunNum);
 
-            Debug.Log(tStatus);
-            Debug.Log(currentRunNum);
+            //Debug.Log(tStatus);
+            //Debug.Log(currentRunNum);
 
             treePuzzle.LoadPuzzle(tStatus, currentRunNum);
 
-            Debug.Log(TreePuzzle.status);
-            Debug.Log(TreePuzzle.latestRun);
+            //Debug.Log(TreePuzzle.status);
+            //Debug.Log(TreePuzzle.latestRun);
 
             string debugString = "";
             for (int i = 0; i < activeRunesList.Count; i++)
@@ -57,7 +57,7 @@ namespace ABOGGUS.SaveSystem
                 bool currentStatus = activeRunesList[i];
                 debugString += currentStatus.ToString();
             }
-            Debug.Log(debugString);
+            //Debug.Log(debugString);
 
             runePuzzle.LoadFromList(activeRunesList, runeCompleteness);
             

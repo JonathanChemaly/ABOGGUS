@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 614925305}
-  m_IndirectSpecularColor: {r: 0.0054873712, g: 0.013583063, b: 0.024333019, a: 1}
+  m_IndirectSpecularColor: {r: 0.005470078, g: 0.013563467, b: 0.024332728, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -57165,8 +57165,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999976, z: 1.069194}
-  m_Center: {x: 0, y: 0, z: 0.03459672}
+  m_Size: {x: 1.3524417, y: 0.99999976, z: 1.2586778}
+  m_Center: {x: 0.010315532, y: 0, z: -0.060144916}
 --- !u!23 &1843076811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58314,6 +58314,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3511681741374987963, guid: 5fd32549f6aecb24d9d9431390a014b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6040409003805280715, guid: 5fd32549f6aecb24d9d9431390a014b5, type: 3}
       propertyPath: m_Mesh
       value: 

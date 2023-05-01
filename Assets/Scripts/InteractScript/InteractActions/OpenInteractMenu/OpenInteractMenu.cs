@@ -59,7 +59,7 @@ namespace ABOGGUS.Interact
             Cursor.visible = true;
             camera.enabled = false;
             //GameController.PauseGame();
-            Debug.Log("After open menu Game state = " + GameController.gameState);
+            //Debug.Log("After open menu Game state = " + GameController.gameState);
             //Temp Change for input end
             canvas.enabled = false;
             StartCoroutine(CheckIfUnloaded());
@@ -85,9 +85,9 @@ namespace ABOGGUS.Interact
             //Keep spinning while the menu is loaded
             while (interactMenu.isLoaded)
             {
-                Debug.Log("While menu open Game state = " + GameController.gameState);
-                Debug.Log(Cursor.lockState);
-                Debug.Log(Cursor.visible);
+                //Debug.Log("While menu open Game state = " + GameController.gameState);
+                //Debug.Log(Cursor.lockState);
+                //Debug.Log(Cursor.visible);
                 yield return null;
             }
             

@@ -20,7 +20,7 @@ namespace ABOGGUS.Interact
 
         private void ClearPuzzle()
         {
-            Debug.Log("puzzlecomplete");
+            //Debug.Log("puzzlecomplete");
             GameConstants.puzzleStatus[puzzleName] = true;
         }
     }

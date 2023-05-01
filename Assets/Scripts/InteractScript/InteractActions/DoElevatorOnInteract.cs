@@ -70,7 +70,7 @@ namespace ABOGGUS.Interact
         {
             timer = 2.0f;
             openTopDoor = true;
-            Debug.Log("Opening Elevator door");
+            //Debug.Log("Opening Elevator door");
         }
 
         // Update is called once per frame
@@ -81,7 +81,7 @@ namespace ABOGGUS.Interact
                 timer -= Time.deltaTime;
                 if (timer <= 0f)
                 {
-                    Debug.Log("elevator moving");
+                    //Debug.Log("elevator moving");
                     topDoorR.transform.position = Vector3.MoveTowards(topDoorR.transform.position, topDoorRPO, doorSpeed);
                     topDoorL.transform.position = Vector3.MoveTowards(topDoorL.transform.position, topDoorLPO, doorSpeed);
 

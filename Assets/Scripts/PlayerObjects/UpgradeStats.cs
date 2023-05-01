@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ABOGGUS.PlayerObjects;
+using ABOGGUS.PlayerObjects.Items;
+using ABOGGUS.Gameplay;
 
 [System.Serializable]
 public static class UpgradeStats
@@ -25,7 +27,7 @@ public static class UpgradeStats
 
     public static float healthBarSize = 1f, defaultHealthBarSize = 1f;
 
-    public static int mana = 100, defaultMana = 100, totalMana = 100;
+    public static int mana = 100, totalMana = 100;
 
     public static float manaEfficiency = 1.0f;
 
@@ -50,7 +52,7 @@ public static class UpgradeStats
         var tempScale = GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale;
         tempScale.x += healthBarInc;
         GameObject.Find("HealthBar").GetComponent<RectTransform>().localScale = tempScale;
-        Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
+        //Debug.Log(GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health);
         healthUpgradeCount += 1;
         healthBarSize += healthBarInc;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(healthUpCost);
@@ -60,7 +62,7 @@ public static class UpgradeStats
     {
         GameObject.Find("Sword").GetComponent<SwordAttack>().damage+=swordDamInc;
         WeaponDamageStats.swordDamage += swordDamInc;
-        Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
+        //Debug.Log(GameObject.Find("Sword").GetComponent<SwordAttack>().damage);
         swordUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(swordUpCost);
     }
@@ -69,7 +71,7 @@ public static class UpgradeStats
     {
         GameObject.Find("Spear").GetComponent<SpearAttack>().damage += spearDamInc;
         WeaponDamageStats.spearDamage += spearDamInc;
-        Debug.Log(GameObject.Find("Spear").GetComponent<SpearAttack>().damage);
+        //Debug.Log(GameObject.Find("Spear").GetComponent<SpearAttack>().damage);
         spearUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(spearUpCost);
     }
@@ -77,7 +79,7 @@ public static class UpgradeStats
     public static void IncManaEfficiency()
     {
         manaEfficiency -= 0.1f;
-        Debug.Log(manaEfficiency);
+        //Debug.Log(manaEfficiency);
         mEUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(mECost);
     }
@@ -98,13 +100,13 @@ public static class UpgradeStats
 
         WeaponDamageStats.natureDamage += spellDamInc;
 
-        Debug.Log("New Wind Damage: " + WeaponDamageStats.windDamage);
-        Debug.Log("New Wind AOE Damage: " + WeaponDamageStats.windAOEDamage);
-        Debug.Log("New Fire Damage: " + WeaponDamageStats.fireDamage);
-        Debug.Log("New Fire AOE Damage: " + WeaponDamageStats.fireAOEDamage);
-        Debug.Log("New Water Damage: " + WeaponDamageStats.waterDamage);
-        Debug.Log("New Water AOE Damage: " + WeaponDamageStats.waterAOEDamage);
-        Debug.Log("New Nature Damage: " + WeaponDamageStats.natureDamage);
+        //Debug.Log("New Wind Damage: " + WeaponDamageStats.windDamage);
+        //Debug.Log("New Wind AOE Damage: " + WeaponDamageStats.windAOEDamage);
+        //Debug.Log("New Fire Damage: " + WeaponDamageStats.fireDamage);
+        //Debug.Log("New Fire AOE Damage: " + WeaponDamageStats.fireAOEDamage);
+        //Debug.Log("New Water Damage: " + WeaponDamageStats.waterDamage);
+        //Debug.Log("New Water AOE Damage: " + WeaponDamageStats.waterAOEDamage);
+        //Debug.Log("New Nature Damage: " + WeaponDamageStats.natureDamage);
 
 
         oSDUpgradeCount += 1;
@@ -116,7 +118,7 @@ public static class UpgradeStats
     {
         canHealFromMana = true;
         healFromManaVal += healFromManaInc;
-        Debug.Log("Health gained from mana: " + healFromManaVal);
+        //Debug.Log("Health gained from mana: " + healFromManaVal);
         hFMUpgradeCount += 1;
         GameObject.Find("PlayerScripts").GetComponent<Player>().updateMana(hFMCost);
     }
@@ -136,14 +138,14 @@ public static class UpgradeStats
                 GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth);
     }
 
-    public static void resetPlayerStats()
+    public static void ResetPlayerStats()
     {
         runs = 0;
         healthUpgradeCount = 0;
         swordUpgradeCount = 0;
         healthBarSize = defaultHealthBarSize;
-        mana = defaultMana;
-        totalMana = defaultMana;
+        mana = PlayerConstants.DEFAULT_MANA;
+        totalMana = PlayerConstants.DEFAULT_MANA;
         manaEfficiency = 1.0f;
         oSDUpgradeCount = 0;
         overallSpellDamBonus = 0;
@@ -153,5 +155,34 @@ public static class UpgradeStats
         bonusDamMultiplier = 1.0f;
         bonusDamUpgradeCount = 0;
         canDealBonusDamAtMaxHealth = false;
+        if (GameObject.Find("PlayerScripts") != null)
+        {
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.maxHealth = PlayerConstants.MAX_HEALTH;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.health = PlayerConstants.MAX_HEALTH;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.mana = PlayerConstants.DEFAULT_MANA;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.totalMana = PlayerConstants.DEFAULT_MANA;
+            GameObject.Find("PlayerScripts").GetComponent<Player>().inventory.items = new List<IItem>();
+            GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateHealthBar();
+            GameObject.Find("PlayerScripts").GetComponent<Player>().playerHUD.UpdateMana();
+        }
+        GameConstants.windAOEUnlocked = false;
+        GameConstants.natureAOEUnlocked = false;
+        GameConstants.waterAOEUnlocked = false;
+        GameConstants.fireAOEUnlocked = false;
+        GameConstants.windUnlocked = false;
+        GameConstants.natureUnlocked = false;
+        GameConstants.waterUnlocked = false;
+        GameConstants.fireUnlocked = false;
+
+        GameConstants.puzzleStatus["FirePuzzle"] = false;
+        GameConstants.puzzleStatus["WindPushPuzzle"] = false;
+        GameConstants.puzzleStatus["TileSlidePuzzle"] = false;
+        GameConstants.puzzleStatus["TractorPuzzle"] = false;
+        GameConstants.puzzleStatus["MazePuzzle"] = false;
+        GameConstants.puzzleStatus["MeltIcePuzzle"] = false;
+        GameConstants.puzzleStatus["FallingIcePuzzle"] = false;
+        GameConstants.puzzleStatus["RunePuzzle"] = false;
+        GameConstants.puzzleStatus["TreeGrowPuzzle"] = false;
+        GameConstants.puzzleStatus["IntroPuzzle"] = false;
     }
 }

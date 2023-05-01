@@ -41,7 +41,7 @@ namespace ABOGGUS.PlayerObjects
         void FixedUpdate()
         {
             animator.Play(PlayerAnimationStateController.currentState);
-            Debug.Log("Nature State: " + PlayerAnimationStateController.currentState);
+            //Debug.Log("Nature State: " + PlayerAnimationStateController.currentState);
             if (Time.deltaTime + time >= totalTime)
             {
                 Destroy();
@@ -57,7 +57,7 @@ namespace ABOGGUS.PlayerObjects
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.tag);
+            //Debug.Log(other.tag);
             if (other.transform.CompareTag("Slime")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Enemy);
             else if (other.transform.CompareTag("Boss")) DamageObject(other.GetComponent<Rigidbody>(), PlayerConstants.CollidedWith.Boss);
         }

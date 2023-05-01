@@ -15,7 +15,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
             while (count < numberOfBoxesToAdd)
             {
-                Debug.Log("GenerateSokobanGoals- Goals add = " + count);
+                //Debug.Log("GenerateSokobanGoals- Goals add = " + count);
                 //Erase player and boxes from board
                 //goes through all rows
                 for (int row = 0; row < sokobanRows; row++)
@@ -54,7 +54,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 }
 
-                Debug.Log("GenerateSokobanGoals- number of floors = " + floorLocations.Count);
+                //Debug.Log("GenerateSokobanGoals- number of floors = " + floorLocations.Count);
 
                 //shuffle the list of floors?
                 Shuffle(floorLocations);
@@ -80,13 +80,13 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                         SetPlayerSpawn(tupRows, tupCol, tup.Item1);
                     }
 
-                    Debug.Log("GenerateSokobanGoals- temp level count = " + temp.Count);
-                    Debug.Log("GenerateSokobanGoals- temp level Length = " + GetLengthOfSolutions(temp));
+                    //Debug.Log("GenerateSokobanGoals- temp level count = " + temp.Count);
+                    //Debug.Log("GenerateSokobanGoals- temp level Length = " + GetLengthOfSolutions(temp));
                     //if the length of our solution is greatter then the length of best we change best to our temp solution
                     if (GetLengthOfSolutions(temp) > GetLengthOfSolutions(best))
                     {
                         best = temp;
-                        Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
+                        //Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
 
                         //Turn the goal cells back in the solutions
                         foreach (System.Tuple<SokobanCell[,], int> tup in best)
@@ -99,7 +99,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
 
                 }
 
-                Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
+                //Debug.Log("GenerateSokobanGoals- Best level count = " + best.Count);
 
                 //chose one "level" from best
 
@@ -145,7 +145,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 }
             }
-            Debug.Log("Player Spawn Added to board = " + playerSpawnCellAdded);
+            //Debug.Log("Player Spawn Added to board = " + playerSpawnCellAdded);
         }
 
         /**
@@ -172,7 +172,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                     }
                 }
             }
-            Debug.Log("Player Spawn Added to board = " + playerSpawnCellAdded);
+            //Debug.Log("Player Spawn Added to board = " + playerSpawnCellAdded);
         }
 
         private static System.Tuple<int, int> FindGoal(SokobanCell[,] board, int numRows, int numCols)
@@ -206,8 +206,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             SetIntialPlayerPostion(sokobanRows, sokobanCols, board);
 
             HashSet<System.Tuple<SokobanCell[,], int>> temp = Search(board);
-            Debug.Log("TestSearch- temp level count = " + temp.Count);
-            Debug.Log("TestSearch- temp level Length = " + GetLengthOfSolutions(temp));
+            //Debug.Log("TestSearch- temp level count = " + temp.Count);
+            //Debug.Log("TestSearch- temp level Length = " + GetLengthOfSolutions(temp));
 
 
             foreach (System.Tuple<SokobanCell[,], int> tup in temp)
@@ -221,7 +221,7 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
             int maxDifference = -1;
             foreach (System.Tuple<SokobanCell[,], int> tuple in temp)
             {
-                Debug.Log("DistanceFromGoal = " + tuple.Item2);
+                //Debug.Log("DistanceFromGoal = " + tuple.Item2);
                 SokobanHelper.DebugPrintSokoban(tuple.Item1);
                 if (tuple.Item2 > maxDifference)
                 {
@@ -287,11 +287,11 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //if Advance returns an empty set we found our solution
                 if(layer != 0 ) temp = SetDifference(temp, frontier_second);
 
-                Debug.Log("!!!!!!!!!!!!!!ADVANCE");
+                //Debug.Log("!!!!!!!!!!!!!!ADVANCE");
                 PrintAllSokobanInSet(temp);
-                Debug.Log("!!!!!!!!!!!!!!END ADVANCE");
+                //Debug.Log("!!!!!!!!!!!!!!END ADVANCE");
 
-                Debug.Log("GenerateSokobanGoals-Search - temp count = " + temp.Count);
+                //Debug.Log("GenerateSokobanGoals-Search - temp count = " + temp.Count);
                 if (temp.Count == 0)
                 {
                     //return temp
@@ -309,9 +309,9 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
                 //frontier.main = frontier.main - frontier.second
                 temp = SetDifference(temp, frontier_second); //does the set difference as intended
 
-                Debug.Log("!!!!!!!!!!!!!!TEMP IN SEARCH");
+                //Debug.Log("!!!!!!!!!!!!!!TEMP IN SEARCH");
                 PrintAllSokobanInSet(temp);
-                Debug.Log("!!!!!!!!!!!!!!END TEMP IN SEARCH");
+                //Debug.Log("!!!!!!!!!!!!!!END TEMP IN SEARCH");
 
                 for (int i = 0; i < layer; i++)
                 {
@@ -585,8 +585,8 @@ namespace ABOGGUS.Interact.Puzzles.Sokoban
         {
             foreach(System.Tuple<SokobanCell[,], int> tup in set)
             {
-                Debug.Log("Distance to Goal = " + tup.Item2);
-                Debug.Log("cur player postion = " + FindPlayer(tup.Item1, tup.Item1.GetLength(0), tup.Item1.GetLength(1))?.ToString());
+                //Debug.Log("Distance to Goal = " + tup.Item2);
+                //Debug.Log("cur player postion = " + FindPlayer(tup.Item1, tup.Item1.GetLength(0), tup.Item1.GetLength(1))?.ToString());
                 SokobanHelper.DebugPrintSokoban(tup.Item1);
                 
             }

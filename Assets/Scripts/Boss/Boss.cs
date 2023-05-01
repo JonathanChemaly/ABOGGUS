@@ -42,7 +42,7 @@ namespace ABOGGUS.BossObjects
         public float meleeAttackRange, meleeHitRange;
         public bool playerInSightRange, playerInAttackRange;
 
-        private int wait = 500;
+        private int wait = 200;
         private int sparkCount;
         public int maxSparkCount;
         public GameObject spark;
@@ -126,7 +126,7 @@ namespace ABOGGUS.BossObjects
             {
                 health -= damage;
                 takingDamage = true;
-                Debug.Log("Boss took " + damage + " damage.");
+                //Debug.Log("Boss took " + damage + " damage.");
                 healthBar.UpdateHealthBar();
                 if (health <= 0)
                 {

@@ -55,7 +55,7 @@ namespace ABOGGUS.Interact
 
         private void DebugEvent()
         {
-            Debug.Log("Play Animation Event invoked");
+            //Debug.Log("Play Animation Event invoked");
         }
 
         //disables the interactable while it is animating so we do not have worry about more the one input messing with animation

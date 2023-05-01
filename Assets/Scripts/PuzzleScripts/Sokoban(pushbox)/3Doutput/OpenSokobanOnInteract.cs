@@ -74,7 +74,7 @@ namespace ABOGGUS.Interact
             Cursor.visible = true;
             thirdPersonCamera.enabled = false;
             //GameController.PauseGame();
-            Debug.Log("After open menu Game state = " + GameController.gameState);
+            //Debug.Log("After open menu Game state = " + GameController.gameState);
             //Temp Change for input end
             foreach (Canvas canvas in canvasList)
             {

@@ -16,6 +16,8 @@ namespace ABOGGUS.Menus
         private float initialVolume = 0.25f;
         private void Start()
         {
+            // Set timescale back to 1 for coroutines to work properly
+            Time.timeScale = 1.0f;
             AudioListener.volume = initialVolume;
 
             // disable load button if no save folder found

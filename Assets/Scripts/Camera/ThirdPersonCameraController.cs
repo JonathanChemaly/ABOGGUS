@@ -64,7 +64,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Debug.Log("is paused: " + GameController.gameState);
+        //Debug.Log("is paused: " + GameController.gameState);
         bool cameraChecks = GameController.gameState != GameConstants.GameState.Paused && !PauseMenu.isPaused 
                 && !InventoryMenu.isPaused && !GameOverMenu.isPaused && !OpenShopMenu.shopOpen && !OpenInteractMenu.interactOpen && !OpenSokobanOnInteract.SokobanOpen;
         if (cameraChecks) Cursor.lockState = CursorLockMode.Locked;
@@ -75,7 +75,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         } else
         {
             thirdPerson = false;
-            Debug.Log("IN LOBBY");
+            //Debug.Log("IN LOBBY");
         }
         if (thirdPerson != oldTP)
         {

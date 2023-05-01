@@ -117,7 +117,7 @@ public class BotElevatorDoorTrigger : MonoBehaviour
             else if (other.CompareTag("Player"))
             {
                 openBottomDoor = true;
-                Debug.Log("botOpen");
+                //Debug.Log("botOpen");
             }
         }
     }
@@ -126,8 +126,11 @@ public class BotElevatorDoorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             openBottomDoor = false;
-            NotEnoughMana.enabled = false;
-            GoToBoss.enabled = false;
+            if (GameController.scene == GameConstants.SCENE_MAINLOBBY)
+            {
+                NotEnoughMana.enabled = false;
+                GoToBoss.enabled = false;
+            }
         }
     }
 

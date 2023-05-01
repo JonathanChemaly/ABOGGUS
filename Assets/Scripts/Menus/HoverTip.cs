@@ -17,7 +17,7 @@ namespace ABOGGUS.Menus
         {
             StopAllCoroutines();
             //StartCoroutine(StartTimer());
-            Debug.Log("Hover tip " + id);
+            //Debug.Log("Hover tip " + id);
             ShowMessage();
         }
 

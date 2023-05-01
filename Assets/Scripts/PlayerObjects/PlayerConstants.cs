@@ -14,6 +14,7 @@ namespace ABOGGUS.PlayerObjects
 
         public const int FIXED_UPDATES_PER_SECOND = 50;
 
+        public const int DEFAULT_MANA = 100;
         public const float MAX_HEALTH = 100;
         public const float SPEED_DEFAULT = 0.1f;
         public const float SPRINT_MULTIPLIER_DEFAULT = 2;

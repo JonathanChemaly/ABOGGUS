@@ -25,7 +25,7 @@ namespace ABOGGUS.Menus
             gameOverImage.color = clearBlack;
             isPaused = false;
             openMenu = false;
-
+            ogVolume = AudioListener.volume;
             // bring this canvas to front
             transform.Find("GameOverCanvas").GetComponent<Canvas>().sortingOrder = 10;
         }
@@ -50,9 +50,8 @@ namespace ABOGGUS.Menus
             Cursor.visible = true;
             isPaused = true;
             GameController.PauseGame();
-            ogVolume = AudioListener.volume;
             AudioListener.volume = 0;
-            BuffManager.Instance.RemoveBuffs();
+            if (BuffManager.Instance != null) BuffManager.Instance.RemoveBuffs();
             //GameController.player.debug = false;
         }
 

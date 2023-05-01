@@ -60,7 +60,7 @@ namespace ABOGGUS.SaveSystem
             }
             else
             {
-                Debug.Log("Save file does not exist.");
+                //Debug.Log("Save file does not exist.");
             }
 
             // assign loaded data
@@ -69,8 +69,8 @@ namespace ABOGGUS.SaveSystem
 
         public static void StartNewData()
         {
-            UpgradeStats.resetPlayerStats();
-            WeaponDamageStats.resetDamageStats();
+            UpgradeStats.ResetPlayerStats();
+            WeaponDamageStats.ResetDamageStats();
             currentSaveData = new SaveData();
             finishedLoadingPlayer = true;
         }
@@ -102,7 +102,7 @@ namespace ABOGGUS.SaveSystem
             currentSaveData.playerHasKey = player.inventory.key;
             currentSaveData.playerMana = player.inventory.mana;
             currentSaveData.playerItems = player.inventory.GetItemsString();
-            Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
+            //Debug.Log("Saved player with health: " + currentSaveData.playerHealth);
         }
 
         public static void LoadPlayerProgress(Player player)
@@ -113,7 +113,7 @@ namespace ABOGGUS.SaveSystem
                 player.inventory.key = currentSaveData.playerHasKey;
                 player.inventory.mana = currentSaveData.playerMana;
                 player.inventory.SetItemsString(currentSaveData.playerItems);
-                Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
+                //Debug.Log("Loaded player with health: " + currentSaveData.playerHealth);
                 finishedLoadingPlayer = true;
             }
         }
@@ -167,7 +167,7 @@ namespace ABOGGUS.SaveSystem
         {
             //LoadPlayerProgress(player);
             grimAquired = currentSaveData.playerItems.Contains("Grimoire");
-            lockUnlocked = currentSaveData.introPuzzleComplete;
+            lockUnlocked = currentSaveData.introPuzzleComplete || GameConstants.puzzleStatus["IntroPuzzle"];
         }
 
         public static void SaveWinterPuzzleStatus()

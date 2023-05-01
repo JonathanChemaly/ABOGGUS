@@ -111,11 +111,11 @@ public class GrassSlime : MonoBehaviour, IEnemy
         if (collision.gameObject.name == "Player")
         {
             GameController.player.TakeDamage(damage, true);
-            Debug.Log("Nature attack");
+            //Debug.Log("Nature attack");
         }
         if (collision.gameObject.tag == "Sword" || collision.gameObject.tag == "MagicAttack")
         {
-            Debug.Log("Grass Slime health:" + health);
+            //Debug.Log("Grass Slime health:" + health);
             health -= 1;
         }
     }
@@ -146,7 +146,7 @@ public class GrassSlime : MonoBehaviour, IEnemy
         animator.Play("Attack");
         GameController.player.TakeDamage(damage, true);
         player.transform.position = player.transform.position - player.transform.root.forward * knockback;
-        Debug.Log("Damage by nature slime");
+        //Debug.Log("Damage by nature slime");
     }
 
     public void TakeDamage(float damage, PlayerConstants.DamageSource damageSource)
